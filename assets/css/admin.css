@@ -1,0 +1,33 @@
+/**
+ * Admin styles
+ */
+ 
+/**
+ * Fields table
+ */
+.widefat .field-group-heading {
+	background-color: #f9f9f9;
+}
+
+.widefat .field-group-heading td {
+	padding-bottom: 4px;
+	padding-top: 15px;
+	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+.widefat .field-group-heading:first-child td {
+	border-top: 0;
+}
+
+
+/**
+ * Hide title input on entries
+ */
+.post-type-af_entry #titlediv {
+	display: none;
+}
+
+#acf_after_title-sortables #acf-group_entry_data {
+	margin-top: 0;
+}

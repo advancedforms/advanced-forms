@@ -1,0 +1,363 @@
+<?php
+	
+	
+/**
+ * Handles rendering, validation, and saving of forms
+ *
+ * @since 1.0.0
+ *
+ */
+class AF_Core_Forms {
+	
+	
+	function __construct() {
+		
+		add_action( 'init', array( $this, 'pre_form' ), 10, 0 );
+		add_action( 'af/form/render', array( $this, 'render' ), 10, 2 );
+		
+		add_shortcode( 'advanced_form', array( $this, 'form_shortcode' ) );
+	}
+	
+	
+	/**
+	 * Registers the short code advanced_form which renders the form specified by the "form" attribute
+	 *
+	 * @since 1.0.0
+	 *
+	 */
+	function form_shortcode( $atts ) {
+		
+		if ( isset( $atts['form'] ) ) {
+			
+			$form_id_or_key = $atts['form'];
+			unset( $atts['form'] );
+			
+			$this->render( $form_id_or_key, $atts );
+			
+		}
+		
+	}
+	
+	
+	/**
+	 * Handles submissions and enqueue of neccessary scripts
+	 * Relies on default ACF validations
+	 *
+	 * @since 1.0.0
+	 *
+	 */
+	function pre_form() {
+		
+		if ( isset( $_POST['af_form'] ) && ! isset( $_POST['action'] ) ) {
+			
+			$form_key_or_id = $_POST['af_form'];
+			
+			$form = af_get_form( $form_key_or_id );
+			
+			
+			// Validate the posted data, this validation has already been performed once over AJAX
+			if ( $form && acf_validate_save_post( true ) ) {
+				
+				
+				// Increase the form submissions counter
+				if ( $form['post_id'] ) {
+					$submissions = get_post_meta( $form['post_id'], 'form_num_of_submissions', true );
+					$submissions = $submissions ? $submissions + 1 : 1;
+					update_post_meta( $form['post_id'], 'form_num_of_submissions', $submissions );
+				}
+				
+				
+				// Retrieve the args used to display the form
+				$args = json_decode( base64_decode( $_POST['af_form_args'] ) );
+				
+				$fields = array();
+				
+				
+				$field_groups = af_get_form_field_groups( $form['key'] );
+				
+				foreach( $field_groups as $field_group ) {
+					
+					$group_fields = acf_get_fields( $field_group );
+					
+					foreach( $group_fields as $group_field ) {
+						
+						// Format value from POST data
+						if ( isset( $_POST['acf'][ $group_field['key'] ] ) ) {
+							
+							$value = $_POST['acf'][ $group_field['key'] ];
+							
+							$group_field['_input'] = $value;
+							$group_field['value'] = acf_format_value( $value, 0, $group_field );
+							
+						}
+						
+						$fields[] = $group_field;
+						
+					}
+					
+				}
+				
+				
+				do_action( 'af/form/submission', $form, $fields, $args );
+				do_action( 'af/form/submission/id=' . $form['post_id'], $form, $fields, $args );
+				do_action( 'af/form/submission/key=' . $form['key'], $form, $fields, $args );
+				
+				
+				// Redirect to success page
+				wp_redirect( $args->redirect );
+				exit;
+				
+			}
+			
+		}
+		
+		acf_enqueue_scripts();
+		
+	}
+	
+	
+	
+	/**
+	 * Renders the form specified by ID
+	 *
+	 * @since 1.0.0
+	 *
+	 */
+	function render( $form_id_or_key, $args ) {
+		
+		$form = af_get_form( $form_id_or_key );
+		
+		if ( ! $form ) {
+			return;
+		}
+		
+		$url = acf_get_current_url();
+		
+		$args = wp_parse_args($args, array(
+			'display_title' 			=> $form['display']['display_title'],
+			'display_description' 		=> $form['display']['display_description'],
+			'values' 					=> array(),
+			'submit_text' 				=> __( 'Submit', 'advanced-forms' ),
+			'redirect' 					=> add_query_arg( 'af_succcess', '', $url ),
+			'echo'						=> true,
+		));
+		
+		
+		$args = apply_filters( 'af/form/args', $args, $form );
+		$args = apply_filters( 'af/form/args/id=' . $form['post_id'], $args, $form );
+		$args = apply_filters( 'af/form/args/key=' . $form['key'], $args, $form );
+		
+		
+		// Increase the form view counter
+		if ( $form['post_id'] ) {
+			$views = get_post_meta( $form['post_id'], 'form_num_of_views', true );
+			$views = $views ? $views + 1 : 1;
+			update_post_meta( $form['post_id'], 'form_num_of_views', $views );
+		}
+		
+		
+		ob_start();
+		
+		// Form element
+		echo '<form class="af-form acf-form" method="POST">';
+		
+		
+		do_action( 'af/form/before_title', $form, $args );
+		do_action( 'af/form/before_title/id=' . $form['post_id'], $form, $args );
+		do_action( 'af/form/before_title/key=' . $form['key'], $form, $args );
+		
+		
+		// Display title
+		if ( $args['display_title'] ) {
+			
+			$title = $form['title'];
+			
+			$title = apply_filters( 'af/form/title', $title, $form );
+			$title = apply_filters( 'af/form/title/id=' . $form['post_id'], $title, $form );
+			$title = apply_filters( 'af/form/title/key=' . $form['key'], $title, $form );
+			
+			echo sprintf( '<h1 class="af-title">%s</h1>', $title );
+			
+		}
+		
+		
+		// Display description
+		if ( $args['display_description'] ) {
+			
+			$description = $form['display']['description'];
+			
+			$description = apply_filters( 'af/form/description', $description, $form );
+			$description = apply_filters( 'af/form/description/id=' . $form['post_id'], $description, $form );
+			$description = apply_filters( 'af/form/description/key=' . $form['key'], $description, $form );
+			
+			echo sprintf( '<div class="af-description">%s</div>', $description );
+			
+		}
+		
+		
+		// Display success message or fields
+		if ( isset( $_GET['af_succcess'] ) ) {
+			
+			echo '<div class="af-success">';
+			
+			$success_message = get_field( 'form_success_message', $form['display']['success_message'] );
+			echo $success_message;
+			
+			echo '</div>';
+			
+		} else {	
+			
+			// Get field groups for the form and display their fields
+			$field_groups = af_get_form_field_groups( $form['key'] );
+			
+			echo '<div class="af-fields acf-fields acf-form-fields">';
+			
+			
+			do_action( 'af/form/before_fields', $form, $args );
+			do_action( 'af/form/before_fields/id=' . $form['post_id'], $form, $args );
+			do_action( 'af/form/before_fields/key=' . $form['key'], $form, $args );
+			
+			
+			// Dummy ACF data to make Javascript validations work
+			echo '<div id="acf-form-data">';
+			echo '<input type="hidden" name="_acfnonce" value="">';
+			echo '</div>';
+			
+			
+			// Hidden fields to identify form
+			echo '<div class="acf-hidden">';
+			echo sprintf( '<input type="hidden" name="af_form" value="%s">', $form['key'] );
+			echo sprintf( '<input type="hidden" name="af_form_args" value="%s">', base64_encode( json_encode( $args ) ) );
+			echo sprintf( '<input type="hidden" name="_acf_form" value="%s">', base64_encode( json_encode( $args ) ) );
+			
+			do_action( 'af/form/hidden_fields', $form, $args );
+			do_action( 'af/form/hidden_fields/id=' . $form['post_id'], $form, $args );
+			do_action( 'af/form/hidden_fields/key=' . $form['key'], $form, $args );
+			
+			echo '</div>';
+			
+			
+			foreach ( $field_groups as $field_group ) {
+				
+				// Get all fields for field group
+				$fields = acf_get_fields( $field_group );
+				
+				foreach ( $fields as $field ) {
+					
+					// Check if we have any prefilled values for this field, either in the args or previously submitted
+					if ( isset( $_POST['acf'][ $field['key'] ] ) ) {
+					
+						$field['value'] = $_POST['acf'][ $field['key'] ];
+					
+					} elseif ( isset( $args['values'][ $field['name'] ] ) ) {
+						
+						$field['value'] = $args['values'][ $field['name'] ];
+						
+					} elseif ( isset( $args['values'][ $field['key'] ] ) ) {
+						
+						$field['value'] = $args['values'][ $field['key'] ];
+						
+					}
+					
+					
+					// Attributes to be used on the wrapper element
+					$attributes = array();
+					
+					$attributes['id'] = $field['wrapper']['id'];
+					
+					$attributes['class'] = $field['wrapper']['class'];
+					
+					$attributes['class'] .= sprintf( ' af-field af-field-type-%s af-field-%s acf-field acf-field-%s', $field['type'], $field['name'], $field['key'] );
+					
+					// This is something ACF needs
+					$attributes['class'] = str_replace( '_', '-', $attributes['class'] );
+					$attributes['class'] = str_replace( 'field-field-', 'field-', $attributes['class'] );
+					
+					
+					$width = $field['wrapper']['width'];
+					
+					if ( $width ) {
+						
+						$attributes['data-width'] = $width;
+						$attributes['style'] = 'width: ' . $width . '%;';
+						
+					}
+					
+					$attributes['data-name'] = $field['name'];
+					$attributes['data-key'] = $field['key'];
+					$attributes['data-type'] = $field['type'];
+					
+					
+					$attributes = apply_filters( 'af/form/field_attributes', $attributes, $field, $form, $args );
+					$attributes = apply_filters( 'af/form/field_attributes/id=' . $form['post_id'], $attributes, $field, $form, $args );
+					$attributes = apply_filters( 'af/form/field_attributes/key=' . $form['key'], $attributes, $field, $form, $args );
+					
+					
+					// Field wrapper
+					echo sprintf( '<div %s>', acf_esc_attr( $attributes ) );
+					
+					echo '<div class="af-label acf-label">';
+					echo sprintf( '<label>%s</label>', $field['label'] );
+					echo '</div>';
+					
+					echo '<div class="af-input acf-input">';
+					
+					// Render field with default ACF
+					acf_render_field( $field );
+					
+					echo '</div>';
+					
+					
+					// Conditional logic Javascript
+					if ( !empty( $field['conditional_logic'] ) ) {
+						?>
+						<script type="text/javascript">
+							if(typeof acf !== 'undefined'){ acf.conditional_logic.add( '<?php echo $field['key']; ?>', <?php echo json_encode($field['conditional_logic']); ?>); }
+						</script>
+						<?php
+					}
+					
+					
+					// End field wrapper
+					echo '</div>';
+					
+				}
+				
+			}
+			
+			
+			// Submit button and loading indicator
+			echo '<div class="af-submit acf-form-submit">';
+				echo sprintf( '<input type="submit" class="acf-button af-submit-button" value="%s">', $args['submit_text'] );
+				echo '<span class="acf-spinner af-spinner"></span>';
+			echo '</div>';
+			
+			
+			do_action( 'af/form/after_fields', $form, $args );
+			do_action( 'af/form/after_fields/id=' . $form['post_id'], $form, $args );
+			do_action( 'af/form/after_fields/key=' . $form['key'], $form, $args );
+			
+			// End fields wrapper
+			echo '</div>';
+		
+		}
+		
+		// End form
+		echo '</form>';
+		
+		
+		$output = ob_get_clean();
+		
+		if ( $args['echo'] ) {
+			echo $output;
+		}
+		
+		
+		return $output;
+		
+	}
+	
+	
+}
+
+new AF_Core_Forms();
