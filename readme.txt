@@ -7,7 +7,7 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Flexible and developer-friendly forms using the power of Advanced Custom Fields.
+Flexible and developer-friendly forms using the power of Advanced Custom Fields
 
 == Description ==
 
@@ -22,7 +22,7 @@ Advanced Forms lets you build flexible forms using the power of Advanced Custom 
 
 = Developers =
 
-Advanced Forms is first and foremost built for developers and allows for simple integration with themes/plugins. Check out the documentation for details.
+Advanced Forms is first and foremost built for developers and allows for simple integration with themes/plugins. Check out the [documentation](https://wordpress.org/plugins/advanced-forms/other_notes/) for details.
 
 == Installation ==
 
@@ -266,7 +266,7 @@ add_action( 'af/form/description/key=FORM_KEY', 'filter_description' );
 
 = af/form/field_attributes =
 
-Filter the attributes on the field wrapper. Use to add classes, set an ID, or add new attributes.
+Filter the attributes on field wrappers. Use to add classes, set an ID, or add new attributes.
 $attributes is an array of HTML attributes and their values.
 
 `
