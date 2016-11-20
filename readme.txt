@@ -46,6 +46,14 @@ Yes. Versions 4 or lower of ACF are not supported.
 
 == Changelog ==
 
+= 1.0.1 =
+
+* Added ability to include form fields in email recipient, subject, and content
+* Added the option to set "From" header in emails
+* Added filters for email headers and attachments
+* Fixed a bug where rows couldn't be added to repeaters/flexible content fields
+* Fixed a bug where emails wouldn't be sent after form submission
+
 = 1.0.0 =
 First version of Advanced Forms!
 
