@@ -39,6 +39,7 @@ class AF {
 		
 		
 		// API functions
+		include( plugin_dir_path( __FILE__ ) . 'api/api-helpers.php' );
 		include( plugin_dir_path( __FILE__ ) . 'api/api-forms.php' );
 		include( plugin_dir_path( __FILE__ ) . 'api/api-entries.php' );
 		
@@ -59,6 +60,7 @@ class AF {
 		// Include assets
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 10, 0 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ), 10, 0 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ), 10, 0 );
 		
 		
 		// Register basic post types
@@ -83,12 +85,28 @@ class AF {
 	
 	
 	/**
+	 * Enqueues admin scripts
+	 *
+	 * @since 1.0.1
+	 *
+	 */
+	function enqueue_admin_scripts() {
+		
+		wp_enqueue_script( 'jquery' );
+		
+		wp_enqueue_script( 'af-admin-script', plugin_dir_url( __FILE__ ) .  'assets/js/admin.js', array( 'jquery' ) );
+		
+	}
+	
+	
+	/**
 	 * Enqueues admin styles
 	 *
 	 * @since 1.0.0
 	 *
 	 */
 	function enqueue_admin_styles() {
+		
 		wp_enqueue_style( 'af-admin-style', plugin_dir_url( __FILE__ ) .  'assets/css/admin.css' );
 		
 	}

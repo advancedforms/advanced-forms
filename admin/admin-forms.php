@@ -14,12 +14,11 @@ class AF_Admin_Forms {
 		add_action( 'admin_init', array( $this, 'add_fields_meta_box' ), 10, 0 );
 		add_action( 'edit_form_after_title', array( $this, 'display_form_key' ), 10, 0 );
 		add_action( 'save_post', array( $this, 'add_form_key' ), 10, 3 );
-		add_action( 'init', array( $this, 'register_fields' ), 10, 0 );
+		add_action( 'init', array( $this, 'register_fields' ), 1, 0 );
 		
 		
 		// Filters
 		add_filter( 'acf/prepare_field/name=form_create_entries', array( $this, 'add_entries_link_to_instruction' ), 10, 1 );
-		add_filter( 'acf/load_field/name=recipient_field', array( $this, 'populate_email_field_choices' ), 10, 1 );
 		
 		add_filter( 'manage_af_form_posts_columns', array( $this, 'add_custom_columns' ), 10, 1 );
 		add_action( 'manage_af_form_posts_custom_column', array( $this, 'custom_columns_content' ), 10, 2 );
@@ -182,13 +181,13 @@ class AF_Admin_Forms {
 	 */
 	function custom_columns_content( $column, $post_id ) {
 		
+		$form = af_get_form( $post_id );
+		
 		if ( 'key' == $column ) {
 			
 			echo get_post_meta( $post_id, 'form_key', true );
 			
 		} if ( 'fields' == $column ) {
-			
-			$form = af_get_form( $post_id );
 			
 			$count = 0;
 			$field_groups = af_get_form_field_groups( $form['key'] );
@@ -205,9 +204,9 @@ class AF_Admin_Forms {
 			
 		} elseif ( 'entries' == $column ) {
 			
-			$entries = af_get_entries( $post_id );
+			$entries = af_get_entries( $form['key'] );
 			
-			echo sprintf( '<a href="%s">%s</a>', admin_url() . '/edit.php?post_type=af_entry&entry_form=' . $post_id, count( $entries ) );
+			echo sprintf( '<a href="%s">%s</a>', admin_url() . '/edit.php?post_type=af_entry&entry_form=' . $form['key'], count( $entries ) );
 			
 		}
 		
@@ -226,44 +225,9 @@ class AF_Admin_Forms {
 		
 		if ( $post && get_post_meta( $post->ID, 'form_create_entries', true) ) {
 			
-			$field['instructions'] .= sprintf( '<br><em><a href="%s">%s</a></em>', admin_url() . '/edit.php?post_type=af_entry&entry_form=' . $post->ID, __( 'View entries for this form', 'advanced-forms' ) );
+			$form = af_get_form( $post->ID );
 			
-		}
-		
-		return $field;
-		
-	}
-	
-	
-	/**
-	 * Populates the email recipient field select with the current form's fields
-	 *
-	 * @since 1.0.0
-	 *
-	 */
-	function populate_email_field_choices( $field ) {
-		
-		global $post;	
-		
-		if ( $post && 'af_form' == $post->post_type ) {
-			
-			$field['choices'] = array();
-			
-			$form_key = get_post_meta( $post->ID, 'form_key', true );
-			
-			$field_groups = af_get_form_field_groups( $form_key );
-			
-			foreach( $field_groups as $field_group ) {
-				
-				$group_fields = acf_get_fields( $field_group );
-				
-				foreach ( $group_fields as $group_field ) {
-					
-					$field['choices'][ $group_field['key'] ] = $group_field['label'];
-					
-				}
-				
-			}
+			$field['instructions'] .= sprintf( '<br><em><a href="%s">%s</a></em>', admin_url() . '/edit.php?post_type=af_entry&entry_form=' . $form['key'], __( 'View entries for this form', 'advanced-forms' ) );
 			
 		}
 		
@@ -436,6 +400,7 @@ class AF_Admin_Forms {
 					'min' => '',
 					'max' => '',
 					'step' => '',
+					'readonly' => true,
 				),
 				array (
 					'key' => 'field_form_num_of_views',
@@ -457,6 +422,7 @@ class AF_Admin_Forms {
 					'min' => '',
 					'max' => '',
 					'step' => '',
+					'readonly' => true,
 				),
 			),
 			'location' => array (
@@ -480,7 +446,6 @@ class AF_Admin_Forms {
 		
 		
 		$settings_field_group = apply_filters( 'af/form/settings_fields', $settings_field_group );
-		
 		
 		acf_add_local_field_group( $settings_field_group );
 		

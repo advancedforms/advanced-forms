@@ -76,13 +76,12 @@ function af_register_form( $form ) {
  */
 function af_get_valid_form( $form ) {
 	
-	
 	// A form key is always required
 	if ( ! isset( $form['key'] ) ) {
 		return;
 	}
 	
-	$form = wp_parse_args( $form, array(
+	$args = array(
 		'post_id' 		=> false,
 		'title' 		=> '',
 		'key'			=> '',
@@ -93,11 +92,11 @@ function af_get_valid_form( $form ) {
 			'success_message' 			=> '',
 		),
 		'create_entries' => false,
-	));
+	);
 	
+	$args = apply_filters( 'af/form/valid_form', $args );
 	
-	$form = apply_filters( 'af/form/valid_form', $form );
-	
+	$form = wp_parse_args( $form, $args );
 	
 	return $form;
 	
@@ -110,37 +109,36 @@ function af_get_valid_form( $form ) {
  * @since 1.0.0
  *
  */
-function af_form_from_post( $post ) {
+function af_form_from_post( $form_post ) {
 	
 	// Get post object if ID has been passed
-	if ( is_numeric( $post ) ) {
-		$post = get_post( $post );
+	if ( is_numeric( $form_post ) ) {
+		$form_post = get_post( $form_post );
 	}
 	
-	
 	// Make sure we have a post and that it's a form
-	if ( !$post || 'af_form' != $post->post_type ) {
+	if ( ! $form_post || 'af_form' != $form_post->post_type ) {
 		return false;
 	}
 	
 	
 	$form = array(
-		'post_id' 		=> $post->ID,
-		'title' 		=> $post->post_title,
-		'key'			=> get_post_meta( $post->ID, 'form_key', true ),
+		'post_id' 		=> $form_post->ID,
+		'title' 		=> $form_post->post_title,
+		'key'			=> get_post_meta( $form_post->ID, 'form_key', true ),
 		'display' 		=> array(
-			'display_title' 			=> get_field( 'form_display_title', $post->ID ),
-			'display_description' 		=> get_field( 'form_display_description', $post->ID ),
-			'description' 				=> get_field( 'form_description', $post->ID ),
-			'success_message' 			=> get_field( 'form_success_message', $post->ID ),
+			'display_title' 			=> get_field( 'form_display_title', $form_post->ID ),
+			'display_description' 		=> get_field( 'form_display_description', $form_post->ID ),
+			'description' 				=> get_field( 'form_description', $form_post->ID ),
+			'success_message' 			=> get_field( 'form_success_message', $form_post->ID ),
 		),
-		'create_entries' => get_field( 'form_create_entries', $post->ID ),
+		'create_entries' => get_field( 'form_create_entries', $form_post->ID ),
 	);
 	
 	
-	$form = apply_filters( 'af/form/from_post', $form, $post );
-	$form = apply_filters( 'af/form/from_post/id=' . $form['post_id'], $form, $post );
-	$form = apply_filters( 'af/form/from_post/key=' . $form['key'], $form, $post );
+	$form = apply_filters( 'af/form/from_post', $form, $form_post );
+	$form = apply_filters( 'af/form/from_post/id=' . $form['post_id'], $form, $form_post );
+	$form = apply_filters( 'af/form/from_post/key=' . $form['key'], $form, $form_post );
 	
 	
 	return af_get_valid_form( $form );
@@ -185,11 +183,11 @@ function af_form_from_key( $key ) {
 		),
 	);
 	
-	$query = new WP_Query( $args );
+	$form_query = new WP_Query( $args );
 	
-	if ( $query->have_posts() ) {
+	if ( $form_query->have_posts() ) {
 		
-		return af_form_from_post( $query->posts[0] );
+		return af_form_from_post( $form_query->posts[0] );
 		
 	}
 	
@@ -209,18 +207,15 @@ function af_get_form( $form_id_or_key ) {
 	
 	$form = false;
 	
-	if ( is_numeric( $form_id_or_key ) ) {
-		
-		$form = af_form_from_post( $form_id_or_key );
-		
-	}
 	
-	
-	// Form should be loaded as key
-	if (!$form) {
+	if ( af_is_valid_form_key( $form_id_or_key ) ) {
 		
 		$form = af_form_from_key( $form_id_or_key );
 		
+	} elseif ( is_numeric( $form_id_or_key ) ) {
+		
+		$form = af_form_from_post( $form_id_or_key );
+
 	}
 	
 	
@@ -248,19 +243,15 @@ function af_get_forms() {
 	
 	if ( $form_query->have_posts() ) {
 		
-		while ( $form_query->have_posts() ) {
-			$form_query->the_post();
+		foreach( $form_query->posts as $form_post ) {
 			
-			global $post;
-			
-			$form = af_form_from_post( $post );
+			$form = af_form_from_post( $form_post );
 			
 			$forms[] = $form;
 			
 		}
 		
 	}
-	
 	
 	// Get all programmatically registered forms
 	global $af_registered_forms;
@@ -304,4 +295,37 @@ function af_get_form_field_groups( $form_key ) {
 
 	return $field_groups;
 		
+}
+
+
+/**
+ * Returns all fields assigned to a form
+ *
+ * @since 1.0.1
+ *
+ */
+function af_get_form_fields( $form_key ) {
+	
+	$form_fields = array();
+	
+	$field_groups = af_get_form_field_groups( $form_key );
+	
+	if ( $field_groups ) {
+		
+		foreach ( $field_groups as $field_group ) {
+			
+			$fields = acf_get_fields( $field_group );
+			
+			foreach ( $fields as $field ) {
+				
+				$form_fields[] = $field;
+				
+			}
+			
+		}
+		
+	}
+	
+	return $form_fields;
+	
 }

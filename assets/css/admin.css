@@ -31,3 +31,60 @@
 #acf_after_title-sortables #acf-group_entry_data {
 	margin-top: 0;
 }
+
+
+/**
+ * Make room for the field selector on the email fields
+ */
+.acf-field .acf-input {
+	position: relative;
+}
+
+.af-field-dropdown.button {
+	position: relative;
+	display: none;
+}
+
+.acf-field-form-email-content .af-field-dropdown.button {
+	display: inline-block;
+}
+
+.af-field-dropdown.button.floating {
+	display: inline-block;
+	position: absolute;
+	right: 3px;
+	top: 50%;
+	z-index: 10;
+	font-size: 12px;
+	line-height: 20px;
+	height: 22px;
+	margin-top: -11px;
+}
+
+.af-field-dropdown .af-dropdown {
+	display: none;
+	position: absolute;
+	top: 100%;
+	right: 0;
+	width: 150px;
+	max-height: 200px;
+	overflow-y: scroll;
+	background: #f7f7f7;
+	border: 1px solid #ccc;
+	box-shadow: 0 1px 0 #ccc;
+	border-radius: 3px;
+	z-index: 100;
+}
+
+.af-field-dropdown.open .af-dropdown {
+	display: block;
+}
+
+.af-field-dropdown .af-dropdown .field-option {
+	padding: 5px 10px;
+	border-bottom: 1px solid #ccc;
+}
+
+.af-field-dropdown .af-dropdown .field-option:hover {
+	background: #fff;
+}

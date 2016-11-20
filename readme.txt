@@ -83,7 +83,7 @@ array(
 )
 `
 
-The only required attribute is `key` which should be a unique identifier for your form. Setting the title attribute is recommended.
+The only required attribute is `key` which should be a unique identifier for your form starting with "form_". Setting the title attribute is recommended.
 
 = Adding fields to a form =
 
