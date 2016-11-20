@@ -35,7 +35,7 @@ class AF_Core_Emails {
 	 */
 	function form_from_post( $form, $post ) {
 		
-		$emails = get_field( 'form_emails', $post->ID );
+		$emails = get_field( 'field_form_emails', $post->ID );
 	
 		if ( $emails && ! empty( $emails ) ) {
 	
@@ -78,7 +78,7 @@ class AF_Core_Emails {
 	 *
 	 */
 	function send_single_form_email( $email, $form, $fields ) {
-		
+
 		// Bail if this email is deactivated
 		if ( ! $email['active'] ) {
 			
@@ -112,12 +112,16 @@ class AF_Core_Emails {
 		$recipient = apply_filters( 'af/form/email/recipient/id=' . $form['post_id'], $recipient, $email, $form, $fields );
 		$recipient = apply_filters( 'af/form/email/recipient/key=' . $form['key'], $recipient, $email, $form, $fields );
 		
+		$recipient = af_resolve_field_includes( $recipient, $fields );
+		
 		
 		// Subject line
 		$subject = $email['subject'];
 		$subject = apply_filters( 'af/form/email/subject', $subject, $email, $form, $fields );
 		$subject = apply_filters( 'af/form/email/subject/id=' . $form['post_id'], $subject, $email, $form, $fields );
 		$subject = apply_filters( 'af/form/email/subject/key=' . $form['key'], $subject, $email, $form, $fields );
+		
+		$subject = af_resolve_field_includes( $subject, $fields );
 		
 		
 		// Email contents
@@ -126,9 +130,28 @@ class AF_Core_Emails {
 		$content = apply_filters( 'af/form/email/content/id=' . $form['post_id'], $content, $email, $form, $fields );
 		$content = apply_filters( 'af/form/email/content/key=' . $form['key'], $content, $email, $form, $fields );
 		
+		$content = af_resolve_field_includes( $content, $fields );
+		
+		
+		// Headers
+		$headers = array();
+		$headers[] = 'From:' . $email['from'];
+		
+		$headers = apply_filters( 'af/form/email/headers', $headers, $email, $form, $fields );
+		$headers = apply_filters( 'af/form/email/headers/id=' . $form['post_id'], $headers, $email, $form, $fields );
+		$headers = apply_filters( 'af/form/email/headers/key=' . $form['key'], $headers, $email, $form, $fields );
+		
+		
+		// Attachments
+		$attachments = array();
+		
+		$attachments = apply_filters( 'af/form/email/attachments', $attachments, $email, $form, $fields );
+		$attachments = apply_filters( 'af/form/email/attachments/id=' . $form['post_id'], $attachments, $email, $form, $fields );
+		$attachments = apply_filters( 'af/form/email/attachments/key=' . $form['key'], $attachments, $email, $form, $fields );
+		
 		
 		// Send email using wp_mail
-		wp_mail( $recipient, $subject, $content );
+		wp_mail( $recipient, $subject, $content, $headers, $attachments );
 		
 	}
 	

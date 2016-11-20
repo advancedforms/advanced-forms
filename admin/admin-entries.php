@@ -20,7 +20,7 @@ class AF_Admin_Entries {
 		
 		add_filter( 'manage_af_entry_posts_columns', array( $this, 'add_custom_columns' ), 10, 1 );
 		
-	}
+	}	
 	
 	
 	/**
@@ -35,11 +35,34 @@ class AF_Admin_Entries {
 		
 		if ( $post && 'af_entry' == $post->post_type ) {
 			
+			// Populate the select with all forms
+			$forms = af_get_forms();
+			
+			$field['choices'] = array();
+			
+			foreach ( $forms as $form ) {
+				$field['choices'][ $form['key'] ] = sprintf( '%s (%s)', $form['title'], $form['key'] );
+			}
+			
+			
+			// Get the current form, should be false if we are creating a new entry
 			$form = af_get_form( get_post_meta( $post->ID, 'entry_form', true ) );
 			
 			if ( $form ) {
 				
-				$field['instructions'] = sprintf( '<strong><a href="%s">%s</a></strong><br>%s', get_edit_post_link( $form['post_id'] ), $form['title'], $form['key'] );
+				// Add a link to edit the form
+				if ( $form['post_id'] ) {
+					
+					$field['instructions'] = sprintf( '<a href="%s">%s</a>', get_edit_post_link( $form['post_id'] ), __( 'Edit form', 'advanced-forms' ) );
+					
+				}
+				
+				// Add the current form to the choices if it isn't already set. Could happen if a form is deleted
+				if ( ! isset( $field['choices'][ $form['key'] ] ) ) {
+					
+					$field['choices'][ $form['key'] ] = sprintf( '%s (%s)', $form['title'], $form['key'] );
+					
+				}
 				
 			}
 			
@@ -144,7 +167,7 @@ class AF_Admin_Entries {
 			<?php
 			foreach ( $forms as $form ) {
 				
-				$selected = ( $form['post_id'] == $current_form ) ? 'selected' : '';
+				$selected = ( $form['key'] == $current_form ) ? 'selected' : '';
 				echo sprintf( '<option value="%s" %s>%s</option>', $form['post_id'], $selected, $form['title'] );
 				
 			}
@@ -193,7 +216,7 @@ class AF_Admin_Entries {
 					'key' => 'field_entry_form',
 					'label' => 'Form',
 					'name' => 'entry_form',
-					'type' => 'message',
+					'type' => 'select',
 					'instructions' => '',
 					'required' => 0,
 					'conditional_logic' => 0,

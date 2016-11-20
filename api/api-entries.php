@@ -7,7 +7,7 @@
  * @since 1.0.0
  *
  */
-function af_get_entries( $form_id ) {
+function af_get_entries( $form_key ) {
 	
 	$args = array(
 		'post_type' => 'af_entry',
@@ -15,7 +15,7 @@ function af_get_entries( $form_id ) {
  		'meta_query' => array(
 	 		array(
 		 		'key' => 'entry_form',
-		 		'value' => $form_id,
+		 		'value' => $form_key,
 	 		),
  		),
 	);

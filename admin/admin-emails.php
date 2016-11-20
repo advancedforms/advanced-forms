@@ -4,7 +4,153 @@ class AF_Admin_Emails {
 	
 	function __construct() {
 		
+		add_action( 'acf/render_field', array( $this, 'add_email_field_inserter' ), 50, 1 );
+		add_action( 'media_buttons', array( $this, 'add_email_content_field_inserter' ), 10, 1 );
+		
+		add_filter( 'acf/load_field/name=recipient_field', array( $this, 'populate_email_field_choices' ), 10, 1 );
 		add_filter( 'af/form/settings_fields', array( $this, 'email_acf_fields' ), 10, 1 );
+		
+	}
+	
+	
+	/**
+	 * Add an "Insert field" button to content field
+	 *
+	 * @since 1.0.0
+	 *
+	 */
+	function add_email_content_field_inserter( $id ) {
+		
+		global $post;
+		
+		if ( ! $post ) {
+			return;
+		}
+		
+		
+		$form = af_form_from_post( $post );
+		
+		if ( ! $form ) {
+			return;
+		}
+		
+		
+		if ( 'acf-editor' == substr($id, 0, 10) ) {
+			
+			$fields = af_get_form_fields( $form );
+			
+			$this->output_field_inserter_button( $fields, false );
+			
+		}
+		
+		
+	}
+	
+	
+	/**
+	 * Add an "Insert field" button to recipient, subject, and from fields
+	 *
+	 * @since 1.0.1
+	 *
+	 */
+	function add_email_field_inserter( $field ) {
+		
+		global $post;
+		
+		if ( ! $post ) {
+			return;
+		}
+		
+		
+		$form = af_form_from_post( $post );
+		
+		if ( ! $form ) {
+			return;
+		}
+		
+		$fields_to_add = array(
+			'field_form_email_recipient_custom',
+			'field_form_email_subject',
+			'field_form_email_from',
+		);
+		
+		
+		if ( in_array( $field['key'], $fields_to_add ) ) {
+			
+			$fields = af_get_form_fields( $form );
+			
+			$this->output_field_inserter_button( $fields, true );
+			
+		}
+		
+	}
+	
+	
+	/**
+	 * Output an "Insert field" button populated with $fields
+	 * $floating adds class "floating" to the wrapper making the button float right in an input field
+	 *
+	 * @since 1.0.0
+	 *
+	 */
+	function output_field_inserter_button( $fields, $floating = false ) {
+		
+		$classses = ( $floating ) ? 'floating' : '';
+		
+		echo '<a class="af-field-dropdown ' . $classses . ' button">Insert field';
+			
+		echo '<div class="af-dropdown">';
+		
+		foreach ( $fields as $field ) {
+			
+			echo sprintf( '<div class="field-option" data-insert-value="{field:%s}">%s</div>', $field['name'], $field['label'] );
+			
+		}
+		
+		echo '</div>';
+			
+		echo '</a>';
+		
+	}
+	
+	
+	/**
+	 * Populates the email recipient field select with the current form's fields
+	 *
+	 * @since 1.0.0
+	 *
+	 */
+	function populate_email_field_choices( $field ) {
+		
+		global $post;	
+		
+		if ( $post && 'af_form' == $post->post_type ) {
+			
+			$field['choices'] = array();
+			
+			$form_key = get_post_meta( $post->ID, 'form_key', true );
+			
+			$field_groups = af_get_form_field_groups( $form_key );
+			
+			foreach( $field_groups as $field_group ) {
+				
+				$group_fields = acf_get_fields( $field_group );
+				
+				foreach ( $group_fields as $group_field ) {
+					
+					if ( in_array( $group_field['type'], array( 'text', 'textarea', 'email' ) ) ) {
+						
+						$field['choices'][ $group_field['key'] ] = $group_field['label'];
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		return $field;
 		
 	}
 	
@@ -90,7 +236,7 @@ class AF_Admin_Emails {
 				),
 				array (
 					'key' => 'field_form_email_recipient_type',
-					'label' => 'Recipient',
+					'label' => 'Send to',
 					'name' => 'recipient_type',
 					'type' => 'radio',
 					'instructions' => '',
@@ -172,6 +318,25 @@ class AF_Admin_Emails {
 					'maxlength' => '',
 				),
 				array (
+					'key' => 'field_form_email_from',
+					'label' => 'From',
+					'name' => 'from',
+					'type' => 'text',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array (
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'default_value' => '',
+					'placeholder' => '',
+					'prepend' => '',
+					'append' => '',
+					'maxlength' => '',
+				),
+				array (
 					'key' => 'field_form_email_subject',
 					'label' => 'Subject',
 					'name' => 'subject',
@@ -191,7 +356,7 @@ class AF_Admin_Emails {
 					'maxlength' => '',
 				),
 				array (
-					'key' => 'field_form_email_subject',
+					'key' => 'field_form_email_content',
 					'label' => 'Content',
 					'name' => 'content',
 					'type' => 'wysiwyg',

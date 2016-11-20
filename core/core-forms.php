@@ -54,7 +54,6 @@ class AF_Core_Forms {
 			
 			$form = af_get_form( $form_key_or_id );
 			
-			
 			// Validate the posted data, this validation has already been performed once over AJAX
 			if ( $form && acf_validate_save_post( true ) ) {
 				
@@ -200,7 +199,12 @@ class AF_Core_Forms {
 			
 			echo '<div class="af-success">';
 			
-			$success_message = get_field( 'form_success_message', $form['display']['success_message'] );
+			$success_message = $form['display']['success_message'];
+			
+			$success_message = apply_filters( 'af/form/success_message', $success_message, $form );
+			$success_message = apply_filters( 'af/form/success_message/id=' . $form['post_id'], $success_message, $form );
+			$success_message = apply_filters( 'af/form/success_message/key=' . $form['key'], $success_message, $form );
+			
 			echo $success_message;
 			
 			echo '</div>';
@@ -267,7 +271,7 @@ class AF_Core_Forms {
 					
 					$attributes['class'] = $field['wrapper']['class'];
 					
-					$attributes['class'] .= sprintf( ' af-field af-field-type-%s af-field-%s acf-field acf-field-%s', $field['type'], $field['name'], $field['key'] );
+					$attributes['class'] .= sprintf( ' af-field af-field-type-%s af-field-%s acf-field acf-field-%s acf-field-%s', $field['type'], $field['name'], $field['type'], $field['key'] );
 					
 					// This is something ACF needs
 					$attributes['class'] = str_replace( '_', '-', $attributes['class'] );
