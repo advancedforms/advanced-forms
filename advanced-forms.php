@@ -8,17 +8,17 @@
 	Text Domain: advanced-forms
 	Domain Path: /language
 */
-	
-	
+
+
 class AF {
-	
+
 	function __construct() {
-		
+
 		add_action( 'plugins_loaded', array( $this, 'initialize_plugin' ), 10, 0 );
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Initializes the plugin and makes sure ACF is installed
 	 *
@@ -26,64 +26,64 @@ class AF {
 	 *
 	 */
 	function initialize_plugin() {
-		
+
 		add_action( 'admin_notices', array( $this, 'missing_acf_notice' ), 10, 0 );
-		
+
 		if ( ! class_exists( 'acf_pro' ) ) {
 			return;
 		}
-		
-		
+
+
 		// Load translations
 		load_textdomain( 'advanced-forms', plugin_dir_path( __FILE__ ) . 'language/advanced-forms-' . get_locale() . '.mo' );
-		
-		
+
+
 		// API functions
 		include( plugin_dir_path( __FILE__ ) . 'api/api-helpers.php' );
 		include( plugin_dir_path( __FILE__ ) . 'api/api-forms.php' );
 		include( plugin_dir_path( __FILE__ ) . 'api/api-entries.php' );
-		
+
 		// Core functionality
 		include( plugin_dir_path( __FILE__ ) . 'core/core-forms.php' );
 		include( plugin_dir_path( __FILE__ ) . 'core/core-emails.php' );
 		include( plugin_dir_path( __FILE__ ) . 'core/core-entries.php' );
-		
+
 		// ACF additions (fields, location rules, etc.)
 		include( plugin_dir_path( __FILE__ ) . 'acf/acf-additions.php' );
-		
+
 		// Admin
 		include( plugin_dir_path( __FILE__ ) . 'admin/admin-forms.php' );
 		include( plugin_dir_path( __FILE__ ) . 'admin/admin-entries.php' );
 		include( plugin_dir_path( __FILE__ ) . 'admin/admin-emails.php' );
-		
-		
+
+
 		// Include assets
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 10, 0 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ), 10, 0 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ), 10, 0 );
-		
-		
+
+
 		// Register basic post types
 		add_action( 'init', array( $this, 'register_post_types' ), 10, 0 );
-		
-		
+
+
 		// Action used to register forms
 		do_action( 'af/register_forms' );
-		
+
 	}
-	
-	
+
+
 	function missing_acf_notice() {
-		
+
 		if ( ! class_exists( 'acf_pro' ) ) {
-			
+
 			echo sprintf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', 'Couldn\'t find ACF 5. Advanced Forms requires ACF 5 to function correctly.' );
-			
+
 		}
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Enqueues admin scripts
 	 *
@@ -91,14 +91,14 @@ class AF {
 	 *
 	 */
 	function enqueue_admin_scripts() {
-		
+
 		wp_enqueue_script( 'jquery' );
-		
+
 		wp_enqueue_script( 'af-admin-script', plugin_dir_url( __FILE__ ) .  'assets/js/admin.js', array( 'jquery' ) );
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Enqueues admin styles
 	 *
@@ -106,12 +106,12 @@ class AF {
 	 *
 	 */
 	function enqueue_admin_styles() {
-		
+
 		wp_enqueue_style( 'af-admin-style', plugin_dir_url( __FILE__ ) .  'assets/css/admin.css' );
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Enqueues global styles
 	 *
@@ -120,17 +120,17 @@ class AF {
 	 */
 	function enqueue_styles() {
 		wp_enqueue_style( 'af-form-style', plugin_dir_url( __FILE__ ) .  'assets/css/form.css' );
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Register custom post types, forms and entries
 	 *
 	 * @since 1.0.0
 	 */
 	function register_post_types() {
-		
+
 		// Form post type
 		$labels = array(
 			'name'                  => _x( 'Forms', 'Post Type General Name', 'advanced-forms' ),
@@ -173,15 +173,15 @@ class AF {
 			'show_in_admin_bar'     => true,
 			'show_in_nav_menus'     => true,
 			'can_export'            => true,
-			'has_archive'           => false,		
+			'has_archive'           => false,
 			'exclude_from_search'   => false,
 			'publicly_queryable'    => false,
 			'rewrite'               => false,
 			'capability_type'       => 'page',
 		);
 		register_post_type( 'af_form', $args );
-		
-		
+
+
 		// Entry post type
 		$labels = array(
 			'name'                  => _x( 'Entries', 'Post Type General Name', 'advanced-forms' ),
@@ -224,16 +224,16 @@ class AF {
 			'show_in_admin_bar'     => true,
 			'show_in_nav_menus'     => true,
 			'can_export'            => true,
-			'has_archive'           => false,		
+			'has_archive'           => false,
 			'exclude_from_search'   => false,
 			'publicly_queryable'    => false,
 			'rewrite'               => false,
 			'capability_type'       => 'page',
 		);
 		register_post_type( 'af_entry', $args );
-		
+
 	}
-	
+
 }
 
 new AF();
