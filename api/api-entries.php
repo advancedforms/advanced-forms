@@ -1,6 +1,6 @@
 <?php
-	
-	
+
+
 /**
  * Gets all entries for the specified form
  *
@@ -8,7 +8,7 @@
  *
  */
 function af_get_entries( $form_key ) {
-	
+
 	$args = array(
 		'post_type' => 'af_entry',
 		'posts_per_page' => '-1',
@@ -19,9 +19,9 @@ function af_get_entries( $form_key ) {
 	 		),
  		),
 	);
-	
+
 	$query = new WP_Query( $args );
-	
+
 	return $query->posts;
-	
+
 }
