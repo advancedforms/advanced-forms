@@ -130,11 +130,12 @@ class AF_Core_Forms {
 			return;
 		}
 		
+		
 		$url = acf_get_current_url();
 		
 		$args = wp_parse_args($args, array(
-			'display_title' 			=> $form['display']['display_title'],
-			'display_description' 		=> $form['display']['display_description'],
+			'display_title' 			=> false,
+			'display_description' 		=> false,
 			'values' 					=> array(),
 			'submit_text' 				=> __( 'Submit', 'advanced-forms' ),
 			'redirect' 					=> add_query_arg( 'af_succcess', '', $url ),
@@ -142,9 +143,16 @@ class AF_Core_Forms {
 		));
 		
 		
+		// Allow the arguments to be modified before rendering form
 		$args = apply_filters( 'af/form/args', $args, $form );
 		$args = apply_filters( 'af/form/args/id=' . $form['post_id'], $args, $form );
 		$args = apply_filters( 'af/form/args/key=' . $form['key'], $args, $form );
+		
+		
+		// Allow the form to be modified before rendering form
+		$form = apply_filters( 'af/form/before_render', $form, $args );
+		$form = apply_filters( 'af/form/before_render/id=' . $form['post_id'], $form, $args );
+		$form = apply_filters( 'af/form/before_render/key=' . $form['key'], $form, $args );
 		
 		
 		// Increase the form view counter
@@ -169,13 +177,7 @@ class AF_Core_Forms {
 		// Display title
 		if ( $args['display_title'] ) {
 			
-			$title = $form['title'];
-			
-			$title = apply_filters( 'af/form/title', $title, $form );
-			$title = apply_filters( 'af/form/title/id=' . $form['post_id'], $title, $form );
-			$title = apply_filters( 'af/form/title/key=' . $form['key'], $title, $form );
-			
-			echo sprintf( '<h1 class="af-title">%s</h1>', $title );
+			echo sprintf( '<h1 class="af-title">%s</h1>', $form['title'] );
 			
 		}
 		
@@ -183,32 +185,32 @@ class AF_Core_Forms {
 		// Display description
 		if ( $args['display_description'] ) {
 			
-			$description = $form['display']['description'];
-			
-			$description = apply_filters( 'af/form/description', $description, $form );
-			$description = apply_filters( 'af/form/description/id=' . $form['post_id'], $description, $form );
-			$description = apply_filters( 'af/form/description/key=' . $form['key'], $description, $form );
-			
-			echo sprintf( '<div class="af-description">%s</div>', $description );
+			echo sprintf( '<div class="af-description">%s</div>', $form['display']['description'] );
 			
 		}
 		
 		
-		// Display success message or fields
+		// Check if the entry limit has been reached
+		$restriction_reached = ( $form['restrict_entries'] &&  af_get_entry_count( $form['key'] ) >= $form['entries_limit']);
+		
+		
+		// Display restriction message, success message or fields
 		if ( isset( $_GET['af_succcess'] ) ) {
 			
 			echo '<div class="af-success">';
 			
-			$success_message = $form['display']['success_message'];
-			
-			$success_message = apply_filters( 'af/form/success_message', $success_message, $form );
-			$success_message = apply_filters( 'af/form/success_message/id=' . $form['post_id'], $success_message, $form );
-			$success_message = apply_filters( 'af/form/success_message/key=' . $form['key'], $success_message, $form );
-			
-			echo $success_message;
+			echo $form['display']['success_message'];
 			
 			echo '</div>';
 			
+		} elseif ( $restriction_reached ) {
+		
+			echo '<div class="af-restricted-message">';
+			
+			echo $form['entries_restriction_message'];
+			
+			echo '</div>';
+		
 		} else {	
 			
 			// Get field groups for the form and display their fields
