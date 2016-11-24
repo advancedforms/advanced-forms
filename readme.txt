@@ -46,6 +46,12 @@ Yes. Versions 4 or lower of ACF are not supported.
 
 == Changelog ==
 
+= 1.0.2 =
+
+* Added option to restrict number of entries
+* Added filters to modify form before rendering
+* Simplified form admin interface
+
 = 1.0.1 =
 
 * Added ability to include form fields in email recipient, subject, and content
