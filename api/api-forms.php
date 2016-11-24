@@ -86,12 +86,13 @@ function af_get_valid_form( $form ) {
 		'title' 		=> '',
 		'key'			=> '',
 		'display' 		=> array(
-			'display_title' 			=> false,
-			'display_description' 		=> false,
 			'description' 				=> '',
 			'success_message' 			=> '',
 		),
 		'create_entries' => false,
+		'restrict_entries' => false,
+		'entries_limit' => 0,
+		'entries_restriction_message' => '',
 	);
 	
 	$args = apply_filters( 'af/form/valid_form', $args );
@@ -127,12 +128,13 @@ function af_form_from_post( $form_post ) {
 		'title' 		=> $form_post->post_title,
 		'key'			=> get_post_meta( $form_post->ID, 'form_key', true ),
 		'display' 		=> array(
-			'display_title' 			=> get_field( 'form_display_title', $form_post->ID ),
-			'display_description' 		=> get_field( 'form_display_description', $form_post->ID ),
 			'description' 				=> get_field( 'form_description', $form_post->ID ),
 			'success_message' 			=> get_field( 'form_success_message', $form_post->ID ),
 		),
 		'create_entries' => get_field( 'form_create_entries', $form_post->ID ),
+		'restrict_entries' => get_field( 'form_restrict_entries', $form_post->ID ),
+		'entries_limit' => get_field( 'form_max_entries', $form_post->ID ),
+		'entries_restriction_message' => get_field( 'form_restriction_message', $form_post->ID ),
 	);
 	
 	

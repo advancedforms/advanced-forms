@@ -18,7 +18,11 @@ class AF_Admin_Entries {
 		add_filter( 'acf/load_field/name=entry_form', array( $this, 'entry_form_field' ), 10, 1 );
 		add_filter( 'acf/load_field/name=entry_submission_info', array( $this, 'entry_submission_info_field' ), 10, 1 );
 		
+		add_filter( 'acf/prepare_field/name=form_create_entries', array( $this, 'add_entries_link_to_instruction' ), 10, 1 );
+		
 		add_filter( 'manage_af_entry_posts_columns', array( $this, 'add_custom_columns' ), 10, 1 );
+		
+		add_filter( 'af/form/settings_fields', array( $this, 'add_form_settings_fields' ), 10, 1 );
 		
 	}	
 	
@@ -104,7 +108,7 @@ class AF_Admin_Entries {
 	
 	
 	/**
-	 * Adds custom columns to the listings page
+	 * Add custom columns to listings page
 	 *
 	 * @since 1.0.0
 	 *
@@ -121,7 +125,7 @@ class AF_Admin_Entries {
 	
 	
 	/**
-	 * Outputs the content for the custom columns
+	 * Output content for custom columns
 	 *
 	 * @since 1.0.0
 	 *
@@ -141,7 +145,7 @@ class AF_Admin_Entries {
 	
 	
 	/**
-	 * Adds a drop down to filter by form
+	 * Add drop down to filter by form on listings page
 	 *
 	 * @since 1.0.0
 	 *
@@ -201,7 +205,165 @@ class AF_Admin_Entries {
 	
 	
 	/**
-	 * Registers the ACF fields for the general entry data
+	 * Adds a link to view entries for a form in the "Create entries?" form instructions
+	 *
+	 * @since 1.0.0
+	 *
+	 */
+	function add_entries_link_to_instruction( $field ) {
+		
+		global $post;
+		
+		if ( $post && get_post_meta( $post->ID, 'form_create_entries', true) ) {
+			
+			$form = af_get_form( $post->ID );
+			
+			$field['instructions'] .= sprintf( '<a href="%s">%s</a>', admin_url() . '/edit.php?post_type=af_entry&entry_form=' . $form['key'], __( 'View entries for this form', 'advanced-forms' ) );
+			
+		}
+		
+		return $field;
+		
+	}
+	
+	
+	/**
+	 * Add form settings for entries
+	 *
+	 * @since 1.0.2
+	 *
+	 */
+	function add_form_settings_fields( $field_group ) {
+		
+		$field_group['fields'][] = array(
+			'key' => 'field_form_entries_tab',
+			'label' => 'Entries',
+			'name' => '',
+			'type' => 'tab',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'placement' => 'left',
+			'endpoint' => 0,
+		);
+		
+		$field_group['fields'][] = array (
+			'key' => 'field_form_entry_info',
+			'label' => 'Entries',
+			'name' => 'form_entry_info',
+			'type' => 'message',
+			'instructions' => 'When entries are enabled they will be automatically generated with form submissions. All form data will be saved to the generated entry.',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '0',
+				'class' => '',
+				'id' => '',
+			),
+		);
+		
+		
+		$field_group['fields'][] = array(
+			'key' => 'field_form_create_entries',
+			'label' => 'Create entries?',
+			'name' => 'form_create_entries',
+			'type' => 'true_false',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'message' => 'Yes',
+			'default_value' => 0,
+		);
+		
+		$field_group['fields'][] = array(
+			'key' => 'field_form_restrict_entries',
+			'label' => 'Restrict number of entries',
+			'name' => 'form_restrict_entries',
+			'type' => 'true_false',
+			'instructions' => '',
+			'required' => 0,
+			'placeholder' => '',
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'message' => 'Yes',
+			'default_value' => 0,
+		);
+		
+		$field_group['fields'][] = array(
+			'key' => 'field_form_max_entries',
+			'label' => 'Maximum number of entries',
+			'name' => 'form_max_entries',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 1,
+			'placeholder' => '',
+			'conditional_logic' => array(
+				array(
+					array(
+						'field' => 'field_form_restrict_entries',
+						'operator' => '==',
+						'value' => '1',
+					),
+				),
+			),
+			'wrapper' => array (
+				'width' => '50',
+				'class' => '',
+				'id' => '',
+			),
+			'message' => 'Yes',
+			'default_value' => 0,
+		);
+		
+		$field_group['fields'][] = array (
+			'key' => 'field_form_restriction_message',
+			'label' => 'Message after entry limit has been reached',
+			'name' => 'form_restriction_message',
+			'type' => 'textarea',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => array(
+				array(
+					array(
+						'field' => 'field_form_restrict_entries',
+						'operator' => '==',
+						'value' => '1',
+					),
+				),
+			),
+			'wrapper' => array (
+				'width' => '50',
+				'class' => '',
+				'id' => '',
+			),
+			'rows' => 4,
+			'default_value' => '',
+			'tabs' => 'all',
+			'toolbar' => 'full',
+			'media_upload' => 1,
+		);
+		
+		
+		return $field_group;
+		
+	}
+	
+	
+	/**
+	 * Register ACF fields for general entry data
 	 *
 	 * @since 1.0.0
 	 *

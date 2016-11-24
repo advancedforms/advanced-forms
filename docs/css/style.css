@@ -50,7 +50,14 @@ p {
 	float: left;
 	text-align: center;
 	text-transform: uppercase;
-	font-size: 1.2rem;
+	font-size: 1.1rem;
+	cursor: pointer;
+	color: #fff;
+	text-decoration: none;
+}
+
+.header .menu .menu-item.active {
+	border-bottom: 4px solid rgba(255,255,255,0.2);
 }
 
 
@@ -83,9 +90,14 @@ p {
 }
 
 .hero {
+	padding-top: 40px;
+	padding-bottom: 30px;
+	text-align: center;
+}
+
+.frontpage .hero {
 	padding-top: 80px;
 	padding-bottom: 50px;
-	text-align: center;
 }
 
 .plugin-title {
@@ -94,7 +106,8 @@ p {
 	font-size: 1.5rem;
 }
 
-.plugin-description {
+.plugin-description,
+.page-title {
 	color: #fff;
 	font-size: 2.2rem;
 	line-height: 1.5em;

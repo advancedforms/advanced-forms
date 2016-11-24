@@ -18,8 +18,6 @@ class AF_Admin_Forms {
 		
 		
 		// Filters
-		add_filter( 'acf/prepare_field/name=form_create_entries', array( $this, 'add_entries_link_to_instruction' ), 10, 1 );
-		
 		add_filter( 'manage_af_form_posts_columns', array( $this, 'add_custom_columns' ), 10, 1 );
 		add_action( 'manage_af_form_posts_custom_column', array( $this, 'custom_columns_content' ), 10, 2 );
 		
@@ -214,29 +212,6 @@ class AF_Admin_Forms {
 	
 	
 	/**
-	 * Adds a link to view entries for a form in the "Create entries?" form instructions
-	 *
-	 * @since 1.0.0
-	 *
-	 */
-	function add_entries_link_to_instruction( $field ) {
-		
-		global $post;
-		
-		if ( $post && get_post_meta( $post->ID, 'form_create_entries', true) ) {
-			
-			$form = af_get_form( $post->ID );
-			
-			$field['instructions'] .= sprintf( '<br><em><a href="%s">%s</a></em>', admin_url() . '/edit.php?post_type=af_entry&entry_form=' . $form['key'], __( 'View entries for this form', 'advanced-forms' ) );
-			
-		}
-		
-		return $field;
-		
-	}
-	
-	
-	/**
 	 * Registers the form settings fields
 	 *
 	 * @since 1.0.0
@@ -249,8 +224,8 @@ class AF_Admin_Forms {
 			'title' => 'Form settings',
 			'fields' => array (
 				array (
-					'key' => 'field_form_general_tab',
-					'label' => 'General',
+					'key' => 'field_form_display_tab',
+					'label' => 'Display',
 					'name' => '',
 					'type' => 'tab',
 					'instructions' => '',
@@ -265,74 +240,10 @@ class AF_Admin_Forms {
 					'endpoint' => 0,
 				),
 				array (
-					'key' => 'field_form_create_entries',
-					'label' => 'Create entries?',
-					'name' => 'form_create_entries',
-					'type' => 'true_false',
-					'instructions' => 'Check if form submissions should generate entries. All form fields will be included in the entries.',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => array (
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'message' => 'Yes',
-					'default_value' => 0,
-				),
-				array (
-					'key' => 'field_form_display_tab',
-					'label' => 'Display',
-					'name' => '',
-					'type' => 'tab',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => array (
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'placement' => 'top',
-					'endpoint' => 0,
-				),
-				array (
-					'key' => 'field_form_display_title',
-					'label' => 'Display title?',
-					'name' => 'form_display_title',
-					'type' => 'true_false',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => array (
-						'width' => '50',
-						'class' => '',
-						'id' => '',
-					),
-					'message' => 'Yes',
-					'default_value' => 0,
-				),
-				array (
-					'key' => 'field_form_display_description',
-					'label' => 'Display description?',
-					'name' => 'form_display_description',
-					'type' => 'true_false',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => array (
-						'width' => '50',
-						'class' => '',
-						'id' => '',
-					),
-					'message' => 'Yes',
-					'default_value' => 0,
-				),
-				array (
 					'key' => 'field_form_description',
 					'label' => 'Description',
 					'name' => 'form_description',
-					'type' => 'wysiwyg',
+					'type' => 'textarea',
 					'instructions' => '',
 					'required' => 0,
 					'conditional_logic' => 0,
