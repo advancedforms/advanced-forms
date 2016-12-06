@@ -45,6 +45,7 @@ class AF {
 
 		// Core functionality
 		include( plugin_dir_path( __FILE__ ) . 'core/core-forms.php' );
+		include( plugin_dir_path( __FILE__ ) . 'core/core-restrictions.php' );
 		include( plugin_dir_path( __FILE__ ) . 'core/core-emails.php' );
 		include( plugin_dir_path( __FILE__ ) . 'core/core-entries.php' );
 
@@ -53,6 +54,7 @@ class AF {
 
 		// Admin
 		include( plugin_dir_path( __FILE__ ) . 'admin/admin-forms.php' );
+		include( plugin_dir_path( __FILE__ ) . 'admin/admin-restrictions.php' );
 		include( plugin_dir_path( __FILE__ ) . 'admin/admin-entries.php' );
 		include( plugin_dir_path( __FILE__ ) . 'admin/admin-emails.php' );
 

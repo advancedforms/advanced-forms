@@ -190,8 +190,14 @@ class AF_Core_Forms {
 		}
 		
 		
-		// Check if the entry limit has been reached
-		$restriction_reached = ( $form['restrict_entries'] &&  af_get_entry_count( $form['key'] ) >= $form['entries_limit']);
+		/**
+		 * Check if form should be restricted and not displayed.
+		 * Filter will return false if no restriction is applied otherwise it will return a string to display.
+		 */
+		$restriction = false;
+		$restriction = apply_filters( 'af/form/restriction', $restriction, $form, $args );
+		$restriction = apply_filters( 'af/form/restriction/id=' . $form['post_id'], $restriction, $form, $args );
+		$restriction = apply_filters( 'af/form/restriction/key=' . $form['key'], $restriction, $form, $args );
 		
 		
 		// Display restriction message, success message or fields
@@ -203,11 +209,11 @@ class AF_Core_Forms {
 			
 			echo '</div>';
 			
-		} elseif ( $restriction_reached ) {
+		} elseif ( $restriction ) {
 		
 			echo '<div class="af-restricted-message">';
 			
-			echo $form['entries_restriction_message'];
+			echo $restriction;
 			
 			echo '</div>';
 		
