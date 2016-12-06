@@ -284,78 +284,7 @@ class AF_Admin_Entries {
 			'message' => 'Yes',
 			'default_value' => 0,
 		);
-		
-		$field_group['fields'][] = array(
-			'key' => 'field_form_restrict_entries',
-			'label' => 'Restrict number of entries',
-			'name' => 'form_restrict_entries',
-			'type' => 'true_false',
-			'instructions' => '',
-			'required' => 0,
-			'placeholder' => '',
-			'wrapper' => array (
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'message' => 'Yes',
-			'default_value' => 0,
-		);
-		
-		$field_group['fields'][] = array(
-			'key' => 'field_form_max_entries',
-			'label' => 'Maximum number of entries',
-			'name' => 'form_max_entries',
-			'type' => 'number',
-			'instructions' => '',
-			'required' => 1,
-			'placeholder' => '',
-			'conditional_logic' => array(
-				array(
-					array(
-						'field' => 'field_form_restrict_entries',
-						'operator' => '==',
-						'value' => '1',
-					),
-				),
-			),
-			'wrapper' => array (
-				'width' => '50',
-				'class' => '',
-				'id' => '',
-			),
-			'message' => 'Yes',
-			'default_value' => 0,
-		);
-		
-		$field_group['fields'][] = array (
-			'key' => 'field_form_restriction_message',
-			'label' => 'Message after entry limit has been reached',
-			'name' => 'form_restriction_message',
-			'type' => 'textarea',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => array(
-				array(
-					array(
-						'field' => 'field_form_restrict_entries',
-						'operator' => '==',
-						'value' => '1',
-					),
-				),
-			),
-			'wrapper' => array (
-				'width' => '50',
-				'class' => '',
-				'id' => '',
-			),
-			'rows' => 4,
-			'default_value' => '',
-			'tabs' => 'all',
-			'toolbar' => 'full',
-			'media_upload' => 1,
-		);
-		
+				
 		
 		return $field_group;
 		

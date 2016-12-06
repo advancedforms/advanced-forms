@@ -88,12 +88,13 @@ array(
 	'title' 		=> '',
 	'key'			=> '',
 	'display' 		=> array(
-		'display_title' 			=> false,
-		'display_description' 		=> false,
 		'description' 				=> '',
 		'success_message' 			=> '',
 	),
 	'create_entries' => false,
+	'restrict_entries' => false,
+	'entries_limit' => 0,
+	'entries_restriction_message' => '',
 )
 `
 
@@ -131,11 +132,11 @@ The `$args` parameter allows you to tweak how the form is displayed. These setti
 
 `
 array(
-	'display_title' 			=> defaults to form setting,			// Wether the title should be displayed or not (true/false)
-	'display_description'		=> defaults to form setting,			// Wether the description should be displayed or not (true/false)
+	'display_title' 			=> false,							// Whether the title should be displayed or not (true/false)
+	'display_description'		=> false,							// Whether the description should be displayed or not (true/false)
 	'submit_text'				=> 'Submit',						  // Text used for the submit button
 	'redirect'				=> current url with ?af_success,		// The URL to redirect to after a successful submission. Defaults to the current URL displaying the success message set in the form settings
-	'echo'					=> true,								// Wether the form output should be echoed or returned
+	'echo'					=> true,								// Whether the form output should be echoed or returned
 	'values'					=> array(),							// Field values to pre-fill. Should be an array with format: $field_name_or_key => $field_prefill_value
 )
 `
@@ -163,7 +164,7 @@ $args - Array of arguments used to display the form
 `
 
 
-To simplify the retrieval of field values a helper function `af_get_field( $field_name_or_key, $fields )` is provided which takes the field name/key to find and the array of fields. The function returns a processed value.
+To simplify the retrieval of field values a helper function `af_get_field` is provided which takes the field name/key to find and the array of fields. The function returns a processed value.
 
 
 The following is an example of processing a form submission and extracting the value entered into the field with name "email".
@@ -237,6 +238,22 @@ add_action( 'af/form/after_fields/key=FORM_KEY', 'after_fields' );
 
 = Filters =
 
+= af/form/before_render =
+
+Make changes to a form before it's rendered. $form is a form array matching the example under "Creating a form".
+Can be used for example to modify the form title, description, or success message.
+
+`
+function filter_form( $form, $args ) {
+	$form['display']['description'] = 'New form description';
+	
+	return $form;
+}
+add_action( 'af/form/before_render', 'filter_form' );
+add_action( 'af/form/before_render/id=FORM_ID', 'filter_form' );
+add_action( 'af/form/before_render/key=FORM_KEY', 'filter_form' );
+`
+
 = af/form/args =
 
 Alter the arguments used to display a form. The arguments are either passed to the function call or defined as attributes on a shortcode.
@@ -250,32 +267,6 @@ function filter_args( $args, $form ) {
 add_action( 'af/form/args', 'filter_args' );
 add_action( 'af/form/args/id=FORM_ID', 'filter_args' );
 add_action( 'af/form/args/key=FORM_KEY', 'filter_args' );
-`
-
-= af/form/title =
-
-Change the title displayed above form.
-
-`
-function filter_title( $title, $form ) {
-	return 'New title';
-}
-add_action( 'af/form/title', 'filter_title' );
-add_action( 'af/form/title/id=FORM_ID', 'filter_title' );
-add_action( 'af/form/title/key=FORM_KEY', 'filter_title' );
-`
-
-= af/form/description =
-
-Change the description displayed before the fields.
-
-`
-function filter_description( $description, $form ) {
-	return 'New description';
-}
-add_action( 'af/form/description', 'filter_description' );
-add_action( 'af/form/description/id=FORM_ID', 'filter_description' );
-add_action( 'af/form/description/key=FORM_KEY', 'filter_description' );
 `
 
 = af/form/field_attributes =
