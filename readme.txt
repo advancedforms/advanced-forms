@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.7
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,7 @@ Advanced Forms lets you build flexible forms using the power of Advanced Custom 
 * Define forms and fields fully programmatically for easy integration with your theme/plugin, or use the intuitive UI
 * Either use the provided hooks to process form submissions as you wish or let the plugin automatically save them as entries
 * Optionally set up emails to be sent automatically with form submissions
+* Set a maximum number of entries created, limit a form to only logged in users, or schedule a form to only display during certain times. Custom restrictions can be applied by hooking in to a simple filter.
 
 = Developers =
 
@@ -45,6 +46,12 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.0.3 =
+
+* Added option to only display form for logged in users
+* Added option to only display form during certain times
+* Added filters for creating own form restrictions. Check out the documentation for more info.
 
 = 1.0.2 =
 
@@ -182,6 +189,29 @@ add_action( 'af/form/submission', 'handle_form_submission' );
 
 Form validation is fully handled by ACF and if customization is needed the filters provided by ACF can be used, such as `acf/validate_value`. Refer to the [ACF documentation](https://www.advancedcustomfields.com/resources/) for more info.
 
+= Restricting forms =
+
+Advanced Forms comes with the option to hide a form unless certain conditions are meet. Included is the ability to limit the number of entries created by a form, to restrict a form from non-logged in users, and to set a schedule during which the form should be available.
+
+Custom restrictions may be applied using the filter `af/form/restriction` which is documented in the filters section below. The following is an example of limiting a form to only administrators.
+
+`
+function restrict_form( $restriction, $form, $args ) {
+	
+	if ( $restriction ) {
+		return $restriction;
+	}
+	
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return 'You need to be an administrator.';
+	}
+	
+	return false;
+	
+}
+add_filter( 'af/form/restriction', 'restrict_form' );
+`
+
 = Actions =
 
 = af/form/before_title =
@@ -269,9 +299,30 @@ add_action( 'af/form/args/id=FORM_ID', 'filter_args' );
 add_action( 'af/form/args/key=FORM_KEY', 'filter_args' );
 `
 
+= af/form/restriction =
+
+Restrict a form based on custom conditions. Return false to display form normally or return a message which should be displayed instead of the form fields. The first conditional should always be included in order to not override other restrictions.
+
+`
+function restrict_form( $restriction, $form, $args ) {
+	if ( $restriction ) {
+		return $restriction;
+	}
+	
+	if ( condition_to_hide_form ) {
+		return 'This message will be displayed instead of the form';
+	}
+	
+	return false;
+}
+add_action( 'af/form/restriction', 'restrict_form' );
+add_action( 'af/form/restriction/id=FORM_ID', 'restrict_form' );
+add_action( 'af/form/restriction/key=FORM_KEY', 'restrict_form' );
+`
+
 = af/form/field_attributes =
 
-Filter the attributes on field wrappers. Use to add classes, set an ID, or add new attributes.
+Filter attributes on field wrappers. Use to add classes, set an ID, or add new attributes.
 $attributes is an array of HTML attributes and their values.
 
 `
