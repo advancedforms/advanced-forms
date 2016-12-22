@@ -135,7 +135,9 @@ class AF_Core_Emails {
 		
 		// Headers
 		$headers = array();
-		$headers[] = 'From:' . $email['from'];
+		
+		$from = af_resolve_field_includes( $email['from'], $fields );
+		$headers[] = 'From:' . $from;
 		
 		$headers = apply_filters( 'af/form/email/headers', $headers, $email, $form, $fields );
 		$headers = apply_filters( 'af/form/email/headers/id=' . $form['post_id'], $headers, $email, $form, $fields );
