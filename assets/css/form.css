@@ -1,3 +1,7 @@
 .af-form .hide-label .af-label {
 	display: none;
 }
+
+.af-submit {
+	clear: both;
+}
