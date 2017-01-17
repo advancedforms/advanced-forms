@@ -152,7 +152,7 @@ class AF_Admin_Entries {
 	 */
 	function form_filter() {
 		
-		if ( 'af_entry' != $_GET['post_type'] ) {
+		if ( ! isset( $_GET['post_type'] ) || 'af_entry' != $_GET['post_type'] ) {
 			return;
 		}
 		

@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.7
-Stable tag: 1.0.3.1
+Stable tag: 1.0.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,6 +12,8 @@ Flexible and developer-friendly forms using the power of Advanced Custom Fields
 == Description ==
 
 *Requires ACF v5*
+
+Documentation: [advancedforms.github.io](https://advancedforms.github.io)
 
 Advanced Forms lets you build flexible forms using the power of Advanced Custom Fields. The plugin has been built with developers in mind and offers a large variety of helper functions and customization hooks.
 
@@ -23,14 +25,14 @@ Advanced Forms lets you build flexible forms using the power of Advanced Custom 
 
 = Developers =
 
-Advanced Forms is first and foremost built for developers and allows for simple integration with themes/plugins. Check out the [documentation](https://wordpress.org/plugins/advanced-forms/other_notes/) for details.
+Advanced Forms is first and foremost built for developers and allows for simple integration with themes/plugins. Check out the [documentation](https://advancedforms.github.io) for guides and details about functions/hooks.
 
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/advanced-forms` directory, or install the plugin through the WordPress plugins screen directly.
 2. Make sure ACF v5 is installed and activated.
 3. Activate the plugin through the 'Plugins' screen in WordPress.
-4. Read the documentation for instructions on how to create, configure, and display forms.
+4. Read the [documentation](https://advancedforms.github.io) for instructions on how to create, configure, and display forms.
 
 
 == Frequently Asked Questions ==
@@ -47,7 +49,15 @@ Yes. Versions 4 or lower of ACF are not supported.
 
 == Changelog ==
 
+= 1.0.3.2 =
+
+* Set the default content type of emails to HTML
+* Updated styling to keep submit button on its own row
+* Fixed issue with shortcode output being echoed instead of returned
+* Fixed undefined index notice on some admin pages
+
 = 1.0.3.1 =
+
 * Quick-fix of an issue with field value includes in "From" headers
 
 = 1.0.3 =
@@ -85,256 +95,4 @@ None
 
 == Documentation ==
 
-= Creating a form =
-
-Forms can be created either using the UI provided or programmatically.
-
-To create a form using the UI navigate to the "Forms" admin page and create a new form. Use the form settings to set up entries, emails and display options. At the bottom you will find a list of all fields which are connected to your form.
-
-To create a form programmatically the function `af_register_form( $form )` is provided. The `$form` parameter should be an array matching the following structure:
-
-`
-array(
-	'title' 		=> '',
-	'key'			=> '',
-	'display' 		=> array(
-		'description' 				=> '',
-		'success_message' 			=> '',
-	),
-	'create_entries' => false,
-	'restrict_entries' => false,
-	'entries_limit' => 0,
-	'entries_restriction_message' => '',
-)
-`
-
-The only required attribute is `key` which should be a unique identifier for your form starting with "form_". Setting the title attribute is recommended.
-
-= Adding fields to a form =
-
-The fields connected to a form are fully defined by Advanced Custom Fields allowing you to use the full range of field types offered by ACF. To connect a field group to your form set its location rule to match. This can be done in the ACF field group UI by adding a location rule and setting it to "Form" -> "is equal to" -> your form title.
-
-If your ACF field group is registered programmatically using `acf_add_local_field_group` your location rule can be defined as:
-
-`
-array (
-	'param' => 'af_form',
-	'operator' => '==',
-	'value' => YOUR_FORM_KEY,
-),
-`
-
-= Displaying a form =
-
-Once a form has been added and fields have been assigned you can display the form either using a shortcode or with a function call.
-
-To display a form using a shortcode use the structure below.
-
-`[advanced_form form="FORM_ID_OR_KEY"]`
-
-The form can be specified either by its post ID or its form key but it's recommended to always use the form key. The form key can be found right below the title on the form edit page.
-
-A form can also be displayed using a function call which specifies the form key or ID. The function call is shown below.
-
-`advanced_form( $form_id_or_key, $args );`
-
-The `$args` parameter allows you to tweak how the form is displayed. These settings can also be passed to the shortcode. The available settings and their defaults are as follows.
-
-`
-array(
-	'display_title' 			=> false,							// Whether the title should be displayed or not (true/false)
-	'display_description'		=> false,							// Whether the description should be displayed or not (true/false)
-	'submit_text'				=> 'Submit',						  // Text used for the submit button
-	'redirect'				=> current url with ?af_success,		// The URL to redirect to after a successful submission. Defaults to the current URL displaying the success message set in the form settings
-	'echo'					=> true,								// Whether the form output should be echoed or returned
-	'values'					=> array(),							// Field values to pre-fill. Should be an array with format: $field_name_or_key => $field_prefill_value
-)
-`
-
-= Processing form submissions =
-
-After a form has been submitted the field values need to be processed. The plugin comes with the ability to automatically save form data to entries and to send custom emails. Emails and entries can be configured in the form settings but are not enabled by default.
-
-If you need to process the form data further the handy action hook `af/form/submission` should be used. The hook can be used in three different ways.
-
-`
-add_action( 'af/form/submission', 'your_callback_function' );
-add_action( 'af/form/submission/id=FORM_ID', 'your_callback_function' );
-add_action( 'af/form/submission/key=FORM_KEY', 'your_callback_function' );
-`
-
-The first hook is invoked for all form submissions while the two last ones allow you to specify a form using either the form post ID or form key. It's recommended to use the form key.
-
-The action passes three different parameters:
-
-`
-$form - The form object
-$fields - Array of the submitted fields and their processed values
-$args - Array of arguments used to display the form
-`
-
-
-To simplify the retrieval of field values a helper function `af_get_field` is provided which takes the field name/key to find and the array of fields. The function returns a processed value.
-
-
-The following is an example of processing a form submission and extracting the value entered into the field with name "email".
-
-`
-function handle_form_submission( $form, $fields, $args ) {
-	
-	$email = af_get_field( 'email', $fields );
-	
-}
-add_action( 'af/form/submission', 'handle_form_submission' );
-`
-
-= Customizing validations =
-
-Form validation is fully handled by ACF and if customization is needed the filters provided by ACF can be used, such as `acf/validate_value`. Refer to the [ACF documentation](https://www.advancedcustomfields.com/resources/) for more info.
-
-= Restricting forms =
-
-Advanced Forms comes with the option to hide a form unless certain conditions are meet. Included is the ability to limit the number of entries created by a form, to restrict a form from non-logged in users, and to set a schedule during which the form should be available.
-
-Custom restrictions may be applied using the filter `af/form/restriction` which is documented in the filters section below. The following is an example of limiting a form to only administrators.
-
-`
-function restrict_form( $restriction, $form, $args ) {
-	
-	if ( $restriction ) {
-		return $restriction;
-	}
-	
-	if ( ! current_user_can( 'manage_options' ) ) {
-		return 'You need to be an administrator.';
-	}
-	
-	return false;
-	
-}
-add_filter( 'af/form/restriction', 'restrict_form' );
-`
-
-= Actions =
-
-= af/form/before_title =
-
-Triggered at the beginning of a form, before the title.
-
-`
-function before_title( $form, $args ) {
-	echo 'Before title';
-}
-add_action( 'af/form/before_title', 'before_title' );
-add_action( 'af/form/before_title/id=FORM_ID', 'before_title' );
-add_action( 'af/form/before_title/key=FORM_KEY', 'before_title' );
-`
-
-= af/form/before_fields =
-
-Triggered right before the fields and after the description.
-
-`
-function before_fields( $form, $args ) {
-	echo 'Before fields and after description';
-}
-add_action( 'af/form/before_fields', 'before_fields' );
-add_action( 'af/form/before_fields/id=FORM_ID', 'before_fields' );
-add_action( 'af/form/before_fields/key=FORM_KEY', 'before_fields' );
-`
-
-= af/form/hidden_fields =
-
-Use to add hidden fields to a form.
-
-`
-function hidden_field( $form, $args ) {
-	echo '<input type="hidden" name="some_hidden_field">';
-}
-add_action( 'af/form/hidden_fields', 'hidden_field' );
-add_action( 'af/form/hidden_fields/id=FORM_ID', 'hidden_field' );
-add_action( 'af/form/hidden_fields/key=FORM_KEY', 'hidden_field' );
-`
-
-= af/form/after_fields =
-
-Triggered after the submit button.
-
-`
-function after_fields( $form, $args ) {
-	echo 'After fields';
-}
-add_action( 'af/form/after_fields', 'after_fields' );
-add_action( 'af/form/after_fields/id=FORM_ID', 'after_fields' );
-add_action( 'af/form/after_fields/key=FORM_KEY', 'after_fields' );
-`
-
-= Filters =
-
-= af/form/before_render =
-
-Make changes to a form before it's rendered. $form is a form array matching the example under "Creating a form".
-Can be used for example to modify the form title, description, or success message.
-
-`
-function filter_form( $form, $args ) {
-	$form['display']['description'] = 'New form description';
-	
-	return $form;
-}
-add_action( 'af/form/before_render', 'filter_form' );
-add_action( 'af/form/before_render/id=FORM_ID', 'filter_form' );
-add_action( 'af/form/before_render/key=FORM_KEY', 'filter_form' );
-`
-
-= af/form/args =
-
-Alter the arguments used to display a form. The arguments are either passed to the function call or defined as attributes on a shortcode.
-
-`
-function filter_args( $args, $form ) {
-	$args['submit_text'] = 'Send';
-	
-	return $args;
-}
-add_action( 'af/form/args', 'filter_args' );
-add_action( 'af/form/args/id=FORM_ID', 'filter_args' );
-add_action( 'af/form/args/key=FORM_KEY', 'filter_args' );
-`
-
-= af/form/restriction =
-
-Restrict a form based on custom conditions. Return false to display form normally or return a message which should be displayed instead of the form fields. The first conditional should always be included in order to not override other restrictions.
-
-`
-function restrict_form( $restriction, $form, $args ) {
-	if ( $restriction ) {
-		return $restriction;
-	}
-	
-	if ( condition_to_hide_form ) {
-		return 'This message will be displayed instead of the form';
-	}
-	
-	return false;
-}
-add_action( 'af/form/restriction', 'restrict_form' );
-add_action( 'af/form/restriction/id=FORM_ID', 'restrict_form' );
-add_action( 'af/form/restriction/key=FORM_KEY', 'restrict_form' );
-`
-
-= af/form/field_attributes =
-
-Filter attributes on field wrappers. Use to add classes, set an ID, or add new attributes.
-$attributes is an array of HTML attributes and their values.
-
-`
-function filter_field_attributes( $attributes, $field, $form, $args ) {
-	$attributes['id'] = 'form-id';
-	
-	return $attributes;
-}
-add_action( 'af/form/field_attributes', 'filter_field_attributes' );
-add_action( 'af/form/field_attributes/id=FORM_ID', 'filter_field_attributes' );
-add_action( 'af/form/field_attributes/key=FORM_KEY', 'filter_field_attributes' );
-`
+The documentation has been moved to a new site, check it out: [advancedforms.github.io](https://advancedforms.github.io)

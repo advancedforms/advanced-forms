@@ -20,7 +20,7 @@ class AF_Core_Forms {
 	
 	
 	/**
-	 * Registers the short code advanced_form which renders the form specified by the "form" attribute
+	 * Registers the shortcode advanced_form which renders the form specified by the "form" attribute
 	 *
 	 * @since 1.0.0
 	 *
@@ -32,7 +32,9 @@ class AF_Core_Forms {
 			$form_id_or_key = $atts['form'];
 			unset( $atts['form'] );
 			
-			$this->render( $form_id_or_key, $atts );
+			$atts['echo'] = false;
+			
+			return $this->render( $form_id_or_key, $atts );
 			
 		}
 		

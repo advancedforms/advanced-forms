@@ -136,6 +136,10 @@ class AF_Core_Emails {
 		// Headers
 		$headers = array();
 		
+		// HTML content type
+		$headers[] = 'Content-type: text/html; charset=UTF-8';
+		
+		// From header
 		$from = af_resolve_field_includes( $email['from'], $fields );
 		$headers[] = 'From:' . $from;
 		

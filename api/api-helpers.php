@@ -13,7 +13,15 @@ function af_resolve_field_includes( $input, $fields ) {
 		
 		foreach ($matches[1] as $i => $field) {
 			
-			$input = str_replace($matches[0][$i], af_get_field( $field, $fields ), $input);
+			$field_value = af_get_field( $field, $fields );
+			
+			if ( is_array( $field_value ) ) {
+				$include_value = join( ', ', $field_value );
+			} else {
+				$include_value = (string)$field_value;
+			}
+			
+			$input = str_replace( $matches[0][$i], $include_value, $input );
 			
 		}
 		
