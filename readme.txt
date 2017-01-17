@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.7
-Stable tag: 1.0.3.1
+Stable tag: 1.0.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,7 +49,15 @@ Yes. Versions 4 or lower of ACF are not supported.
 
 == Changelog ==
 
+= 1.0.3.2 =
+
+* Set the default content type of emails to HTML
+* Updated styling to keep submit button on its own row
+* Fixed issue with shortcode output being echoed instead of returned
+* Fixed undefined index notice on some admin pages
+
 = 1.0.3.1 =
+
 * Quick-fix of an issue with field value includes in "From" headers
 
 = 1.0.3 =
