@@ -10,7 +10,20 @@
  */
 function advanced_form( $form_id, $args = array() ) {
 	
+	// Render form and catch output
+	ob_start();
+	
 	do_action( 'af/form/render', $form_id, $args );
+	
+	$output = ob_get_clean();
+	
+	
+	if ( ! isset( $args['echo'] ) || $args['echo'] ) {
+		echo $output;
+	}
+	
+	
+	return $output;
 	
 }
 
