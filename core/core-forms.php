@@ -283,6 +283,11 @@ class AF_Core_Forms {
 					
 					$attributes['class'] .= sprintf( ' af-field af-field-type-%s af-field-%s acf-field acf-field-%s acf-field-%s', $field['type'], $field['name'], $field['type'], $field['key'] );
 					
+					if($field['required']){
+						$attributes['class'] .= " af-field-required";
+					};
+
+					
 					// This is something ACF needs
 					$attributes['class'] = str_replace( '_', '-', $attributes['class'] );
 					$attributes['class'] = str_replace( 'field-field-', 'field-', $attributes['class'] );
