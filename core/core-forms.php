@@ -283,9 +283,9 @@ class AF_Core_Forms {
 					
 					$attributes['class'] .= sprintf( ' af-field af-field-type-%s af-field-%s acf-field acf-field-%s acf-field-%s', $field['type'], $field['name'], $field['type'], $field['key'] );
 					
-					if($field['required']){
-						$attributes['class'] .= " af-field-required";
-					};
+					if ( $field['required'] ) {
+						$attributes['class'] .= ' af-field-required';
+					}
 
 					
 					// This is something ACF needs
@@ -315,16 +315,18 @@ class AF_Core_Forms {
 					// Field wrapper
 					echo sprintf( '<div %s>', acf_esc_attr( $attributes ) );
 					
+					
 					echo '<div class="af-label acf-label">';
 					echo sprintf( '<label>%s</label>', $field['label'] );
 					echo '</div>';
 					
+					
+					if ( '' != $field['instructions'] ) {
+						echo sprintf( '<p class="af-field-instructions">%s</p>', $field['instructions'] );
+					}
+					
+					
 					echo '<div class="af-input acf-input">';
-
-					if($field['instructions'] != ""){
-						echo "<p class='af-field-instructions'>".$field['instructions']."</p>";
-					};
-
 					
 					// Render field with default ACF
 					acf_render_field( $field );
@@ -333,7 +335,7 @@ class AF_Core_Forms {
 					
 					
 					// Conditional logic Javascript
-					if ( !empty( $field['conditional_logic'] ) ) {
+					if ( ! empty( $field['conditional_logic'] ) ) {
 						?>
 						<script type="text/javascript">
 							if(typeof acf !== 'undefined'){ acf.conditional_logic.add( '<?php echo $field['key']; ?>', <?php echo json_encode($field['conditional_logic']); ?>); }
