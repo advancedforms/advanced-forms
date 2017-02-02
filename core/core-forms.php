@@ -16,6 +16,7 @@ class AF_Core_Forms {
 		add_action( 'af/form/render', array( $this, 'render' ), 10, 2 );
 		
 		add_shortcode( 'advanced_form', array( $this, 'form_shortcode' ) );
+		
 	}
 	
 	
@@ -32,9 +33,13 @@ class AF_Core_Forms {
 			$form_id_or_key = $atts['form'];
 			unset( $atts['form'] );
 			
-			$atts['echo'] = false;
+			ob_start();
 			
-			return $this->render( $form_id_or_key, $atts );
+			$this->render( $form_id_or_key, $atts );
+			
+			$output = ob_get_clean();
+			
+			return $output;
 			
 		}
 		
@@ -117,7 +122,6 @@ class AF_Core_Forms {
 	}
 	
 	
-	
 	/**
 	 * Renders the form specified by ID
 	 *
@@ -164,8 +168,6 @@ class AF_Core_Forms {
 			update_post_meta( $form['post_id'], 'form_num_of_views', $views );
 		}
 		
-		
-		ob_start();
 		
 		// Form element
 		echo '<form class="af-form acf-form" method="POST">';
@@ -370,16 +372,6 @@ class AF_Core_Forms {
 		
 		// End form
 		echo '</form>';
-		
-		
-		$output = ob_get_clean();
-		
-		if ( $args['echo'] ) {
-			echo $output;
-		}
-		
-		
-		return $output;
 		
 	}
 	
