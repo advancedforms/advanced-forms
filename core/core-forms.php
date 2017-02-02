@@ -320,6 +320,11 @@ class AF_Core_Forms {
 					echo '</div>';
 					
 					echo '<div class="af-input acf-input">';
+
+					if($field['instructions'] != ""){
+						echo "<p class='af-field-instructions'>".$field['instructions']."</p>";
+					};
+
 					
 					// Render field with default ACF
 					acf_render_field( $field );
