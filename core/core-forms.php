@@ -74,7 +74,7 @@ class AF_Core_Forms {
 				
 				
 				// Retrieve the args used to display the form
-				$args = json_decode( base64_decode( $_POST['af_form_args'] ) );
+				$args = json_decode( base64_decode( $_POST['af_form_args'] ), true );
 				
 				$fields = array();
 				
@@ -110,7 +110,7 @@ class AF_Core_Forms {
 				
 				
 				// Redirect to success page
-				wp_redirect( $args->redirect );
+				wp_redirect( $args['redirect'] );
 				exit;
 				
 			}
