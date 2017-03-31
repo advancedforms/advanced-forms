@@ -59,10 +59,12 @@ class AF_ACF_Additions {
 		// Match with form object
 		if ( 'af_form' == $rule['param'] && isset( $options['af_form'] ) ) {
 			
-			if ( $rule['value'] == $options['af_form'] ) {
+			if( isset($rule['value'] ) ){
+				if ( $rule['value'] == $options['af_form'] ) {
 				
-				$match = true;
+					$match = true;
 				
+				}
 			}
 			
 		}
