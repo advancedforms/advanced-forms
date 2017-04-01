@@ -147,6 +147,7 @@ class AF_Core_Forms {
 			'redirect' 					=> add_query_arg( 'af_succcess', '', $url ),
 			'echo'						=> true,
 			'exclude_fields'			=> array(),
+			'uploader'					=> 'wp',
 		));
 		
 		
@@ -222,10 +223,15 @@ class AF_Core_Forms {
 			
 			echo '</div>';
 		
-		} else {	
+		} else {
+			
+			// Set ACF uploader type setting
+			acf_update_setting( 'uploader', $args['uploader'] );
+			
 			
 			// Get field groups for the form and display their fields
 			$field_groups = af_get_form_field_groups( $form['key'] );
+			
 			
 			echo '<div class="af-fields acf-fields acf-form-fields">';
 			
