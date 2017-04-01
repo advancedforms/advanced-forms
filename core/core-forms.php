@@ -146,6 +146,7 @@ class AF_Core_Forms {
 			'submit_text' 				=> __( 'Submit', 'advanced-forms' ),
 			'redirect' 					=> add_query_arg( 'af_succcess', '', $url ),
 			'echo'						=> true,
+			'exclude_fields'			=> array(), // pass field keys here
 		));
 		
 		
@@ -260,6 +261,14 @@ class AF_Core_Forms {
 				
 				foreach ( $fields as $field ) {
 					
+					// See if the excluded fields arg is present and there is at least 1 key
+					if ( $args['exclude_fields'] && count($args['exclude_fields']) > 0 ) {
+						// Check to see if the field has been excluded
+						if( in_array( $field['key'], $args['exclude_fields'] ) ){
+							continue; // Skip the main field forloop because this field is excluded
+						}
+					}
+
 					// Check if we have any prefilled values for this field, either in the args or previously submitted
 					if ( isset( $_POST['acf'][ $field['key'] ] ) ) {
 					
