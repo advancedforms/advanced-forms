@@ -264,7 +264,7 @@ class AF_Core_Forms {
 					// Skip field if it is in the exluded fields argument
 					if ( isset( $args['exclude_fields'] ) && is_array( $args['exclude_fields'] ) ) {
 						
-						if ( in_array( $field['key'], $args['exclude_fields'] ) ) {
+						if ( in_array( $field['key'], $args['exclude_fields'] ) || in_array( $field['name'], $args['exclude_fields'] ) ) {
 							continue;
 						}
 						
