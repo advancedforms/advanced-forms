@@ -55,19 +55,17 @@ class AF_ACF_Additions {
 	function form_location_rule_match( $match, $rule, $options ) {
 		
 		
-		
 		// Match with form object
 		if ( 'af_form' == $rule['param'] && isset( $options['af_form'] ) ) {
 			
-			if( isset($rule['value'] ) ){
-				if ( $rule['value'] == $options['af_form'] ) {
+			if( isset( $rule['value'] ) && $rule['value'] == $options['af_form'] ) {
 				
-					$match = true;
+				$match = true;
 				
-				}
 			}
 			
 		}
+		
 		
 		// Match with entry
 		if ( 'af_entry' == $options['post_type'] ) {
@@ -81,6 +79,7 @@ class AF_ACF_Additions {
 			}
 			
 		}
+		
 		
 		return $match;
 		
