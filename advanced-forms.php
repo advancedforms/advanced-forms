@@ -2,7 +2,7 @@
 /*
 	Plugin Name: Advanced Forms
 	Description: Flexible and developer-friendly forms with the power of Advanced Custom Fields.
-	Version: 1.0.3.3
+	Version: 1.0.4
 	Author: Fabian Lindfors
 	Copyright: Fabian Lindfors
 	Text Domain: advanced-forms
