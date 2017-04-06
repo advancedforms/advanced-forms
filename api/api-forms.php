@@ -34,7 +34,15 @@ function advanced_form( $form_id, $args = array() ) {
  * @since 1.0.0
  *
  */
-function af_get_field( $field_key_or_name, $fields ) {
+function af_get_field( $field_key_or_name, $fields = false ) {
+	
+	// Get fields from the global submission object if fields weren't passed
+	if ( ! $fields && af_has_submission() ) {
+		
+		$fields = AF()->submission['fields'];
+		
+	}
+	
 	
 	foreach( $fields as $field ) {
 		
@@ -45,6 +53,7 @@ function af_get_field( $field_key_or_name, $fields ) {
 		}
 		
 	}
+	
 	
 	return false;
 	

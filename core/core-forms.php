@@ -104,14 +104,28 @@ class AF_Core_Forms {
 				}
 				
 				
+				// Save submission data to the global AF object
+				AF()->submission = array(
+					'form' => $form,
+					'args' => $args,
+					'fields' => $fields,
+				);
+				
+				
 				do_action( 'af/form/submission', $form, $fields, $args );
 				do_action( 'af/form/submission/id=' . $form['post_id'], $form, $fields, $args );
 				do_action( 'af/form/submission/key=' . $form['key'], $form, $fields, $args );
 				
 				
-				// Redirect to success page
-				wp_redirect( $args['redirect'] );
-				exit;
+				// Redirect to different URL if redirect argument has been passed
+				if ( $args['redirect'] && '' != $args['redirect'] ) {
+					
+					wp_redirect( $args['redirect'] );
+					
+					exit;
+					
+				}
+				
 				
 			}
 			
@@ -144,7 +158,8 @@ class AF_Core_Forms {
 			'display_description' 		=> false,
 			'values' 					=> array(),
 			'submit_text' 				=> __( 'Submit', 'advanced-forms' ),
-			'redirect' 					=> add_query_arg( 'af_succcess', '', $url ),
+			'redirect' 					=> false,
+			'target'					=> acf_get_current_url(),
 			'echo'						=> true,
 			'exclude_fields'			=> array(),
 			'uploader'					=> 'wp',
@@ -172,7 +187,7 @@ class AF_Core_Forms {
 		
 		
 		// Form element
-		echo '<form class="af-form acf-form" method="POST">';
+		echo sprintf( '<form class="af-form acf-form" method="POST" action="%s">', $args['target'] );
 		
 		
 		do_action( 'af/form/before_title', $form, $args );
@@ -206,8 +221,8 @@ class AF_Core_Forms {
 		$restriction = apply_filters( 'af/form/restriction/key=' . $form['key'], $restriction, $form, $args );
 		
 		
-		// Display restriction message, success message or fields
-		if ( isset( $_GET['af_succcess'] ) ) {
+		// Display success message, restriction message, or fields
+		if ( af_has_submission() ) {
 			
 			echo '<div class="af-success">';
 			

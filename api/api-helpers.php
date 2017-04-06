@@ -1,4 +1,16 @@
 <?php
+	
+
+/**
+ * Returns true if a successful submission was performed
+ *
+ * @since 1.1
+ */
+function af_has_submission() {
+	
+	return ! is_null( AF()->submission );
+	
+}
 
 
 /**
