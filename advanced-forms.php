@@ -11,6 +11,16 @@
 
 
 class AF {
+	
+	
+	/**
+	 * Array to hold data about the previous submission
+	 *
+	 * @since 1.1
+	 */
+	public $submission;
+	
+
 
 	function __construct() {
 
@@ -27,11 +37,17 @@ class AF {
 	 */
 	function initialize_plugin() {
 
-		add_action( 'admin_notices', array( $this, 'missing_acf_notice' ), 10, 0 );
-
 		if ( ! class_exists( 'acf_pro' ) ) {
+			
+			add_action( 'admin_notices', array( $this, 'missing_acf_notice' ), 10, 0 );
+
 			return;
+			
 		}
+		
+		
+		// Setup global plugin defaults
+		$this->submission = null;
 
 
 		// Load translations
@@ -75,13 +91,14 @@ class AF {
 	}
 
 
+	/**
+	 * Display notice if ACF Pro is missing
+	 *
+	 * @since 1.0.0
+	 */
 	function missing_acf_notice() {
 
-		if ( ! class_exists( 'acf_pro' ) ) {
-
-			echo sprintf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', 'Couldn\'t find ACF 5. Advanced Forms requires ACF 5 to function correctly.' );
-
-		}
+		echo sprintf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', 'Couldn\'t find ACF 5. Advanced Forms requires ACF 5 to function correctly.' );
 
 	}
 
@@ -238,4 +255,23 @@ class AF {
 
 }
 
-new AF();
+
+/**
+ * Helper function to access the global AF object
+ * 
+ * @since 1.1
+ */
+function AF() {
+	
+	global $af;
+	
+	if ( ! isset( $af ) ) {
+		$af = new AF();
+	}
+	
+	return $af;
+	
+}
+
+// Initalize plugin
+AF();
