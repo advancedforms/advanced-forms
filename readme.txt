@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.7.3
-Stable tag: 1.0.4
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,15 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.1 =
+First major update to Advanced Forms!
+
+* Added global plugin object containing info about the latest submission, accessible from anywhere.
+* Revised submission handling. Submission data is now saved to the global object which simplifies the API (`af_get_field` no longer requires the field parameter and can be used anywhere). As a side effect the `af_success` URL parameter is no longer necessary!
+* Added `target` attribute and helper function `af_has_submission`. The new target attribute lets you specify a custom URL to point the form to. Combined with the `af_has_submission` function you can now use your submitted form data anywhere and display it however you like.
+
+Check out the updated documentation for more info: [Displaying a form](https://advancedforms.github.io/guides/basic/displaying-a-form/) and [Processing form submissions](https://advancedforms.github.io/guides/basic/processing-form-submissions/).
 
 = 1.0.4 =
 
