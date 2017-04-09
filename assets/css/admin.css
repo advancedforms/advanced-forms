@@ -45,7 +45,8 @@
 	display: none;
 }
 
-.acf-field-form-email-content .af-field-dropdown.button {
+.acf-field-form-email-content .af-field-dropdown.button,
+.acf-field-form-success-message .af-field-dropdown.button {
 	display: inline-block;
 }
 

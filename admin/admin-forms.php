@@ -15,6 +15,7 @@ class AF_Admin_Forms {
 		add_action( 'edit_form_after_title', array( $this, 'display_form_key' ), 10, 0 );
 		add_action( 'save_post', array( $this, 'add_form_key' ), 10, 3 );
 		add_action( 'init', array( $this, 'register_fields' ), 1, 0 );
+		add_action( 'media_buttons', array( $this, 'add_wysiwyg_content_field_inserter' ), 10, 1 );
 		
 		
 		// Filters
@@ -207,6 +208,40 @@ class AF_Admin_Forms {
 			echo sprintf( '<a href="%s">%s</a>', admin_url() . '/edit.php?post_type=af_entry&entry_form=' . $form['key'], count( $entries ) );
 			
 		}
+		
+	}
+	
+	
+	/**
+	 * Add an "Insert field" button to WYSIWYG fields
+	 *
+	 * @since 1.0.0
+	 *
+	 */
+	function add_wysiwyg_content_field_inserter( $id ) {
+		
+		global $post;
+		
+		if ( ! $post ) {
+			return;
+		}
+		
+		
+		$form = af_form_from_post( $post );
+		
+		if ( ! $form ) {
+			return;
+		}
+		
+		
+		if ( 'acf-editor' == substr($id, 0, 10) ) {
+			
+			$fields = af_get_form_fields( $form );
+			
+			_af_field_inserter_button( $fields, false );
+			
+		}
+		
 		
 	}
 	

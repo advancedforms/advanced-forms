@@ -5,44 +5,9 @@ class AF_Admin_Emails {
 	function __construct() {
 		
 		add_action( 'acf/render_field', array( $this, 'add_email_field_inserter' ), 50, 1 );
-		add_action( 'media_buttons', array( $this, 'add_email_content_field_inserter' ), 10, 1 );
 		
 		add_filter( 'acf/load_field/name=recipient_field', array( $this, 'populate_email_field_choices' ), 10, 1 );
 		add_filter( 'af/form/settings_fields', array( $this, 'email_acf_fields' ), 10, 1 );
-		
-	}
-	
-	
-	/**
-	 * Add an "Insert field" button to content field
-	 *
-	 * @since 1.0.0
-	 *
-	 */
-	function add_email_content_field_inserter( $id ) {
-		
-		global $post;
-		
-		if ( ! $post ) {
-			return;
-		}
-		
-		
-		$form = af_form_from_post( $post );
-		
-		if ( ! $form ) {
-			return;
-		}
-		
-		
-		if ( 'acf-editor' == substr($id, 0, 10) ) {
-			
-			$fields = af_get_form_fields( $form );
-			
-			$this->output_field_inserter_button( $fields, false );
-			
-		}
-		
 		
 	}
 	
@@ -79,37 +44,9 @@ class AF_Admin_Emails {
 			
 			$fields = af_get_form_fields( $form );
 			
-			$this->output_field_inserter_button( $fields, true );
+			_af_field_inserter_button( $fields, true );
 			
 		}
-		
-	}
-	
-	
-	/**
-	 * Output an "Insert field" button populated with $fields
-	 * $floating adds class "floating" to the wrapper making the button float right in an input field
-	 *
-	 * @since 1.0.0
-	 *
-	 */
-	function output_field_inserter_button( $fields, $floating = false ) {
-		
-		$classses = ( $floating ) ? 'floating' : '';
-		
-		echo '<a class="af-field-dropdown ' . $classses . ' button">Insert field';
-			
-		echo '<div class="af-dropdown">';
-		
-		foreach ( $fields as $field ) {
-			
-			echo sprintf( '<div class="field-option" data-insert-value="{field:%s}">%s</div>', $field['name'], $field['label'] );
-			
-		}
-		
-		echo '</div>';
-			
-		echo '</a>';
 		
 	}
 	

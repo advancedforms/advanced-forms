@@ -19,7 +19,15 @@ function af_has_submission() {
  * @since 1.0.1
  *
  */
-function af_resolve_field_includes( $input, $fields ) {
+function af_resolve_field_includes( $input, $fields = false ) {
+	
+	// Get fields from the global submission object if fields weren't passed
+	if ( ! $fields && af_has_submission() ) {
+		
+		$fields = AF()->submission['fields'];
+		
+	}
+	
 	
 	if ( preg_match_all( "/{field:(.*?)}/", $input, $matches ) ) {
 		
@@ -67,5 +75,33 @@ function af_is_valid_form_key( $key ) {
 	
 	
 	return false;
+	
+}
+
+
+/**
+ * Output an "Insert field" button populated with $fields
+ * $floating adds class "floating" to the wrapper making the button float right in an input field
+ *
+ * @since 1.1.1
+ *
+ */
+function _af_field_inserter_button( $fields, $floating = false ) {
+	
+	$classses = ( $floating ) ? 'floating' : '';
+	
+	echo '<a class="af-field-dropdown ' . $classses . ' button">Insert field';
+		
+	echo '<div class="af-dropdown">';
+	
+	foreach ( $fields as $field ) {
+		
+		echo sprintf( '<div class="field-option" data-insert-value="{field:%s}">%s</div>', $field['name'], $field['label'] );
+		
+	}
+	
+	echo '</div>';
+		
+	echo '</a>';
 	
 }

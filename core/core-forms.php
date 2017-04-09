@@ -251,7 +251,7 @@ class AF_Core_Forms {
 			
 			echo '<div class="af-success">';
 			
-			echo $form['display']['success_message'];
+			echo af_resolve_field_includes( $form['display']['success_message'] );
 			
 			echo '</div>';
 			
