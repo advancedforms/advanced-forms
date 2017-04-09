@@ -131,8 +131,6 @@ class AF_Core_Forms {
 			
 		}
 		
-		acf_enqueue_scripts();
-		
 	}
 	
 	
@@ -151,7 +149,34 @@ class AF_Core_Forms {
 		}
 		
 		
-		$url = acf_get_current_url();
+		/**
+		 * Enqueue ACF scripts and styles
+		 *
+		 * Normally ACF initializes the global JS object in wp_head but we only want to include the scripts when displaying a form.
+		 * To work around this we enqueue using the regular ACF function and then immediately include the acf-input.js script.
+		 * If acf-input.js is not initialized before the fields then conditional logic doesn't work. The remaining scripts/styles will be included in wp_footer.
+		 *
+		 * @since 1.1.1
+		 *
+		 */
+		acf_enqueue_scripts();
+		
+		global $wp_scripts;
+		
+		if ( wp_script_is( 'acf-input', 'enqueued' ) ) {
+			
+			$wp_scripts->do_item( 'acf-input' );
+			wp_dequeue_script( 'acf-input' );
+			
+		}
+		
+		if ( wp_script_is( 'acf-pro-input', 'enqueued' ) ) {
+			
+			$wp_scripts->do_item( 'acf-pro-input' );
+			wp_dequeue_script( 'acf-pro-input' );
+			
+		}
+		
 		
 		$args = wp_parse_args($args, array(
 			'display_title' 			=> false,
