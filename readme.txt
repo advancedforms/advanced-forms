@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.7.3
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,11 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.1.1 =
+* Added helper function `af_save_field_to_post( $field_key_or_name, $post_id )` for saving submitted fields directly to posts. No need to mess with `update_field`!
+* Optimized scripts and styles to only be enqueued when a form is displayed.
+* Added ability to display field values in success messages similar to how they can be used in emails.
 
 = 1.1 =
 First major update to Advanced Forms!
