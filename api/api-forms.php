@@ -61,6 +61,53 @@ function af_get_field( $field_key_or_name, $fields = false ) {
 
 
 /**
+ * Save submitted field directly to post
+ *
+ * @since 1.1.1
+ *
+ */
+function af_save_field_to_post( $field_key_or_name, $post_id ) {
+	
+	// Make sure we have a submission to work with
+	if ( ! af_has_submission() ) {
+		
+		return;
+		
+	}
+	
+	
+	/**
+	 * When saving a new field value to a post ACF recommends using the field key.
+	 * Reference: https://www.advancedcustomfields.com/resources/update_field/
+	 */
+	$fields = AF()->submission['fields'];
+	
+	$field_key = false;
+	
+	foreach( $fields as $field ) {
+		
+		if ( $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name ) {
+			
+			$field_key = $field['key'];
+			
+		}
+		
+	}
+	
+	
+	// Save submitted value to post using ACFs update_field
+	if ( $field_key ) {
+		
+		$value = af_get_field( $field_key_or_name );
+		
+		update_field( $field_key, $value, $post_id );
+		
+	}
+	
+}
+
+
+/**
  * Used to register a form programmatically
  *
  * @since 1.0.0

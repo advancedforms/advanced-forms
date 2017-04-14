@@ -63,9 +63,10 @@ class AF_Core_Entries {
 		// Transfer all fields to the entry
 		foreach ( $fields as $field ) {
 			
-			update_field( $field['key'], $field['_input'], $entry_id );
+			af_save_field_to_post( $field['key'], $entry_id );
 			
 		}
+		
 	}
 	
 	
@@ -101,6 +102,7 @@ class AF_Core_Entries {
 		}
 		
 	}
+	
 }
 
 new AF_Core_Entries();
