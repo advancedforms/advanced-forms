@@ -46,7 +46,13 @@ function af_get_field( $field_key_or_name, $fields = false ) {
 	
 	foreach( $fields as $field ) {
 		
-		if ( $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name ) {
+		// Match against a clone field (differnet key/name structure)
+		$matching_field = isset( $field['_clone'] ) && ( $field['__key'] == $field_key_or_name || $field['__name'] == $field_key_or_name || $field['name'] == $field_key_or_name );
+		
+		// Match against regular fields
+		$matching_field = $matching_field ?: $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name;
+		
+		if ( $matching_field ) {
 			
 			return $field['value'];
 			
@@ -86,21 +92,30 @@ function af_save_field_to_post( $field_key_or_name, $post_id ) {
 	
 	foreach( $fields as $field ) {
 		
-		if ( $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name ) {
+		$field_key = false;
+		
+		// Find field key (special key/name structure for clone fields
+		if ( _af_is_clone_field( $field) && ( $field['__key'] == $field_key_or_name || $field['__name'] == $field_key_or_name || $field['name'] == $field_key_or_name ) ) {
+			
+			$field_key = $field['__key'];
+			
+		} else if ( $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name ) {
 			
 			$field_key = $field['key'];
 			
 		}
 		
-	}
-	
-	
-	// Save submitted value to post using ACFs update_field
-	if ( $field_key ) {
+		// Save submitted value to post using ACFs acf_update_value
+		if ( $field_key ) {
+			
+			$value = $field['value'];
+			
+			$field_to_save = $field;
+			$field_to_save['key'] = $field_key;
 		
-		$value = af_get_field( $field_key_or_name );
-		
-		update_field( $field_key, $value, $post_id );
+			acf_update_value( $value, $post_id, $field_to_save );
+			
+		}
 		
 	}
 	

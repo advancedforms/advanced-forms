@@ -87,10 +87,20 @@ class AF_Core_Forms {
 					
 					foreach( $group_fields as $group_field ) {
 						
+						if ( _af_is_clone_field( $group_field ) ) {
+							$field_key = $group_field['_clone'];
+						} else {
+							$field_key = $group_field['key'];
+						}
+						
 						// Format value from POST data
-						if ( isset( $_POST['acf'][ $group_field['key'] ] ) ) {
+						if ( isset( $_POST['acf'][ $field_key ] ) ) {
 							
-							$value = $_POST['acf'][ $group_field['key'] ];
+							$value = $_POST['acf'][ $field_key ];
+							
+							if ( _af_is_clone_field( $group_field ) ) {
+								$value = $value[ $group_field['key'] ];
+							}
 							
 							$group_field['_input'] = $value;
 							$group_field['value'] = acf_format_value( $value, 0, $group_field );

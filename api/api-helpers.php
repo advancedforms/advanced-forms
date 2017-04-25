@@ -105,3 +105,17 @@ function _af_field_inserter_button( $fields, $floating = false ) {
 	echo '</a>';
 	
 }
+
+
+
+/**
+ * Checks if the passed field is a clone field (has the _clone key)
+ *
+ * @since 1.1.2
+ *
+ */
+function _af_is_clone_field( $field ) {
+	
+	return isset( $field['_clone'] );
+	
+}
