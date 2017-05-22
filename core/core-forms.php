@@ -76,38 +76,20 @@ class AF_Core_Forms {
 				// Retrieve the args used to display the form
 				$args = json_decode( base64_decode( $_POST['af_form_args'] ), true );
 				
+				
+				// Retrieve all form fields and their values
 				$fields = array();
 				
-				
-				$field_groups = af_get_form_field_groups( $form['key'] );
-				
-				foreach( $field_groups as $field_group ) {
+				if ( isset( $_POST['acf'] ) ) {
 					
-					$group_fields = acf_get_fields( $field_group );
-					
-					foreach( $group_fields as $group_field ) {
+					foreach ( $_POST['acf'] as $k => $value ) {
 						
-						if ( _af_is_clone_field( $group_field ) ) {
-							$field_key = $group_field['_clone'];
-						} else {
-							$field_key = $group_field['key'];
-						}
+						$field = acf_get_field( $k );
 						
-						// Format value from POST data
-						if ( isset( $_POST['acf'][ $field_key ] ) ) {
-							
-							$value = $_POST['acf'][ $field_key ];
-							
-							if ( _af_is_clone_field( $group_field ) ) {
-								$value = $value[ $group_field['key'] ];
-							}
-							
-							$group_field['_input'] = $value;
-							$group_field['value'] = acf_format_value( $value, 0, $group_field );
-							
-						}
+						$field['_input'] = $value;
+						$field['value'] = acf_format_value( $value, 0, $field );
 						
-						$fields[] = $group_field;
+						$fields[] = $field;
 						
 					}
 					

@@ -46,15 +46,22 @@ function af_get_field( $field_key_or_name, $fields = false ) {
 	
 	foreach( $fields as $field ) {
 		
-		// Match against a clone field (differnet key/name structure)
-		$matching_field = isset( $field['_clone'] ) && ( $field['__key'] == $field_key_or_name || $field['__name'] == $field_key_or_name || $field['name'] == $field_key_or_name );
-		
-		// Match against regular fields
-		$matching_field = $matching_field ?: $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name;
-		
-		if ( $matching_field ) {
+		if ( $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name ) {
 			
 			return $field['value'];
+			
+		}
+		
+		// Also search sub fields if field is clone
+		if ( 'clone' == $field['type'] && isset( $field['sub_fields'] ) ) {
+			
+			foreach ( $field['value'] as $sub_field_name => $sub_field_value ) {
+				
+				if ( $sub_field_name == $field_key_or_name ) {
+					return $sub_field_value;
+				}
+				
+			}
 			
 		}
 		
@@ -83,37 +90,20 @@ function af_save_field_to_post( $field_key_or_name, $post_id ) {
 	
 	
 	/**
-	 * When saving a new field value to a post ACF recommends using the field key.
-	 * Reference: https://www.advancedcustomfields.com/resources/update_field/
+	 * We save the field directly to the post using acf_update_value.
+	 * This ensures that clone fields, repeaters etc. work as intended.
+	 * $field['_input'] should match the raw $_POST value.
 	 */
 	$fields = AF()->submission['fields'];
 	
-	$field_key = false;
-	
 	foreach( $fields as $field ) {
 		
-		$field_key = false;
-		
-		// Find field key (special key/name structure for clone fields
-		if ( _af_is_clone_field( $field) && ( $field['__key'] == $field_key_or_name || $field['__name'] == $field_key_or_name || $field['name'] == $field_key_or_name ) ) {
-			
-			$field_key = $field['__key'];
-			
-		} else if ( $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name ) {
-			
-			$field_key = $field['key'];
-			
-		}
-		
 		// Save submitted value to post using ACFs acf_update_value
-		if ( $field_key ) {
+		if ( $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name ) {
 			
-			$value = $field['value'];
-			
-			$field_to_save = $field;
-			$field_to_save['key'] = $field_key;
+			$value = $field['_input'];
 		
-			acf_update_value( $value, $post_id, $field_to_save );
+			acf_update_value( $value, $post_id, $field );
 			
 		}
 		
