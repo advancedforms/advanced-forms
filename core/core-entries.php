@@ -67,6 +67,10 @@ class AF_Core_Entries {
 			
 		}
 		
+		
+		// Save generated entry ID to submission object
+		AF()->submission['entry'] = $entry_id;
+		
 	}
 	
 	
