@@ -89,25 +89,58 @@ function af_save_field_to_post( $field_key_or_name, $post_id ) {
 	}
 	
 	
+	$field = af_get_field_object( $field_key_or_name );
+	
 	/**
 	 * We save the field directly to the post using acf_update_value.
 	 * This ensures that clone fields, repeaters etc. work as intended.
 	 * $field['_input'] should match the raw $_POST value.
 	 */
-	$fields = AF()->submission['fields'];
+	if ( $field ) {
+		
+		$value = $field['_input'];
+		
+		acf_update_value( $value, $post_id, $field );
+		
+		return true;
+		
+	}
+	
+	
+	return false;
+	
+}
+
+
+/**
+ * Helper function to extract a full field object from submitted fields
+ *
+ * @since 1.2.0
+ *
+ */
+function af_get_field_object( $field_key_or_name, $fields = false ) {
+	
+	// Get fields from the global submission object if fields weren't passed
+	if ( ! $fields && af_has_submission() ) {
+		
+		$fields = AF()->submission['fields'];
+		
+	}
+	
 	
 	foreach( $fields as $field ) {
 		
 		// Save submitted value to post using ACFs acf_update_value
 		if ( $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name ) {
 			
-			$value = $field['_input'];
-		
-			acf_update_value( $value, $post_id, $field );
+			return $field;
 			
 		}
 		
 	}
+	
+	
+	return false;
 	
 }
 
