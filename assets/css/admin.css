@@ -81,9 +81,19 @@
 	display: block;
 }
 
+.af-field-dropdown .field-divider {
+	background: #fff;
+	height: 3px;
+	border-bottom: 1px solid #ccc;
+}
+
 .af-field-dropdown .af-dropdown .field-option {
 	padding: 5px 10px;
 	border-bottom: 1px solid #ccc;
+}
+
+.af-field-dropdown .af-dropdown .field-option:last-child {
+	border-bottom: 0;
 }
 
 .af-field-dropdown .af-dropdown .field-option:hover {

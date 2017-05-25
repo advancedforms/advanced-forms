@@ -14,7 +14,8 @@ function af_has_submission() {
 
 
 /**
- * Searches input for tags {field:FIELD_NAME} and replaces with field values
+ * Searches input for tags {field:FIELD_NAME} and replaces with field values.
+ * Also replaces general tags such as {all_fields}.
  *
  * @since 1.0.1
  *
@@ -29,25 +30,134 @@ function af_resolve_field_includes( $input, $fields = false ) {
 	}
 	
 	
-	if ( preg_match_all( "/{field:(.*?)}/", $input, $matches ) ) {
+	// Render all fields as a table
+	if ( preg_match_all( "/{all_fields}/", $input, $matches ) ) {
 		
-		foreach ($matches[1] as $i => $field) {
+		$output = '<table class="af-field-include">';
+		
+		foreach ( $fields as $field ) {
 			
-			$field_value = af_get_field( $field, $fields );
-			
-			if ( is_array( $field_value ) ) {
-				$include_value = join( ', ', $field_value );
+			if ( 'clone' == $field['type'] ) {
+				
+				foreach ( $field['sub_fields'] as $sub_field ) {
+					
+					$output .= sprintf( '<tr><th>%s</th></tr>', $sub_field['label'] );
+					$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $field['value'][ $sub_field['name'] ] ) );
+					
+				}
+				
 			} else {
-				$include_value = (string)$field_value;
+			
+				$output .= sprintf( '<tr><th>%s</th></tr>', $field['label'] );
+				$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $field ) );
+			
 			}
 			
-			$input = str_replace( $matches[0][$i], $include_value, $input );
+		}
+		
+		$output .= '</table>';
+		
+		
+		$input = str_replace( '{all_fields}', $output, $input );
+		
+	}
+	
+	
+	// Render single fields individually
+	if ( preg_match_all( "/{field:(.*?)}/", $input, $matches ) ) {
+		
+		foreach ($matches[1] as $i => $field_name ) {
+			
+			$field = af_get_field_object( $field_name );
+			
+			$rendered_value = _af_render_field_include( $field );
+			
+			$input = str_replace( $matches[0][$i], $rendered_value, $input );
 			
 		}
 		
 	}
 	
 	return $input;
+	
+}
+
+
+/**
+ * Renders a single field include (for emails, success messages etc.)
+ *
+ * @since 1.2.0
+ *
+ */
+function _af_render_field_include( $field, $value = false ) {
+	
+	if ( ! $value ) {
+		$value = $field['value'];
+	}
+	
+	
+	$output = '';
+	
+	if ( 'repeater' == $field['type'] ) {
+		
+		$output .= '<table class="af-field-include af-field-include-repeater">';
+		
+		// Column headings
+		$output .= '<thead><tr>';
+		
+		foreach ( $field['sub_fields'] as $sub_field ) {
+			$output .= sprintf( '<th>%s</th>', $sub_field['label'] );
+		}
+		
+		$output .= '</tr></thead>';
+		
+		
+		// Rows
+		$output .= '<tbody>';
+		
+		foreach ( $value as $row_values ) {
+			$output .= '<tr>';
+			
+			foreach ( $field['sub_fields'] as $sub_field ) {
+				
+				$output .= sprintf( '<td>%s</td>', _af_render_field_include( $sub_field, $row_values[ $sub_field['name'] ] ) );
+				
+			}
+			
+			$output .= '</tr>';
+		}
+		
+		$output .= '</tbody>';
+		
+		
+		$output .= '</table>';
+		
+	} else if ( 'clone' == $field['type'] ) {
+		
+		$output .= '<table class="af-field-include af-field-include-clone">';
+	
+		foreach ( $field['sub_fields'] as $sub_field ) {
+			
+			$output .= sprintf( '<tr><th>%s</th></tr>', $sub_field['label'] );
+			$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $field['value'][ $sub_field['name'] ] ) );
+			
+		}
+		
+		$output .= '</table>';
+	
+	} else {
+		
+		$output = (string)$value;
+		
+	}
+	
+	
+	// Allow third-parties to alter rendered field
+	$output = apply_filters( 'af/field/render_include', $output, $field, $value );
+	$output = apply_filters( 'af/field/render_include/name=' . $field['name'], $output, $field, $value );
+	$output = apply_filters( 'af/field/render_include/key=' . $field['key'], $output, $field, $value );
+	
+	return $output;
 	
 }
 
@@ -94,6 +204,10 @@ function _af_field_inserter_button( $fields, $floating = false ) {
 		
 	echo '<div class="af-dropdown">';
 	
+	echo sprintf( '<div class="field-option" data-insert-value="{all_fields}">%s</div>', __( 'All fields', 'advanced-forms' ) );
+	
+	echo '<div class="field-divider"></div>';
+	
 	foreach ( $fields as $field ) {
 		
 		echo sprintf( '<div class="field-option" data-insert-value="{field:%s}">%s</div>', $field['name'], $field['label'] );
@@ -103,19 +217,5 @@ function _af_field_inserter_button( $fields, $floating = false ) {
 	echo '</div>';
 		
 	echo '</a>';
-	
-}
-
-
-
-/**
- * Checks if the passed field is a clone field (has the _clone key)
- *
- * @since 1.1.2
- *
- */
-function _af_is_clone_field( $field ) {
-	
-	return isset( $field['_clone'] );
 	
 }

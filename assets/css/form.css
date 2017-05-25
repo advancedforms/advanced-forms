@@ -5,3 +5,28 @@
 .af-submit {
 	clear: both;
 }
+
+
+/**
+ * Field includes
+ */
+.af-field-include {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+}
+ 
+.af-field-include th {
+	background-color: #fafafa;
+	border: 1px solid #ddd;
+	padding: 5px 10px;
+}
+
+.af-field-include td {
+	border: 1px solid #ddd;
+	padding: 15px 20px;
+}
+
+.af-field-include-repeater td {
+	padding: 5px 10px;
+}

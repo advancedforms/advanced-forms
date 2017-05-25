@@ -133,6 +133,26 @@ class AF_Core_Emails {
 		$content = af_resolve_field_includes( $content, $fields );
 		
 		
+		// Construct email HTML
+		$html = sprintf(
+			'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+			<html xmlns="http://www.w3.org/1999/xhtml">
+				<head>
+					<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+					<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+					<title>%s</title>
+					<style>%s</style>
+				</head>
+				<body>
+					%s
+				</body>
+			</html>',
+			$subject,
+			$this->get_email_style( $email, $form ),
+			$content
+		);
+		
+		
 		// Headers
 		$headers = array();
 		
@@ -157,7 +177,59 @@ class AF_Core_Emails {
 		
 		
 		// Send email using wp_mail
-		wp_mail( $recipient, $subject, $content, $headers, $attachments );
+		wp_mail( $recipient, $subject, $html, $headers, $attachments );
+		
+	}
+	
+	
+	/**
+	 * Returns styles for email
+	 *
+	 * @since 1.2.0
+	 *
+	 */
+	function get_email_style( $email, $form ) {
+
+		ob_start();
+		?>
+		
+		body {
+			font-family: sans-serif;
+		}
+		
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			max-width: 500px;
+			text-align: left;
+		}
+		
+		th,
+		td {
+			border: 1px solid #ccc;
+		}
+		
+		th {
+			background-color: #fafafa;
+			padding: 10px;
+		}
+		
+		td {
+			padding: 15px 20px;
+		}
+		
+		.af-field-include-repeater td {
+			padding: 10px;
+		}
+		
+		<?php
+		$styles = ob_get_clean();
+		
+		$styles = apply_filters( 'af/form/email/styles', $styles, $email, $form );
+		$styles = apply_filters( 'af/form/email/styles/id=' . $form['post_id'], $styles, $email, $form );
+		$styles = apply_filters( 'af/form/email/styles/key=' . $form['key'], $styles, $email, $form );
+		
+		return $styles;
 		
 	}
 	
