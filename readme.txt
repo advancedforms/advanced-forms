@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.7.3
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,13 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.2.0 =
+* Revised field parsing behind the scenes to more closely match ACF and ensure compatibility. This also improves support for clone fields which should now work as expected in combination with entries and `af_get_field`. _Note: clone fields will no longer be expanded in the global fields array. `af_get_field` will return values of cloned fields if referenced by name._
+* Added option to include all fields in emails/success messages. Fields will be rendered in a simple and consistent table structure with minimal styling (easily overriden!).
+* Added support for displaying repeaters in emails/success messages.
+* Fixed bug where entry info wasn't displayed
+* Fixed bug where filtering entries by form didn't work
 
 = 1.1.1 =
 * Added helper function `af_save_field_to_post( $field_key_or_name, $post_id )` for saving submitted fields directly to posts. No need to mess with `update_field`!
