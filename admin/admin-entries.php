@@ -15,8 +15,8 @@ class AF_Admin_Entries {
 		
 		
 		// Filters
-		add_filter( 'acf/load_field/name=entry_form', array( $this, 'entry_form_field' ), 10, 1 );
-		add_filter( 'acf/load_field/name=entry_submission_info', array( $this, 'entry_submission_info_field' ), 10, 1 );
+		add_filter( 'acf/prepare_field/name=entry_form', array( $this, 'entry_form_field' ), 10, 1 );
+		add_filter( 'acf/prepare_field/name=entry_submission_info', array( $this, 'entry_submission_info_field' ), 10, 1 );
 		
 		add_filter( 'acf/prepare_field/name=form_create_entries', array( $this, 'add_entries_link_to_instruction' ), 10, 1 );
 		
@@ -172,7 +172,7 @@ class AF_Admin_Entries {
 			foreach ( $forms as $form ) {
 				
 				$selected = ( $form['key'] == $current_form ) ? 'selected' : '';
-				echo sprintf( '<option value="%s" %s>%s</option>', $form['post_id'], $selected, $form['title'] );
+				echo sprintf( '<option value="%s" %s>%s</option>', $form['key'], $selected, $form['title'] );
 				
 			}
 			?>
