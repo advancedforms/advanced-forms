@@ -260,7 +260,7 @@ class AF_Admin_Forms {
 			'fields' => array (
 				array (
 					'key' => 'field_form_display_tab',
-					'label' => 'Display',
+					'label' => '<span class="dashicons dashicons-visibility"></span>Display',
 					'name' => '',
 					'type' => 'tab',
 					'instructions' => '',
@@ -312,7 +312,7 @@ class AF_Admin_Forms {
 				),
 				array (
 					'key' => 'field_form_statistics_tab',
-					'label' => 'Statistics',
+					'label' => '<span class="dashicons dashicons-chart-bar"></span>Statistics',
 					'name' => '',
 					'type' => 'tab',
 					'instructions' => '',

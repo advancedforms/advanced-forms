@@ -237,7 +237,7 @@ class AF_Admin_Entries {
 		
 		$field_group['fields'][] = array(
 			'key' => 'field_form_entries_tab',
-			'label' => 'Entries',
+			'label' => '<span class="dashicons dashicons-editor-table"></span>Entries',
 			'name' => '',
 			'type' => 'tab',
 			'instructions' => '',

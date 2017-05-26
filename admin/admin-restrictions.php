@@ -19,7 +19,7 @@ class AF_Admin_Restrictions {
 		
 		$field_group['fields'][] = array(
 			'key' => 'field_form_restrictions_tab',
-			'label' => 'Restrictions',
+			'label' => '<span class="dashicons dashicons-dismiss"></span>Restrictions',
 			'name' => '',
 			'type' => 'tab',
 			'instructions' => '',

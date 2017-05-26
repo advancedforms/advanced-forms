@@ -102,7 +102,7 @@ class AF_Admin_Emails {
 		
 		$field_group['fields'][] = array (
 			'key' => 'field_form_email_tab',
-			'label' => 'Email',
+			'label' => '<span class="dashicons dashicons-email-alt"></span>Email',
 			'name' => '',
 			'type' => 'tab',
 			'instructions' => '',

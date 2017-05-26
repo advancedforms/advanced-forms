@@ -99,3 +99,19 @@
 .af-field-dropdown .af-dropdown .field-option:hover {
 	background: #fff;
 }
+
+
+/**
+ * ACF Tabs (spacing, dashicons)
+ */
+.acf-tab-button .dashicons {
+	font-size: 16px;
+	height: auto;
+	margin-top: -4px;
+	margin-right: 5px;
+	vertical-align: middle;
+}
+
+.acf-tab-button[data-key="field_form_editing_tab"] {
+	margin-top: 10px;
+}
