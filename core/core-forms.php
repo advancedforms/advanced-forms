@@ -184,12 +184,6 @@ class AF_Core_Forms {
 		$args = apply_filters( 'af/form/args/key=' . $form['key'], $args, $form );
 		
 		
-		// Allow the form to be modified before rendering form
-		$form = apply_filters( 'af/form/before_render', $form, $args );
-		$form = apply_filters( 'af/form/before_render/id=' . $form['post_id'], $form, $args );
-		$form = apply_filters( 'af/form/before_render/key=' . $form['key'], $form, $args );
-		
-		
 		// Increase the form view counter
 		if ( $form['post_id'] ) {
 			$views = get_post_meta( $form['post_id'], 'form_num_of_views', true );
@@ -249,7 +243,7 @@ class AF_Core_Forms {
 			
 			echo '<div class="af-success">';
 			
-			echo af_resolve_field_includes( $form['display']['success_message'] );
+				echo af_resolve_field_includes( $form['display']['success_message'] );
 			
 			echo '</div>';
 			
@@ -257,7 +251,7 @@ class AF_Core_Forms {
 		
 			echo '<div class="af-restricted-message">';
 			
-			echo $restriction;
+				echo $restriction;
 			
 			echo '</div>';
 		
@@ -281,20 +275,21 @@ class AF_Core_Forms {
 			
 			// Dummy ACF data to make Javascript validations work
 			echo '<div id="acf-form-data">';
-			echo '<input type="hidden" name="_acfnonce" value="">';
+				echo '<input type="hidden" name="_acfnonce" value="">';
 			echo '</div>';
 			
 			
 			// Hidden fields to identify form
 			echo '<div class="acf-hidden">';
-			echo sprintf( '<input type="hidden" name="af_form" value="%s">', $form['key'] );
-			echo sprintf( '<input type="hidden" name="af_form_args" value="%s">', base64_encode( json_encode( $args ) ) );
-			echo sprintf( '<input type="hidden" name="_acf_form" value="%s">', base64_encode( json_encode( $args ) ) );
 			
-			do_action( 'af/form/hidden_fields', $form, $args );
-			do_action( 'af/form/hidden_fields/id=' . $form['post_id'], $form, $args );
-			do_action( 'af/form/hidden_fields/key=' . $form['key'], $form, $args );
-			
+				echo sprintf( '<input type="hidden" name="af_form" value="%s">', $form['key'] );
+				echo sprintf( '<input type="hidden" name="af_form_args" value="%s">', base64_encode( json_encode( $args ) ) );
+				echo sprintf( '<input type="hidden" name="_acf_form" value="%s">', base64_encode( json_encode( $args ) ) );
+				
+				do_action( 'af/form/hidden_fields', $form, $args );
+				do_action( 'af/form/hidden_fields/id=' . $form['post_id'], $form, $args );
+				do_action( 'af/form/hidden_fields/key=' . $form['key'], $form, $args );
+				
 			echo '</div>';
 			
 			
@@ -391,8 +386,8 @@ class AF_Core_Forms {
 					
 					echo '<div class="af-input acf-input">';
 					
-					// Render field with default ACF
-					acf_render_field( $field );
+						// Render field with default ACF
+						acf_render_field( $field );
 					
 					echo '</div>';
 					
