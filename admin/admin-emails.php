@@ -101,8 +101,8 @@ class AF_Admin_Emails {
 	function email_acf_fields( $field_group ) {
 		
 		$field_group['fields'][] = array (
-			'key' => 'field_form_email_tab',
-			'label' => '<span class="dashicons dashicons-email-alt"></span>Email',
+			'key' => 'field_form_notifications_tab',
+			'label' => '<span class="dashicons dashicons-email-alt"></span>Notifications',
 			'name' => '',
 			'type' => 'tab',
 			'instructions' => '',
@@ -312,6 +312,9 @@ class AF_Admin_Emails {
 				),
 			),
 		);
+		
+		
+		$field_group = apply_filters( 'af/form/notification_settings_fields', $field_group );
 		
 		
 		return $field_group;
