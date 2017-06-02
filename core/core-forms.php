@@ -356,7 +356,13 @@ class AF_Core_Forms {
 					
 					
 					echo '<div class="af-label acf-label">';
-					echo sprintf( '<label>%s</label>', $field['label'] );
+					
+						$label = $field['label'];
+						
+						$label .= $field['required'] ? ' <span class="acf-required">*</span>' : '';
+						
+						echo sprintf( '<label for="acf-%s">%s</label>', $field['key'], $label );
+						
 					echo '</div>';
 					
 					
