@@ -309,6 +309,13 @@ class AF_Core_Forms {
 						
 					}
 					
+					
+					// Include default value
+					if ( empty( $field['value'] && isset( $field['default_value'] ) ) ) {
+						$field['value'] = $field['default_value'];
+					}
+
+										
 
 					// Check if we have any prefilled values for this field, either in the args or previously submitted
 					if ( isset( $_POST['acf'][ $field['key'] ] ) ) {
