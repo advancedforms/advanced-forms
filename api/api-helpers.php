@@ -98,7 +98,7 @@ function _af_render_field_include( $field, $value = false ) {
 	
 	$output = '';
 	
-	if ( 'repeater' == $field['type'] ) {
+	if ( 'repeater' == $field['type'] && is_array( $value ) ) {
 		
 		$output .= '<table class="af-field-include af-field-include-repeater">';
 		
@@ -115,16 +115,18 @@ function _af_render_field_include( $field, $value = false ) {
 		// Rows
 		$output .= '<tbody>';
 		
-		foreach ( $value as $row_values ) {
-			$output .= '<tr>';
-			
-			foreach ( $field['sub_fields'] as $sub_field ) {
+		if ( is_array( $value ) ) {
+			foreach ( $value as $row_values ) {
+				$output .= '<tr>';
 				
-				$output .= sprintf( '<td>%s</td>', _af_render_field_include( $sub_field, $row_values[ $sub_field['name'] ] ) );
+				foreach ( $field['sub_fields'] as $sub_field ) {
+					
+					$output .= sprintf( '<td>%s</td>', _af_render_field_include( $sub_field, $row_values[ $sub_field['name'] ] ) );
+					
+				}
 				
+				$output .= '</tr>';
 			}
-			
-			$output .= '</tr>';
 		}
 		
 		$output .= '</tbody>';
@@ -147,7 +149,53 @@ function _af_render_field_include( $field, $value = false ) {
 	
 	} else {
 		
-		$output = (string)$value;
+		/**
+		 * Handle the different shapes $value may take and create an appropriate string
+		 *
+		 * WP_Post 		- post title
+		 * WP_User 		- user first name and last name combined
+		 * User array	- user first name and last name combined
+		 * WP_Term 		- term name
+		 * Array 		- render each value and join with commas
+		 * Other 		- cast to string
+		 *
+		 * @since 1.2.1
+		 *
+		 */
+		 
+		if ( $value instanceof WP_Post ) {
+			
+			$output = $value->post_title;
+			
+		} elseif ( $value instanceof WP_User ) {
+			
+			$output = sprintf( '%s %s', $value->first_name, $value->last_name );
+		
+		} elseif ( is_array( $value ) && isset( $value['user_email'] ) ) {
+			
+			$output = sprintf( '%s %s', $value['user_firstname'], $value['user_lastname'] );
+			
+		} elseif ( $value instanceof WP_Term ) {
+			
+			$output = $value->name;
+			
+		} elseif ( is_array( $value ) ) {
+			
+			$rendered_values = array();
+			
+			foreach ( $value as $single_value ) {
+				
+				$rendered_values[] = _af_render_field_include( $field, $single_value );
+				
+			}
+			
+			$output = join( ', ', $rendered_values );
+			
+		} else {
+			
+			$output = (string)$value;
+			
+		}
 		
 	}
 	
