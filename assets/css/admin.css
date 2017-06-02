@@ -55,26 +55,34 @@
 	position: absolute;
 	right: 3px;
 	top: 50%;
-	z-index: 10;
 	font-size: 12px;
 	line-height: 20px;
 	height: 22px;
 	margin-top: -11px;
 }
 
+.af-field-dropdown.button.floating:active {
+	z-index: 1;
+}
+
 .af-field-dropdown .af-dropdown {
 	display: none;
 	position: absolute;
 	top: 100%;
-	right: 0;
-	width: 150px;
-	max-height: 200px;
+	left: 0;
+	min-width: 200px;
+	max-height: 400px;
 	overflow-y: scroll;
 	background: #f7f7f7;
 	border: 1px solid #ccc;
 	box-shadow: 0 1px 0 #ccc;
 	border-radius: 3px;
 	z-index: 100;
+}
+
+.af-field-dropdown.floating .af-dropdown {
+	left: auto;
+	right: 0;
 }
 
 .af-field-dropdown.open .af-dropdown {
@@ -88,8 +96,9 @@
 }
 
 .af-field-dropdown .af-dropdown .field-option {
-	padding: 5px 10px;
+	padding: 8px 10px;
 	border-bottom: 1px solid #ccc;
+	font-weight: 500;
 }
 
 .af-field-dropdown .af-dropdown .field-option:last-child {
@@ -98,6 +107,20 @@
 
 .af-field-dropdown .af-dropdown .field-option:hover {
 	background: #fff;
+}
+
+.af-field-dropdown .af-dropdown .field-option .field-name {
+	display: block;
+	line-height: 1;	
+}
+
+.af-field-dropdown .af-dropdown .field-option .field-type {
+	display: block;
+	color: #888;
+	margin-top: 3px;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 1;
 }
 
 

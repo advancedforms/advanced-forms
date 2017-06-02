@@ -210,7 +210,9 @@ function _af_field_inserter_button( $fields, $floating = false ) {
 	
 	foreach ( $fields as $field ) {
 		
-		echo sprintf( '<div class="field-option" data-insert-value="{field:%s}">%s</div>', $field['name'], $field['label'] );
+		echo sprintf( '<div class="field-option" data-insert-value="{field:%s}">', $field['name'] );
+		echo sprintf( '<span class="field-name">%s</span><span class="field-type">%s</span>', $field['label'], acf_get_field_type_label( $field['type'] ) );
+		echo '</div>';
 		
 	}
 	

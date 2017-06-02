@@ -4,7 +4,7 @@ class AF_Admin_Emails {
 	
 	function __construct() {
 		
-		add_action( 'acf/render_field', array( $this, 'add_email_field_inserter' ), 50, 1 );
+		add_action( 'acf/render_field/type=text', array( $this, 'add_email_field_inserter' ), 20, 1 );
 		
 		add_filter( 'acf/load_field/name=recipient_field', array( $this, 'populate_email_field_choices' ), 10, 1 );
 		add_filter( 'af/form/settings_fields', array( $this, 'email_acf_fields' ), 10, 1 );

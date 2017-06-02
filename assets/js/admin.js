@@ -49,7 +49,9 @@
 		/**
 		 * Handles the field insert drop downs, supports both regular text fields and WYSIWYG fields
 		 */
-		$(document).on( 'click', '.af-dropdown .field-option', function() {
+		$(document).on( 'click', '.af-dropdown .field-option', function(e) {
+			
+			e.stopPropagation();
 			
 			var $option = $(this);
 			
@@ -74,9 +76,25 @@
 			
 		});
 		
-		$(document).on( 'click', '.af-field-dropdown', function() {
+		// Close dropdowns when clicking anywhere
+		$(document).on( 'click', function() {
+			$( '.af-field-dropdown' ).removeClass( 'open' );
+		});
+		
+		// Toggle dropdown
+		$(document).on( 'click', '.af-field-dropdown', function(e) {
 			
-			$(this).toggleClass('open');
+			// Stop propagation to not trigger click event on document (which closes all dropdowns)
+			e.stopPropagation();
+			
+			var $this = $( this );
+			
+			if ( $this.hasClass( 'open' ) ) {
+				$this.removeClass( 'open' );
+			} else {
+				$( '.af-field-dropdown' ).removeClass( 'open' );
+				$this.addClass( 'open' );
+			}
 			
 		});
 		
