@@ -211,33 +211,6 @@ function _af_render_field_include( $field, $value = false ) {
 
 
 /**
- * Checks if the passed key is a valid form key (begins with form_)
- *
- * @since 1.0.1
- *
- */
-function af_is_valid_form_key( $key ) {
-	
-	if ( ! is_string( $key ) ) {
-		
-		return false;
-		
-	}
-	
-	
-	if ( 'form_' == substr( $key, 0, 5 ) ) {
-		
-		return true;
-		
-	}
-	
-	
-	return false;
-	
-}
-
-
-/**
  * Output an "Insert field" button populated with $fields
  * $floating adds class "floating" to the wrapper making the button float right in an input field
  *

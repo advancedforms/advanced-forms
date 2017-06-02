@@ -176,6 +176,33 @@ function af_register_form( $form ) {
 
 
 /**
+ * Checks if the passed key is a valid form key (begins with form_)
+ *
+ * @since 1.0.1
+ *
+ */
+function af_is_valid_form_key( $key ) {
+	
+	if ( ! is_string( $key ) ) {
+		
+		return false;
+		
+	}
+	
+	
+	if ( 'form_' == substr( $key, 0, 5 ) ) {
+		
+		return true;
+		
+	}
+	
+	
+	return false;
+	
+}
+
+
+/**
  * Validates and fills a form array with default values
  *
  * @since 1.0.0
