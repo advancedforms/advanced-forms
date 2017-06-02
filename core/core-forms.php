@@ -158,9 +158,16 @@ class AF_Core_Forms {
 		$wp_scripts->print_scripts( array( 'acf-input', 'acf-pro-input' ) );
 		
 		
+		// Allow the form to be modified before rendering form
+		$form = apply_filters( 'af/form/before_render', $form, $args );
+		$form = apply_filters( 'af/form/before_render/id=' . $form['post_id'], $form, $args );
+		$form = apply_filters( 'af/form/before_render/key=' . $form['key'], $form, $args );
+		
+		
 		$args = wp_parse_args($args, array(
 			'display_title' 			=> false,
 			'display_description' 		=> false,
+			'id' 						=> $form['key'],
 			'values' 					=> array(),
 			'submit_text' 				=> __( 'Submit', 'advanced-forms' ),
 			'redirect' 					=> false,
@@ -192,7 +199,18 @@ class AF_Core_Forms {
 		
 		
 		// Form element
-		echo sprintf( '<form class="af-form acf-form" method="POST" action="%s">', $args['target'] );
+		$form_attributes = array(
+			'class'		=> 'af-form acf-form',
+			'method' 	=> 'POST',
+			'action' 	=> $args['target'],
+			'id' 		=> $args['id'],
+		);
+		
+		$form_attributes = apply_filters( 'af/form/attributes', $form_attributes, $form, $args );
+		$form_attributes = apply_filters( 'af/form/attributes/id=' . $form['post_id'], $form_attributes, $form, $args );
+		$form_attributes = apply_filters( 'af/form/attributes/key=' . $form['key'], $form_attributes, $form, $args );
+		
+		echo sprintf( '<form %s>', acf_esc_attr( $form_attributes ) );
 		
 		
 		do_action( 'af/form/before_title', $form, $args );
