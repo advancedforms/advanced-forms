@@ -417,7 +417,7 @@ class AF_Core_Forms {
 			
 			// Submit button and loading indicator
 			echo '<div class="af-submit acf-form-submit">';
-				echo sprintf( '<input type="submit" class="acf-button af-submit-button" value="%s">', $args['submit_text'] );
+				echo sprintf( '<button type="submit" class="acf-button af-submit-button">%s</button>', $args['submit_text'] );
 				echo '<span class="acf-spinner af-spinner"></span>';
 			echo '</div>';
 			
