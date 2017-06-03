@@ -81,6 +81,10 @@ class AF {
 		include( plugin_dir_path( __FILE__ ) . 'admin/admin-restrictions.php' );
 		include( plugin_dir_path( __FILE__ ) . 'admin/admin-entries.php' );
 		include( plugin_dir_path( __FILE__ ) . 'admin/admin-emails.php' );
+		
+		if ( file_exists( plugin_dir_path( __FILE__ ) . 'pro/advanced-forms-pro.php' ) ) {
+			include( plugin_dir_path( __FILE__ ) . 'pro/advanced-forms-pro.php' );
+		}
 
 
 		// Include assets
