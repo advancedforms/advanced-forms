@@ -242,3 +242,59 @@ function _af_field_inserter_button( $fields, $floating = false ) {
 	echo '</a>';
 	
 }
+
+
+/**
+ * Generates choices for a form field picker.
+ * Returns an array with field key => field label suitable for usage with an ACF select field.
+ *
+ * $type can be either 'all' or 'regular'.
+ *
+ * @since 1.2.1
+ *
+ */
+function _af_form_field_choices( $form_key, $type = 'all' ) {
+	
+	$exclude_types = array();
+	
+	// Only pick fields which can be properly stringified (not repeaters, flexible fields etc.)
+	if ( 'regular' == $type ) {
+		$exclude_types = array( 'repeater', 'clone', 'flexible_content' );
+	}
+	
+	
+	$form_fields = af_get_form_fields( $form_key );
+	
+	$choices = array();
+	
+	if ( ! empty( $form_fields ) ) {
+		
+		foreach ( $form_fields as $field ) {
+			
+			if ( ! in_array( $field['type'], $exclude_types ) ) {
+				
+				$choices[ $field['key'] ] = $field['label'];
+				
+			}
+			
+		}
+		
+	}
+	
+	
+	return $choices;
+	
+}
+
+
+/**
+ * Retrieves full URL (with trailing slash) to the plugin assets folder
+ *
+ * @since 1.2.1
+ *
+ */
+function af_assets_url( $path = '' ) {
+	
+	return plugin_dir_url( dirname( __FILE__ ) ) . 'assets/' . $path;
+	
+}
