@@ -175,6 +175,7 @@ class AF_Core_Forms {
 			'echo'						=> true,
 			'exclude_fields'			=> array(),
 			'uploader'					=> 'wp',
+			'filter_mode'				=> false,
 		));
 		
 		
@@ -239,7 +240,7 @@ class AF_Core_Forms {
 		
 		
 		// Display success message, restriction message, or fields
-		if ( af_has_submission() ) {
+		if ( af_has_submission() && ! $args['filter_mode'] ) {
 			
 			echo '<div class="af-success">';
 			
