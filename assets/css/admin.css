@@ -138,3 +138,14 @@
 .acf-tab-button[data-key="field_form_editing_tab"] {
 	margin-top: 10px;
 }
+
+
+/**
+ * Images in field labels
+ */
+.acf-field .acf-label img {
+	height: 16px;
+	vertical-align: middle;
+	margin-top: -3px;
+	margin-right: 6px;
+}
