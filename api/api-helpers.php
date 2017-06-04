@@ -217,7 +217,10 @@ function _af_render_field_include( $field, $value = false ) {
  * @since 1.1.1
  *
  */
-function _af_field_inserter_button( $fields, $floating = false ) {
+function _af_field_inserter_button( $form, $type = 'all', $floating = false ) {
+	
+	$fields = af_get_form_fields( $form, $type );
+	
 	
 	$classses = ( $floating ) ? 'floating' : '';
 	
@@ -225,9 +228,12 @@ function _af_field_inserter_button( $fields, $floating = false ) {
 		
 	echo '<div class="af-dropdown">';
 	
-	echo sprintf( '<div class="field-option" data-insert-value="{all_fields}">%s</div>', __( 'All fields', 'advanced-forms' ) );
-	
-	echo '<div class="field-divider"></div>';
+	if ( 'all' == $type ) {
+		
+		echo sprintf( '<div class="field-option" data-insert-value="{all_fields}">%s</div>', __( 'All fields', 'advanced-forms' ) );
+		echo '<div class="field-divider"></div>';
+		
+	}
 	
 	foreach ( $fields as $field ) {
 		
@@ -255,15 +261,7 @@ function _af_field_inserter_button( $fields, $floating = false ) {
  */
 function _af_form_field_choices( $form_key, $type = 'all' ) {
 	
-	$exclude_types = array();
-	
-	// Only pick fields which can be properly stringified (not repeaters, flexible fields etc.)
-	if ( 'regular' == $type ) {
-		$exclude_types = array( 'repeater', 'clone', 'flexible_content' );
-	}
-	
-	
-	$form_fields = af_get_form_fields( $form_key );
+	$form_fields = af_get_form_fields( $form_key, $type );
 	
 	$choices = array();
 	

@@ -236,9 +236,7 @@ class AF_Admin_Forms {
 		
 		if ( 'acf-editor' == substr($id, 0, 10) ) {
 			
-			$fields = af_get_form_fields( $form );
-			
-			_af_field_inserter_button( $fields, false );
+			_af_field_inserter_button( $form, 'all', false );
 			
 		}
 		
