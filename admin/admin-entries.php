@@ -94,11 +94,13 @@ class AF_Admin_Entries {
 			$date_format = get_option( 'date_format' );
 			$time_format = get_option( 'time_format' );
 			
-			$field['instructions'] = '<strong>ID: </strong>#' . $post->ID;
+			$field['instructions'] = '<strong>Enty ID: </strong>#' . $post->ID;
 			$field['instructions'] .= '<br>';
-			$field['instructions'] .= '<strong>Date: </strong>' . date( $date_format . ' ' . $time_format, $time );
+			$field['instructions'] .= '<strong>Date: </strong>' . date( $date_format, $time );
 			$field['instructions'] .= '<br>';
-			$field['instructions'] .= '<strong>IP Address: </strong>' . get_post_meta( $post->ID, 'entry_ip_address', true );
+			$field['instructions'] .= '<strong>Time: </strong>' . date( $time_format, $time );
+			$field['instructions'] .= '<br>';
+			$field['instructions'] .= '<strong>User IP Address: </strong>' . get_post_meta( $post->ID, 'entry_ip_address', true );
 			
 		}
 		
@@ -304,22 +306,8 @@ class AF_Admin_Entries {
 			'title' => 'Entry data',
 			'fields' => array (
 				array (
-					'key' => 'field_entry_form',
-					'label' => 'Form',
-					'name' => 'entry_form',
-					'type' => 'select',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => array (
-						'width' => '50',
-						'class' => '',
-						'id' => '',
-					),
-				),
-				array (
 					'key' => 'field_entry_submission_info',
-					'label' => 'Info',
+					'label' => 'Submission info',
 					'name' => 'entry_submission_info',
 					'type' => 'message',
 					'instructions' => '',
@@ -332,21 +320,18 @@ class AF_Admin_Entries {
 					),
 				),
 				array (
-					'key' => 'field_submission_info',
-					'label' => 'Submission data',
-					'name' => '',
-					'type' => 'message',
+					'key' => 'field_entry_form',
+					'label' => 'Form',
+					'name' => 'entry_form',
+					'type' => 'select',
 					'instructions' => '',
 					'required' => 0,
 					'conditional_logic' => 0,
 					'wrapper' => array (
-						'width' => '',
+						'width' => '50',
 						'class' => '',
 						'id' => '',
 					),
-					'message' => 'Below you will find all the data submitted through the form.',
-					'new_lines' => 'wpautop',
-					'esc_html' => 0,
 				),
 			),
 			'location' => array (

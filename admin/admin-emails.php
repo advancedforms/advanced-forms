@@ -197,7 +197,7 @@ class AF_Admin_Emails {
 				),
 				array (
 					'key' => 'field_form_email_recipient_field',
-					'label' => 'Recipient from field',
+					'label' => 'Recipient field',
 					'name' => 'recipient_field',
 					'type' => 'select',
 					'instructions' => '',
