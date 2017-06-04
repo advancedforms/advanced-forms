@@ -283,8 +283,11 @@ class AF_Admin_Entries {
 				'class' => '',
 				'id' => '',
 			),
-			'message' => 'Yes',
+			'message' => '',
 			'default_value' => 0,
+			'ui' => 1,
+			'ui_on_text' => 'Yes',
+			'ui_off_text' => 'No',
 		);
 				
 		
