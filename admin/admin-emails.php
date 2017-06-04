@@ -42,9 +42,7 @@ class AF_Admin_Emails {
 		
 		if ( in_array( $field['key'], $fields_to_add ) ) {
 			
-			$fields = af_get_form_fields( $form );
-			
-			_af_field_inserter_button( $fields, true );
+			_af_field_inserter_button( $form, 'regular', true );
 			
 		}
 		
@@ -63,27 +61,9 @@ class AF_Admin_Emails {
 		
 		if ( $post && 'af_form' == $post->post_type ) {
 			
-			$field['choices'] = array();
-			
 			$form_key = get_post_meta( $post->ID, 'form_key', true );
 			
-			$field_groups = af_get_form_field_groups( $form_key );
-			
-			foreach( $field_groups as $field_group ) {
-				
-				$group_fields = acf_get_fields( $field_group );
-				
-				foreach ( $group_fields as $group_field ) {
-					
-					if ( in_array( $group_field['type'], array( 'text', 'textarea', 'email' ) ) ) {
-						
-						$field['choices'][ $group_field['key'] ] = $group_field['label'];
-						
-					}
-					
-				}
-				
-			}
+			$field['choices'] = _af_form_field_choices( $form_key, 'regular' );
 			
 		}
 		
