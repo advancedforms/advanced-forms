@@ -77,9 +77,25 @@ function af_get_field( $field_key_or_name, $fields = false ) {
  * Save submitted field directly to post
  *
  * @since 1.1.1
+ * @deprecated 1.3.0 Use af_save_field()
+ * @see af_save_field()
  *
  */
 function af_save_field_to_post( $field_key_or_name, $post_id ) {
+	
+	_deprecated_function( __FUNCTION__, '1.3.0', 'af_save_field()' );
+    af_save_field( $field_key_or_name, $post_id );
+	
+}
+
+
+/**
+ * Save submitted field directly to an object (post, user, term) with ACF naming
+ *
+ * @since 1.3.0
+ *
+ */
+function af_save_field( $field_key_or_name, $object_id ) {
 	
 	// Make sure we have a submission to work with
 	if ( ! af_has_submission() ) {
@@ -100,7 +116,7 @@ function af_save_field_to_post( $field_key_or_name, $post_id ) {
 		
 		$value = $field['_input'];
 		
-		acf_update_value( $value, $post_id, $field );
+		acf_update_value( $value, $object_id, $field );
 		
 		return true;
 		
