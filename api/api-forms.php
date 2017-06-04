@@ -450,7 +450,15 @@ function af_get_form_field_groups( $form_key ) {
  * @since 1.0.1
  *
  */
-function af_get_form_fields( $form_key ) {
+function af_get_form_fields( $form_key, $type = 'all' ) {
+	
+	$exclude_types = array();
+	
+	// Only pick fields which can be properly stringified (not repeaters, flexible fields etc.)
+	if ( 'regular' == $type ) {
+		$exclude_types = array( 'repeater', 'clone', 'flexible_content' );
+	}
+	
 	
 	$form_fields = array();
 	
@@ -463,6 +471,10 @@ function af_get_form_fields( $form_key ) {
 			$fields = acf_get_fields( $field_group );
 			
 			foreach ( $fields as $field ) {
+				
+				if ( in_array( $field['type'], $exclude_types ) ) {
+					continue;	
+				}
 				
 				$form_fields[] = $field;
 				
