@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.7.3
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -49,14 +49,30 @@ Yes. Versions 4 or lower of ACF are not supported.
 
 == Changelog ==
 
+= 1.3.0 =
+
+* Added new filter mode. When active a form will not show a success message after submission but instead display all fields again with their submitted values, effectively working as a filter. Set argument `filter_mode` as true to activate.
+* Improved field inclusion with better dropdowns and contextual options.
+* Improved admin interface with icons and better settings naming.
+* Improved field include support for fields with posts, users, and terms.
+* Added new helper function `af_save_all_fields` for saving all fields from a form to a post.
+* Changed name of `af_save_field_to_post` to `af_save_field`. `af_save_field_to_post` still works but will be removed in a future version.
+* Added support for default field values.
+* Added filters for pre-filling field values.
+* Added asterix for required fields.
+* Fixed bug where select2 in fields wouldn't work.
+* + many minor improvements and bug fixes.
+
 = 1.2.0 =
+
 * Revised field parsing behind the scenes to more closely match ACF and ensure compatibility. This also improves support for clone fields which should now work as expected in combination with entries and `af_get_field`. _Note: clone fields will no longer be expanded in the global fields array. `af_get_field` will return values of cloned fields if referenced by name._
 * Added option to include all fields in emails/success messages. Fields will be rendered in a simple and consistent table structure with minimal styling (easily overriden!).
 * Added support for displaying repeaters in emails/success messages.
-* Fixed bug where entry info wasn't displayed
-* Fixed bug where filtering entries by form didn't work
+* Fixed bug where entry info wasn't displayed.
+* Fixed bug where filtering entries by form didn't work.
 
 = 1.1.1 =
+
 * Added helper function `af_save_field_to_post( $field_key_or_name, $post_id )` for saving submitted fields directly to posts. No need to mess with `update_field`!
 * Optimized scripts and styles to only be enqueued when a form is displayed.
 * Added ability to display field values in success messages similar to how they can be used in emails.

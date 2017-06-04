@@ -159,7 +159,7 @@ function _af_render_field_include( $field, $value = false ) {
 		 * Array 		- render each value and join with commas
 		 * Other 		- cast to string
 		 *
-		 * @since 1.2.1
+		 * @since 1.3.0
 		 *
 		 */
 		 
@@ -256,7 +256,7 @@ function _af_field_inserter_button( $form, $type = 'all', $floating = false ) {
  *
  * $type can be either 'all' or 'regular'.
  *
- * @since 1.2.1
+ * @since 1.3.0
  *
  */
 function _af_form_field_choices( $form_key, $type = 'all' ) {
@@ -284,7 +284,7 @@ function _af_form_field_choices( $form_key, $type = 'all' ) {
 /**
  * Retrieves full URL (with trailing slash) to the plugin assets folder
  *
- * @since 1.2.1
+ * @since 1.3.0
  *
  */
 function af_assets_url( $path = '' ) {
