@@ -315,22 +315,27 @@ class AF_Core_Forms {
 					if ( empty( $field['value'] ) && isset( $field['default_value'] ) ) {
 						$field['value'] = $field['default_value'];
 					}
-
-										
-
-					// Check if we have any prefilled values for this field, either in the args or previously submitted
+					
+					
+					// Include pre-fill values (either through args or filter)
+					if ( isset( $args['values'][ $field['name'] ] ) ) {
+						$field['value'] = $args['values'][ $field['name'] ];
+					}
+					
+					if ( isset( $args['values'][ $field['key'] ] ) ) {
+						$field['value'] = $args['values'][ $field['key'] ];
+					}
+					
+					$field['value'] = apply_filters( 'af/field/prefill_value', $field['value'], $field, $form, $args );
+					$field['value'] = apply_filters( 'af/field/prefill_value/name=' . $field['name'], $field['value'], $field, $form, $args );
+					$field['value'] = apply_filters( 'af/field/prefill_value/key=' . $field['key'], $field['value'], $field, $form, $args );
+					
+					
+					// Include any previously submitted value
 					if ( isset( $_POST['acf'][ $field['key'] ] ) ) {
 					
 						$field['value'] = $_POST['acf'][ $field['key'] ];
 					
-					} elseif ( isset( $args['values'][ $field['name'] ] ) ) {
-						
-						$field['value'] = $args['values'][ $field['name'] ];
-						
-					} elseif ( isset( $args['values'][ $field['key'] ] ) ) {
-						
-						$field['value'] = $args['values'][ $field['key'] ];
-						
 					}
 					
 					
