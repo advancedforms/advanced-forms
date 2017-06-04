@@ -268,12 +268,8 @@ function _af_form_field_choices( $form_key, $type = 'all' ) {
 	if ( ! empty( $form_fields ) ) {
 		
 		foreach ( $form_fields as $field ) {
-			
-			if ( ! in_array( $field['type'], $exclude_types ) ) {
 				
-				$choices[ $field['key'] ] = $field['label'];
-				
-			}
+			$choices[ $field['key'] ] = $field['label'];
 			
 		}
 		
