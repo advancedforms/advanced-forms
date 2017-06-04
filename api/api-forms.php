@@ -100,7 +100,7 @@ function af_save_field( $field_key_or_name, $object_id ) {
 	// Make sure we have a submission to work with
 	if ( ! af_has_submission() ) {
 		
-		return;
+		return false;
 		
 	}
 	
@@ -124,6 +124,43 @@ function af_save_field( $field_key_or_name, $object_id ) {
 	
 	
 	return false;
+	
+}
+
+
+/**
+ * Save all submitted fields directly to an object (post, user, term) with ACF naming
+ *
+ * @since 1.3.0
+ *
+ */
+function af_save_all_fields( $object_id ) {
+	
+	// Make sure we have a submission to work with
+	if ( ! af_has_submission() ) {
+		
+		return false;
+		
+	}
+	
+	
+	$fields = AF()->submission['fields'];
+	
+	/**
+	 * We save the fields directly to the post using acf_update_value.
+	 * This ensures that clone fields, repeaters etc. work as intended.
+	 * $field['_input'] should match the raw $_POST value.
+	 */
+	foreach ( $fields as $field ) {
+		
+		$value = $field['_input'];
+		
+		acf_update_value( $value, $object_id, $field );
+		
+	}
+	
+	
+	return true;
 	
 }
 

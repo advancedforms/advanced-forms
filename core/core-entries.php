@@ -11,7 +11,7 @@ class AF_Core_Entries {
 	
 	function __construct() {
 		
-		add_action( 'af/form/submission', array( $this, 'create_entry' ), 10, 2 );
+		add_action( 'af/form/submission', array( $this, 'create_entry' ), 10, 1 );
 		add_action( 'save_post', array( $this, 'entry_saved' ), 10, 3 );
 		
 	}
@@ -23,7 +23,7 @@ class AF_Core_Entries {
 	 * @since 1.0.0
 	 *
 	 */
-	function create_entry( $form, $fields ) {
+	function create_entry( $form ) {
 		
 		// Make sure entries should be created
 		if ( ! $form['create_entries'] ) {
@@ -61,11 +61,7 @@ class AF_Core_Entries {
 		
 		
 		// Transfer all fields to the entry
-		foreach ( $fields as $field ) {
-			
-			af_save_field( $field['key'], $entry_id );
-			
-		}
+		af_save_all_fields( $entry_id );
 		
 		
 		// Save generated entry ID to submission object
