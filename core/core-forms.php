@@ -312,7 +312,7 @@ class AF_Core_Forms {
 					
 					
 					// Include default value
-					if ( empty( $field['value'] && isset( $field['default_value'] ) ) ) {
+					if ( empty( $field['value'] ) && isset( $field['default_value'] ) ) {
 						$field['value'] = $field['default_value'];
 					}
 
