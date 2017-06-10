@@ -31,8 +31,9 @@ class AF {
 
 
 	function __construct() {
-
-		add_action( 'plugins_loaded', array( $this, 'initialize_plugin' ), 10, 0 );
+	
+		add_action( 'acf/init', array( $this, 'initialize_plugin' ), 10, 0 );
+		add_action( 'admin_notices', array( $this, 'missing_acf_notice' ), 10, 0 );
 
 	}
 
@@ -45,12 +46,8 @@ class AF {
 	 */
 	function initialize_plugin() {
 
-		if ( ! class_exists( 'acf_pro' ) ) {
-			
-			add_action( 'admin_notices', array( $this, 'missing_acf_notice' ), 10, 0 );
-
+		if ( ! $this->has_acf() ) {
 			return;
-			
 		}
 		
 		
@@ -101,6 +98,19 @@ class AF {
 		do_action( 'af/register_forms' );
 
 	}
+	
+	
+	/**
+	 * Check if ACF Pro is installed
+	 *
+	 * @since 1.3.1
+	 *
+	 */
+	function has_acf() {
+		
+		return class_exists( 'acf_pro' );
+		
+	}
 
 
 	/**
@@ -109,8 +119,12 @@ class AF {
 	 * @since 1.0.0
 	 */
 	function missing_acf_notice() {
-
-		echo sprintf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', 'Couldn\'t find ACF 5. Advanced Forms requires ACF 5 to function correctly.' );
+		
+		if ( ! $this->has_acf() ) {
+			
+			echo sprintf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', 'Couldn\'t find ACF 5. Advanced Forms requires ACF 5 to function correctly.' );
+			
+		}
 
 	}
 
