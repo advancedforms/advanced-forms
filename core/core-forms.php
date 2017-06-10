@@ -77,6 +77,16 @@ class AF_Core_Forms {
 				$args = json_decode( base64_decode( $_POST['af_form_args'] ), true );
 				
 				
+				/**
+				 * Upload all files in $_FILES using ACFs helper function. Required for basic uploads to work painlessly.
+				 * TODO: Move to af_save_field() to avoid saving all files?
+				 *
+				 * @since 1.3.1
+				 *
+				 */
+				acf_upload_files();
+				
+				
 				// Retrieve all form fields and their values
 				$fields = array();
 				
