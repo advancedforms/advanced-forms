@@ -2,8 +2,8 @@
 Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
-Tested up to: 4.7.3
-Stable tag: 1.3.0
+Tested up to: 4.8.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,12 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.3.1 =
+
+* Added automatic upload of files for the basic uploader. A simple `af_save_field` will now suffice for file fields with the basic uploader.
+* Added global field setting "Hide from admin?". Perfect for shared field groups used both for a form and admin, where some fields might only be relevant in the form.
+* Fixed issue where the plugin didn't work with ACF included through a theme.
 
 = 1.3.0 =
 
