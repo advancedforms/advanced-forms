@@ -14,7 +14,7 @@ class AF_Admin_Forms {
 		add_action( 'admin_init', array( $this, 'add_fields_meta_box' ), 10, 0 );
 		add_action( 'edit_form_after_title', array( $this, 'display_form_key' ), 10, 0 );
 		add_action( 'save_post', array( $this, 'add_form_key' ), 10, 3 );
-		add_action( 'init', array( $this, 'register_fields' ), 1, 0 );
+		add_action( 'acf/init', array( $this, 'register_fields' ), 10, 0 );
 		add_action( 'media_buttons', array( $this, 'add_wysiwyg_content_field_inserter' ), 10, 1 );
 		
 		

@@ -32,7 +32,7 @@ class AF {
 
 	function __construct() {
 	
-		add_action( 'acf/init', array( $this, 'initialize_plugin' ), 10, 0 );
+		add_action( 'acf/init', array( $this, 'initialize_plugin' ), 1, 0 );
 		add_action( 'admin_notices', array( $this, 'missing_acf_notice' ), 10, 0 );
 
 	}

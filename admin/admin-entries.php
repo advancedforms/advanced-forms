@@ -6,7 +6,7 @@ class AF_Admin_Entries {
 	function __construct() {
 		
 		// Actions
-		add_action( 'init', array( $this, 'register_custom_fields' ), 10, 0 );
+		add_action( 'acf/init', array( $this, 'register_custom_fields' ), 10, 0 );
 		
 		add_action( 'manage_af_entry_posts_custom_column', array( $this, 'custom_columns_content' ), 10, 2 );
 		
