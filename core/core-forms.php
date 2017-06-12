@@ -84,7 +84,9 @@ class AF_Core_Forms {
 				 * @since 1.3.1
 				 *
 				 */
-				acf_upload_files();
+				if ( isset( $_FILES['acf'] ) ) {
+					acf_upload_files();
+				}
 				
 				
 				// Retrieve all form fields and their values
