@@ -69,7 +69,7 @@
 			} else {
 				
 				// Regular field
-				var $input = $option.parents('.acf-field').first().find('input[type=text]');
+				var $input = $option.parents('.acf-input').first().find('input[type=text]');
 				insert_at_caret( $input.get(0), value );
 				
 			}			
@@ -96,6 +96,29 @@
 				$this.addClass( 'open' );
 			}
 			
+		});
+		
+		
+		/**
+		 * Field picker
+		 */
+		$( '.acf-field[data-type="field_picker"]' ).each(function() {
+			var $field = $( this );
+			
+			var update_field = function() {
+				var $input = $field.find( '.format-input' );
+				
+				if ( $field.find( 'select' ).val() == 'custom' ) {
+					$input.show();
+				} else {
+					$input.hide();
+				}
+			};
+			
+			$field.find( 'select' ).on( 'change', update_field );
+			
+			update_field();
+				
 		});
 		
 	});

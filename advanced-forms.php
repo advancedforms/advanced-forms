@@ -72,6 +72,7 @@ class AF {
 
 		// ACF additions (fields, location rules, etc.)
 		include( plugin_dir_path( __FILE__ ) . 'acf/acf-additions.php' );
+		include( plugin_dir_path( __FILE__ ) . 'acf/fields/field_select.php' );
 
 		// Admin
 		include( plugin_dir_path( __FILE__ ) . 'admin/admin-forms.php' );
