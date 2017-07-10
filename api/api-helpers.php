@@ -134,7 +134,7 @@ function _af_render_field_include( $field, $value = false ) {
 		
 		$output .= '</table>';
 		
-	} else if ( 'clone' == $field['type'] ) {
+	} elseif ( 'clone' == $field['type'] ) {
 		
 		$output .= '<table class="af-field-include af-field-include-clone">';
 	
@@ -146,6 +146,13 @@ function _af_render_field_include( $field, $value = false ) {
 		}
 		
 		$output .= '</table>';
+		
+	} elseif ( 'true_false' == $field['type'] ) {
+	
+		$true_text = isset( $field['ui_on_text'] ) && ! empty( $field['ui_on_text'] ) ? $field['ui_on_text'] : __( 'Yes', 'advanced-forms' );
+		$false_text = isset( $field['ui_off_text'] ) && ! empty( $field['ui_off_text'] ) ? $field['ui_off_text'] : __( 'No', 'advanced-forms' );
+		
+		$output = $value ? $true_text : $false_text;
 	
 	} else {
 		
