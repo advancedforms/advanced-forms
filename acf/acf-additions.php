@@ -101,30 +101,34 @@ class AF_ACF_Additions {
 		
 		
 		// Match with form object
-		if ( 'af_form' == $rule['param'] && isset( $options['af_form'] ) ) {
-			
-			if( isset( $rule['value'] ) && $rule['value'] == $options['af_form'] ) {
-				
+
+		if( isset( $rule['value'] ) && isset( $rule['param'] ) &&  isset( $options['af_form'] ) ) {
+
+			if ($rule['param'] == 'af_form' && $rule['value'] == $options['af_form']) {
+
 				$match = true;
-				
+
 			}
-			
+
 		}
-		
-		
+
 		// Match with entry
-		if ( 'af_entry' == $options['post_type'] ) {
-			
-			$entry_form = get_post_meta( $options['post_id'], 'entry_form', true );
-			
-			if ( $entry_form && $entry_form == $rule['value'] ) {
-				
-				$match = true;
-				
+
+		if( isset( $options['post_type'] ) && isset( $options['post_id'] ) ) {
+
+			if ( $options['post_type'] === 'af_entry') {
+
+				$entry_form = get_post_meta( $options['post_id'], 'entry_form', true );
+
+				if ( $entry_form && $entry_form == $rule['value'] ) {
+
+					$match = true;
+
+				}
+
 			}
 			
 		}
-		
 		
 		return $match;
 		
