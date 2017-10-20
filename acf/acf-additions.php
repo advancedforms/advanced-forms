@@ -113,7 +113,7 @@ class AF_ACF_Additions {
 		
 		
 		// Match with entry
-		if ( 'af_entry' == $options['post_type'] ) {
+		if ( isset( $options['post_type'] ) && 'af_entry' == $options['post_type'] ) {
 			
 			$entry_form = get_post_meta( $options['post_id'], 'entry_form', true );
 			
