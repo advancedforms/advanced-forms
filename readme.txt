@@ -2,8 +2,8 @@
 Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
-Tested up to: 4.8.0
-Stable tag: 1.3.2
+Tested up to: 4.8.2
+Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,11 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.3.3 =
+
+* Added Polish language translations (thanks @Triloworld).
+* Fixed undefined index "post_type" warnings.
 
 = 1.3.2 =
 
