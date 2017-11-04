@@ -53,42 +53,51 @@ class AF {
 		
 		// Setup global plugin defaults
 		$this->submission = null;
+		$this->show_admin = apply_filters( 'af/settings/show_admin', true );
+		$this->path 			= trailingslashit( apply_filters( 'af/settings/path', plugin_dir_path( __FILE__ ) ) );
+		$this->url 				= trailingslashit( apply_filters( 'af/settings/url', plugin_dir_url( __FILE__ ) ) );
 
 
 		// Load translations
-		load_textdomain( 'advanced-forms', plugin_dir_path( __FILE__ ) . 'language/advanced-forms-' . get_locale() . '.mo' );
+		load_textdomain( 'advanced-forms', $this->path . 'language/advanced-forms-' . get_locale() . '.mo' );
 
 
 		// API functions
-		include( plugin_dir_path( __FILE__ ) . 'api/api-helpers.php' );
-		include( plugin_dir_path( __FILE__ ) . 'api/api-forms.php' );
-		include( plugin_dir_path( __FILE__ ) . 'api/api-entries.php' );
+		include( $this->path . 'api/api-helpers.php' );
+		include( $this->path . 'api/api-forms.php' );
+		include( $this->path . 'api/api-entries.php' );
 
 		// Core functionality
-		include( plugin_dir_path( __FILE__ ) . 'core/core-forms.php' );
-		include( plugin_dir_path( __FILE__ ) . 'core/core-restrictions.php' );
-		include( plugin_dir_path( __FILE__ ) . 'core/core-emails.php' );
-		include( plugin_dir_path( __FILE__ ) . 'core/core-entries.php' );
+		include( $this->path . 'core/core-forms.php' );
+		include( $this->path . 'core/core-restrictions.php' );
+		include( $this->path . 'core/core-emails.php' );
+		include( $this->path . 'core/core-entries.php' );
 
 		// ACF additions (fields, location rules, etc.)
-		include( plugin_dir_path( __FILE__ ) . 'acf/acf-additions.php' );
-		include( plugin_dir_path( __FILE__ ) . 'acf/fields/field_select.php' );
+		include( $this->path . 'acf/acf-additions.php' );
+		include( $this->path . 'acf/fields/field_select.php' );
+		include( $this->path . 'acf/fields/divider.php' );
 
 		// Admin
-		include( plugin_dir_path( __FILE__ ) . 'admin/admin-forms.php' );
-		include( plugin_dir_path( __FILE__ ) . 'admin/admin-restrictions.php' );
-		include( plugin_dir_path( __FILE__ ) . 'admin/admin-entries.php' );
-		include( plugin_dir_path( __FILE__ ) . 'admin/admin-emails.php' );
+		if ( $this->show_admin ) {
+			include( $this->path . 'admin/admin-forms.php' );
+			include( $this->path . 'admin/admin-restrictions.php' );
+			include( $this->path . 'admin/admin-entries.php' );
+			include( $this->path . 'admin/admin-emails.php' );
+		}
 		
-		if ( file_exists( plugin_dir_path( __FILE__ ) . 'pro/advanced-forms-pro.php' ) ) {
-			include( plugin_dir_path( __FILE__ ) . 'pro/advanced-forms-pro.php' );
+		if ( file_exists( $this->path . 'pro/advanced-forms-pro.php' ) ) {
+			include( $this->path . 'pro/advanced-forms-pro.php' );
 		}
 
 
 		// Include assets
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 10, 0 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ), 10, 0 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ), 10, 0 );
+
+		if ( $this->show_admin ) {
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ), 10, 0 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ), 10, 0 );
+		}
 
 
 		// Register basic post types
@@ -140,7 +149,7 @@ class AF {
 
 		wp_enqueue_script( 'jquery' );
 
-		wp_enqueue_script( 'af-admin-script', plugin_dir_url( __FILE__ ) .  'assets/js/admin.js', array( 'jquery' ) );
+		wp_enqueue_script( 'af-admin-script', $this->url .  'assets/js/admin.js', array( 'jquery' ) );
 
 	}
 
@@ -153,7 +162,7 @@ class AF {
 	 */
 	function enqueue_admin_styles() {
 
-		wp_enqueue_style( 'af-admin-style', plugin_dir_url( __FILE__ ) .  'assets/css/admin.css' );
+		wp_enqueue_style( 'af-admin-style', $this->url .  'assets/css/admin.css' );
 
 	}
 
@@ -165,7 +174,8 @@ class AF {
 	 *
 	 */
 	function enqueue_styles() {
-		wp_enqueue_style( 'af-form-style', plugin_dir_url( __FILE__ ) .  'assets/css/form.css' );
+
+		wp_enqueue_style( 'af-form-style', $this->url .  'assets/css/form.css' );
 
 	}
 
@@ -212,15 +222,15 @@ class AF {
 			'supports'              => array( 'title', ),
 			'hierarchical'          => false,
 			'public'                => false,
-			'show_ui'               => true,
-			'show_in_menu'          => true,
-			'menu_icon'				=> 'dashicons-list-view',
+			'show_ui'               => $this->show_admin,
+			'show_in_menu'          => $this->show_admin,
+			'menu_icon'							=> 'dashicons-list-view',
 			'menu_position'         => 80,
 			'show_in_admin_bar'     => false,
 			'can_export'            => true,
 			'rewrite'               => false,
 			'capability_type'       => 'page',
-			'query_var'				=> false,
+			'query_var'							=> false,
 		);
 		register_post_type( 'af_form', $args );
 
@@ -262,13 +272,13 @@ class AF {
 			'public'                => false,
 			'show_ui'               => true,
 			'show_in_menu'          => 'edit.php?post_type=af_form',
-			'menu_icon'				=> 'dashicons-list-view',
+			'menu_icon'							=> 'dashicons-list-view',
 			'menu_position'         => 80,
 			'show_in_admin_bar'     => false,
 			'can_export'            => true,
 			'rewrite'               => false,
 			'capability_type'       => 'page',
-			'query_var'				=> false,
+			'query_var'							=> false,
 		);
 		register_post_type( 'af_entry', $args );
 
