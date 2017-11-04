@@ -205,7 +205,9 @@ function _af_render_field_include( $field, $value = false ) {
 		}
 		
 	}
-	
+
+	// Sanitize output to protect against XSS
+	$output = htmlspecialchars( $output );
 	
 	// Allow third-parties to alter rendered field
 	$output = apply_filters( 'af/field/render_include', $output, $field, $value );
