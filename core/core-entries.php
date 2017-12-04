@@ -66,6 +66,12 @@ class AF_Core_Entries {
 		
 		// Save generated entry ID to submission object
 		AF()->submission['entry'] = $entry_id;
+
+
+		// Trigger entry
+		do_action( 'af/form/entry_created', $entry_id, $form );
+		do_action( 'af/form/entry_created/id=' . $form['post_id'], $entry_id, $form );
+		do_action( 'af/form/entry_created/key=' . $form['key'], $entry_id, $form );
 		
 	}
 	
