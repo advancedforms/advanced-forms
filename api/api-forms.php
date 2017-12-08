@@ -312,6 +312,7 @@ function af_form_from_post( $form_post ) {
 		'title' 		=> $form_post->post_title,
 		'key'			=> get_post_meta( $form_post->ID, 'form_key', true ),
 		'display' 		=> array(
+			'class' 					=> get_field( 'form_class', $form_post->ID ),
 			'description' 				=> get_field( 'form_description', $form_post->ID ),
 			'success_message' 			=> get_field( 'form_success_message', $form_post->ID ),
 		),
