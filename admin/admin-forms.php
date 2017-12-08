@@ -273,6 +273,21 @@ class AF_Admin_Forms {
 					'endpoint' => 0,
 				),
 				array (
+					'key' => 'field_form_class',
+					'label' => 'Class',
+					'name' => 'form_class',
+					'type' => 'text',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => array (
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					),
+					'default_value' => '',
+				),
+				array (
 					'key' => 'field_form_description',
 					'label' => 'Description',
 					'name' => 'form_description',
