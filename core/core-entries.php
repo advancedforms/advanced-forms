@@ -66,6 +66,10 @@ class AF_Core_Entries {
 		
 		// Save generated entry ID to submission object
 		AF()->submission['entry'] = $entry_id;
+
+		apply_filters( 'af/form/entry', $entry_id );
+		apply_filters( 'af/form/entry/id=' . $form['post_id'], $entry_id );
+		apply_filters( 'af/form/entry/key=' . $form['key'], $entry_id );
 		
 	}
 	
