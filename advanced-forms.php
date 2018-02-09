@@ -79,12 +79,10 @@ class AF {
 		include( $this->path . 'acf/fields/divider.php' );
 
 		// Admin
-		if ( $this->show_admin ) {
-			include( $this->path . 'admin/admin-forms.php' );
-			include( $this->path . 'admin/admin-restrictions.php' );
-			include( $this->path . 'admin/admin-entries.php' );
-			include( $this->path . 'admin/admin-emails.php' );
-		}
+		include( $this->path . 'admin/admin-forms.php' );
+		include( $this->path . 'admin/admin-restrictions.php' );
+		include( $this->path . 'admin/admin-entries.php' );
+		include( $this->path . 'admin/admin-emails.php' );
 		
 		if ( file_exists( $this->path . 'pro/advanced-forms-pro.php' ) ) {
 			include( $this->path . 'pro/advanced-forms-pro.php' );
@@ -270,7 +268,7 @@ class AF {
 			'supports'              => array( 'title', ),
 			'hierarchical'          => false,
 			'public'                => false,
-			'show_ui'               => true,
+			'show_ui'               => $this->show_admin,
 			'show_in_menu'          => 'edit.php?post_type=af_form',
 			'menu_icon'							=> 'dashicons-list-view',
 			'menu_position'         => 80,
