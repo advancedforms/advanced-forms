@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.8.2
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,14 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.3.4 =
+
+* Added filters for easier inclusion in themes and plugins.
+* Added field include support for image and file fields.
+* Added action after entry has been created (`af/form/entry_created`).
+* Improved output sanitation for field includes.
+* Fixed issue which sometimes caused "Invalid argument" warnings.
 
 = 1.3.3 =
 
