@@ -507,13 +507,17 @@ function af_get_form_fields( $form_key, $type = 'all' ) {
 			
 			$fields = acf_get_fields( $field_group );
 			
-			foreach ( $fields as $field ) {
-				
-				if ( in_array( $field['type'], $exclude_types ) ) {
-					continue;	
+			if ( ! empty ( $fields ) ) {
+
+				foreach ( $fields as $field ) {
+					
+					if ( in_array( $field['type'], $exclude_types ) ) {
+						continue;	
+					}
+					
+					$form_fields[] = $field;
+					
 				}
-				
-				$form_fields[] = $field;
 				
 			}
 			
