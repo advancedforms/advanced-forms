@@ -169,22 +169,23 @@ function _af_render_field_include( $field, $value = false ) {
 		 * @since 1.3.0
 		 *
 		 */
+		$rendered_value = '';
 		 
 		if ( $value instanceof WP_Post ) {
 			
-			$output = $value->post_title;
+			$rendered_value = $value->post_title;
 			
 		} elseif ( $value instanceof WP_User ) {
 			
-			$output = sprintf( '%s %s', $value->first_name, $value->last_name );
+			$rendered_value = sprintf( '%s %s', $value->first_name, $value->last_name );
 		
 		} elseif ( is_array( $value ) && isset( $value['user_email'] ) ) {
 			
-			$output = sprintf( '%s %s', $value['user_firstname'], $value['user_lastname'] );
+			$rendered_value = sprintf( '%s %s', $value['user_firstname'], $value['user_lastname'] );
 			
 		} elseif ( $value instanceof WP_Term ) {
 			
-			$output = $value->name;
+			$rendered_value = $value->name;
 			
 		} elseif ( is_array( $value ) ) {
 			
@@ -196,18 +197,18 @@ function _af_render_field_include( $field, $value = false ) {
 				
 			}
 			
-			$output = join( ', ', $rendered_values );
+			$rendered_value = join( ', ', $rendered_values );
 			
 		} else {
 			
-			$output = (string)$value;
+			$rendered_value = (string)$value;
 			
 		}
+
+		// Sanitize output to protect against XSS
+		$output = htmlspecialchars( $rendered_value );
 		
 	}
-
-	// Sanitize output to protect against XSS
-	$output = htmlspecialchars( $output );
 	
 	// Allow third-parties to alter rendered field
 	$output = apply_filters( 'af/field/render_include', $output, $field, $value );
