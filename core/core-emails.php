@@ -125,7 +125,7 @@ class AF_Core_Emails {
 		
 		
 		// Email contents
-		$content = $email['content'];
+		$content = apply_filters( 'the_content', $email['content'] );
 		$content = apply_filters( 'af/form/email/content', $content, $email, $form, $fields );
 		$content = apply_filters( 'af/form/email/content/id=' . $form['post_id'], $content, $email, $form, $fields );
 		$content = apply_filters( 'af/form/email/content/key=' . $form['key'], $content, $email, $form, $fields );
