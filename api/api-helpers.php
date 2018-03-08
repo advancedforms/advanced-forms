@@ -30,7 +30,7 @@ function af_resolve_field_includes( $input, $fields = false ) {
 	}
 	
 	
-	// Render all fields as a table
+	// Render all fields as a table e.g. {all_fields}
 	if ( preg_match_all( "/{all_fields}/", $input, $matches ) ) {
 		
 		$output = '<table class="af-field-include">';
@@ -61,9 +61,40 @@ function af_resolve_field_includes( $input, $fields = false ) {
 		$input = str_replace( '{all_fields}', $output, $input );
 		
 	}
+
+
+	// Render sub fields individually e.g. {field:group_field[sub_field]}
+	if ( preg_match_all( "/{field:(.*?)\[(.*?)\]}/", $input, $matches ) ) {
+		
+		foreach ( $matches[1] as $i => $field_name ) {
+			
+			$field = af_get_field_object( $field_name );
+
+			$sub_field_name = $matches[2][ $i ];
+
+
+			if ( isset( $field['sub_fields'] ) ) {
+
+				foreach ( $field['sub_fields'] as $sub_field ) {
+
+					if ( $sub_field['name'] == $sub_field_name || $sub_field['key'] == $sub_field_name ) {
+
+						$rendered_value = _af_render_field_include( $sub_field, $field['value'][ $sub_field['name'] ] );
+
+						$input = str_replace( $matches[0][$i], $rendered_value, $input );
+
+					}
+
+				}
+
+			}
+
+		}
+		
+	}
 	
 	
-	// Render single fields individually
+	// Render single fields individually e.g. {field:field_name}
 	if ( preg_match_all( "/{field:(.*?)}/", $input, $matches ) ) {
 		
 		foreach ($matches[1] as $i => $field_name ) {
