@@ -146,6 +146,19 @@ function _af_render_field_include( $field, $value = false ) {
 		}
 		
 		$output .= '</table>';
+
+	} elseif ( 'group' == $field['type'] ) {
+
+		$output .= '<table class="af-field-include af-field-include-group">';
+
+		foreach ( $field['sub_fields'] as $sub_field ) {
+			
+			$output .= sprintf( '<tr><th>%s</th></tr>', $sub_field['label'] );
+			$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $field['value'][ $sub_field['name'] ] ) );
+			
+		}
+
+		$output .= '</table>';
 		
 	} elseif ( 'true_false' == $field['type'] ) {
 	
