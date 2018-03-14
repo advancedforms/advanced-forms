@@ -11,7 +11,7 @@ Flexible and developer-friendly forms using the power of Advanced Custom Fields
 
 == Description ==
 
-*Requires ACF v5*
+*Requires ACF PRO v5*
 
 Documentation: [advancedforms.github.io](https://advancedforms.github.io)
 
@@ -30,14 +30,14 @@ Advanced Forms is first and foremost built for developers and allows for simple 
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/advanced-forms` directory, or install the plugin through the WordPress plugins screen directly.
-2. Make sure ACF v5 is installed and activated.
+2. Make sure ACF PRO v5 is installed and activated.
 3. Activate the plugin through the 'Plugins' screen in WordPress.
 4. Read the [documentation](https://advancedforms.github.io) for instructions on how to create, configure, and display forms.
 
 
 == Frequently Asked Questions ==
 
-= Q: Does this plugin only work with ACF v5? =
+= Q: Does this plugin only work with ACF PRO v5? =
 
 Yes. Versions 4 or lower of ACF are not supported.
 

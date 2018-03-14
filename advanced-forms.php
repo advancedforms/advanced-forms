@@ -130,7 +130,7 @@ class AF {
 		
 		if ( ! $this->has_acf() ) {
 			
-			echo sprintf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', 'Couldn\'t find ACF 5. Advanced Forms requires ACF 5 to function correctly.' );
+			echo sprintf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', 'Couldn\'t find ACF 5 PRO. Advanced Forms requires ACF 5 PRO to function correctly.' );
 			
 		}
 
