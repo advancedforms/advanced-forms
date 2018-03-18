@@ -2,8 +2,8 @@
 Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
-Tested up to: 4.8.2
-Stable tag: 1.3.4
+Tested up to: 4.9.4
+Stable tag: 1.3.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,14 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.3.5 =
+
+* Added support for sub fields in field includes (syntax: `{field:field_name[sub_field_name]}`).
+* Added support for using shortcodes in emails.
+* Improved support for group fields in field includes.
+* Improved documentation and error messages to clarify ACF Pro requirement.
+* Fixed bug where post types would disappear when hiding admin with `af/settings/show_admin`.
 
 = 1.3.4 =
 
