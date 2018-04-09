@@ -72,7 +72,10 @@
 				var $input = $option.parents('.acf-input').first().find('input[type=text]');
 				insert_at_caret( $input.get(0), value );
 				
-			}			
+			}
+
+			// Close dropdown after selection
+			$( '.af-field-dropdown' ).removeClass( 'open' );
 			
 		});
 		

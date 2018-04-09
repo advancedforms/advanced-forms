@@ -108,6 +108,16 @@ function af_resolve_field_includes( $input, $fields = false ) {
 		}
 		
 	}
+
+
+	// Render entry ID e.g. {entry_id}
+	if ( preg_match_all( "/{entry_id}/", $input, $matches ) ) {
+
+		$entry_id = isset( AF()->submission['entry'] ) ? AF()->submission['entry'] : '';
+		
+		$input = str_replace( '{entry_id}', $entry_id, $input );
+		
+	}
 	
 	return $input;
 	
@@ -206,6 +216,11 @@ function _af_render_field_include( $field, $value = false ) {
 
 		$output .= sprintf( '<a href="%s">%s</a>', $value['url'], htmlspecialchars( $value['title'] ) );
 
+	} elseif ( 'wysiwyg' == $field['type'] ) {
+
+		// Output WYSIWYG content without sanitation
+		$output .= $value;
+
 	} else {
 		
 		/**
@@ -289,11 +304,13 @@ function _af_field_inserter_button( $form, $type = 'all', $floating = false ) {
 	echo '<a class="af-field-dropdown ' . $classses . ' button">Insert field';
 		
 	echo '<div class="af-dropdown">';
+
+	echo sprintf( '<div class="field-option" data-insert-value="{entry_id}">%s</div>', __( 'Entry ID', 'advanced-forms' ) );
+		echo '<div class="field-divider"></div>';
 	
 	if ( 'all' == $type ) {
 		
 		echo sprintf( '<div class="field-option" data-insert-value="{all_fields}">%s</div>', __( 'All fields', 'advanced-forms' ) );
-		echo '<div class="field-divider"></div>';
 		
 	}
 	
