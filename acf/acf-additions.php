@@ -132,4 +132,4 @@ class AF_ACF_Additions {
 	
 }
 
-new AF_ACF_Additions();
+return new AF_ACF_Additions();

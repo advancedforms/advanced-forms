@@ -111,4 +111,4 @@ class AF_Core_Entries {
 	
 }
 
-new AF_Core_Entries();
+return new AF_Core_Entries();

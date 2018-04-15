@@ -62,30 +62,32 @@ class AF {
 		load_textdomain( 'advanced-forms', $this->path . 'language/advanced-forms-' . get_locale() . '.mo' );
 
 
+		$this->classes = array();
+
 		// API functions
 		include( $this->path . 'api/api-helpers.php' );
 		include( $this->path . 'api/api-forms.php' );
 		include( $this->path . 'api/api-entries.php' );
 
 		// Core functionality
-		include( $this->path . 'core/core-forms.php' );
-		include( $this->path . 'core/core-restrictions.php' );
-		include( $this->path . 'core/core-emails.php' );
-		include( $this->path . 'core/core-entries.php' );
+		$this->classes['core_forms'] = include( $this->path . 'core/core-forms.php' );
+		$this->classes['core_restrictions'] = include( $this->path . 'core/core-restrictions.php' );
+		$this->classes['core_emails'] = include( $this->path . 'core/core-emails.php' );
+		$this->classes['core_entries'] = include( $this->path . 'core/core-entries.php' );
 
 		// ACF additions (fields, location rules, etc.)
-		include( $this->path . 'acf/acf-additions.php' );
+		$this->classes['acf_additions'] = include( $this->path . 'acf/acf-additions.php' );
 		include( $this->path . 'acf/fields/field_select.php' );
 		include( $this->path . 'acf/fields/divider.php' );
 
 		// Admin
-		include( $this->path . 'admin/admin-forms.php' );
-		include( $this->path . 'admin/admin-restrictions.php' );
-		include( $this->path . 'admin/admin-entries.php' );
-		include( $this->path . 'admin/admin-emails.php' );
+		$this->classes['admin_forms'] = include( $this->path . 'admin/admin-forms.php' );
+		$this->classes['admin_restrictions'] = include( $this->path . 'admin/admin-restrictions.php' );
+		$this->classes['admin_entries'] = include( $this->path . 'admin/admin-entries.php' );
+		$this->classes['admin_emails'] = include( $this->path . 'admin/admin-emails.php' );
 		
 		if ( file_exists( $this->path . 'pro/advanced-forms-pro.php' ) ) {
-			include( $this->path . 'pro/advanced-forms-pro.php' );
+			$this->classes['pro'] = include( $this->path . 'pro/advanced-forms-pro.php' );
 		}
 
 

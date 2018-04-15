@@ -235,4 +235,4 @@ class AF_Core_Emails {
 	
 }
 
-new AF_Core_Emails();
+return new AF_Core_Emails();

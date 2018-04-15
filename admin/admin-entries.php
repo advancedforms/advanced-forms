@@ -360,4 +360,4 @@ class AF_Admin_Entries {
 	
 }
 
-new AF_Admin_Entries();
+return new AF_Admin_Entries();

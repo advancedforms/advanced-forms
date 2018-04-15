@@ -273,4 +273,4 @@ class AF_Admin_Restrictions {
 	
 }
 
-new AF_Admin_Restrictions();
+return new AF_Admin_Restrictions();

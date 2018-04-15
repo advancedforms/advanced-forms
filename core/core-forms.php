@@ -459,4 +459,4 @@ class AF_Core_Forms {
 	
 }
 
-new AF_Core_Forms();
+return new AF_Core_Forms();

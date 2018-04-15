@@ -397,4 +397,4 @@ class AF_Admin_Forms {
 	
 }
 
-new AF_Admin_Forms();
+return new AF_Admin_Forms();

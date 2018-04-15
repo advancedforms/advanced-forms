@@ -183,4 +183,4 @@ class AF_Core_Restrictions {
 	
 }
 
-new AF_Core_Restrictions();
+return new AF_Core_Restrictions();

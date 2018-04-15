@@ -303,4 +303,4 @@ class AF_Admin_Emails {
 	
 }
 
-new AF_Admin_Emails();
+return new AF_Admin_Emails();
