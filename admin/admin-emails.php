@@ -1,17 +1,17 @@
 <?php
-	
+
 class AF_Admin_Emails {
-	
+
 	function __construct() {
-		
+
 		add_action( 'acf/render_field/type=text', array( $this, 'add_email_field_inserter' ), 20, 1 );
-		
+
 		add_filter( 'acf/load_field/name=recipient_field', array( $this, 'populate_email_field_choices' ), 10, 1 );
 		add_filter( 'af/form/settings_fields', array( $this, 'email_acf_fields' ), 10, 1 );
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Add an "Insert field" button to recipient, subject, and from fields
 	 *
@@ -19,36 +19,36 @@ class AF_Admin_Emails {
 	 *
 	 */
 	function add_email_field_inserter( $field ) {
-		
+
 		global $post;
-		
+
 		if ( ! $post ) {
 			return;
 		}
-		
-		
+
+
 		$form = af_form_from_post( $post );
-		
+
 		if ( ! $form ) {
 			return;
 		}
-		
+
 		$fields_to_add = array(
 			'field_form_email_recipient_custom',
 			'field_form_email_subject',
 			'field_form_email_from',
 		);
-		
-		
+
+
 		if ( in_array( $field['key'], $fields_to_add ) ) {
-			
+
 			_af_field_inserter_button( $form, 'regular', true );
-			
+
 		}
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Populates the email recipient field select with the current form's fields
 	 *
@@ -56,22 +56,26 @@ class AF_Admin_Emails {
 	 *
 	 */
 	function populate_email_field_choices( $field ) {
-		
-		global $post;	
-		
+
+		global $post;
+
 		if ( $post && 'af_form' == $post->post_type ) {
-			
+
 			$form_key = get_post_meta( $post->ID, 'form_key', true );
-			
+
 			$field['choices'] = _af_form_field_choices( $form_key, 'regular' );
+
+			foreach ($field['choices'] as $key => $value) {
+				$field['choices'][$key] = strip_tags($value);
+			}
 			
 		}
-		
+
 		return $field;
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Add fields for setting up emails to the form settings
 	 *
@@ -79,7 +83,7 @@ class AF_Admin_Emails {
 	 *
 	 */
 	function email_acf_fields( $field_group ) {
-		
+
 		$field_group['fields'][] = array (
 			'key' => 'field_form_notifications_tab',
 			'label' => '<span class="dashicons dashicons-email-alt"></span>Notifications',
@@ -96,7 +100,7 @@ class AF_Admin_Emails {
 			'placement' => 'left',
 			'endpoint' => 0,
 		);
-		
+
 		$field_group['fields'][] = array (
 			'key' => 'field_form_emails',
 			'label' => 'Emails',
@@ -292,15 +296,15 @@ class AF_Admin_Emails {
 				),
 			),
 		);
-		
-		
+
+
 		$field_group = apply_filters( 'af/form/notification_settings_fields', $field_group );
-		
-		
+
+
 		return $field_group;
-		
+
 	}
-	
+
 }
 
 return new AF_Admin_Emails();
