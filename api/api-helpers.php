@@ -219,7 +219,7 @@ function _af_render_field_include( $field, $value = false ) {
 	} elseif ( 'wysiwyg' == $field['type'] ) {
 
 		// Output WYSIWYG content without sanitation
-		$output .= $value;
+		$output .= stripslashes( $value );
 
 	} else {
 		
