@@ -99,8 +99,6 @@ class AF_Admin_Entries {
 			$field['instructions'] .= '<strong>Date: </strong>' . date( $date_format, $time );
 			$field['instructions'] .= '<br>';
 			$field['instructions'] .= '<strong>Time: </strong>' . date( $time_format, $time );
-			$field['instructions'] .= '<br>';
-			$field['instructions'] .= '<strong>User IP Address: </strong>' . get_post_meta( $post->ID, 'entry_ip_address', true );
 			
 		}
 		

@@ -57,7 +57,6 @@ class AF_Core_Entries {
 		// Save general entry info
 		update_post_meta( $entry_id, 'entry_form', $form['key'] );
 		update_post_meta( $entry_id, 'entry_submission_date', date( 'Y-m-d H:i:s' ) );
-		update_post_meta( $entry_id, 'entry_ip_address', $_SERVER['REMOTE_ADDR'] );
 		
 		
 		// Transfer all fields to the entry
