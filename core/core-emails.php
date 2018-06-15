@@ -176,8 +176,12 @@ class AF_Core_Emails {
 		$attachments = apply_filters( 'af/form/email/attachments/key=' . $form['key'], $attachments, $email, $form, $fields );
 		
 		
+		do_action( 'af/form/before_wp_mail', $email, $form, $fields );
+		
 		// Send email using wp_mail
 		wp_mail( $recipient, $subject, $html, $headers, $attachments );
+		
+		do_action( 'af/form/after_wp_mail', $email, $form, $fields );
 		
 	}
 	
