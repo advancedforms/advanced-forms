@@ -50,7 +50,7 @@
 	display: inline-block;
 }
 
-.af-field-dropdown.button.floating {
+.acf-field .button.floating {
 	display: inline-block;
 	position: absolute;
 	right: 3px;
@@ -61,8 +61,16 @@
 	margin-top: -11px;
 }
 
-.af-field-dropdown.button.floating:active {
+.acf-field .button.floating:active {
 	z-index: 1000;
+}
+
+/* Allow spinners inside buttons */
+.acf-field .button .spinner {
+	background-position: center top;
+	background-size: 18px;
+	float: none;
+	margin: 0;
 }
 
 .af-field-dropdown .af-dropdown {

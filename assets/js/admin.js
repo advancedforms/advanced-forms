@@ -123,6 +123,44 @@
 			update_field();
 				
 		});
+
+
+		/**
+		 * Handles the Zapier test submission button.
+		 * This is part of the pro plugin but included here to avoid another JS file to load.
+		 */
+		$( '.zapier-test-button' ).click(function() {
+			var $button = $( this );
+			var $input = $button.parent().find( 'input' );
+			var form_key = $button.data( 'form-key' );
+
+			$button.attr( 'disabled', 'disabled' );
+
+			// Fix width before inserting spinner
+			var width = $button.outerWidth();
+			$button.css( 'width', width + 'px' );
+
+			// Remove text and insert spinner
+			var $spinner = $( '<span class="spinner is-active">' );
+			$button.empty().append( $spinner );
+
+			// Perform AJAX request
+			var data = {
+				action: 'test_zapier_submission',
+				form_key: form_key,
+				webhook_url: $input.val()
+			};
+			$.post(ajaxurl, data, function() {
+				// Display sent message for a few seconds before reseting button
+				$button.html( 'Sent!' );
+
+				setTimeout(function() {
+					$button.removeAttr( 'disabled' );
+					$button.css( 'width', '' );
+					$button.html( $button.data( 'text' ) );
+				}, 3000)
+			});
+		});
 		
 	});
 	
