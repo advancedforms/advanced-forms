@@ -436,8 +436,16 @@ class AF_Core_Forms {
 			
 			
 			// Submit button and loading indicator
+			$button_attributes = array();
+
+			$button_attributes['class'] = 'acf-button af-submit-button';
+
+			$button_attributes = apply_filters( 'af/form/button_attributes', $button_attributes, $form, $args );
+			$button_attributes = apply_filters( 'af/form/button_attributes/id=' . $form['post_id'], $button_attributes, $form, $args );
+			$button_attributes = apply_filters( 'af/form/button_attributes/key=' . $form['key'], $button_attributes, $form, $args );
+
 			echo '<div class="af-submit acf-form-submit">';
-				echo sprintf( '<button type="submit" class="acf-button af-submit-button">%s</button>', $args['submit_text'] );
+				echo sprintf( '<button type="submit" %s>%s</button>', acf_esc_attr( $button_attributes ), $args['submit_text'] );
 				echo '<span class="acf-spinner af-spinner"></span>';
 			echo '</div>';
 			
