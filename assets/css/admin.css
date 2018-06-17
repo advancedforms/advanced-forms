@@ -158,3 +158,33 @@
 	background: #f9f9f9;
 	padding: 3px 0;
 }
+
+
+/**
+ * Form previews
+ */
+.af-form-preview-button-wrapper {
+	border-bottom: 1px solid #ddd;
+	margin: 0 -10px;
+	margin-bottom: 10px;
+	padding: 0 10px;
+	padding-bottom: 10px;
+	text-align: right;
+}
+
+.af-form-preview .af-submit {
+	border-top: #EEEEEE solid 1px;
+	padding: 15px 12px;
+}
+
+.af-form-preview {
+	max-width: 763px;
+}
+
+.af-form-preview * {
+	box-sizing: border-box;
+}
+
+.acf-fields > .acf-field:nth-child(3) {
+	border-top-width: 0;
+}
