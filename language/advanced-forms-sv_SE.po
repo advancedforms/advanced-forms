@@ -1,0 +1,445 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Forms\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-21 18:21+0000\n"
+"PO-Revision-Date: 2018-06-21 18:21+0000\n"
+"Last-Translator: admin <admin@local.dev>\n"
+"Language-Team: Svenska\n"
+"Language: sv_SE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: advanced-forms.php:198
+msgctxt "Post Type General Name"
+msgid "Forms"
+msgstr "Formulär"
+
+#: advanced-forms.php:199
+msgctxt "Post Type Singular Name"
+msgid "Form"
+msgstr "Formulär"
+
+#: advanced-forms.php:200 advanced-forms.php:204
+msgid "Forms"
+msgstr "Formulär"
+
+#: advanced-forms.php:201 advanced-forms.php:225 advanced-forms.php:226
+#: admin/admin-entries.php:119 admin/admin-entries.php:325
+msgid "Form"
+msgstr "Formulär"
+
+#: advanced-forms.php:202
+msgid "Form Archives"
+msgstr "Formulärsarkiv"
+
+#: advanced-forms.php:203
+msgid "Parent Form:"
+msgstr "Formulärsförälder:"
+
+#: advanced-forms.php:205
+msgid "Add New Form"
+msgstr "Skapa nytt formulär"
+
+#: advanced-forms.php:206 advanced-forms.php:254
+msgid "Add New"
+msgstr "Skapa nytt"
+
+#: advanced-forms.php:207
+msgid "New Form"
+msgstr "Nytt formulär"
+
+#: advanced-forms.php:208
+msgid "Edit Form"
+msgstr "Redigera formulär"
+
+#: advanced-forms.php:209
+msgid "Update Form"
+msgstr "Uppdatera formulär"
+
+#: advanced-forms.php:210
+msgid "View Form"
+msgstr "Visa formulär"
+
+#: advanced-forms.php:211
+msgid "Search Form"
+msgstr "Sök bland formulär"
+
+#: advanced-forms.php:212 advanced-forms.php:260
+msgid "Not found"
+msgstr "Hittades inte"
+
+#: advanced-forms.php:213 advanced-forms.php:261
+msgid "Not found in Trash"
+msgstr "Hittade inte i papperskorgen"
+
+#: advanced-forms.php:214 advanced-forms.php:262
+msgid "Featured Image"
+msgstr "Utvald bild"
+
+#: advanced-forms.php:215 advanced-forms.php:263
+msgid "Set featured image"
+msgstr "Välj utvald bild"
+
+#: advanced-forms.php:216 advanced-forms.php:264
+msgid "Remove featured image"
+msgstr "Ta bort utvald bild"
+
+#: advanced-forms.php:217 advanced-forms.php:265
+msgid "Use as featured image"
+msgstr "Använd som utvald bild"
+
+#: advanced-forms.php:218
+msgid "Insert into form"
+msgstr "Lägg till i formulär"
+
+#: advanced-forms.php:219
+msgid "Uploaded to this form"
+msgstr "Uppladdat till detta formulär"
+
+#: advanced-forms.php:220
+msgid "Forms list"
+msgstr "Formulärslista"
+
+#: advanced-forms.php:221
+msgid "Forms list navigation"
+msgstr "Formulärslistanavigation"
+
+#: advanced-forms.php:222
+msgid "Filter forms list"
+msgstr "Filtrera formulärslista"
+
+#: advanced-forms.php:246
+msgctxt "Post Type General Name"
+msgid "Entries"
+msgstr "Inlägg"
+
+#: advanced-forms.php:247
+msgctxt "Post Type Singular Name"
+msgid "Entry"
+msgstr "Inlägg"
+
+#: advanced-forms.php:248 advanced-forms.php:252 admin/admin-forms.php:167
+#: admin/admin-entries.php:240 admin/admin-entries.php:257
+msgid "Entries"
+msgstr "Inlägg"
+
+#: advanced-forms.php:249 advanced-forms.php:273 advanced-forms.php:274
+msgid "Entry"
+msgstr "Inlägg"
+
+#: advanced-forms.php:250
+msgid "Entry Archives"
+msgstr "Inläggsarkiv"
+
+#: advanced-forms.php:251
+msgid "Parent Entry:"
+msgstr "Inläggsförälder:"
+
+#: advanced-forms.php:253
+msgid "Add New Entry"
+msgstr "Skapa nytt inlägg"
+
+#: advanced-forms.php:255
+msgid "New Entry"
+msgstr "Nytt inlägg"
+
+#: advanced-forms.php:256
+msgid "Edit Entry"
+msgstr "Redigera inlägg"
+
+#: advanced-forms.php:257
+msgid "Update Entry"
+msgstr "Uppdatera inlägg"
+
+#: advanced-forms.php:258
+msgid "View Entry"
+msgstr "Visa inlägg"
+
+#: advanced-forms.php:259
+msgid "Search Entry"
+msgstr "Sök bland inlägg"
+
+#: advanced-forms.php:266
+msgid "Insert into entry"
+msgstr "Lägg till i inlägg"
+
+#: advanced-forms.php:267
+msgid "Uploaded to this entry"
+msgstr "Uppladdat till detta inlägg"
+
+#: advanced-forms.php:268
+msgid "Entries list"
+msgstr "Inläggslista"
+
+#: advanced-forms.php:269
+msgid "Entries list navigation"
+msgstr "Inläggslistanavigation"
+
+#: advanced-forms.php:270
+msgid "Filter entries list"
+msgstr "Filterera inläggslista"
+
+#: core/core-forms.php:184
+msgid "Submit"
+msgstr "Skicka"
+
+#: admin/admin-forms.php:62
+msgid "Form key:"
+msgstr "Formulärsnyckel:"
+
+#: admin/admin-forms.php:79 admin/admin-forms.php:166
+msgid "Fields"
+msgstr "Fält"
+
+#: admin/admin-forms.php:102
+msgid "Add fields by setting the location of your fields group to this form."
+msgstr ""
+"Lägg till fält genom att ställa in platsreglerna för er fältgrupp till detta "
+"formulär."
+
+#: admin/admin-forms.php:107
+msgid "Label"
+msgstr "Titel"
+
+#: admin/admin-forms.php:108 admin/admin-emails.php:121
+msgid "Name"
+msgstr "Namn"
+
+#: admin/admin-forms.php:109
+msgid "Type"
+msgstr "Typ"
+
+#: admin/admin-forms.php:145
+msgid "No field groups connected to this form"
+msgstr "Inga fältgrupper kopplade till detta formulär"
+
+#: admin/admin-forms.php:165
+msgid "Key"
+msgstr "Nyckel"
+
+#: admin/admin-forms.php:257
+msgid "Form settings"
+msgstr "Formulärsinställningar"
+
+#: admin/admin-forms.php:261
+msgid "Display"
+msgstr "Visning"
+
+#: admin/admin-forms.php:277
+msgid "Description"
+msgstr "Beskrivning"
+
+#: admin/admin-forms.php:295
+msgid "Success message"
+msgstr "Bekräftelse"
+
+#: admin/admin-forms.php:298
+msgid "The message displayed after a successful submission."
+msgstr "Meddelande som visas efter formulär har skickats."
+
+#: admin/admin-forms.php:313
+msgid "Statistics"
+msgstr "Statistik"
+
+#: admin/admin-forms.php:329
+msgid "Number of submissions"
+msgstr "Antal skickade formulär"
+
+#: admin/admin-forms.php:351
+msgid "Number of times viewed"
+msgstr "Antal visningar"
+
+#: admin/admin-emails.php:85
+msgid "Notifications"
+msgstr "Notifikationer"
+
+#: admin/admin-emails.php:102
+msgid "Emails"
+msgstr "E-post"
+
+#: admin/admin-emails.php:105
+msgid "The emails defined here will be sent upon successful submission."
+msgstr ""
+"Brev som definieras här kommer skickas efter att ett formulär har skickats."
+
+#: admin/admin-emails.php:117
+msgid "Add new email"
+msgstr "Lägg till brev"
+
+#: admin/admin-emails.php:140
+msgid "Active?"
+msgstr "Aktiv?"
+
+#: admin/admin-emails.php:156
+msgid "Send to"
+msgstr "Skicka till"
+
+#: admin/admin-emails.php:168
+msgid "Select from field"
+msgstr "Välj fält"
+
+#: admin/admin-emails.php:169 admin/admin-emails.php:212
+msgid "Custom recipient"
+msgstr "Anpassad mottagare"
+
+#: admin/admin-emails.php:180
+msgid "Recipient field"
+msgstr "Mottagarfält"
+
+#: admin/admin-emails.php:239
+msgid "From"
+msgstr "Från"
+
+#: admin/admin-emails.php:258
+msgid "Subject"
+msgstr "Ämne"
+
+#: admin/admin-emails.php:277
+msgid "Content"
+msgstr "Innehåll"
+
+#: admin/admin-entries.php:60
+msgid "Edit form"
+msgstr "Redigera formulär"
+
+#: admin/admin-entries.php:97 api/api-helpers.php:295
+msgid "Entry ID"
+msgstr "Inläggs-ID"
+
+#: admin/admin-entries.php:99
+msgid "Date"
+msgstr "Datum"
+
+#: admin/admin-entries.php:101
+msgid "Time"
+msgstr "Tid"
+
+#: admin/admin-entries.php:169
+msgid "All forms"
+msgstr "Alla formulär"
+
+#: admin/admin-entries.php:221
+msgid "View entries for this form"
+msgstr "Visa inlägg till detta formulär"
+
+#: admin/admin-entries.php:260
+msgid ""
+"When entries are enabled they will be automatically generated with form "
+"submissions. All form data will be saved to the generated entry."
+msgstr ""
+"När inlägg är aktiverade kommer de automatisk att genereras varje gång ett "
+"formulär skickas. All formulärsdata kommer sparas i inlägget."
+
+#: admin/admin-entries.php:273
+msgid "Create entries?"
+msgstr "Skapa inlägg?"
+
+#: admin/admin-entries.php:307
+msgid "Entry data"
+msgstr "Inläggsinfo"
+
+#: admin/admin-entries.php:311
+msgid "Submission info"
+msgstr "Info"
+
+#: admin/admin-preview.php:45
+msgid "Previewing"
+msgstr "Förhandsgranskar"
+
+#: admin/admin-preview.php:46
+msgid "Back to form"
+msgstr "Tillbaka till formulär"
+
+#: admin/admin-preview.php:51
+msgid "Form successfully submitted"
+msgstr "Formulär skickat"
+
+#: admin/admin-preview.php:51
+msgid "Test again"
+msgstr "Testa formulär igen"
+
+#: admin/admin-preview.php:80 admin/admin-preview.php:98
+msgid "Preview form"
+msgstr "Förhandsgranska formulär"
+
+#: admin/admin-restrictions.php:22
+msgid "Restrictions"
+msgstr "Begränsningar"
+
+#: admin/admin-restrictions.php:40
+msgid "Restrict number of entries"
+msgstr "Begränsa antalet inlägg"
+
+#: admin/admin-restrictions.php:51 admin/admin-restrictions.php:77
+#: admin/admin-restrictions.php:120 admin/admin-restrictions.php:163
+#: api/api-helpers.php:193
+msgid "Yes"
+msgstr "Ja"
+
+#: admin/admin-restrictions.php:57
+msgid "Maximum number of entries"
+msgstr "Maximalt antal inlägg"
+
+#: admin/admin-restrictions.php:83
+msgid "Message after entry limit has been reached"
+msgstr "Meddelande efter att inläggsgräns har nåtts"
+
+#: admin/admin-restrictions.php:109
+msgid "Require user to be logged in"
+msgstr "Kräv att användaren är inloggad"
+
+#: admin/admin-restrictions.php:126
+msgid "Message if user is not logged in"
+msgstr "Meddelande om användare inte är inloggad"
+
+#: admin/admin-restrictions.php:152
+msgid "Only display form during a specific time"
+msgstr "Visa endast formulär under en begränsad tid"
+
+#: admin/admin-restrictions.php:169
+msgid "Start time"
+msgstr "Starttid"
+
+#: admin/admin-restrictions.php:195
+msgid "End time"
+msgstr "Sluttid"
+
+#: admin/admin-restrictions.php:221
+msgid "Message before scheduled time"
+msgstr "Meddelande före begränsad tid"
+
+#: admin/admin-restrictions.php:246
+msgid "Message after scheduled time"
+msgstr "Meddelande efter begränsad tid"
+
+#: api/api-helpers.php:194
+msgid "No"
+msgstr "Nej"
+
+#: api/api-helpers.php:291
+msgid "Insert field"
+msgstr "Infoga fält"
+
+#: api/api-helpers.php:300
+msgid "All fields"
+msgstr "Alla fält"
+
+#. Name of the plugin
+msgid "Advanced Forms"
+msgstr "Advanced Forms"
+
+#. Description of the plugin
+msgid ""
+"Flexible and developer-friendly forms with the power of Advanced Custom "
+"Fields."
+msgstr ""
+"Flexibla och utvecklarvänliga formulär med kraften från Advanced Custom "
+"Fields."
+
+#. Author of the plugin
+msgid "Fabian Lindfors"
+msgstr "Fabian Lindfors"
