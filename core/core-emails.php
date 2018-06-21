@@ -178,14 +178,14 @@ class AF_Core_Emails {
 		
 		do_action( 'af/email/before_send', $email, $form );
 		do_action( 'af/email/before_send/id=' . $form['post_id'], $email, $form );
-		do_action( 'af/email/before_send/key=' . $form['key'] $email, $form );
+		do_action( 'af/email/before_send/key=' . $form['key'], $email, $form );
 		
 		// Send email using wp_mail
 		wp_mail( $recipient, $subject, $html, $headers, $attachments );
 		
 		do_action( 'af/email/after_send', $email, $form );
 		do_action( 'af/email/after_send/id=' . $form['post_id'], $email, $form );
-		do_action( 'af/email/after_send/key=' . $form['key'] $email, $form );
+		do_action( 'af/email/after_send/key=' . $form['key'], $email, $form );
 		
 	}
 	
