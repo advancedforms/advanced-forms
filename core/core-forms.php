@@ -160,14 +160,19 @@ class AF_Core_Forms {
 		 * To work around this we enqueue using the regular ACF function and then immediately include the acf-input.js script and all it's dependencies.
 		 * If acf-input.js is not initialized before the fields then conditional logic doesn't work. The remaining scripts/styles will be included in wp_footer.
 		 *
+		 * From ACF 5.7 and onwards this is no longer necessary. Conditional logic is no longer reliant on inline scripts and a regular enqueue is sufficient.
+		 *
 		 * @since 1.1.1
 		 *
 		 */
 		acf_enqueue_scripts();
 		
-		global $wp_scripts;
-		
-		$wp_scripts->print_scripts( array( 'acf-input', 'acf-pro-input' ) );
+		// Check if ACF version is < 5.7
+		if ( acf_version_compare( acf()->version, '<', '5.7' ) ) {
+			global $wp_scripts;
+			
+			$wp_scripts->print_scripts( array( 'acf-input', 'acf-pro-input' ) );
+		}
 		
 		
 		// Allow the form to be modified before rendering form
@@ -382,6 +387,21 @@ class AF_Core_Forms {
 					$attributes['data-name'] = $field['name'];
 					$attributes['data-key'] = $field['key'];
 					$attributes['data-type'] = $field['type'];
+
+					/**
+					 * ACF 5.7 totally changes how conditional logic works.
+					 * Instead of running a script after each field we now pass the conditional rules JSON encoded to the data-conditions attribute.
+					 *
+					 * @since 1.4.0
+					 *
+					 */
+					if( ! empty( $field['conditional_logic'] ) ) {
+						$field['conditions'] = $field['conditional_logic'];
+					}
+					
+					if( ! empty( $field['conditions'] ) ) {
+						$attributes['data-conditions'] = $field['conditions'];
+					}
 					
 					
 					$attributes = apply_filters( 'af/form/field_attributes', $attributes, $field, $form, $args );
@@ -417,13 +437,18 @@ class AF_Core_Forms {
 					echo '</div>';
 					
 					
-					// Conditional logic Javascript
-					if ( ! empty( $field['conditional_logic'] ) ) {
-						?>
-						<script type="text/javascript">
-							if(typeof acf !== 'undefined'){ acf.conditional_logic.add( '<?php echo $field['key']; ?>', <?php echo json_encode($field['conditional_logic']); ?>); }
-						</script>
-						<?php
+					/*
+					 * Conditional logic Javascript for field.
+					 * This is not needed after ACF 5.7 and won't be included.
+					 */
+					if ( acf_version_compare( acf()->version, '<', '5.7' ) ) {
+						if ( ! empty( $field['conditional_logic'] ) ) {
+							?>
+							<script type="text/javascript">
+								if(typeof acf !== 'undefined'){ acf.conditional_logic.add( '<?php echo $field['key']; ?>', <?php echo json_encode($field['conditional_logic']); ?>); }
+							</script>
+							<?php
+						}
 					}
 					
 					
