@@ -1,0 +1,265 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Forms\n"
+"POT-Creation-Date: 2018-06-21 12:15+0000\n"
+"PO-Revision-Date: 2018-06-21 16:55+0000\n"
+"Last-Translator: admin <admin@local.dev>\n"
+"Language-Team: French (France)\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: advanced-forms.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"Report-Msgid-Bugs-To: "
+
+#: advanced-forms.php:198
+msgctxt "Post Type General Name"
+msgid "Forms"
+msgstr "Formulaires"
+
+#: advanced-forms.php:199
+msgctxt "Post Type Singular Name"
+msgid "Form"
+msgstr "Formulaire"
+
+#: advanced-forms.php:200 advanced-forms.php:204
+msgid "Forms"
+msgstr "Formulaires"
+
+#: advanced-forms.php:201 advanced-forms.php:225 advanced-forms.php:226
+msgid "Form"
+msgstr "Formulaire"
+
+#: advanced-forms.php:202
+msgid "Item Archives"
+msgstr "Eléments d'archives"
+
+#: advanced-forms.php:203
+msgid "Parent Item:"
+msgstr "Elément parent :"
+
+#: advanced-forms.php:205
+msgid "Add New Form"
+msgstr "Ajouter un nouveau formulaire"
+
+#: advanced-forms.php:206 advanced-forms.php:254
+msgid "Add New"
+msgstr "Ajouter un nouveau"
+
+#: advanced-forms.php:207
+msgid "New Form"
+msgstr "Nouveau formulaire"
+
+#: advanced-forms.php:208
+msgid "Edit Form"
+msgstr "Modifier le formulaire"
+
+#: advanced-forms.php:209
+msgid "Update Form"
+msgstr "Mise à jour du formulaire"
+
+#: advanced-forms.php:210
+msgid "View Form"
+msgstr "Voir le formulaire"
+
+#: advanced-forms.php:211
+msgid "Search Form"
+msgstr "Recherche formulaire"
+
+#: advanced-forms.php:212 advanced-forms.php:260
+msgid "Not found"
+msgstr "Non trouvé"
+
+#: advanced-forms.php:213 advanced-forms.php:261
+msgid "Not found in Trash"
+msgstr "Non trouvé dans la corbeille"
+
+#: advanced-forms.php:214 advanced-forms.php:262
+msgid "Featured Image"
+msgstr "Image à la une"
+
+#: advanced-forms.php:215 advanced-forms.php:263
+msgid "Set featured image"
+msgstr "Définir l’image à la une"
+
+#: advanced-forms.php:216 advanced-forms.php:264
+msgid "Remove featured image"
+msgstr "Retirer l’image à la une"
+
+#: advanced-forms.php:217 advanced-forms.php:265
+msgid "Use as featured image"
+msgstr "Utiliser comme Image à la une"
+
+#: advanced-forms.php:218
+msgid "Insert into form"
+msgstr "Insérez dans le formulaire"
+
+#: advanced-forms.php:219
+msgid "Uploaded to this item"
+msgstr "Télécharger dans cet élément"
+
+#: advanced-forms.php:220
+msgid "Forms list"
+msgstr "Liste des Formulaires"
+
+#: advanced-forms.php:221
+msgid "Forms list navigation"
+msgstr "Navigation de la liste de formulaire"
+
+#: advanced-forms.php:222
+msgid "Filter forms list"
+msgstr "Filtres de la liste de formulaire"
+
+#: advanced-forms.php:246
+msgctxt "Post Type General Name"
+msgid "Entries"
+msgstr "Soumissions"
+
+#: advanced-forms.php:247
+msgctxt "Post Type Singular Name"
+msgid "Entry"
+msgstr "Soumission"
+
+#: advanced-forms.php:248 advanced-forms.php:252
+msgid "Entries"
+msgstr "Soumissions"
+
+#: advanced-forms.php:249 advanced-forms.php:273 advanced-forms.php:274
+msgid "Entry"
+msgstr "Soumission"
+
+#: advanced-forms.php:250
+msgid "Entry Archives"
+msgstr "Archives des soumissions"
+
+#: advanced-forms.php:251
+msgid "Parent Entry:"
+msgstr "Soumission parente :"
+
+#: advanced-forms.php:253
+msgid "Add New Entry"
+msgstr "Ajouter une nouvelle soumission"
+
+#: advanced-forms.php:255
+msgid "New Entry"
+msgstr "Nouvelle soumission"
+
+#: advanced-forms.php:256
+msgid "Edit Entry"
+msgstr "Éditer la soumission"
+
+#: advanced-forms.php:257
+msgid "Update Entry"
+msgstr "Mettre à jour la soumission"
+
+#: advanced-forms.php:258
+msgid "View Entry"
+msgstr "Voir la soumission"
+
+#: advanced-forms.php:259
+msgid "Search Entry"
+msgstr "Recherche soumission"
+
+#: advanced-forms.php:266
+msgid "Insert into entry"
+msgstr "Insérer dans la soumission"
+
+#: advanced-forms.php:267
+msgid "Uploaded to this entries"
+msgstr "Téléchargés vers cette soumission"
+
+#: advanced-forms.php:268
+msgid "Entries list"
+msgstr "Liste soumissions"
+
+#: advanced-forms.php:269
+msgid "Entries list navigation"
+msgstr "Navigation liste soumissions"
+
+#: advanced-forms.php:270
+msgid "Filter entries list"
+msgstr "Liste de filtres de soumission"
+
+#: core/core-forms.php:184
+msgid "Submit"
+msgstr "Envoyer"
+
+#: admin/admin-forms.php:102
+msgid "Add fields by setting the location of your fields group to this form."
+msgstr ""
+"Ajouter des champs en définissant l’emplacement de votre groupe de champs "
+"pour ce formulaire."
+
+#: admin/admin-forms.php:145
+msgid "No field groups connected to this form"
+msgstr "Aucun groupe de champs relié à ce formulaire"
+
+#: admin/admin-entries.php:60
+msgid "Edit form"
+msgstr "Modifier le formulaire"
+
+#: admin/admin-entries.php:221
+msgid "View entries for this form"
+msgstr "Afficher les soumissions de ce formulaire"
+
+#: admin/admin-preview.php:45
+msgid "Previewing"
+msgstr ""
+
+#: admin/admin-preview.php:46
+msgid "Back to form"
+msgstr ""
+
+#: admin/admin-preview.php:51
+msgid "Form successfully submitted"
+msgstr ""
+
+#: admin/admin-preview.php:51
+msgid "Test again"
+msgstr ""
+
+#: admin/admin-preview.php:80 admin/admin-preview.php:98
+msgid "Preview form"
+msgstr ""
+
+#: api/api-helpers.php:193
+msgid "Yes"
+msgstr "Oui"
+
+#: api/api-helpers.php:194
+msgid "No"
+msgstr "Non"
+
+#: api/api-helpers.php:295
+msgid "Entry ID"
+msgstr ""
+
+#: api/api-helpers.php:300
+msgid "All fields"
+msgstr "Tous les champs"
+
+#. Plugin Name of the plugin/theme
+msgid "Advanced Forms"
+msgstr "Advanced Forms"
+
+#. Description of the plugin/theme
+msgid ""
+"Flexible and developer-friendly forms with the power of Advanced Custom "
+"Fields."
+msgstr ""
+"Formulaires flexibles et pensés pour les développeurs avec la puissance de "
+"Advanced Custom Fields."
+
+#. Author of the plugin/theme
+msgid "Fabian Lindfors"
+msgstr "Fabian Lindfors"
