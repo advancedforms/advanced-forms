@@ -52,8 +52,8 @@ function af_get_field( $field_key_or_name, $fields = false ) {
 			
 		}
 		
-		// Also search sub fields if field is clone
-		if ( 'clone' == $field['type'] && isset( $field['sub_fields'] ) ) {
+		// Also search sub fields
+		if ( isset( $field['sub_fields'] ) ) {
 			
 			foreach ( $field['value'] as $sub_field_name => $sub_field_value ) {
 				
