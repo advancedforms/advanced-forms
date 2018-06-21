@@ -288,7 +288,7 @@ function _af_field_inserter_button( $form, $type = 'all', $floating = false ) {
 	
 	$classses = ( $floating ) ? 'floating' : '';
 	
-	echo '<a class="af-field-dropdown ' . $classses . ' button">Insert field';
+	echo '<a class="af-field-dropdown ' . $classses . ' button">' . __( 'Insert field', 'advanced-forms' );
 		
 	echo '<div class="af-dropdown">';
 

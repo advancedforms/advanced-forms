@@ -82,7 +82,7 @@ class AF_Admin_Emails {
 		
 		$field_group['fields'][] = array (
 			'key' => 'field_form_notifications_tab',
-			'label' => '<span class="dashicons dashicons-email-alt"></span>Notifications',
+			'label' => '<span class="dashicons dashicons-email-alt"></span>' . __( 'Notifications', 'advanced-forms' ),
 			'name' => '',
 			'type' => 'tab',
 			'instructions' => '',
@@ -99,10 +99,10 @@ class AF_Admin_Emails {
 		
 		$field_group['fields'][] = array (
 			'key' => 'field_form_emails',
-			'label' => 'Emails',
+			'label' => __( 'Emails', 'advanced-forms' ),
 			'name' => 'form_emails',
 			'type' => 'repeater',
-			'instructions' => 'The emails defined here will be sent upon successful submission.',
+			'instructions' => __( 'The emails defined here will be sent upon successful submission.', 'advanced-forms' ),
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array (
@@ -114,11 +114,11 @@ class AF_Admin_Emails {
 			'min' => '',
 			'max' => '',
 			'layout' => 'block',
-			'button_label' => 'Add new email',
+			'button_label' => __( 'Add new email', 'advanced-forms' ),
 			'sub_fields' => array (
 				array (
 					'key' => 'field_form_email_name',
-					'label' => 'Name',
+					'label' => __( 'Name', 'advanced-forms' ),
 					'name' => 'name',
 					'type' => 'text',
 					'instructions' => '',
@@ -137,7 +137,7 @@ class AF_Admin_Emails {
 				),
 				array (
 					'key' => 'field_form_email_active',
-					'label' => 'Active?',
+					'label' => __( 'Active?', 'advanced-forms' ),
 					'name' => 'active',
 					'type' => 'true_false',
 					'instructions' => '',
@@ -153,7 +153,7 @@ class AF_Admin_Emails {
 				),
 				array (
 					'key' => 'field_form_email_recipient_type',
-					'label' => 'Send to',
+					'label' => __( 'Send to', 'advanced-forms' ),
 					'name' => 'recipient_type',
 					'type' => 'radio',
 					'instructions' => '',
@@ -165,8 +165,8 @@ class AF_Admin_Emails {
 						'id' => '',
 					),
 					'choices' => array (
-						'field' => 'Select from field',
-						'custom' => 'Custom recipient',
+						'field' => __( 'Select from field', 'advanced-forms' ),
+						'custom' => __( 'Custom recipient', 'advanced-forms' ),
 					),
 					'allow_null' => 0,
 					'other_choice' => 0,
@@ -177,7 +177,7 @@ class AF_Admin_Emails {
 				),
 				array (
 					'key' => 'field_form_email_recipient_field',
-					'label' => 'Recipient field',
+					'label' => __( 'Recipient field', 'advanced-forms' ),
 					'name' => 'recipient_field',
 					'type' => 'select',
 					'instructions' => '',
@@ -209,7 +209,7 @@ class AF_Admin_Emails {
 				),
 				array (
 					'key' => 'field_form_email_recipient_custom',
-					'label' => 'Custom recipient',
+					'label' => __( 'Custom recipient', 'advanced-forms' ),
 					'name' => 'recipient_custom',
 					'type' => 'text',
 					'instructions' => '',
@@ -236,7 +236,7 @@ class AF_Admin_Emails {
 				),
 				array (
 					'key' => 'field_form_email_from',
-					'label' => 'From',
+					'label' => __( 'From', 'advanced-forms' ),
 					'name' => 'from',
 					'type' => 'text',
 					'instructions' => '',
@@ -255,7 +255,7 @@ class AF_Admin_Emails {
 				),
 				array (
 					'key' => 'field_form_email_subject',
-					'label' => 'Subject',
+					'label' => __( 'Subject', 'advanced-forms' ),
 					'name' => 'subject',
 					'type' => 'text',
 					'instructions' => '',
@@ -274,7 +274,7 @@ class AF_Admin_Emails {
 				),
 				array (
 					'key' => 'field_form_email_content',
-					'label' => 'Content',
+					'label' => __( 'Content', 'advanced-forms' ),
 					'name' => 'content',
 					'type' => 'wysiwyg',
 					'instructions' => '',

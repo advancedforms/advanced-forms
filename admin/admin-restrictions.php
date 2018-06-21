@@ -19,7 +19,7 @@ class AF_Admin_Restrictions {
 		
 		$field_group['fields'][] = array(
 			'key' => 'field_form_restrictions_tab',
-			'label' => '<span class="dashicons dashicons-dismiss"></span>Restrictions',
+			'label' => '<span class="dashicons dashicons-dismiss"></span>' . __( 'Restrictions', 'advanced-forms' ),
 			'name' => '',
 			'type' => 'tab',
 			'instructions' => '',
@@ -37,7 +37,7 @@ class AF_Admin_Restrictions {
 		// Entry limits
 		$field_group['fields'][] = array(
 			'key' => 'field_form_restrict_entries',
-			'label' => 'Restrict number of entries',
+			'label' => __( 'Restrict number of entries', 'advanced-forms' ),
 			'name' => 'form_restrict_entries',
 			'type' => 'true_false',
 			'instructions' => '',
@@ -48,13 +48,13 @@ class AF_Admin_Restrictions {
 				'class' => '',
 				'id' => '',
 			),
-			'message' => 'Yes',
+			'message' => __( 'Yes', 'advanced-forms' ),
 			'default_value' => 0,
 		);
 		
 		$field_group['fields'][] = array(
 			'key' => 'field_form_max_entries',
-			'label' => 'Maximum number of entries',
+			'label' => __( 'Maximum number of entries', 'advanced-forms' ),
 			'name' => 'form_max_entries',
 			'type' => 'number',
 			'instructions' => '',
@@ -74,13 +74,13 @@ class AF_Admin_Restrictions {
 				'class' => '',
 				'id' => '',
 			),
-			'message' => 'Yes',
+			'message' => __( 'Yes', 'advanced-forms' ),
 			'default_value' => 0,
 		);
 		
 		$field_group['fields'][] = array (
 			'key' => 'field_form_entry_restriction_message',
-			'label' => 'Message after entry limit has been reached',
+			'label' => __( 'Message after entry limit has been reached', 'advanced-forms' ),
 			'name' => 'form_entry_restriction_message',
 			'type' => 'textarea',
 			'instructions' => '',
@@ -106,7 +106,7 @@ class AF_Admin_Restrictions {
 		// User logged in
 		$field_group['fields'][] = array(
 			'key' => 'field_form_require_login',
-			'label' => 'Require user to be logged in',
+			'label' => __( 'Require user to be logged in', 'advanced-forms' ),
 			'name' => 'form_require_login',
 			'type' => 'true_false',
 			'instructions' => '',
@@ -117,13 +117,13 @@ class AF_Admin_Restrictions {
 				'class' => '',
 				'id' => '',
 			),
-			'message' => 'Yes',
+			'message' => __( 'Yes', 'advanced-forms' ),
 			'default_value' => 0,
 		);
 		
 		$field_group['fields'][] = array (
 			'key' => 'field_form_login_restriction_message',
-			'label' => 'Message if user is not logged in',
+			'label' => __( 'Message if user is not logged in', 'advanced-forms' ),
 			'name' => 'form_login_restriction_message',
 			'type' => 'textarea',
 			'instructions' => '',
@@ -149,7 +149,7 @@ class AF_Admin_Restrictions {
 		// Scheduled form
 		$field_group['fields'][] = array(
 			'key' => 'field_form_schedule_form',
-			'label' => 'Only display form during a specific time',
+			'label' => __( 'Only display form during a specific time', 'advanced-forms' ),
 			'name' => 'form_schedule_form',
 			'type' => 'true_false',
 			'instructions' => '',
@@ -160,13 +160,13 @@ class AF_Admin_Restrictions {
 				'class' => '',
 				'id' => '',
 			),
-			'message' => 'Yes',
+			'message' => __( 'Yes', 'advanced-forms' ),
 			'default_value' => 0,
 		);
 		
 		$field_group['fields'][] = array (
 			'key' => 'field_form_schedule_start',
-			'label' => 'Start time',
+			'label' => __( 'Start time', 'advanced-forms' ),
 			'name' => 'form_schedule_start',
 			'type' => 'date_time_picker',
 			'display_format' => 'd/m/Y g:i a',
@@ -192,7 +192,7 @@ class AF_Admin_Restrictions {
 		
 		$field_group['fields'][] = array (
 			'key' => 'field_form_schedule_end',
-			'label' => 'End time',
+			'label' => __( 'End time', 'advanced-forms' ),
 			'name' => 'form_schedule_end',
 			'type' => 'date_time_picker',
 			'display_format' => 'd/m/Y g:i a',
@@ -218,7 +218,7 @@ class AF_Admin_Restrictions {
 		
 		$field_group['fields'][] = array(
 			'key' => 'field_form_before_schedule_message',
-			'label' => 'Message before scheduled time',
+			'label' => __( 'Message before scheduled time', 'advanced-forms' ),
 			'name' => 'form_before_schedule_message',
 			'type' => 'textarea',
 			'instructions' => '',
@@ -243,7 +243,7 @@ class AF_Admin_Restrictions {
 		
 		$field_group['fields'][] = array (
 			'key' => 'field_form_after_schedule_message',
-			'label' => 'Message after scheduled time',
+			'label' => __( 'Message after scheduled time', 'advanced-forms' ),
 			'name' => 'form_after_schedule_message',
 			'type' => 'textarea',
 			'instructions' => '',

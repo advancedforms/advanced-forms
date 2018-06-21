@@ -59,7 +59,7 @@ class AF_Admin_Forms {
 			
 			echo '<div id="edit-slug-box">';
 			
-			echo sprintf( '<strong>Form key: </strong>%s', $form_key );
+			echo sprintf( '<strong>%s </strong>%s', __( 'Form key:', 'advanced-forms' ), $form_key );
 			
 			echo '</div>';
 			
@@ -76,7 +76,7 @@ class AF_Admin_Forms {
 	 */
 	function add_fields_meta_box() {
 		
-		add_meta_box( 'af_form_fields', 'Fields', array( $this, 'fields_meta_box_callback' ), 'af_form', 'normal', 'default', null );
+		add_meta_box( 'af_form_fields', __( 'Fields', 'advanced-forms' ), array( $this, 'fields_meta_box_callback' ), 'af_form', 'normal', 'default', null );
 		
 	}
 	
@@ -104,9 +104,9 @@ class AF_Admin_Forms {
 		<table class="widefat">
 			<thead>
 				<tr>
-					<th scope="col">Label</th>
-					<th scope="col">Name</th>
-					<th scope="col">Type</th>
+					<th scope="col"><?php _e( 'Label', 'advanced-forms' ) ?></th>
+					<th scope="col"><?php _e( 'Name', 'advanced-forms' ) ?></th>
+					<th scope="col"><?php _e( 'Type', 'advanced-forms' ) ?></th>
 				</tr>
 			</thead>
 			
@@ -162,9 +162,9 @@ class AF_Admin_Forms {
 	function add_custom_columns( $columns ) {
 		
 		$new_columns = array(
-			'key'		=> 'Key',
-			'fields' 	=> 'Fields',
-			'entries' 	=> 'Entries',
+			'key'		=> __( 'Key', 'advanced-forms' ),
+			'fields' 	=> __( 'Fields', 'advanced-forms' ),
+			'entries' 	=> __( 'Entries', 'advanced-forms' ),
 		);
 		
 		return array_merge( array_splice( $columns, 0, 2 ), $new_columns, $columns );
@@ -254,11 +254,11 @@ class AF_Admin_Forms {
 		
 		$settings_field_group = array (
 			'key' => 'group_form_settings',
-			'title' => 'Form settings',
+			'title' => __( 'Form settings', 'advanced-forms' ),
 			'fields' => array (
 				array (
 					'key' => 'field_form_display_tab',
-					'label' => '<span class="dashicons dashicons-visibility"></span>Display',
+					'label' => '<span class="dashicons dashicons-visibility"></span>' . __( 'Display', 'advanced-forms' ),
 					'name' => '',
 					'type' => 'tab',
 					'instructions' => '',
@@ -274,7 +274,7 @@ class AF_Admin_Forms {
 				),
 				array (
 					'key' => 'field_form_description',
-					'label' => 'Description',
+					'label' => __( 'Description', 'advanced-forms' ),
 					'name' => 'form_description',
 					'type' => 'textarea',
 					'instructions' => '',
@@ -292,10 +292,10 @@ class AF_Admin_Forms {
 				),
 				array (
 					'key' => 'field_form_success_message',
-					'label' => 'Success message',
+					'label' => __( 'Success message', 'advanced-forms' ),
 					'name' => 'form_success_message',
 					'type' => 'wysiwyg',
-					'instructions' => 'The message displayed after a successful submission.',
+					'instructions' => __( 'The message displayed after a successful submission.', 'advanced-forms' ),
 					'required' => 0,
 					'conditional_logic' => 0,
 					'wrapper' => array (
@@ -310,7 +310,7 @@ class AF_Admin_Forms {
 				),
 				array (
 					'key' => 'field_form_statistics_tab',
-					'label' => '<span class="dashicons dashicons-chart-bar"></span>Statistics',
+					'label' => '<span class="dashicons dashicons-chart-bar"></span>' . __( 'Statistics', 'advanced-forms' ),
 					'name' => '',
 					'type' => 'tab',
 					'instructions' => '',
@@ -326,7 +326,7 @@ class AF_Admin_Forms {
 				),
 				array (
 					'key' => 'field_form_num_of_submissions',
-					'label' => 'Number of submissions',
+					'label' => __( 'Number of submissions', 'advanced-forms' ),
 					'name' => 'form_num_of_submissions',
 					'type' => 'number',
 					'instructions' => '',
@@ -348,7 +348,7 @@ class AF_Admin_Forms {
 				),
 				array (
 					'key' => 'field_form_num_of_views',
-					'label' => 'Number of times viewed',
+					'label' => __( 'Number of times viewed', 'advanced-forms' ),
 					'name' => 'form_num_of_views',
 					'type' => 'number',
 					'instructions' => '',

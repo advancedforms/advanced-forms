@@ -94,11 +94,11 @@ class AF_Admin_Entries {
 			$date_format = get_option( 'date_format' );
 			$time_format = get_option( 'time_format' );
 			
-			$field['instructions'] = '<strong>Enty ID: </strong>#' . $post->ID;
+			$field['instructions'] = sprintf( '<strong>%s: </strong>#%d', __( 'Entry ID', 'advanced-forms' ), $post->ID );
 			$field['instructions'] .= '<br>';
-			$field['instructions'] .= '<strong>Date: </strong>' . date( $date_format, $time );
+			$field['instructions'] .= sprintf( '<strong>%s: </strong>%s', __( 'Date', 'advanced-forms' ), date( $date_format, $time ) );
 			$field['instructions'] .= '<br>';
-			$field['instructions'] .= '<strong>Time: </strong>' . date( $time_format, $time );
+			$field['instructions'] .= sprintf( '<strong>%s: </strong>%s', __( 'Time', 'advanced-forms' ), date( $time_format, $time ) );
 			
 		}
 		
@@ -116,7 +116,7 @@ class AF_Admin_Entries {
 	function add_custom_columns( $columns ) {
 		
 		$new_columns = array(
-			'form' 	=> 'Form',
+			'form' 	=> __( 'Form', 'advanced-forms' ),
 		);
 		
 		return array_merge( array_splice( $columns, 0, 2 ), $new_columns, $columns );
@@ -166,7 +166,7 @@ class AF_Admin_Entries {
 		?>
 		
 		<select name="entry_form">
-			<option value="">All forms</option>
+			<option value=""><?php _e( 'All forms', 'advanced-forms' ); ?></option>
 			
 			<?php
 			foreach ( $forms as $form ) {
@@ -237,7 +237,7 @@ class AF_Admin_Entries {
 		
 		$field_group['fields'][] = array(
 			'key' => 'field_form_entries_tab',
-			'label' => '<span class="dashicons dashicons-editor-table"></span>Entries',
+			'label' => '<span class="dashicons dashicons-editor-table"></span>' . __( 'Entries', 'advanced-forms' ),
 			'name' => '',
 			'type' => 'tab',
 			'instructions' => '',
@@ -254,10 +254,10 @@ class AF_Admin_Entries {
 		
 		$field_group['fields'][] = array (
 			'key' => 'field_form_entry_info',
-			'label' => 'Entries',
+			'label' => __( 'Entries', 'advanced-forms' ),
 			'name' => 'form_entry_info',
 			'type' => 'message',
-			'instructions' => 'When entries are enabled they will be automatically generated with form submissions. All form data will be saved to the generated entry.',
+			'instructions' => __( 'When entries are enabled they will be automatically generated with form submissions. All form data will be saved to the generated entry.', 'advanced-forms' ),
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array (
@@ -270,7 +270,7 @@ class AF_Admin_Entries {
 		
 		$field_group['fields'][] = array(
 			'key' => 'field_form_create_entries',
-			'label' => 'Create entries?',
+			'label' => __( 'Create entries?', 'advanced-forms' ),
 			'name' => 'form_create_entries',
 			'type' => 'true_false',
 			'instructions' => '',
@@ -304,11 +304,11 @@ class AF_Admin_Entries {
 		
 		acf_add_local_field_group(array (
 			'key' => 'group_entry_data',
-			'title' => 'Entry data',
+			'title' => __( 'Entry data', 'advanced-forms' ),
 			'fields' => array (
 				array (
 					'key' => 'field_entry_submission_info',
-					'label' => 'Submission info',
+					'label' => __( 'Submission info', 'advanced-forms' ),
 					'name' => 'entry_submission_info',
 					'type' => 'message',
 					'instructions' => '',
@@ -322,7 +322,7 @@ class AF_Admin_Entries {
 				),
 				array (
 					'key' => 'field_entry_form',
-					'label' => 'Form',
+					'label' => __( 'Form', 'advanced-forms' ),
 					'name' => 'entry_form',
 					'type' => 'select',
 					'instructions' => '',

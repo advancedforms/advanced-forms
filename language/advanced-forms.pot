@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-21 12:15+0000\n"
+"POT-Creation-Date: 2018-06-21 18:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -29,15 +29,16 @@ msgid "Forms"
 msgstr ""
 
 #: advanced-forms.php:201 advanced-forms.php:225 advanced-forms.php:226
+#: admin/admin-entries.php:119 admin/admin-entries.php:325
 msgid "Form"
 msgstr ""
 
 #: advanced-forms.php:202
-msgid "Item Archives"
+msgid "Form Archives"
 msgstr ""
 
 #: advanced-forms.php:203
-msgid "Parent Item:"
+msgid "Parent Form:"
 msgstr ""
 
 #: advanced-forms.php:205
@@ -97,7 +98,7 @@ msgid "Insert into form"
 msgstr ""
 
 #: advanced-forms.php:219
-msgid "Uploaded to this item"
+msgid "Uploaded to this form"
 msgstr ""
 
 #: advanced-forms.php:220
@@ -122,7 +123,8 @@ msgctxt "Post Type Singular Name"
 msgid "Entry"
 msgstr ""
 
-#: advanced-forms.php:248 advanced-forms.php:252
+#: advanced-forms.php:248 advanced-forms.php:252 admin/admin-forms.php:167
+#: admin/admin-entries.php:240 admin/admin-entries.php:257
 msgid "Entries"
 msgstr ""
 
@@ -167,7 +169,7 @@ msgid "Insert into entry"
 msgstr ""
 
 #: advanced-forms.php:267
-msgid "Uploaded to this entries"
+msgid "Uploaded to this entry"
 msgstr ""
 
 #: advanced-forms.php:268
@@ -186,20 +188,158 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
+#: admin/admin-forms.php:62
+msgid "Form key:"
+msgstr ""
+
+#: admin/admin-forms.php:79 admin/admin-forms.php:166
+msgid "Fields"
+msgstr ""
+
 #: admin/admin-forms.php:102
 msgid "Add fields by setting the location of your fields group to this form."
+msgstr ""
+
+#: admin/admin-forms.php:107
+msgid "Label"
+msgstr ""
+
+#: admin/admin-forms.php:108 admin/admin-emails.php:121
+msgid "Name"
+msgstr ""
+
+#: admin/admin-forms.php:109
+msgid "Type"
 msgstr ""
 
 #: admin/admin-forms.php:145
 msgid "No field groups connected to this form"
 msgstr ""
 
+#: admin/admin-forms.php:165
+msgid "Key"
+msgstr ""
+
+#: admin/admin-forms.php:257
+msgid "Form settings"
+msgstr ""
+
+#: admin/admin-forms.php:261
+msgid "Display"
+msgstr ""
+
+#: admin/admin-forms.php:277
+msgid "Description"
+msgstr ""
+
+#: admin/admin-forms.php:295
+msgid "Success message"
+msgstr ""
+
+#: admin/admin-forms.php:298
+msgid "The message displayed after a successful submission."
+msgstr ""
+
+#: admin/admin-forms.php:313
+msgid "Statistics"
+msgstr ""
+
+#: admin/admin-forms.php:329
+msgid "Number of submissions"
+msgstr ""
+
+#: admin/admin-forms.php:351
+msgid "Number of times viewed"
+msgstr ""
+
+#: admin/admin-emails.php:85
+msgid "Notifications"
+msgstr ""
+
+#: admin/admin-emails.php:102
+msgid "Emails"
+msgstr ""
+
+#: admin/admin-emails.php:105
+msgid "The emails defined here will be sent upon successful submission."
+msgstr ""
+
+#: admin/admin-emails.php:117
+msgid "Add new email"
+msgstr ""
+
+#: admin/admin-emails.php:140
+msgid "Active?"
+msgstr ""
+
+#: admin/admin-emails.php:156
+msgid "Send to"
+msgstr ""
+
+#: admin/admin-emails.php:168
+msgid "Select from field"
+msgstr ""
+
+#: admin/admin-emails.php:169 admin/admin-emails.php:212
+msgid "Custom recipient"
+msgstr ""
+
+#: admin/admin-emails.php:180
+msgid "Recipient field"
+msgstr ""
+
+#: admin/admin-emails.php:239
+msgid "From"
+msgstr ""
+
+#: admin/admin-emails.php:258
+msgid "Subject"
+msgstr ""
+
+#: admin/admin-emails.php:277
+msgid "Content"
+msgstr ""
+
 #: admin/admin-entries.php:60
 msgid "Edit form"
 msgstr ""
 
+#: admin/admin-entries.php:97 api/api-helpers.php:295
+msgid "Entry ID"
+msgstr ""
+
+#: admin/admin-entries.php:99
+msgid "Date"
+msgstr ""
+
+#: admin/admin-entries.php:101
+msgid "Time"
+msgstr ""
+
+#: admin/admin-entries.php:169
+msgid "All forms"
+msgstr ""
+
 #: admin/admin-entries.php:221
 msgid "View entries for this form"
+msgstr ""
+
+#: admin/admin-entries.php:260
+msgid ""
+"When entries are enabled they will be automatically generated with form "
+"submissions. All form data will be saved to the generated entry."
+msgstr ""
+
+#: admin/admin-entries.php:273
+msgid "Create entries?"
+msgstr ""
+
+#: admin/admin-entries.php:307
+msgid "Entry data"
+msgstr ""
+
+#: admin/admin-entries.php:311
+msgid "Submission info"
 msgstr ""
 
 #: admin/admin-preview.php:45
@@ -222,16 +362,62 @@ msgstr ""
 msgid "Preview form"
 msgstr ""
 
+#: admin/admin-restrictions.php:22
+msgid "Restrictions"
+msgstr ""
+
+#: admin/admin-restrictions.php:40
+msgid "Restrict number of entries"
+msgstr ""
+
+#: admin/admin-restrictions.php:51 admin/admin-restrictions.php:77
+#: admin/admin-restrictions.php:120 admin/admin-restrictions.php:163
 #: api/api-helpers.php:193
 msgid "Yes"
+msgstr ""
+
+#: admin/admin-restrictions.php:57
+msgid "Maximum number of entries"
+msgstr ""
+
+#: admin/admin-restrictions.php:83
+msgid "Message after entry limit has been reached"
+msgstr ""
+
+#: admin/admin-restrictions.php:109
+msgid "Require user to be logged in"
+msgstr ""
+
+#: admin/admin-restrictions.php:126
+msgid "Message if user is not logged in"
+msgstr ""
+
+#: admin/admin-restrictions.php:152
+msgid "Only display form during a specific time"
+msgstr ""
+
+#: admin/admin-restrictions.php:169
+msgid "Start time"
+msgstr ""
+
+#: admin/admin-restrictions.php:195
+msgid "End time"
+msgstr ""
+
+#: admin/admin-restrictions.php:221
+msgid "Message before scheduled time"
+msgstr ""
+
+#: admin/admin-restrictions.php:246
+msgid "Message after scheduled time"
 msgstr ""
 
 #: api/api-helpers.php:194
 msgid "No"
 msgstr ""
 
-#: api/api-helpers.php:295
-msgid "Entry ID"
+#: api/api-helpers.php:291
+msgid "Insert field"
 msgstr ""
 
 #: api/api-helpers.php:300
