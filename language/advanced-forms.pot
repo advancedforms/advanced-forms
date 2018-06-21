@@ -3,187 +3,239 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-12 15:32+0000\n"
+"POT-Creation-Date: 2018-06-21 12:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
 "Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco - https://localise.biz/"
+"X-Generator: Loco https://localise.biz/"
 
-#: advanced-forms.php:97
+#: advanced-forms.php:198
 msgctxt "Post Type General Name"
 msgid "Forms"
 msgstr ""
 
-#: advanced-forms.php:98
+#: advanced-forms.php:199
 msgctxt "Post Type Singular Name"
 msgid "Form"
 msgstr ""
 
-#: advanced-forms.php:99 advanced-forms.php:103
+#: advanced-forms.php:200 advanced-forms.php:204
 msgid "Forms"
 msgstr ""
 
-#: advanced-forms.php:100 advanced-forms.php:124 advanced-forms.php:125
+#: advanced-forms.php:201 advanced-forms.php:225 advanced-forms.php:226
 msgid "Form"
 msgstr ""
 
-#: advanced-forms.php:101
+#: advanced-forms.php:202
 msgid "Item Archives"
 msgstr ""
 
-#: advanced-forms.php:102
+#: advanced-forms.php:203
 msgid "Parent Item:"
 msgstr ""
 
-#: advanced-forms.php:104
+#: advanced-forms.php:205
 msgid "Add New Form"
 msgstr ""
 
-#: advanced-forms.php:105 advanced-forms.php:156
+#: advanced-forms.php:206 advanced-forms.php:254
 msgid "Add New"
 msgstr ""
 
-#: advanced-forms.php:106
+#: advanced-forms.php:207
 msgid "New Form"
 msgstr ""
 
-#: advanced-forms.php:107
+#: advanced-forms.php:208
 msgid "Edit Form"
 msgstr ""
 
-#: advanced-forms.php:108
+#: advanced-forms.php:209
 msgid "Update Form"
 msgstr ""
 
-#: advanced-forms.php:109
+#: advanced-forms.php:210
 msgid "View Form"
 msgstr ""
 
-#: advanced-forms.php:110
+#: advanced-forms.php:211
 msgid "Search Form"
 msgstr ""
 
-#: advanced-forms.php:111 advanced-forms.php:162
+#: advanced-forms.php:212 advanced-forms.php:260
 msgid "Not found"
 msgstr ""
 
-#: advanced-forms.php:112 advanced-forms.php:163
+#: advanced-forms.php:213 advanced-forms.php:261
 msgid "Not found in Trash"
 msgstr ""
 
-#: advanced-forms.php:113 advanced-forms.php:164
+#: advanced-forms.php:214 advanced-forms.php:262
 msgid "Featured Image"
 msgstr ""
 
-#: advanced-forms.php:114 advanced-forms.php:165
+#: advanced-forms.php:215 advanced-forms.php:263
 msgid "Set featured image"
 msgstr ""
 
-#: advanced-forms.php:115 advanced-forms.php:166
+#: advanced-forms.php:216 advanced-forms.php:264
 msgid "Remove featured image"
 msgstr ""
 
-#: advanced-forms.php:116 advanced-forms.php:167
+#: advanced-forms.php:217 advanced-forms.php:265
 msgid "Use as featured image"
 msgstr ""
 
-#: advanced-forms.php:117
+#: advanced-forms.php:218
 msgid "Insert into form"
 msgstr ""
 
-#: advanced-forms.php:118
+#: advanced-forms.php:219
 msgid "Uploaded to this item"
 msgstr ""
 
-#: advanced-forms.php:119
+#: advanced-forms.php:220
 msgid "Forms list"
 msgstr ""
 
-#: advanced-forms.php:120
+#: advanced-forms.php:221
 msgid "Forms list navigation"
 msgstr ""
 
-#: advanced-forms.php:121
+#: advanced-forms.php:222
 msgid "Filter forms list"
 msgstr ""
 
-#: advanced-forms.php:148
+#: advanced-forms.php:246
 msgctxt "Post Type General Name"
 msgid "Entries"
 msgstr ""
 
-#: advanced-forms.php:149
+#: advanced-forms.php:247
 msgctxt "Post Type Singular Name"
 msgid "Entry"
 msgstr ""
 
-#: advanced-forms.php:150 advanced-forms.php:154
+#: advanced-forms.php:248 advanced-forms.php:252
 msgid "Entries"
 msgstr ""
 
-#: advanced-forms.php:151 advanced-forms.php:175 advanced-forms.php:176
+#: advanced-forms.php:249 advanced-forms.php:273 advanced-forms.php:274
 msgid "Entry"
 msgstr ""
 
-#: advanced-forms.php:152
+#: advanced-forms.php:250
 msgid "Entry Archives"
 msgstr ""
 
-#: advanced-forms.php:153
+#: advanced-forms.php:251
 msgid "Parent Entry:"
 msgstr ""
 
-#: advanced-forms.php:155
+#: advanced-forms.php:253
 msgid "Add New Entry"
 msgstr ""
 
-#: advanced-forms.php:157
+#: advanced-forms.php:255
 msgid "New Entry"
 msgstr ""
 
-#: advanced-forms.php:158
+#: advanced-forms.php:256
 msgid "Edit Entry"
 msgstr ""
 
-#: advanced-forms.php:159
+#: advanced-forms.php:257
 msgid "Update Entry"
 msgstr ""
 
-#: advanced-forms.php:160
+#: advanced-forms.php:258
 msgid "View Entry"
 msgstr ""
 
-#: advanced-forms.php:161
+#: advanced-forms.php:259
 msgid "Search Entry"
 msgstr ""
 
-#: advanced-forms.php:168
+#: advanced-forms.php:266
 msgid "Insert into entry"
 msgstr ""
 
-#: advanced-forms.php:169
+#: advanced-forms.php:267
 msgid "Uploaded to this entries"
 msgstr ""
 
-#: advanced-forms.php:170
+#: advanced-forms.php:268
 msgid "Entries list"
 msgstr ""
 
-#: advanced-forms.php:171
+#: advanced-forms.php:269
 msgid "Entries list navigation"
 msgstr ""
 
-#: advanced-forms.php:172
+#: advanced-forms.php:270
 msgid "Filter entries list"
 msgstr ""
 
-#: admin/admin-forms.php:210
+#: core/core-forms.php:184
+msgid "Submit"
+msgstr ""
+
+#: admin/admin-forms.php:102
+msgid "Add fields by setting the location of your fields group to this form."
+msgstr ""
+
+#: admin/admin-forms.php:145
+msgid "No field groups connected to this form"
+msgstr ""
+
+#: admin/admin-entries.php:60
+msgid "Edit form"
+msgstr ""
+
+#: admin/admin-entries.php:221
 msgid "View entries for this form"
+msgstr ""
+
+#: admin/admin-preview.php:45
+msgid "Previewing"
+msgstr ""
+
+#: admin/admin-preview.php:46
+msgid "Back to form"
+msgstr ""
+
+#: admin/admin-preview.php:51
+msgid "Form successfully submitted"
+msgstr ""
+
+#: admin/admin-preview.php:51
+msgid "Test again"
+msgstr ""
+
+#: admin/admin-preview.php:80 admin/admin-preview.php:98
+msgid "Preview form"
+msgstr ""
+
+#: api/api-helpers.php:193
+msgid "Yes"
+msgstr ""
+
+#: api/api-helpers.php:194
+msgid "No"
+msgstr ""
+
+#: api/api-helpers.php:295
+msgid "Entry ID"
+msgstr ""
+
+#: api/api-helpers.php:300
+msgid "All fields"
 msgstr ""
 
 #. Name of the plugin
@@ -192,8 +244,8 @@ msgstr ""
 
 #. Description of the plugin
 msgid ""
-"Build flexible and developer-friendly forms with the power of Advanced "
-"Custom Fields."
+"Flexible and developer-friendly forms with the power of Advanced Custom "
+"Fields."
 msgstr ""
 
 #. Author of the plugin
