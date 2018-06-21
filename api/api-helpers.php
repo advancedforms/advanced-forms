@@ -136,7 +136,7 @@ function _af_render_field_include( $field, $value = false ) {
 		$value = $field['value'];
 	}
 	
-	
+
 	$output = '';
 	
 	if ( 'repeater' == $field['type'] && is_array( $value ) ) {
@@ -182,7 +182,7 @@ function _af_render_field_include( $field, $value = false ) {
 		foreach ( $field['sub_fields'] as $sub_field ) {
 			
 			$output .= sprintf( '<tr><th>%s</th></tr>', $sub_field['label'] );
-			$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $field['value'][ $sub_field['name'] ] ) );
+			$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $value[ $sub_field['name'] ] ) );
 			
 		}
 		
@@ -195,7 +195,7 @@ function _af_render_field_include( $field, $value = false ) {
 		foreach ( $field['sub_fields'] as $sub_field ) {
 			
 			$output .= sprintf( '<tr><th>%s</th></tr>', $sub_field['label'] );
-			$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $field['value'][ $sub_field['name'] ] ) );
+			$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $value[ $sub_field['name'] ] ) );
 			
 		}
 
