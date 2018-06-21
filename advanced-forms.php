@@ -31,7 +31,7 @@ class AF {
 
 	function __construct() {
 	
-		add_action( 'init', array( $this, 'setup_plugin' ), 1, 0 );
+		add_action( 'plugins_loaded', array( $this, 'setup_plugin' ), 1, 0 );
 		add_action( 'acf/init', array( $this, 'load_plugin' ), 1, 0 );
 		add_action( 'admin_notices', array( $this, 'missing_acf_notice' ), 10, 0 );
 
@@ -51,7 +51,7 @@ class AF {
 		$this->path 			= trailingslashit( apply_filters( 'af/settings/path', plugin_dir_path( __FILE__ ) ) );
 		$this->url 				= trailingslashit( apply_filters( 'af/settings/url', plugin_dir_url( __FILE__ ) ) );
 
-		load_textdomain( 'advanced-forms', $this->path . 'language/advanced-forms-' . get_locale() . '.mo' );
+		load_plugin_textdomain( 'advanced-forms', false, basename( dirname( __FILE__ ) ) . '/language' );
 	}
 
 
