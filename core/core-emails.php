@@ -176,16 +176,16 @@ class AF_Core_Emails {
 		$attachments = apply_filters( 'af/form/email/attachments/key=' . $form['key'], $attachments, $email, $form, $fields );
 		
 		
-		do_action( 'af/email/before_send', $email, $form, $fields );
-		do_action( 'af/email/before_send/id=' . $form['post_id'], $email, $form, $fields );
-		do_action( 'af/email/before_send/key=' . $form['key'] $email, $form, $fields );
+		do_action( 'af/email/before_send', $email, $form );
+		do_action( 'af/email/before_send/id=' . $form['post_id'], $email, $form );
+		do_action( 'af/email/before_send/key=' . $form['key'] $email, $form );
 		
 		// Send email using wp_mail
 		wp_mail( $recipient, $subject, $html, $headers, $attachments );
 		
-		do_action( 'af/email/after_send', $email, $form, $fields );
-		do_action( 'af/email/after_send/id=' . $form['post_id'], $email, $form, $fields );
-		do_action( 'af/email/after_send/key=' . $form['key'] $email, $form, $fields );
+		do_action( 'af/email/after_send', $email, $form );
+		do_action( 'af/email/after_send/id=' . $form['post_id'], $email, $form );
+		do_action( 'af/email/after_send/key=' . $form['key'] $email, $form );
 		
 	}
 	
