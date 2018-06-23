@@ -51,10 +51,13 @@ Yes. Versions 4 or lower of ACF are not supported.
 
 = 1.4.0 =
 
-It's finally here: Advanced Forms Pro! The Pro version makes it ease to create forms which can create and edit posts and users. It also includes integrations with Mailchimp, Slack, and thousands of other services through Zapier. Of course, a Pro license grants direct, priority support. Available from [hookturn.io](https://hookturn.io/downloads/advanced-forms-pro/).
+It's finally here: Advanced Forms Pro! The Pro version makes it ease to create forms which create and edit posts and users. It also includes integrations with Mailchimp, Slack, and thousands of other services through Zapier. Of course, a Pro license grants direct, priority support. Available from [hookturn.io](https://hookturn.io/downloads/advanced-forms-pro/).
 
 * Added ability to preview forms through the admin panel.
-* Removed IP tracking to comply with GDPR.
+* Added compatibility with the upcoming ACF 5.7
+* Added Swedish translation
+* Added French translation (courtesy of @valentin-pellegrin)
+ Removed IP tracking to comply with GDPR.
 * Added filters for modifying submit buttons.
 * Added actions surrounding email notifications.
 * Fixed bug where `af_get_field` wouldn't work with group fields.
