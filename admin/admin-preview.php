@@ -17,7 +17,8 @@ class AF_Admin_Preview {
   /**
    * Register hidden admin page for form previews.
    *
-   * @since 
+   * @since 1.4.0
+   *
    */
   function register_admin_page() {
 
@@ -30,7 +31,8 @@ class AF_Admin_Preview {
   /**
    * Display form preview page
    *
-   * @since
+   * @since 1.4.0
+   *
    */
   function preview_page() {
 
@@ -70,7 +72,8 @@ class AF_Admin_Preview {
    * Wordpress won't display a page title, probably of the submenu hack in register_admin_page.
    * This function is hooked to the admin_title filter and fixes the issue.
    *
-   * @since
+   * @since 1.4.0
+   *
    */
   function fix_admin_title( $admin_title, $title ) {
     if ( get_current_screen()->id != 'admin_page_af_preview_form' ) {
@@ -84,7 +87,8 @@ class AF_Admin_Preview {
   /**
    * Add preview button to form publish box
    *
-   * @since 
+   * @since 1.4.0
+   *
    */
   function add_test_button( $post ) {
 
@@ -104,7 +108,8 @@ class AF_Admin_Preview {
   /**
    * Add WP button classes to form submit buttons in admin
    *
-   * @since 
+   * @since 1.4.0
+   *
    */
   function add_classes_to_button( $attributes ) {
     if ( ! is_admin() ) {

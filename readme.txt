@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.9.4
-Stable tag: 1.3.5
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,17 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.4.0 =
+
+It's finally here: Advanced Forms Pro! The Pro version makes it ease to create forms which can create and edit posts and users. It also includes integrations with Mailchimp, Slack, and thousands of other services through Zapier. Of course, a Pro license grants direct, priority support. Available from [hookturn.io](https://hookturn.io/downloads/advanced-forms-pro/).
+
+* Added ability to preview forms through the admin panel.
+* Removed IP tracking to comply with GDPR.
+* Added filters for modifying submit buttons.
+* Added actions surrounding email notifications.
+* Fixed bug where `af_get_field` wouldn't work with group fields.
+* Fixed bug where clone and group fields couldn't be nested in field includes.
 
 = 1.3.5 =
 
