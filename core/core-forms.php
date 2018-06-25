@@ -222,7 +222,7 @@ class AF_Core_Forms {
 		$form_attributes = apply_filters( 'af/form/attributes/id=' . $form['post_id'], $form_attributes, $form, $args );
 		$form_attributes = apply_filters( 'af/form/attributes/key=' . $form['key'], $form_attributes, $form, $args );
 		
-		echo sprintf( '<form %s>', acf_esc_attr( $form_attributes ) );
+		echo sprintf( '<form %s>', acf_esc_atts( $form_attributes ) );
 		
 		
 		do_action( 'af/form/before_title', $form, $args );
@@ -410,7 +410,7 @@ class AF_Core_Forms {
 					
 					
 					// Field wrapper
-					echo sprintf( '<div %s>', acf_esc_attr( $attributes ) );
+					echo sprintf( '<div %s>', acf_esc_atts( $attributes ) );
 					
 					
 					echo '<div class="af-label acf-label">';
@@ -470,7 +470,7 @@ class AF_Core_Forms {
 			$button_attributes = apply_filters( 'af/form/button_attributes/key=' . $form['key'], $button_attributes, $form, $args );
 
 			echo '<div class="af-submit acf-form-submit">';
-				echo sprintf( '<button type="submit" %s>%s</button>', acf_esc_attr( $button_attributes ), $args['submit_text'] );
+				echo sprintf( '<button type="submit" %s>%s</button>', acf_esc_atts( $button_attributes ), $args['submit_text'] );
 				echo '<span class="acf-spinner af-spinner"></span>';
 			echo '</div>';
 			

@@ -113,7 +113,7 @@ class AF_Admin_Preview {
    */
   function add_classes_to_button( $attributes ) {
     if ( ! is_admin() ) {
-      return;
+      return $attributes;
     }
 
     $attributes['class'] .= ' button button-primary button-large';

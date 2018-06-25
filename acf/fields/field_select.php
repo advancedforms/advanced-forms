@@ -122,7 +122,7 @@ class AF_Form_Field_Picker extends acf_field {
 		
 		
 		// open
-		echo '<select ' . acf_esc_attr($atts) . '>';	
+		echo '<select ' . acf_esc_atts($atts) . '>';	
 		
 		
 		// walk
@@ -142,7 +142,7 @@ class AF_Form_Field_Picker extends acf_field {
 				'value' => $field['value']['format'] ?: '',
 			);
 			
-			echo '<input ' . acf_esc_attr( $format_atts ) . '/>';
+			echo '<input ' . acf_esc_atts( $format_atts ) . '/>';
 			
 			_af_field_inserter_button( $form_key, 'all', true );
 			
@@ -203,7 +203,7 @@ class AF_Form_Field_Picker extends acf_field {
 			
 			
 			// option
-			echo '<option ' . acf_esc_attr($atts) . '>' . $v . '</option>';
+			echo '<option ' . acf_esc_atts($atts) . '>' . $v . '</option>';
 			
 		}
 		
