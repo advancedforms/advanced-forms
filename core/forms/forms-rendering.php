@@ -235,133 +235,7 @@ class AF_Core_Forms_Rendering {
             
           }
           
-          
-          // Include default value
-          if ( empty( $field['value'] ) && isset( $field['default_value'] ) ) {
-            $field['value'] = $field['default_value'];
-          }
-          
-          
-          // Include pre-fill values (either through args or filter)
-          if ( isset( $args['values'][ $field['name'] ] ) ) {
-            $field['value'] = $args['values'][ $field['name'] ];
-          }
-          
-          if ( isset( $args['values'][ $field['key'] ] ) ) {
-            $field['value'] = $args['values'][ $field['key'] ];
-          }
-          
-          $field['value'] = apply_filters( 'af/field/prefill_value', $field['value'], $field, $form, $args );
-          $field['value'] = apply_filters( 'af/field/prefill_value/name=' . $field['name'], $field['value'], $field, $form, $args );
-          $field['value'] = apply_filters( 'af/field/prefill_value/key=' . $field['key'], $field['value'], $field, $form, $args );
-          
-          
-          // Include any previously submitted value
-          if ( isset( $_POST['acf'][ $field['key'] ] ) ) {
-          
-            $field['value'] = $_POST['acf'][ $field['key'] ];
-          
-          }
-          
-          
-          // Attributes to be used on the wrapper element
-          $attributes = array();
-          
-          $attributes['id'] = $field['wrapper']['id'];
-          
-          $attributes['class'] = $field['wrapper']['class'];
-          
-          $attributes['class'] .= sprintf( ' af-field af-field-type-%s af-field-%s acf-field acf-field-%s acf-field-%s', $field['type'], $field['name'], $field['type'], $field['key'] );
-          
-          if ( $field['required'] ) {
-            $attributes['class'] .= ' af-field-required';
-          }
-
-          
-          // This is something ACF needs
-          $attributes['class'] = str_replace( '_', '-', $attributes['class'] );
-          $attributes['class'] = str_replace( 'field-field-', 'field-', $attributes['class'] );
-          
-          
-          $width = $field['wrapper']['width'];
-          
-          if ( $width ) {
-            
-            $attributes['data-width'] = $width;
-            $attributes['style'] = 'width: ' . $width . '%;';
-            
-          }
-          
-          $attributes['data-name'] = $field['name'];
-          $attributes['data-key'] = $field['key'];
-          $attributes['data-type'] = $field['type'];
-
-          /**
-           * ACF 5.7 totally changes how conditional logic works.
-           * Instead of running a script after each field we now pass the conditional rules JSON encoded to the data-conditions attribute.
-           *
-           * @since 1.4.0
-           *
-           */
-          if( ! empty( $field['conditional_logic'] ) ) {
-            $field['conditions'] = $field['conditional_logic'];
-          }
-          
-          if( ! empty( $field['conditions'] ) ) {
-            $attributes['data-conditions'] = $field['conditions'];
-          }
-          
-          
-          $attributes = apply_filters( 'af/form/field_attributes', $attributes, $field, $form, $args );
-          $attributes = apply_filters( 'af/form/field_attributes/id=' . $form['post_id'], $attributes, $field, $form, $args );
-          $attributes = apply_filters( 'af/form/field_attributes/key=' . $form['key'], $attributes, $field, $form, $args );
-          
-          
-          // Field wrapper
-          echo sprintf( '<div %s>', acf_esc_atts( $attributes ) );
-          
-          
-          echo '<div class="af-label acf-label">';
-          
-            $label = $field['label'];
-            
-            $label .= $field['required'] ? ' <span class="acf-required">*</span>' : '';
-            
-            echo sprintf( '<label for="acf-%s">%s</label>', $field['key'], $label );
-            
-          echo '</div>';
-          
-          
-          if ( '' != $field['instructions'] ) {
-            echo sprintf( '<p class="af-field-instructions">%s</p>', $field['instructions'] );
-          }
-          
-          
-          echo '<div class="af-input acf-input">';
-          
-            // Render field with default ACF
-            acf_render_field( $field );
-          
-          echo '</div>';
-          
-          
-          /*
-           * Conditional logic Javascript for field.
-           * This is not needed after ACF 5.7 and won't be included.
-           */
-          if ( acf_version_compare( acf()->version, '<', '5.7' ) ) {
-            if ( ! empty( $field['conditional_logic'] ) ) {
-              ?>
-              <script type="text/javascript">
-                if(typeof acf !== 'undefined'){ acf.conditional_logic.add( '<?php echo $field['key']; ?>', <?php echo json_encode($field['conditional_logic']); ?>); }
-              </script>
-              <?php
-            }
-          }
-          
-          
-          // End field wrapper
-          echo '</div>';
+          $this->render_field( $field, $form, $args );
           
         }
         
@@ -395,6 +269,144 @@ class AF_Core_Forms_Rendering {
     // End form
     echo '</form>';
     
+  }
+
+
+  /**
+   * Renders a single field as part of a form.
+   * 
+   * @since 1.5.0
+   *
+   */
+  function render_field( $field, $form, $args ) {
+
+    // Include default value
+    if ( empty( $field['value'] ) && isset( $field['default_value'] ) ) {
+      $field['value'] = $field['default_value'];
+    }
+    
+    
+    // Include pre-fill values (either through args or filter)
+    if ( isset( $args['values'][ $field['name'] ] ) ) {
+      $field['value'] = $args['values'][ $field['name'] ];
+    }
+    
+    if ( isset( $args['values'][ $field['key'] ] ) ) {
+      $field['value'] = $args['values'][ $field['key'] ];
+    }
+    
+    $field['value'] = apply_filters( 'af/field/prefill_value', $field['value'], $field, $form, $args );
+    $field['value'] = apply_filters( 'af/field/prefill_value/name=' . $field['name'], $field['value'], $field, $form, $args );
+    $field['value'] = apply_filters( 'af/field/prefill_value/key=' . $field['key'], $field['value'], $field, $form, $args );
+    
+    
+    // Include any previously submitted value
+    if ( isset( $_POST['acf'][ $field['key'] ] ) ) {
+    
+      $field['value'] = $_POST['acf'][ $field['key'] ];
+    
+    }
+    
+    
+    // Attributes to be used on the wrapper element
+    $attributes = array();
+    
+    $attributes['id'] = $field['wrapper']['id'];
+    
+    $attributes['class'] = $field['wrapper']['class'];
+    
+    $attributes['class'] .= sprintf( ' af-field af-field-type-%s af-field-%s acf-field acf-field-%s acf-field-%s', $field['type'], $field['name'], $field['type'], $field['key'] );
+    
+    if ( $field['required'] ) {
+      $attributes['class'] .= ' af-field-required';
+    }
+
+    
+    // This is something ACF needs
+    $attributes['class'] = str_replace( '_', '-', $attributes['class'] );
+    $attributes['class'] = str_replace( 'field-field-', 'field-', $attributes['class'] );
+    
+    
+    $width = $field['wrapper']['width'];
+    
+    if ( $width ) {
+      
+      $attributes['data-width'] = $width;
+      $attributes['style'] = 'width: ' . $width . '%;';
+      
+    }
+    
+    $attributes['data-name'] = $field['name'];
+    $attributes['data-key'] = $field['key'];
+    $attributes['data-type'] = $field['type'];
+
+    /**
+     * ACF 5.7 totally changes how conditional logic works.
+     * Instead of running a script after each field we now pass the conditional rules JSON encoded to the data-conditions attribute.
+     *
+     * @since 1.4.0
+     *
+     */
+    if( ! empty( $field['conditional_logic'] ) ) {
+      $field['conditions'] = $field['conditional_logic'];
+    }
+    
+    if( ! empty( $field['conditions'] ) ) {
+      $attributes['data-conditions'] = $field['conditions'];
+    }
+    
+    
+    $attributes = apply_filters( 'af/form/field_attributes', $attributes, $field, $form, $args );
+    $attributes = apply_filters( 'af/form/field_attributes/id=' . $form['post_id'], $attributes, $field, $form, $args );
+    $attributes = apply_filters( 'af/form/field_attributes/key=' . $form['key'], $attributes, $field, $form, $args );
+    
+    
+    // Field wrapper
+    echo sprintf( '<div %s>', acf_esc_atts( $attributes ) );
+    
+    
+    echo '<div class="af-label acf-label">';
+    
+      $label = $field['label'];
+      
+      $label .= $field['required'] ? ' <span class="acf-required">*</span>' : '';
+      
+      echo sprintf( '<label for="acf-%s">%s</label>', $field['key'], $label );
+      
+    echo '</div>';
+    
+    
+    if ( '' != $field['instructions'] ) {
+      echo sprintf( '<p class="af-field-instructions">%s</p>', $field['instructions'] );
+    }
+    
+    
+    echo '<div class="af-input acf-input">';
+    
+      // Render field with default ACF
+      acf_render_field( $field );
+    
+    echo '</div>';
+    
+    
+    /*
+     * Conditional logic Javascript for field.
+     * This is not needed after ACF 5.7 and won't be included.
+     */
+    if ( acf_version_compare( acf()->version, '<', '5.7' ) ) {
+      if ( ! empty( $field['conditional_logic'] ) ) {
+        ?>
+        <script type="text/javascript">
+          if(typeof acf !== 'undefined'){ acf.conditional_logic.add( '<?php echo $field['key']; ?>', <?php echo json_encode($field['conditional_logic']); ?>); }
+        </script>
+        <?php
+      }
+    }
+    
+    
+    // End field wrapper
+    echo '</div>';
+
   }
   
   
