@@ -14,6 +14,7 @@ class AF_Core_Forms_Submissions {
   function __construct() {
     
     add_action( 'init', array( $this, 'pre_form' ), 10, 0 );
+    add_action( 'acf/validate_save_post', array( $this, 'validate' ), 10, 0 );
     
   }
   
@@ -26,6 +27,11 @@ class AF_Core_Forms_Submissions {
    *
    */
   function pre_form() {
+
+    // Make sure this is not an AJAX validation request
+    if ( isset ( $_POST['action'] ) ) {
+      return;
+    }
 
     // Try loading submission data
     if ( ! $this->load_submission_data() ) {
@@ -77,6 +83,30 @@ class AF_Core_Forms_Submissions {
     }
     
   }
+
+
+  /**
+   * Handles validation of a form.
+   * Adds custom validation actions specific to forms.
+   *
+   * @since 1.5.0
+   *
+   */
+  function validate() {
+
+    // Try loading submission data
+    if ( ! $this->load_submission_data() ) {
+      return;
+    }
+
+    $form = AF()->submission['form'];
+    $args = AF()->submission['args'];
+
+    do_action( 'af/form/validate', $form, $args );
+    do_action( 'af/form/validate/id=' . $form['post_id'], $form, $args );
+    do_action( 'af/form/validate/key=' . $form['key'], $form, $args );
+
+  }
   
 
   /**
@@ -89,7 +119,7 @@ class AF_Core_Forms_Submissions {
   function load_submission_data() {
 
     // Make sure a form was posted
-    if ( ! ( isset( $_POST['af_form'] ) && ! isset( $_POST['action'] ) ) ) {
+    if ( ! ( isset( $_POST['af_form'] ) ) ) {
       return false;
     }
 
