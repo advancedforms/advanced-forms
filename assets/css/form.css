@@ -32,3 +32,111 @@
 .af-field-include-repeater td {
 	padding: 5px 10px;
 }
+
+
+/**
+ * Paging
+ */
+.af-page-wrap {
+	border: 1px solid #EEE;
+	display: flex;
+	margin: 0 12px;
+}
+
+.af-page-button {
+	background: #F9F9F9;
+	color: inherit;
+	cursor: default;
+	flex: 1;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	border-right: 1px solid #EEE;
+	position: relative;
+	text-decoration: none;
+}
+
+.af-page-button:hover {
+	color: inherit;
+}
+
+.af-page-button:last-child {
+	border-right: none;
+}
+
+.af-page-button.enabled {
+	background: #fff;
+	cursor: pointer;
+}
+
+.af-page-button.current {
+	color: #318cf3;
+}
+
+/*
+ * The pointed button is constructed using two triangles, before and after.
+ * The before triangle is the same color as the border.
+ * The after triangle is 1px smaller and overlays the before triangle with the button background color.
+ */
+.af-page-button:before,
+.af-page-button:after {
+	box-sizing: border-box;
+	content: '';
+	position: absolute;
+	top: 0;
+	height: 50px;
+	left: 100%;
+	border-left: 15px solid #EEE;
+	border-bottom: 25px solid transparent;
+	border-top: 25px solid transparent;
+	z-index: 1;
+}
+
+.af-page-button:after {
+	top: 1px;
+	height: 48px;
+	border-left: 14px solid #F9F9F9;
+	border-bottom: 24px solid transparent;
+	border-top: 24px solid transparent;
+}
+
+.af-page-button.enabled:after {
+	border-left-color: #FFF;
+}
+
+.af-page-button:last-child:before,
+.af-page-button:last-child:after {
+	content: none;
+}
+
+.af-page-button .index {
+	background: #ddd;
+	border-radius: 10px;
+	color: #888;
+	display: inline-block;
+	font-size: 12px;
+	margin-right: 10px;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	vertical-align: middle;
+}
+
+.af-page-button .title {
+	vertical-align: middle;
+	opacity: 0.5;
+}
+
+.af-page-button.enabled .title {
+	opacity: 1;
+}
+
+/* Remove top border from fields immediately following a page break */
+.acf-fields .acf-field-page + .acf-field {
+	border-top: none;
+}
+
+.af-previous-button,
+.af-next-button {
+	margin-right: 10px;
+}

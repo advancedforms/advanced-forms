@@ -196,3 +196,40 @@
 .acf-fields > .acf-field:nth-child(3) {
 	border-top-width: 0;
 }
+
+.af-form-preview .af-success {
+	margin: 15px 12px;
+}
+
+/* Paging */
+.af-form-preview .af-page-wrap {
+	margin-top: 15px;
+}
+
+.af-form-preview .af-previous-button {
+	margin-right: 10px;
+}
+
+
+/**
+ * Add top spacing to page field type.
+ * Same as the spacing added for tab fields.
+ */
+.acf-field-object + .acf-field-object-page:before {
+	display: block;
+	content: "";
+	height: 5px;
+	width: 100%;
+	background: #f9f9f9;
+	border-bottom: #f0f0f0 solid 1px;
+}
+
+/* Hide unnecessary settings for the page field type */
+.acf-field-object-page .acf-field-setting-name,
+.acf-field-object-page .acf-field-setting-instructions,
+.acf-field-object-page .acf-field-setting-required,
+.acf-field-object-page .acf-field-setting-hide_admin,
+.acf-field-object-page .acf-field-setting-conditional_logic,
+.acf-field-object-page .acf-field-setting-wrapper {
+	display: none;
+}

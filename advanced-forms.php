@@ -85,6 +85,7 @@ class AF {
 		$this->classes['acf_additions'] = include( $this->path . 'acf/acf-additions.php' );
 		include( $this->path . 'acf/fields/field_select.php' );
 		include( $this->path . 'acf/fields/divider.php' );
+		include( $this->path . 'acf/fields/page.php' );
 
 		// Admin
 		$this->classes['admin_forms'] = include( $this->path . 'admin/admin-forms.php' );
