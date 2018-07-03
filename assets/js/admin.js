@@ -162,6 +162,15 @@
 			});
 		});
 		
+
+		/**
+		 * Inserts the sidebar next to the forms list
+		 */
+		var $list = $( '.post-type-af_form #posts-filter' );
+		$list.wrap('<div class="acf-columns-2" />');
+		$list.addClass( 'acf-column-1' );
+		$list.after( $('#af-sidebar-template').html() );
+
 	});
 	
 	

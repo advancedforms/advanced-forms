@@ -233,3 +233,27 @@
 .acf-field-object-page .acf-field-setting-wrapper {
 	display: none;
 }
+
+
+/**
+ * Information sidebar on forms page
+ */
+.post-type-af_form .tablenav,
+.post-type-af_form .search-box {
+	display: none;
+}
+
+.post-type-af_form .subsubsub {
+	margin-bottom: 3px;
+}
+
+.af-sidebar .feature-list {
+	padding-left: 20px;
+	list-style-type: disc;
+}
+
+@media only screen and (max-width: 850px) {
+	.acf-columns-2 .af-sidebar {
+		margin-top: 20px;
+	}
+}

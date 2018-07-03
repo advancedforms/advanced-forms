@@ -27,6 +27,15 @@ class AF {
 	 * @since 1.1
 	 */
 	public $submission;
+
+
+	/**
+	 * Boolean indicating whether Pro version is installed
+	 *
+	 * @since 1.5.0
+	 *
+	 */
+	public $pro;
 	
 
 	function __construct() {
@@ -47,6 +56,7 @@ class AF {
 	function setup_plugin() {
 		// Setup global plugin defaults
 		$this->submission = null;
+		$this->pro 				= false;
 		$this->show_admin = apply_filters( 'af/settings/show_admin', true );
 		$this->path 			= trailingslashit( apply_filters( 'af/settings/path', plugin_dir_path( __FILE__ ) ) );
 		$this->url 				= trailingslashit( apply_filters( 'af/settings/url', plugin_dir_url( __FILE__ ) ) );

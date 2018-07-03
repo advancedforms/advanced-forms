@@ -16,10 +16,11 @@ class AF_Admin_Forms {
 		add_action( 'save_post', array( $this, 'add_form_key' ), 10, 3 );
 		add_action( 'acf/init', array( $this, 'register_fields' ), 10, 0 );
 		add_action( 'media_buttons', array( $this, 'add_wysiwyg_content_field_inserter' ), 10, 1 );
+		add_action( 'admin_footer', array( $this, 'add_forms_sidebar' ), 10, 0 );
 		
 		
 		// Filters
-		add_filter( 'manage_af_form_posts_columns', array( $this, 'add_custom_columns' ), 10, 1 );
+		add_filter( 'manage_af_form_posts_columns', array( $this, 'manage_columns' ), 10, 1 );
 		add_action( 'manage_af_form_posts_custom_column', array( $this, 'custom_columns_content' ), 10, 2 );
 		
 	}
@@ -159,13 +160,16 @@ class AF_Admin_Forms {
 	 * @since 1.0.0
 	 *
 	 */
-	function add_custom_columns( $columns ) {
+	function manage_columns( $columns ) {
 		
 		$new_columns = array(
 			'key'		=> __( 'Key', 'advanced-forms' ),
 			'fields' 	=> __( 'Fields', 'advanced-forms' ),
 			'entries' 	=> __( 'Entries', 'advanced-forms' ),
 		);
+
+		// Remove date column
+		unset( $columns['date'] );
 		
 		return array_merge( array_splice( $columns, 0, 2 ), $new_columns, $columns );
 		
@@ -241,6 +245,59 @@ class AF_Admin_Forms {
 		}
 		
 		
+	}
+
+
+	/**
+	 * Outputs the sidebar on the forms list page
+	 * Moved up by Javascript
+	 *
+	 * @since 1.5.0
+	 *
+	 */
+	function add_forms_sidebar() {
+		$title = AF()->pro ? 'Advanced Forms Pro' : 'Advanced Forms';
+		$doc_url = 'https://advancedforms.github.io';
+		$pro_url = 'https://hookturn.io/downloads/advanced-forms';
+		$icon = '<i aria-hidden="true" class="dashicons dashicons-external"></i>';
+		?>
+		<script type="text/html" id="af-sidebar-template">
+		<div class="acf-column-2 af-sidebar">
+			<div class="acf-box">
+				<div class="inner">
+					<h2><?php echo $title; ?></h2>
+
+					<h3><?php _e( 'Resources','advanced-forms' ); ?></h3>
+					<ul>
+						<li><a href="<?php echo $doc_url; ?>#guides"><?php echo $icon; ?> Guides</a></li>
+						<li><a href="<?php echo $doc_url; ?>#actions"><?php echo $icon; ?> Actions</a></li>
+						<li><a href="<?php echo $doc_url; ?>#filters"><?php echo $icon; ?> Filters</a></li>
+					</ul>
+
+					<?php if ( ! AF()->pro ) : ?>
+					<h3><?php _e( 'Pro','advanced-forms' ); ?></h3>
+					<ul class="feature-list">
+						<li>Create/edit posts and users</li>
+						<li>Integrate with Slack, Mailchimp, and Zapier</li>
+						<li>Get direct, priority support</li>
+					</ul>
+					<a href="<?php echo $pro_url; ?>"><?php echo $icon; ?> Available from hookturn.io</a>
+					<?php endif; ?>
+
+					<h3><?php _e( 'Support','advanced-forms' ); ?></h3>
+					<p>
+						Issues, questions, or suggestions?
+						<?php if ( AF()->pro ) : ?>
+						<a href="https://hookturn.io/contact/">Contact us directly</a> for priority support.
+						<?php else : ?>
+						Create a ticket on the <a href="https://wordpress.org/support/plugin/advanced-forms">Wordpress support forums</a>.
+						<?php endif; ?>
+					</p>
+				</div>
+			</div>
+		</div>
+		</script>
+		<?php
 	}
 	
 	
