@@ -40,13 +40,13 @@ class AF_Page_Field extends acf_field {
       'data-key'      => $field['key']
     );
 
-    $atts['data-show-numbering'] = $field['show_numbering'] ? 'true' : 'false';
+    $atts['data-show-numbering'] = ! empty ( $field['show_numbering'] ) ? 'true' : 'false';
 
-    if ( $field['previous_text'] == '' ) {
+    if ( empty( $field['previous_text'] ) ) {
       $field['previous_text'] = __( 'Previous', 'advanced-forms' );
     }
 
-    if ( $field['next_text'] == '' ) {
+    if ( empty ( $field['next_text'] ) ) {
       $field['next_text'] = __( 'Next', 'advanced-forms' );
     }
     
