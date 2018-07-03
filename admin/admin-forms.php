@@ -269,28 +269,28 @@ class AF_Admin_Forms {
 
 					<h3><?php _e( 'Resources','advanced-forms' ); ?></h3>
 					<ul>
-						<li><a href="<?php echo $doc_url; ?>#guides"><?php echo $icon; ?> Guides</a></li>
-						<li><a href="<?php echo $doc_url; ?>#actions"><?php echo $icon; ?> Actions</a></li>
-						<li><a href="<?php echo $doc_url; ?>#filters"><?php echo $icon; ?> Filters</a></li>
+						<li><a href="<?php echo $doc_url; ?>#guides"><?php echo $icon; ?> <?php _e( 'Guides', 'advanced-forms' ); ?></a></li>
+						<li><a href="<?php echo $doc_url; ?>#actions"><?php echo $icon; ?> <?php _e( 'Actions', 'advanced-forms' ); ?></a></li>
+						<li><a href="<?php echo $doc_url; ?>#filters"><?php echo $icon; ?> <?php _e( 'Filters', 'advanced-forms' ); ?></a></li>
 					</ul>
 
 					<?php if ( ! AF()->pro ) : ?>
 					<h3><?php _e( 'Pro','advanced-forms' ); ?></h3>
 					<ul class="feature-list">
-						<li>Create/edit posts and users</li>
-						<li>Integrate with Slack, Mailchimp, and Zapier</li>
-						<li>Get direct, priority support</li>
+						<li><?php _e( 'Create/edit posts and users', 'advanced-forms' ); ?></li>
+						<li><?php _e( 'Integrate with Slack, Mailchimp, and Zapier', 'advanced-forms' ); ?></li>
+						<li><?php _e( 'Get direct, priority support', 'advanced-forms' ); ?></li>
 					</ul>
-					<a href="<?php echo $pro_url; ?>"><?php echo $icon; ?> Available from hookturn.io</a>
+					<a href="<?php echo $pro_url; ?>"><?php echo $icon; ?> <?php _e( 'Available from hookturn.io', 'advanced-forms' ); ?></a>
 					<?php endif; ?>
 
 					<h3><?php _e( 'Support','advanced-forms' ); ?></h3>
 					<p>
-						Issues, questions, or suggestions?
+						<?php _e( 'Issues, questions, or suggestions?', 'advanced-forms' ); ?>
 						<?php if ( AF()->pro ) : ?>
-						<a href="https://hookturn.io/contact/">Contact us directly</a> for priority support.
+						<?php _e( 'Contact us directly', 'advanced-forms' ); ?><a href="https://hookturn.io/contact/"></a> <?php _e( 'for priority support', 'advanced-forms' ); ?>.
 						<?php else : ?>
-						Create a ticket on the <a href="https://wordpress.org/support/plugin/advanced-forms">Wordpress support forums</a>.
+						<?php _e( 'Create a ticket on the', 'advanced-forms' ); ?> <a href="https://wordpress.org/support/plugin/advanced-forms"><?php _e( 'Wordpress support forums', 'advanced-forms' ); ?></a>.
 						<?php endif; ?>
 					</p>
 				</div>
