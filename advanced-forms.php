@@ -87,7 +87,6 @@ class AF {
 		// Core functionality
 		$this->classes['core_forms_rendering'] = include( $this->path . 'core/forms/forms-rendering.php' );
 		$this->classes['core_forms_submissions'] = include( $this->path . 'core/forms/forms-submissions.php' );
-		$this->classes['core_forms_export'] = include( $this->path . 'core/forms/forms-export.php' );
 		$this->classes['core_restrictions'] = include( $this->path . 'core/core-restrictions.php' );
 		$this->classes['core_emails'] = include( $this->path . 'core/core-emails.php' );
 		$this->classes['core_entries'] = include( $this->path . 'core/core-entries.php' );

@@ -39,7 +39,7 @@ class AF_Admin_Forms_Export {
 
     $form = af_form_from_post( $_GET['form_id'] );
     $form_link = get_edit_post_link( $form['post_id'] );
-    $code = AF_Core_Forms_Export::generate_form_code( $form['post_id'] );
+    $code = $this->generate_form_code( $form );
     ?>
 
     <div class="af-form-export wrap">
@@ -83,6 +83,44 @@ class AF_Admin_Forms_Export {
     }
 
     return __( 'Export form', 'advanced-forms' ) . $admin_title;
+  }
+
+
+  function generate_form_code( $form ) {
+
+    // Remove post ID key
+    unset( $form['post_id'] );
+
+    $str_replace = array(
+      "  "      => "\t",
+      "'!!__(!!\'"  => "__('",
+      "!!\', !!\'"  => "', '",
+      "!!\')!!'"    => "')",
+      "array ("   => "array("
+    );
+    $preg_replace = array(
+      '/([\t\r\n]+?)array/' => 'array',
+      '/[0-9]+ => array/'   => 'array'
+    );
+
+    // Create a var_export string of the form array
+    $code = var_export( $form, true );
+      
+    // change double spaces to tabs
+    $code = str_replace( array_keys($str_replace), array_values($str_replace), $code );
+    
+    // correctly formats "=> array("
+    $code = preg_replace( array_keys($preg_replace), array_values($preg_replace), $code );
+    
+    $code = esc_textarea( $code );
+
+    $output  = "function register_forms() {\n";
+    $output .= sprintf( "\taf_register_form( %s );\n", str_replace( "\n", "\n\t", $code ) );
+    $output .= "}\n";
+    $output .= "add_action( 'af/register_forms', 'register_forms' );";
+
+    return $output;
+
   }
 
 }
