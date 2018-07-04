@@ -278,6 +278,9 @@
 .af-form-export pre {
 	background: #f1f1f1;
 	padding: 15px;
+	-moz-tab-size: 2;
+	-o-tab-size: 2;
+	tab-size: 2;
 }
 
 .af-form-export .copy-button {
