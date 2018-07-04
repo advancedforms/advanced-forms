@@ -17,6 +17,8 @@ class AF_Admin_Forms {
 		add_action( 'acf/init', array( $this, 'register_fields' ), 10, 0 );
 		add_action( 'media_buttons', array( $this, 'add_wysiwyg_content_field_inserter' ), 10, 1 );
 		add_action( 'admin_footer', array( $this, 'add_forms_sidebar' ), 10, 0 );
+
+		add_action( 'post_submitbox_start', array( $this, 'add_actions' ), 10, 1 );
 		
 		
 		// Filters
@@ -299,8 +301,30 @@ class AF_Admin_Forms {
 		</script>
 		<?php
 	}
-	
-	
+
+
+	/**
+	 * Adds an wrapper for action buttons to the publish box.
+	 * Refactored out of admin-preview.php.
+	 *
+	 * @since 1.5.0
+	 *
+	 */
+	function add_actions( $post ) {
+
+		if ( is_null( $post ) || 'af_form' != $post->post_type ) {
+      return;
+    }
+
+    echo '<div class="af-form-actions-wrapper">';
+
+    do_action( 'af/admin/form/actions', $post->ID );
+
+    echo '</div>';
+
+	}
+
+
 	/**
 	 * Registers the form settings fields
 	 *

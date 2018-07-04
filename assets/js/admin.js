@@ -171,6 +171,34 @@
 		$list.addClass( 'acf-column-1' );
 		$list.after( $('#af-sidebar-template').html() );
 
+
+		/**
+		 * Form export with code copying
+		 */
+		var $form_export = $( '.af-form-export' );
+		$form_export.find( '.copy-button' ).click(function() {
+			var $button = $( this );
+			var code = $form_export.find( '.export-code' ).text();
+			
+			// Copy text to clipboard with a temporary textarea
+			var $temp = $( '<textarea>' );
+  		$( 'body' ).append( $temp );
+  		$temp.val( code ).select();
+  		document.execCommand( 'copy' );
+  		$temp.remove();
+
+  		// Show confirmation message in button
+  		var previous_text = $button.text();
+  		$button.text( $button.data( 'copied-text' ) );
+  		$button.attr( 'disabled', true );
+
+  		// Reset button after 2 seconds
+  		setTimeout(function() {
+  			$button.text( previous_text );
+  			$button.attr( 'disabled', null );
+  		}, 1000);
+		});
+
 	});
 	
 	

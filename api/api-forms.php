@@ -269,9 +269,9 @@ function af_get_valid_form( $form ) {
 	}
 	
 	$args = array(
+		'key'			=> '',
 		'post_id' 		=> false,
 		'title' 		=> '',
-		'key'			=> '',
 		'display' 		=> array(
 			'description' 				=> '',
 			'success_message' 			=> '',
