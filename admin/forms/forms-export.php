@@ -6,7 +6,6 @@ class AF_Admin_Forms_Export {
 
     add_action( 'admin_menu', array( $this, 'register_admin_page' ), 10, 0 );
     add_action( 'af/admin/form/actions', array( $this, 'add_export_button' ), 15, 1 );
-    add_action( 'admin_footer-post.php', array( $this, 'add_export_modal' ), 10, 0 );
     add_filter( 'admin_title', array( $this, 'fix_admin_title' ), 10, 2 );
 
   }
@@ -66,28 +65,8 @@ class AF_Admin_Forms_Export {
 
 
   function add_export_button( $form_id ) {
-    add_thickbox();
-    $link = '#TB_inline&width=500&inlineId=form-export-modal&height=400';
-    echo sprintf( '<a href="%s" class="button button-large thickbox" title="Export form">%s</a>', $link, __( 'Export', 'advanced-forms' ) );
-
-  }
-
-
-  function add_export_modal() {
-    global $post;
-
-    if ( empty( $post ) || 'af_form' != $post->post_type) {
-      return;
-    }
-
-    $code = AF_Core_Forms_Export::generate_form_code( $post->ID );
-    ?>
-    <div id="form-export-modal" style="display: none;">
-      <div class="form-export">
-        <pre><?php echo $code; ?></pre>
-      </div>
-    </div>
-    <?php
+    $export_url = add_query_arg( 'form_id', $form_id, menu_page_url( 'af_export_form', false ) );
+    echo sprintf( '<a href="%s" class="button button-large">%s</a>', $export_url, __( 'Export', 'advanced-forms' ) );
   }
 
 
