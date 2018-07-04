@@ -29,11 +29,11 @@ class AF_Core_Restrictions {
 			return $restriction;
 		}
 		
-		if ( $form['restrict_entries'] ) {
+		if ( $form['restrictions']['entries'] ) {
 			
-			if ( $form['restrict_entries']['max_entries'] <= af_get_entry_count( $form['key'] ) ) {
+			if ( $form['restrictions']['entries']['max_entries'] <= af_get_entry_count( $form['key'] ) ) {
 				
-				return $form['restrict_entries']['message'];
+				return $form['restrictions']['entries']['message'];
 				
 			}
 			
@@ -57,11 +57,11 @@ class AF_Core_Restrictions {
 		}
 		
 		
-		if ( $form['restrict_user'] ) {
+		if ( $form['restrictions']['user'] ) {
 		
 			if ( ! is_user_logged_in() ) {
 				
-				return $form['restrict_user']['message'];
+				return $form['restrictions']['user']['message'];
 				
 			}
 			
@@ -85,23 +85,23 @@ class AF_Core_Restrictions {
 		}
 		
 		
-		if ( $form['restrict_schedule'] ) {
+		if ( $form['restrictions']['schedule'] ) {
 			
 			$current_time = time();
-			$start_time = strtotime( $form['restrict_schedule']['start'] );
-			$end_time = strtotime( $form['restrict_schedule']['end'] );
+			$start_time = strtotime( $form['restrictions']['schedule']['start'] );
+			$end_time = strtotime( $form['restrictions']['schedule']['end'] );
 		
 			// Before schedule
 			if ( $current_time < $start_time ) {
 				
-				return $form['restrict_schedule']['message_before'];
+				return $form['restrictions']['schedule']['message_before'];
 				
 			}
 			
 			// After schedule
 			if ( $current_time > $end_time ) {
 				
-				return $form['restrict_schedule']['message_after'];
+				return $form['restrictions']['schedule']['message_after'];
 				
 			}
 			
@@ -121,9 +121,11 @@ class AF_Core_Restrictions {
 	 */
 	function valid_form( $form ) {
 		
-		$form['restrict_entries'] = false;
-		$form['restrict_user'] = false;
-		$form['restrict_schedule'] = false;
+		$form['restrictions'] = array(
+			'entries' => false,
+			'user' => false,
+			'schedule' => false,
+		);
 		
 		return $form;
 		
@@ -143,7 +145,7 @@ class AF_Core_Restrictions {
 	
 		if ( $restrict_entries ) {
 			
-			$form['restrict_entries'] = array(
+			$form['restrictions']['entries'] = array(
 				'max_entries' 	=> get_field( 'field_form_max_entries', $post->ID ),
 				'message' 		=> get_field( 'form_entry_restriction_message', $post->ID ),
 			);
@@ -156,7 +158,7 @@ class AF_Core_Restrictions {
 	
 		if ( $require_login ) {
 			
-			$form['restrict_user'] = array(
+			$form['restrictions']['user'] = array(
 				'message' => get_field( 'form_login_restriction_message', $post->ID ),
 			);
 			
@@ -168,7 +170,7 @@ class AF_Core_Restrictions {
 	
 		if ( $schedule_form ) {
 			
-			$form['restrict_schedule'] = array(
+			$form['restrictions']['schedule'] = array(
 				'start' 			=> get_field( 'field_form_schedule_start', $post->ID ),
 				'end' 				=> get_field( 'field_form_schedule_end', $post->ID ),
 				'message_before' 	=> get_field( 'field_form_before_schedule_message', $post->ID ),
