@@ -1,12 +1,12 @@
 <?php
 
 
-class AF_Admin_Preview {
+class AF_Admin_Forms_Preview {
 
   function __construct() {
 
     add_action( 'admin_menu', array( $this, 'register_admin_page' ), 10, 0 );
-    add_action( 'post_submitbox_start', array( $this, 'add_test_button' ), 10, 1 );
+    add_action( 'af/admin/form/actions', array( $this, 'add_preview_button' ), 10, 1 );
     add_filter( 'admin_title', array( $this, 'fix_admin_title' ), 10, 2 );
 
     add_filter( 'af/form/button_attributes', array( $this, 'add_classes_to_button' ), 10, 1 );
@@ -90,17 +90,11 @@ class AF_Admin_Preview {
    * @since 1.4.0
    *
    */
-  function add_test_button( $post ) {
+  function add_preview_button( $form_id ) {
 
-    if ( is_null( $post ) || 'af_form' != $post->post_type ) {
-      return;
-    }
+    $test_url = add_query_arg( 'form_id', $form_id, menu_page_url( 'af_preview_form', false ) );
 
-    $test_url = add_query_arg( 'form_id', $post->ID, menu_page_url( 'af_preview_form', false ) );
-
-    echo '<div class="af-form-preview-button-wrapper">';
-    echo sprintf( '<a href="%s" class="button button-large">%s</a>', $test_url, __( 'Preview form', 'advanced-forms' ) );
-    echo '</div>';
+    echo sprintf( '<a href="%s" class="button button-large">%s</a>', $test_url, __( 'Preview', 'advanced-forms' ) );
 
   }
 
@@ -123,4 +117,4 @@ class AF_Admin_Preview {
 
 }
 
-return new AF_Admin_Preview();
+return new AF_Admin_Forms_Preview();

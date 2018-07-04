@@ -99,10 +99,10 @@ class AF {
 
 		// Admin
 		$this->classes['admin_forms'] = include( $this->path . 'admin/admin-forms.php' );
+		$this->classes['admin_forms_preview'] = include( $this->path . 'admin/forms/forms-preview.php' );
 		$this->classes['admin_restrictions'] = include( $this->path . 'admin/admin-restrictions.php' );
 		$this->classes['admin_entries'] = include( $this->path . 'admin/admin-entries.php' );
 		$this->classes['admin_emails'] = include( $this->path . 'admin/admin-emails.php' );
-		$this->classes['admin_preview'] = include( $this->path . 'admin/admin-preview.php' );
 		
 		if ( file_exists( $this->path . 'pro/advanced-forms-pro.php' ) ) {
 			$this->classes['pro'] = include( $this->path . 'pro/advanced-forms-pro.php' );
