@@ -10,6 +10,8 @@ class AF_Admin_Forms_Preview {
     add_filter( 'admin_title', array( $this, 'fix_admin_title' ), 10, 2 );
 
     add_filter( 'af/form/button_attributes', array( $this, 'add_classes_to_button' ), 10, 1 );
+    add_filter( 'af/form/previous_button_atts', array( $this, 'add_classes_to_page_buttons' ), 10, 1 );
+    add_filter( 'af/form/next_button_atts', array( $this, 'add_classes_to_page_buttons' ), 10, 1 );
 
   }
 
@@ -111,6 +113,23 @@ class AF_Admin_Forms_Preview {
     }
 
     $attributes['class'] .= ' button button-primary button-large';
+
+    return $attributes;
+  }
+
+
+  /**
+   * Add WP button classes to multi-page form buttons
+   *
+   * @since 1.5.0
+   *
+   */
+  function add_classes_to_page_buttons( $attributes ) {
+    if ( ! is_admin() ) {
+      return $attributes;
+    }
+
+    $attributes['class'] .= ' button button-large';
 
     return $attributes;
   }
