@@ -42,10 +42,14 @@ class AF_Page_Field extends acf_field {
 
     $atts['data-show-numbering'] = ! empty ( $field['show_numbering'] ) ? 'true' : 'false';
 
+    $previous_atts = array( 'class' => 'af-previous-button' );
+    $previous_atts = apply_filters( 'af/form/previous_button_atts', $previous_atts, $field );
     if ( empty( $field['previous_text'] ) ) {
       $field['previous_text'] = __( 'Previous', 'advanced-forms' );
     }
 
+    $next_atts = array( 'class' => 'af-next-button' );
+    $next_atts = apply_filters( 'af/form/next_button_atts', $next_atts, $field );
     if ( empty ( $field['next_text'] ) ) {
       $field['next_text'] = __( 'Next', 'advanced-forms' );
     }
@@ -55,8 +59,8 @@ class AF_Page_Field extends acf_field {
       <span class="title"><?php echo acf_esc_html($field['label']); ?></span>
     </a>
 
-    <button class="af-previous-button button"><?php echo $field['previous_text']; ?></button>
-    <button class="af-next-button button"><?php echo $field['next_text']; ?></button>
+    <button <?php acf_esc_attr_e( $previous_atts ); ?>><?php echo $field['previous_text']; ?></button>
+    <button <?php acf_esc_attr_e( $next_atts ); ?>><?php echo $field['next_text']; ?></button>
     <?php
     
     
