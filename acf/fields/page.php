@@ -13,7 +13,7 @@ class AF_Page_Field extends acf_field {
     // vars
     $this->name = 'page';
     $this->label = __( 'Page','advanced-forms' );
-    $this->category = 'advanced-forms';
+    $this->category = 'Advanced Forms';
     $this->defaults = array();
     
   }
