@@ -48,7 +48,7 @@ class AF_Admin_Restrictions {
 				'class' => '',
 				'id' => '',
 			),
-			'message' => __( 'Yes', 'advanced-forms' ),
+			'ui' => true,
 			'default_value' => 0,
 		);
 		
@@ -74,7 +74,7 @@ class AF_Admin_Restrictions {
 				'class' => '',
 				'id' => '',
 			),
-			'message' => __( 'Yes', 'advanced-forms' ),
+			'ui' => true,
 			'default_value' => 0,
 		);
 		
@@ -117,7 +117,7 @@ class AF_Admin_Restrictions {
 				'class' => '',
 				'id' => '',
 			),
-			'message' => __( 'Yes', 'advanced-forms' ),
+			'ui' => true,
 			'default_value' => 0,
 		);
 		
@@ -160,7 +160,7 @@ class AF_Admin_Restrictions {
 				'class' => '',
 				'id' => '',
 			),
-			'message' => __( 'Yes', 'advanced-forms' ),
+			'ui' => true,
 			'default_value' => 0,
 		);
 		
