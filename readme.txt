@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.9.4
-Stable tag: 1.4.1
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,25 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.5.0 =
+
+* Added support for multi-page forms. Use the "Page" field to split your form over multiple pages.
+* Added code generation for registering forms programmatically.
+* Added support for custom validation logic on forms using the new `af/form/validate` filter.
+* Added helpful sidebar with links to documentation and support.
+
+*Pro*
+
+* Added filters for intercepting API requests to Mailchimp, Slack, and Zapier.
+* Fixed issue where first and last name wouldn't be sent to Mailchimp.
+
+= 1.4.2 =
+
+*Pro*
+
+* Fixed issue where user editing didn't work.
+* Fixed issue where custom fields weren't saved to users.
 
 = 1.4.1 =
 
