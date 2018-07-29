@@ -200,9 +200,12 @@ class AF_Core_Forms_Rendering {
       do_action( 'af/form/before_fields/key=' . $form['key'], $form, $args );
       
       
-      // Dummy ACF data to make Javascript validations work
+      // ACF nonces required for validation to work
+      // Before ACF 5.7 these were not required to have a valid value
       echo '<div id="acf-form-data">';
-        echo '<input type="hidden" name="_acfnonce" value="">';
+        $nonce = wp_create_nonce( 'acf_nonce' );
+        echo sprintf( '<input type="hidden" name="_acfnonce" value="%s">', $nonce );
+        echo sprintf( '<input type="hidden" name="nonce" value="%s">', $nonce );
       echo '</div>';
       
       

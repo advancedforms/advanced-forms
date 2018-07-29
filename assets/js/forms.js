@@ -126,7 +126,6 @@ var af;
         if ( form.max_page <= form.current_page ) {
           form.max_page = form.current_page
         }
-        
 
         self.refresh( form );
       });
@@ -163,49 +162,82 @@ var af;
     validatePage: function( form, page_index, callback ) {
       var page = form.pages[ page_index ];
 
-      // Lock form and show spinner
-      acf.validation.toggle( form.$el, 'lock' );
+      // Create temporary div to hold fake form (for serialization)
+      var $temp = $( '<div>' );
+      $temp.append( form.$el.find( '#acf-form-data' ).clone() );
+      $temp.append( form.$el.find( '.acf-hidden' ).clone() );
+      $temp.append( page.$fields.clone() );
 
-      // vars
-      var data = acf.serialize( page.$fields.clone() );
-        
-      // append AJAX action   
+      var data = acf.serialize( $temp );
       data.action = 'acf/validate_save_post';
-      
-      // prepare
-      data = acf.prepare_for_ajax(data);
+      data = acf.prepare_for_ajax( data );
 
-      // ajax
-      $.ajax({
-        url: acf.get('ajaxurl'),
-        data: data,
-        type: 'post',
-        dataType: 'json',
-        success: function( json ){
+      /**
+       * With ACF 5.7 large parts of the JS code base was redone.
+       * With these changes the custom page validation became a lot simpler to implement.
+       * The old implementation remains for compatibility.
+       */
 
-          // Unlock form, hiding spinner
-          acf.validation.toggle( form.$el, 'unlock' );
+      // Check if ACF 5.7 or later (the lockForm function was introduced then)
+      console.log(acf.validation.lockForm);
+      if ( acf.validation.lockForm !== undefined ) {
+        var dataFilter = function() { return data; };
+
+        // Temporary override of prepare_for_ajax to inject custom data
+        acf.addFilter( 'prepare_for_ajax', dataFilter );
+
+        acf.validation.fetch({
+          form: form.$el,
+          lock: false,
+          success: function() {
+            callback();
+          },
+        })
+
+        acf.removeFilter( 'prepare_for_ajax', dataFilter )
+      } else {
+        // Lock form and show spinner
+        acf.validation.toggle( form.$el, 'lock' );
+
+        // vars
+        var data = acf.serialize( page.$fields.clone() );
           
-          // bail early if not json success
-          if( !acf.is_ajax_success(json) ) {
-            return;
-          }
+        // append AJAX action   
+        data.action = 'acf/validate_save_post';
+        
+        // prepare
+        data = acf.prepare_for_ajax(data);
 
-          acf.validation.fetch_success( form.$el, json.data );
-          
-        },
-        complete: function(){
-          if ( acf.validation.valid ) {
-            // remove previous error message
-            acf.remove_el( form.$el.children('.acf-error-message') );
+        // ajax
+        $.ajax({
+          url: acf.get('ajaxurl'),
+          data: data,
+          type: 'post',
+          dataType: 'json',
+          success: function( json ){
 
-            // Run callback (which will proceed to the next page)
-            callback()
+            // Unlock form, hiding spinner
+            acf.validation.toggle( form.$el, 'unlock' );
+            
+            // bail early if not json success
+            if( !acf.is_ajax_success(json) ) {
+              return;
+            }
+
+            acf.validation.fetch_success( form.$el, json.data );            
+          },
+          complete: function(){
+            if ( acf.validation.valid ) {
+              // remove previous error message
+              acf.remove_el( form.$el.children('.acf-error-message') );
+
+              // Run callback (which will proceed to the next page)
+              callback()
+            }
           }
-        }
-      });
+        });
+      }
     }
-
   };
 
   // Set up all forms on page
