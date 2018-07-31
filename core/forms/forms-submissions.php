@@ -33,6 +33,17 @@ class AF_Core_Forms_Submissions {
       return;
     }
 
+    /**
+     * Upload all files in $_FILES using ACFs helper function. Required for basic uploads to work painlessly.
+     * TODO: Move to af_save_field() to avoid saving all files?
+     *
+     * @since 1.3.1
+     *
+     */
+    if ( isset( $_FILES['acf'] ) ) {
+      acf_upload_files();
+    }
+
     // Try loading submission data
     if ( ! $this->load_submission_data() ) {
       return;
@@ -51,19 +62,6 @@ class AF_Core_Forms_Submissions {
         $submissions = $submissions ? $submissions + 1 : 1;
         update_post_meta( $form['post_id'], 'form_num_of_submissions', $submissions );
       }
-      
-      
-      /**
-       * Upload all files in $_FILES using ACFs helper function. Required for basic uploads to work painlessly.
-       * TODO: Move to af_save_field() to avoid saving all files?
-       *
-       * @since 1.3.1
-       *
-       */
-      if ( isset( $_FILES['acf'] ) ) {
-        acf_upload_files();
-      }
-      
       
       do_action( 'af/form/submission', $form, $fields, $args );
       do_action( 'af/form/submission/id=' . $form['post_id'], $form, $fields, $args );
