@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.9.4
-Stable tag: 1.5.0
+Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,23 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.5.2 =
+
+* Fixed compatibility issue with ACF 5.7 where form validation wouldn't work.
+* Fixed issue where file uploads were not saved to image/field fields.
+
+*Pro*
+
+* Fixed issue with excerpts on form generated posts.
+* Fixed potential naming conflict with other plugins.
+
+= 1.5.1 =
+
+*Pro*
+
+* Fixed issue where custom fields wouldn't work with user editing.
+* Fixed issue where Mailchimp wouldn't work with some PHP installations.
 
 = 1.5.0 =
 
