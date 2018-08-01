@@ -111,14 +111,6 @@ class AF_Core_Forms_Rendering {
     $args = apply_filters( 'af/form/args/key=' . $form['key'], $args, $form );
     
     
-    // Increase the form view counter
-    if ( $form['post_id'] ) {
-      $views = get_post_meta( $form['post_id'], 'form_num_of_views', true );
-      $views = $views ? $views + 1 : 1;
-      update_post_meta( $form['post_id'], 'form_num_of_views', $views );
-    }
-    
-    
     // Form element
     $form_attributes = array(
       'class'   => 'af-form acf-form',
@@ -183,6 +175,13 @@ class AF_Core_Forms_Rendering {
       echo '</div>';
     
     } else {
+
+      // Increase the form view counter
+      if ( $form['post_id'] ) {
+        $views = get_post_meta( $form['post_id'], 'form_num_of_views', true );
+        $views = $views ? $views + 1 : 1;
+        update_post_meta( $form['post_id'], 'form_num_of_views', $views );
+      }
       
       // Set ACF uploader type setting
       acf_update_setting( 'uploader', $args['uploader'] );
