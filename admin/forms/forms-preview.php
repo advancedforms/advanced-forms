@@ -8,6 +8,7 @@ class AF_Admin_Forms_Preview {
     add_action( 'admin_menu', array( $this, 'register_admin_page' ), 10, 0 );
     add_action( 'af/admin/form/actions', array( $this, 'add_preview_button' ), 10, 1 );
     add_filter( 'admin_title', array( $this, 'fix_admin_title' ), 10, 2 );
+    add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_acf' ), 10, 1 );
 
     add_filter( 'af/form/button_attributes', array( $this, 'add_classes_to_button' ), 10, 1 );
     add_filter( 'af/form/previous_button_atts', array( $this, 'add_classes_to_page_buttons' ), 10, 1 );
@@ -83,6 +84,22 @@ class AF_Admin_Forms_Preview {
     }
 
     return __( 'Preview form', 'advanced-forms' ) . $admin_title;
+  }
+
+
+  /**
+   * We need to enqueue ACF early for it to be included in the head.
+   * ACF needs to be enqueued early in the admin panel.
+   *
+   * @since 1.5.3
+   *
+   */
+  function enqueue_acf( $page ) {
+    if ( 'admin_page_af_preview_form' != $page ) {
+        return;
+    }
+
+    acf_enqueue_scripts();
   }
 
 
