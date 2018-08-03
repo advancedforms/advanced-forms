@@ -166,9 +166,19 @@ var af;
       var $temp = $( '<div>' );
       $temp.append( form.$el.find( '#acf-form-data' ).clone() );
       $temp.append( form.$el.find( '.acf-hidden' ).clone() );
-      $temp.append( page.$fields.clone() );
+      
+      // Detach page fields and insert into temporary div.
+      // Detach is necessary as a regular clone won't work with select2.
+      var $fields = page.$fields.detach();
+      $temp.append( $fields );
 
+      // Serialize data from ephemeral form
       var data = acf.serialize( $temp );
+
+      // Put page fields back into the DOM
+      $fields.detach().insertAfter( page.$field );
+
+      
       data.action = 'acf/validate_save_post';
       data = acf.prepare_for_ajax( data );
 
@@ -179,7 +189,6 @@ var af;
        */
 
       // Check if ACF 5.7 or later (the lockForm function was introduced then)
-      console.log(acf.validation.lockForm);
       if ( acf.validation.lockForm !== undefined ) {
         var dataFilter = function() { return data; };
 
