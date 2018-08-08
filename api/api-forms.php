@@ -307,7 +307,7 @@ function af_form_from_post( $form_post ) {
 	}
 	
 	
-	$form = array(
+	$form = af_get_valid_form(array(
 		'post_id' 		=> $form_post->ID,
 		'title' 		=> $form_post->post_title,
 		'key'			=> get_post_meta( $form_post->ID, 'form_key', true ),
@@ -316,15 +316,14 @@ function af_form_from_post( $form_post ) {
 			'success_message' 			=> get_field( 'form_success_message', $form_post->ID ),
 		),
 		'create_entries' => get_field( 'form_create_entries', $form_post->ID ),
-	);
+	));
 	
 	
 	$form = apply_filters( 'af/form/from_post', $form, $form_post );
 	$form = apply_filters( 'af/form/from_post/id=' . $form['post_id'], $form, $form_post );
 	$form = apply_filters( 'af/form/from_post/key=' . $form['key'], $form, $form_post );
 	
-	
-	return af_get_valid_form( $form );
+	return $form;
 	
 }
 
