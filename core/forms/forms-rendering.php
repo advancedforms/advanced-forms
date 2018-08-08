@@ -198,18 +198,20 @@ class AF_Core_Forms_Rendering {
       do_action( 'af/form/before_fields/id=' . $form['post_id'], $form, $args );
       do_action( 'af/form/before_fields/key=' . $form['key'], $form, $args );
       
-      
-      // ACF nonces required for validation to work
-      // Before ACF 5.7 these were not required to have a valid value
-      echo '<div id="acf-form-data">';
+
+      // Form data required by ACF for validation to work.
+      acf_form_data(array( 
+        'screen'  => 'acf_form',
+        'post_id' => false,
+        'form'    => false,
+      ));
+
+      // Hidden fields to identify form
+      echo '<div class="acf-hidden">';
+
         $nonce = wp_create_nonce( 'acf_nonce' );
         echo sprintf( '<input type="hidden" name="_acfnonce" value="%s">', $nonce );
         echo sprintf( '<input type="hidden" name="nonce" value="%s">', $nonce );
-      echo '</div>';
-      
-      
-      // Hidden fields to identify form
-      echo '<div class="acf-hidden">';
       
         echo sprintf( '<input type="hidden" name="af_form" value="%s">', $form['key'] );
         echo sprintf( '<input type="hidden" name="af_form_args" value="%s">', base64_encode( json_encode( $args ) ) );
