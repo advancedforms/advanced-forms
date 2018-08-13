@@ -112,16 +112,12 @@ class AF_Core_Emails {
 		$recipient = apply_filters( 'af/form/email/recipient/id=' . $form['post_id'], $recipient, $email, $form, $fields );
 		$recipient = apply_filters( 'af/form/email/recipient/key=' . $form['key'], $recipient, $email, $form, $fields );
 		
-		$recipient = af_resolve_field_includes( $recipient, $fields );
-		
 		
 		// Subject line
 		$subject = $email['subject'];
 		$subject = apply_filters( 'af/form/email/subject', $subject, $email, $form, $fields );
 		$subject = apply_filters( 'af/form/email/subject/id=' . $form['post_id'], $subject, $email, $form, $fields );
 		$subject = apply_filters( 'af/form/email/subject/key=' . $form['key'], $subject, $email, $form, $fields );
-		
-		$subject = af_resolve_field_includes( $subject, $fields );
 		
 		
 		// Email contents
@@ -180,8 +176,17 @@ class AF_Core_Emails {
 		do_action( 'af/email/before_send/id=' . $form['post_id'], $email, $form );
 		do_action( 'af/email/before_send/key=' . $form['key'], $email, $form );
 		
-		// Send email using wp_mail
-		wp_mail( $recipient, $subject, $html, $headers, $attachments );
+		// Arrayify recipients
+		if ( is_array( $recipient ) ) {
+			$recipients = array_unique( $recipient );
+		} else {
+			$recipients = array( af_resolve_field_includes( $recipient, $fields ) );
+		}
+
+		// Send separate emails to all recipients
+		foreach ( $recipients as $recipient ) {
+			wp_mail( $recipient, $subject, $html, $headers, $attachments );
+		}
 		
 		do_action( 'af/email/after_send', $email, $form );
 		do_action( 'af/email/after_send/id=' . $form['post_id'], $email, $form );
