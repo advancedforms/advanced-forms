@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.9.4
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,17 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.5.3 =
+
+* Changed to a redirect after submission to avoid duplicate submissions.
+* Added support for sending separate emails to multiple recipients.
+* Fixed compatibility issue with ACF 5.7 where select2 fields wouldn't validate.
+* Fixed issue where view counter might be incremented twice.
+
+*Pro*
+
+* Fixed issue where password and role could be overwritten when editing users.
 
 = 1.5.2 =
 
