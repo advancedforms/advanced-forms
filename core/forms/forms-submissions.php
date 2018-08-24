@@ -70,6 +70,8 @@ class AF_Core_Forms_Submissions {
       
       // Redirect to different URL if redirect argument has been passed
       if ( $args['redirect'] && '' != $args['redirect'] ) {
+
+        af_save_session_submission( AF()->submission );
         
         wp_redirect( $args['redirect'] );
         
@@ -115,6 +117,15 @@ class AF_Core_Forms_Submissions {
    *
    */
   function load_submission_data() {
+
+    // Check if there is a session-passed submission
+    if ( $submission = af_get_session_submission() ) {
+      af_clear_session_submission();
+      AF()->submission = $submission;
+
+      // Return false to stop the submission for being processed again
+      return false;
+    }
 
     // Make sure a form was posted
     if ( ! ( isset( $_POST['af_form'] ) ) ) {

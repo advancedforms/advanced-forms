@@ -2,18 +2,6 @@
 	
 
 /**
- * Returns true if a successful submission was performed
- *
- * @since 1.1
- */
-function af_has_submission() {
-	
-	return ! is_null( AF()->submission );
-	
-}
-
-
-/**
  * Searches input for tags {field:FIELD_NAME} and replaces with field values.
  * Also replaces general tags such as {all_fields}.
  *

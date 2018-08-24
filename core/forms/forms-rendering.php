@@ -96,7 +96,7 @@ class AF_Core_Forms_Rendering {
       'id'            => $form['key'],
       'values'          => array(),
       'submit_text'         => __( 'Submit', 'advanced-forms' ),
-      'redirect'          => false,
+      'redirect'          => acf_get_current_url(),
       'target'          => acf_get_current_url(),
       'echo'            => true,
       'exclude_fields'      => array(),
