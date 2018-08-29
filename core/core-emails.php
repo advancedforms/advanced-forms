@@ -118,6 +118,8 @@ class AF_Core_Emails {
 		$subject = apply_filters( 'af/form/email/subject', $subject, $email, $form, $fields );
 		$subject = apply_filters( 'af/form/email/subject/id=' . $form['post_id'], $subject, $email, $form, $fields );
 		$subject = apply_filters( 'af/form/email/subject/key=' . $form['key'], $subject, $email, $form, $fields );
+
+		$subject = af_resolve_field_includes( $subject, $fields );
 		
 		
 		// Email contents
