@@ -159,10 +159,17 @@ class AF_Core_Forms_Rendering {
     
     // Display success message, restriction message, or fields
     if ( af_has_submission() && ! $args['filter_mode'] ) {
+
+      $success_message = $form['display']['success_message'];
+      $success_message = apply_filters( 'af/form/success_message', $success_message, $form, $args );
+      $success_message = apply_filters( 'af/form/success_message/id=' . $form['post_id'], $success_message, $form, $args );
+      $success_message = apply_filters( 'af/form/success_message/key=' . $form['key'], $success_message, $form, $args );
+
+      $success_message = af_resolve_field_includes( $success_message );
       
       echo '<div class="af-success">';
       
-        echo af_resolve_field_includes( $form['display']['success_message'] );
+        echo $success_message;
       
       echo '</div>';
       
