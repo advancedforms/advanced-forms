@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.9.4
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,14 @@ Advanced Forms lets you build flexible forms using the power of Advanced Custom 
 * Either use the provided hooks to process form submissions as you wish or let the plugin automatically save them as entries
 * Optionally set up emails to be sent automatically with form submissions
 * Set a maximum number of entries created, limit a form to only logged in users, or schedule a form to only display during certain times. Custom restrictions can be applied by hooking in to a simple filter.
+
+= Advanced Forms Pro =
+
+* Create/edit posts and users with ease
+* Integrate with Slack, Mailchimp, and Zapier
+* Get direct, priority support
+
+Available from [hookturn.io](https://hookturn.io/downloads/advanced-forms)
 
 = Developers =
 
@@ -48,6 +56,11 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.5.4 =
+
+* Added `af/form/success_message` filter for success messages.
+* Fixed issue where field includes wouldn't work in email subject lines.
 
 = 1.5.3 =
 
