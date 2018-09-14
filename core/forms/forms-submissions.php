@@ -33,17 +33,6 @@ class AF_Core_Forms_Submissions {
       return;
     }
 
-    /**
-     * Upload all files in $_FILES using ACFs helper function. Required for basic uploads to work painlessly.
-     * TODO: Move to af_save_field() to avoid saving all files?
-     *
-     * @since 1.3.1
-     *
-     */
-    if ( isset( $_FILES['acf'] ) ) {
-      acf_upload_files();
-    }
-
     // Try loading submission data
     if ( ! $this->load_submission_data() ) {
       return;
@@ -123,7 +112,7 @@ class AF_Core_Forms_Submissions {
       af_clear_session_submission();
       AF()->submission = $submission;
 
-      // Return false to stop the submission for being processed again
+      // Return false to stop the submission from being processed again
       return false;
     }
 
@@ -135,6 +124,18 @@ class AF_Core_Forms_Submissions {
     // Bail early if already loaded
     if ( AF()->submission ) {
       return true;
+    }
+
+
+    /**
+     * Upload all files in $_FILES using ACFs helper function. Required for basic uploads to work painlessly.
+     * TODO: Move to af_save_field() to avoid saving all files?
+     *
+     * @since 1.3.1
+     *
+     */
+    if ( isset( $_FILES['acf'] ) ) {
+      acf_upload_files();
     }
 
 
