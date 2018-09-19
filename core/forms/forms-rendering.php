@@ -102,6 +102,7 @@ class AF_Core_Forms_Rendering {
       'exclude_fields'      => array(),
       'uploader'          => 'wp',
       'filter_mode'       => false,
+      'label_placement' => 'top',
     ));
     
     
@@ -198,7 +199,7 @@ class AF_Core_Forms_Rendering {
       $field_groups = af_get_form_field_groups( $form['key'] );
       
       
-      echo '<div class="af-fields acf-fields acf-form-fields">';
+      echo sprintf( '<div class="af-fields acf-fields acf-form-fields -%s">', $args['label_placement'] );
       
       
       do_action( 'af/form/before_fields', $form, $args );
