@@ -11,7 +11,7 @@ class AF_Core_Entries {
 	
 	function __construct() {
 		
-		add_action( 'af/form/submission', array( $this, 'create_entry' ), 10, 1 );
+		add_action( 'af/form/submission', array( $this, 'create_entry' ), 1, 1 );
 		add_action( 'save_post', array( $this, 'entry_saved' ), 10, 3 );
 		
 	}
