@@ -294,6 +294,20 @@ function _af_field_inserter_button( $form, $type = 'all', $floating = false ) {
 		echo sprintf( '<div class="field-option" data-insert-value="{field:%s}">', $field['name'] );
 		echo sprintf( '<span class="field-name">%s</span><span class="field-type">%s</span>', $field['label'], acf_get_field_type_label( $field['type'] ) );
 		echo '</div>';
+
+		// Append options for sub fields if they exist (and we are dealing with a group or clone field)
+		$parent_field_types = array( 'group', 'clone' );
+		if ( in_array( $field['type'], $parent_field_types ) && isset( $field['sub_fields'] ) ) {
+
+			foreach ( $field['sub_fields'] as $sub_field ) {
+
+				echo sprintf( '<div class="field-option sub-field" data-insert-value="{field:%s[%s]}">', $field['name'], $sub_field['name'] );
+				echo sprintf( '<span class="field-name">%s</span><span class="field-type">%s</span>', $sub_field['label'], acf_get_field_type_label( $sub_field['type'] ) );
+				echo '</div>';
+
+			}
+
+		}
 		
 	}
 	
