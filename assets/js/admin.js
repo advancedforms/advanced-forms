@@ -45,6 +45,14 @@
 	
 	
 	$(document).ready(function() {
+
+		/**
+		 * Add has-field-inserter class to all fields which has a floating inserter button
+		 */
+		$( '.af-field-dropdown.floating' )
+			.parents( '.acf-input' )
+			.find( 'input' )
+			.addClass( 'has-field-inserter' );
 		
 		/**
 		 * Handles the field insert drop downs, supports both regular text fields and WYSIWYG fields

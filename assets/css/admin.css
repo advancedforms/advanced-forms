@@ -73,6 +73,11 @@
 	margin: 0;
 }
 
+/* Add padding to inputs to ensure floating button doesn't overlap */
+.acf-field input.has-field-inserter {
+	padding-right: 90px;
+}
+
 .af-field-dropdown .af-dropdown {
 	display: none;
 	position: absolute;
@@ -107,6 +112,10 @@
 	padding: 8px 10px;
 	border-bottom: 1px solid #ccc;
 	font-weight: 500;
+}
+
+.af-field-dropdown .af-dropdown .field-option.sub-field {
+	border-left: 3px solid #ccc;
 }
 
 .af-field-dropdown .af-dropdown .field-option:last-child {
