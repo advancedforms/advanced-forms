@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 4.9.4
-Stable tag: 1.5.4
+Stable tag: 1.5.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,20 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.5.5 =
+
+* Added support for label_placement argument.
+* Added support for sub fields in field inserter.
+* Fixed compatibility issue with ACF 5.7.5 where paged forms would get stuck.
+* Fixed issue where entry ID couldn't be included in emails.
+* Fixed issue where field insert button would overlap input.
+* Fixed issue where file uploads with the basic uploader would fail.
+
+*Pro*
+
+* Fixed issue where custom username fields wouldn't work.
+* Fixed issue where username was changed during user edit.
 
 = 1.5.4 =
 
