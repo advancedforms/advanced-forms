@@ -198,6 +198,7 @@ var af;
         acf.validation.fetch({
           form: form.$el,
           lock: false,
+          reset: true,
           success: function() {
             callback();
           },
