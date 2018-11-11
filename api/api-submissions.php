@@ -48,3 +48,20 @@ function af_clear_session_submission() {
   	unset( $_SESSION['af_submission'] );
   }
 }
+
+
+/**
+ * Adds an error for a specific field.
+ * Used as an alternative for acf_add_validation_error with support for field names/keys.
+ *
+ * @since 1.5.0
+ *
+ */
+function af_add_error( $field_key_or_name, $message ) {
+  $field = af_get_field_object( $field_key_or_name );
+
+  if ( $field ) {
+    $input_name = sprintf( '%s[%s]', $field['prefix'], $field['key'] );
+    acf_add_validation_error( $input_name, $message );
+  }
+}
