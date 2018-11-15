@@ -233,46 +233,14 @@ class AF_Core_Forms_Rendering {
       
       
       foreach ( $field_groups as $field_group ) {
-        
-        // Get all fields for field group
-        $fields = acf_get_fields( $field_group );
-        
-        foreach ( $fields as $field ) {
-          
-          // Skip field if it is in the exluded fields argument
-          if ( isset( $args['exclude_fields'] ) && is_array( $args['exclude_fields'] ) ) {
-            
-            if ( in_array( $field['key'], $args['exclude_fields'] ) || in_array( $field['name'], $args['exclude_fields'] ) ) {
-              continue;
-            }
-            
-          }
-          
-          $this->render_field( $field, $form, $args );
-          
-        }
-        
+        $this->render_field_group( $field_group, $form, $args );
       }
-      
-      
-      // Submit button and loading indicator
-      $button_attributes = array();
-
-      $button_attributes['class'] = 'acf-button af-submit-button';
-
-      $button_attributes = apply_filters( 'af/form/button_attributes', $button_attributes, $form, $args );
-      $button_attributes = apply_filters( 'af/form/button_attributes/id=' . $form['post_id'], $button_attributes, $form, $args );
-      $button_attributes = apply_filters( 'af/form/button_attributes/key=' . $form['key'], $button_attributes, $form, $args );
-
-      echo '<div class="af-submit acf-form-submit">';
-        echo sprintf( '<button type="submit" %s>%s</button>', acf_esc_atts( $button_attributes ), $args['submit_text'] );
-        echo '<span class="acf-spinner af-spinner"></span>';
-      echo '</div>';
-      
       
       do_action( 'af/form/after_fields', $form, $args );
       do_action( 'af/form/after_fields/id=' . $form['post_id'], $form, $args );
       do_action( 'af/form/after_fields/key=' . $form['key'], $form, $args );
+
+      $this->render_submit_button( $form, $args );
       
       // End fields wrapper
       echo '</div>';
@@ -282,6 +250,27 @@ class AF_Core_Forms_Rendering {
     // End form
     echo '</form>';
     
+  }
+
+
+  function render_field_group( $field_group, $form, $args ) {
+    // Get all fields for field group
+    $fields = acf_get_fields( $field_group );
+    
+    foreach ( $fields as $field ) {
+      
+      // Skip field if it is in the exluded fields argument
+      if ( isset( $args['exclude_fields'] ) && is_array( $args['exclude_fields'] ) ) {
+        
+        if ( in_array( $field['key'], $args['exclude_fields'] ) || in_array( $field['name'], $args['exclude_fields'] ) ) {
+          continue;
+        }
+        
+      }
+      
+      $this->render_field( $field, $form, $args );
+      
+    }
   }
 
 
@@ -420,6 +409,23 @@ class AF_Core_Forms_Rendering {
     // End field wrapper
     echo '</div>';
 
+  }
+
+
+  function render_submit_button( $form, $args ) {
+    // Submit button and loading indicator
+    $button_attributes = array();
+
+    $button_attributes['class'] = 'acf-button af-submit-button';
+
+    $button_attributes = apply_filters( 'af/form/button_attributes', $button_attributes, $form, $args );
+    $button_attributes = apply_filters( 'af/form/button_attributes/id=' . $form['post_id'], $button_attributes, $form, $args );
+    $button_attributes = apply_filters( 'af/form/button_attributes/key=' . $form['key'], $button_attributes, $form, $args );
+
+    echo '<div class="af-submit acf-form-submit">';
+      echo sprintf( '<button type="submit" %s>%s</button>', acf_esc_atts( $button_attributes ), $args['submit_text'] );
+      echo '<span class="acf-spinner af-spinner"></span>';
+    echo '</div>';
   }
   
   
