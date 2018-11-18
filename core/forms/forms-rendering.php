@@ -384,6 +384,10 @@ class AF_Core_Forms_Rendering {
     
     
     echo '<div class="af-input acf-input">';
+
+      $field = apply_filters( 'af/field/before_render', $field, $form, $args );
+      $field = apply_filters( 'af/field/before_render/id=' . $form['post_id'], $field, $form, $args );
+      $field = apply_filters( 'af/field/before_render/key=' . $form['key'], $field, $form, $args );
     
       // Render field with default ACF
       acf_render_field( $field );
