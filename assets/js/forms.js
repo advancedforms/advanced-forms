@@ -16,6 +16,8 @@ var af;
       }
 
       this.pages.initialize( form );
+
+      acf.doAction( 'af/form/setup', form );
     },
 
   };
