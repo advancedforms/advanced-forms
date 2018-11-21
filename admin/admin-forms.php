@@ -312,7 +312,7 @@ class AF_Admin_Forms {
 	 */
 	function add_actions( $post ) {
 
-		if ( is_null( $post ) || 'af_form' != $post->post_type ) {
+		if ( empty( $post ) || 'af_form' != $post->post_type ) {
       return;
     }
 
