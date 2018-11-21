@@ -253,8 +253,10 @@ var af;
   };
 
   // Set up all forms on page
-  $( '.af-form' ).each(function() {
-    af.setup_form( $(this) );
+  $(document).ready(function() {
+    $( '.af-form' ).each(function() {
+      af.setup_form( $(this) );
+    });
   });
 
 })(jQuery);
