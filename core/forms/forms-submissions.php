@@ -138,7 +138,29 @@ class AF_Core_Forms_Submissions {
       acf_upload_files();
     }
 
+    // Generate submission from data
+    $submission = $this->create_submission();
+    if ( ! $submission ) {
+      return false;
+    }
 
+    // Save submission data to the global AF object
+    AF()->submission = $submission;
+
+
+    return true;
+
+  }
+
+
+  /**
+   * Create a submission object from the request data.
+   * Returns a submission array or false on failure.
+   *
+   * @since 1.6.0
+   *
+   */
+  function create_submission() {
     // Load form by key
     $form_key_or_id = $_POST['af_form'];
       
@@ -170,16 +192,11 @@ class AF_Core_Forms_Submissions {
       
     }
 
-    // Save submission data to the global AF object
-    AF()->submission = array(
+    return array(
       'form' => $form,
       'args' => $args,
       'fields' => $fields,
     );
-
-
-    return true;
-
   }
   
 }
