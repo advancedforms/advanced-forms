@@ -170,7 +170,7 @@ class AF {
 
 		wp_enqueue_script( 'jquery' );
 
-		wp_enqueue_script( 'af-admin-script', $this->url .  'assets/js/admin.js', array( 'jquery' ) );
+		wp_enqueue_script( 'af-admin-script', $this->url .  'assets/dist/js/admin.js', array( 'jquery' ) );
 
 	}
 
@@ -183,7 +183,7 @@ class AF {
 	 */
 	function enqueue_admin_styles() {
 
-		wp_enqueue_style( 'af-admin-style', $this->url .  'assets/css/admin.css' );
+		wp_enqueue_style( 'af-admin-style', $this->url .  'assets/dist/css/admin.css' );
 
 	}
 

@@ -74,7 +74,7 @@ class AF_Core_Forms_Rendering {
      *
      */
     acf_enqueue_scripts();
-    wp_enqueue_script( 'af-forms-script', AF()->url . 'assets/js/forms.js', array( 'jquery', 'acf-input' ), AF()->version, true );
+    wp_enqueue_script( 'af-forms-script', AF()->url . 'assets/dist/js/forms.js', array( 'jquery', 'acf-input' ), AF()->version, true );
     
     // Check if ACF version is < 5.7
     if ( acf_version_compare( acf()->version, '<', '5.7' ) ) {
