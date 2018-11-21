@@ -56,7 +56,7 @@ function af_resolve_field_includes( $input, $fields = false ) {
 		
 		foreach ( $matches[1] as $i => $field_name ) {
 			
-			$field = af_get_field_object( $field_name );
+			$field = af_get_field_object( $field_name, $fields );
 
 			$sub_field_name = $matches[2][ $i ];
 
@@ -87,7 +87,7 @@ function af_resolve_field_includes( $input, $fields = false ) {
 		
 		foreach ($matches[1] as $i => $field_name ) {
 			
-			$field = af_get_field_object( $field_name );
+			$field = af_get_field_object( $field_name, $fields );
 			
 			$rendered_value = _af_render_field_include( $field );
 			
