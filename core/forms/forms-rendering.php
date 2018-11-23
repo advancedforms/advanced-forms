@@ -110,6 +110,10 @@ class AF_Core_Forms_Rendering {
     $args = apply_filters( 'af/form/args', $args, $form );
     $args = apply_filters( 'af/form/args/id=' . $form['post_id'], $args, $form );
     $args = apply_filters( 'af/form/args/key=' . $form['key'], $args, $form );
+
+
+    // Set ACF uploader type setting
+    acf_update_setting( 'uploader', $args['uploader'] );
     
     
     // Form element
@@ -199,6 +203,12 @@ class AF_Core_Forms_Rendering {
   }
 
 
+  /**
+   * Renders a field wrapper with all fields and a submit button.
+   *
+   * @since 1.6.0
+   *
+   */
   function render_fields( $form, $args ) {
     // Increase the form view counter
     if ( $form['post_id'] && ! $args['filter_mode'] ) {
@@ -206,9 +216,6 @@ class AF_Core_Forms_Rendering {
       $views = $views ? $views + 1 : 1;
       update_post_meta( $form['post_id'], 'form_num_of_views', $views );
     }
-    
-    // Set ACF uploader type setting
-    acf_update_setting( 'uploader', $args['uploader'] );
     
     
     // Get field groups for the form and display their fields
@@ -263,6 +270,12 @@ class AF_Core_Forms_Rendering {
   }
 
 
+  /**
+   * Renders a full field group with all fields that are not excluded.
+   *
+   * @since 1.6.0
+   *
+   */
   function render_field_group( $field_group, $form, $args ) {
     // Get all fields for field group
     $fields = acf_get_fields( $field_group );
