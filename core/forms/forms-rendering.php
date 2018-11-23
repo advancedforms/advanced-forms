@@ -132,22 +132,6 @@ class AF_Core_Forms_Rendering {
     do_action( 'af/form/before_title/key=' . $form['key'], $form, $args );
     
     
-    // Display title
-    if ( $args['display_title'] ) {
-      
-      echo sprintf( '<h1 class="af-title">%s</h1>', $form['title'] );
-      
-    }
-    
-    
-    // Display description
-    if ( $args['display_description'] ) {
-      
-      echo sprintf( '<div class="af-description">%s</div>', $form['display']['description'] );
-      
-    }
-    
-    
     /**
      * Check if form should be restricted and not displayed.
      * Filter will return false if no restriction is applied otherwise it will return a string to display.
@@ -156,100 +140,126 @@ class AF_Core_Forms_Rendering {
     $restriction = apply_filters( 'af/form/restriction', $restriction, $form, $args );
     $restriction = apply_filters( 'af/form/restriction/id=' . $form['post_id'], $restriction, $form, $args );
     $restriction = apply_filters( 'af/form/restriction/key=' . $form['key'], $restriction, $form, $args );
-    
-    
+
+
     // Display success message, restriction message, or fields
     if ( af_has_submission() && ! $args['filter_mode'] ) {
 
-      $success_message = $form['display']['success_message'];
-      $success_message = apply_filters( 'af/form/success_message', $success_message, $form, $args );
-      $success_message = apply_filters( 'af/form/success_message/id=' . $form['post_id'], $success_message, $form, $args );
-      $success_message = apply_filters( 'af/form/success_message/key=' . $form['key'], $success_message, $form, $args );
+      $this->render_success_message( $form, $args );
 
-      $success_message = af_resolve_field_includes( $success_message );
-      
-      echo '<div class="af-success">';
-      
-        echo $success_message;
-      
-      echo '</div>';
-      
     } elseif ( $restriction ) {
     
-      echo '<div class="af-restricted-message">';
-      
-        echo $restriction;
-      
-      echo '</div>';
+      $this->render_restriction_message( $restriction );
     
     } else {
 
-      // Increase the form view counter
-      if ( $form['post_id'] ) {
-        $views = get_post_meta( $form['post_id'], 'form_num_of_views', true );
-        $views = $views ? $views + 1 : 1;
-        update_post_meta( $form['post_id'], 'form_num_of_views', $views );
-      }
-      
-      // Set ACF uploader type setting
-      acf_update_setting( 'uploader', $args['uploader'] );
-      
-      
-      // Get field groups for the form and display their fields
-      $field_groups = af_get_form_field_groups( $form['key'] );
-      
-      
-      echo sprintf( '<div class="af-fields acf-fields acf-form-fields -%s">', $args['label_placement'] );
-      
-      
-      do_action( 'af/form/before_fields', $form, $args );
-      do_action( 'af/form/before_fields/id=' . $form['post_id'], $form, $args );
-      do_action( 'af/form/before_fields/key=' . $form['key'], $form, $args );
-      
+      $this->render_fields( $form, $args );
 
-      // Form data required by ACF for validation to work.
-      acf_form_data(array( 
-        'screen'  => 'acf_form',
-        'post_id' => false,
-        'form'    => false,
-      ));
-
-      // Hidden fields to identify form
-      echo '<div class="acf-hidden">';
-
-        $nonce = wp_create_nonce( 'acf_nonce' );
-        echo sprintf( '<input type="hidden" name="_acfnonce" value="%s">', $nonce );
-        echo sprintf( '<input type="hidden" name="nonce" value="%s">', $nonce );
-      
-        echo sprintf( '<input type="hidden" name="af_form" value="%s">', $form['key'] );
-        echo sprintf( '<input type="hidden" name="af_form_args" value="%s">', base64_encode( json_encode( $args ) ) );
-        echo sprintf( '<input type="hidden" name="_acf_form" value="%s">', base64_encode( json_encode( $args ) ) );
-        
-        do_action( 'af/form/hidden_fields', $form, $args );
-        do_action( 'af/form/hidden_fields/id=' . $form['post_id'], $form, $args );
-        do_action( 'af/form/hidden_fields/key=' . $form['key'], $form, $args );
-        
-      echo '</div>';
-      
-      
-      foreach ( $field_groups as $field_group ) {
-        $this->render_field_group( $field_group, $form, $args );
-      }
-      
-      do_action( 'af/form/after_fields', $form, $args );
-      do_action( 'af/form/after_fields/id=' . $form['post_id'], $form, $args );
-      do_action( 'af/form/after_fields/key=' . $form['key'], $form, $args );
-
-      $this->render_submit_button( $form, $args );
-      
-      // End fields wrapper
-      echo '</div>';
-    
     }
     
     // End form
     echo '</form>';
     
+  }
+
+
+  function render_title_and_description( $form, $args ) {
+    // Display title
+    if ( $args['display_title'] ) {
+      echo sprintf( '<h1 class="af-title">%s</h1>', $form['title'] );
+    }
+    
+    // Display description
+    if ( $args['display_description'] ) {
+      echo sprintf( '<div class="af-description">%s</div>', $form['display']['description'] );
+    }
+  }
+
+
+  function render_restriction_message( $message ) {
+    echo '<div class="af-restricted-message">';
+      echo $restriction;
+    echo '</div>';
+  }
+
+
+  function render_success_message( $form, $args ) {
+    $success_message = $form['display']['success_message'];
+    $success_message = apply_filters( 'af/form/success_message', $success_message, $form, $args );
+    $success_message = apply_filters( 'af/form/success_message/id=' . $form['post_id'], $success_message, $form, $args );
+    $success_message = apply_filters( 'af/form/success_message/key=' . $form['key'], $success_message, $form, $args );
+
+    $success_message = af_resolve_field_includes( $success_message );
+    
+    echo '<div class="af-success">';
+    
+      echo $success_message;
+    
+    echo '</div>';
+  }
+
+
+  function render_fields( $form, $args ) {
+    // Increase the form view counter
+    if ( $form['post_id'] && ! $args['filter_mode'] ) {
+      $views = get_post_meta( $form['post_id'], 'form_num_of_views', true );
+      $views = $views ? $views + 1 : 1;
+      update_post_meta( $form['post_id'], 'form_num_of_views', $views );
+    }
+    
+    // Set ACF uploader type setting
+    acf_update_setting( 'uploader', $args['uploader'] );
+    
+    
+    // Get field groups for the form and display their fields
+    $field_groups = af_get_form_field_groups( $form['key'] );
+    
+    
+    echo sprintf( '<div class="af-fields acf-fields acf-form-fields -%s">', $args['label_placement'] );
+    
+    
+    do_action( 'af/form/before_fields', $form, $args );
+    do_action( 'af/form/before_fields/id=' . $form['post_id'], $form, $args );
+    do_action( 'af/form/before_fields/key=' . $form['key'], $form, $args );
+    
+
+    // Form data required by ACF for validation to work.
+    acf_form_data(array( 
+      'screen'  => 'acf_form',
+      'post_id' => false,
+      'form'    => false,
+    ));
+
+    // Hidden fields to identify form
+    echo '<div class="acf-hidden">';
+
+      $nonce = wp_create_nonce( 'acf_nonce' );
+      echo sprintf( '<input type="hidden" name="_acfnonce" value="%s">', $nonce );
+      echo sprintf( '<input type="hidden" name="nonce" value="%s">', $nonce );
+    
+      echo sprintf( '<input type="hidden" name="af_form" value="%s">', $form['key'] );
+      echo sprintf( '<input type="hidden" name="af_form_args" value="%s">', base64_encode( json_encode( $args ) ) );
+      echo sprintf( '<input type="hidden" name="_acf_form" value="%s">', base64_encode( json_encode( $args ) ) );
+      
+      do_action( 'af/form/hidden_fields', $form, $args );
+      do_action( 'af/form/hidden_fields/id=' . $form['post_id'], $form, $args );
+      do_action( 'af/form/hidden_fields/key=' . $form['key'], $form, $args );
+      
+    echo '</div>';
+    
+    
+    foreach ( $field_groups as $field_group ) {
+      $this->render_field_group( $field_group, $form, $args );
+    }
+    
+    do_action( 'af/form/after_fields', $form, $args );
+    do_action( 'af/form/after_fields/id=' . $form['post_id'], $form, $args );
+    do_action( 'af/form/after_fields/key=' . $form['key'], $form, $args );
+
+    $this->render_submit_button( $form, $args );
+    
+    // End fields wrapper
+    echo '</div>';
   }
 
 
