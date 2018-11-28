@@ -218,7 +218,7 @@ class AF_Admin_Entries {
 			
 			$form = af_get_form( $post->ID );
 			
-			$field['instructions'] .= sprintf( '<a href="%s">%s</a>', admin_url() . '/edit.php?post_type=af_entry&entry_form=' . $form['key'], __( 'View entries for this form', 'advanced-forms' ) );
+			$field['instructions'] .= sprintf( ' <a href="%s">%s</a>', admin_url() . '/edit.php?post_type=af_entry&entry_form=' . $form['key'], __( 'View entries for this form', 'advanced-forms' ) );
 			
 		}
 		
@@ -252,28 +252,13 @@ class AF_Admin_Entries {
 			'endpoint' => 0,
 		);
 		
-		$field_group['fields'][] = array (
-			'key' => 'field_form_entry_info',
-			'label' => __( 'Entries', 'advanced-forms' ),
-			'name' => 'form_entry_info',
-			'type' => 'message',
-			'instructions' => __( 'When entries are enabled they will be automatically generated with form submissions. All form data will be saved to the generated entry.', 'advanced-forms' ),
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array (
-				'width' => '0',
-				'class' => '',
-				'id' => '',
-			),
-		);
-		
 		
 		$field_group['fields'][] = array(
 			'key' => 'field_form_create_entries',
 			'label' => __( 'Create entries?', 'advanced-forms' ),
 			'name' => 'form_create_entries',
 			'type' => 'true_false',
-			'instructions' => '',
+			'instructions' => __( 'When entries are enabled they will be automatically generated with form submissions, with all the submitted field data.', 'advanced-forms' ),
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array (
