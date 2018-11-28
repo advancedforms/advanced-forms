@@ -51,11 +51,19 @@ class AF_Core_Forms_Submissions {
         $submissions = $submissions ? $submissions + 1 : 1;
         update_post_meta( $form['post_id'], 'form_num_of_submissions', $submissions );
       }
+
+      do_action( 'af/form/before_submission', $form, $fields, $args );
+      do_action( 'af/form/before_submission/id=' . $form['post_id'], $form, $fields, $args );
+      do_action( 'af/form/before_submission/key=' . $form['key'], $form, $fields, $args );
       
-      do_action( 'af/form/submission', $form, $fields, $args );
-      do_action( 'af/form/submission/id=' . $form['post_id'], $form, $fields, $args );
-      do_action( 'af/form/submission/key=' . $form['key'], $form, $fields, $args );
-      
+      if ( ! af_submission_failed() ) {
+
+        do_action( 'af/form/submission', $form, $fields, $args );
+        do_action( 'af/form/submission/id=' . $form['post_id'], $form, $fields, $args );
+        do_action( 'af/form/submission/key=' . $form['key'], $form, $fields, $args );
+
+      }
+
       
       // Redirect to different URL if redirect argument has been passed
       if ( $args['redirect'] && '' != $args['redirect'] ) {
@@ -196,6 +204,7 @@ class AF_Core_Forms_Submissions {
       'form' => $form,
       'args' => $args,
       'fields' => $fields,
+      'errors' => array(),
     );
   }
   

@@ -50,6 +50,24 @@ function af_clear_session_submission() {
 }
 
 
+function af_submission_failed() {
+  if ( isset( AF()->submission['errors'] ) && ! empty( AF()->submission['errors'] ) ) {
+    return true;
+  }
+
+  return false;
+}
+
+
+/**
+ * Adds a general error for a form submission.
+ * Used during the before_submission hook to stop submission.
+ */
+function af_add_submission_error( $message ) {
+  AF()->submission['errors'][] = $message;
+}
+
+
 /**
  * Adds an error for a specific field.
  * Used as an alternative for acf_add_validation_error with support for field names/keys.

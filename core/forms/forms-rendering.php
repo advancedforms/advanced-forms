@@ -134,6 +134,11 @@ class AF_Core_Forms_Rendering {
     do_action( 'af/form/before_title', $form, $args );
     do_action( 'af/form/before_title/id=' . $form['post_id'], $form, $args );
     do_action( 'af/form/before_title/key=' . $form['key'], $form, $args );
+
+    // Render submission error message if one exists
+    $this->render_submission_error( $form, $args );
+
+    $this->render_title_and_description( $form, $args );
     
     
     /**
@@ -147,7 +152,7 @@ class AF_Core_Forms_Rendering {
 
 
     // Display success message, restriction message, or fields
-    if ( af_has_submission() && ! $args['filter_mode'] ) {
+    if ( af_has_submission() && ! af_submission_failed() && ! $args['filter_mode'] ) {
 
       $this->render_success_message( $form, $args );
 
@@ -164,6 +169,19 @@ class AF_Core_Forms_Rendering {
     // End form
     echo '</form>';
     
+  }
+
+
+  function render_submission_error( $form, $args ) {
+    if ( af_submission_failed() ) {
+      $errors = AF()->submission['errors'];
+
+      foreach ( $errors as $error ) {
+        echo '<div class="acf-notice -error -acf-error-message-dismiss">';
+        echo sprintf( '<p>%s</p>', $error );
+        echo '</div>';
+      }
+    }
   }
 
 
@@ -327,9 +345,11 @@ class AF_Core_Forms_Rendering {
     
     // Include any previously submitted value
     if ( isset( $_POST['acf'][ $field['key'] ] ) ) {
-    
       $field['value'] = $_POST['acf'][ $field['key'] ];
-    
+    }
+
+    if ( af_has_submission() && ( $args['filter_mode'] || af_submission_failed() ) ) {
+      $field['value'] = af_get_field( $field['name'] );
     }
     
     
