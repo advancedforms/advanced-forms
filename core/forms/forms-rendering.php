@@ -138,6 +138,7 @@ class AF_Core_Forms_Rendering {
     // Render submission error message if one exists
     $this->render_submission_error( $form, $args );
 
+    // Render title and description if they should be visible
     $this->render_title_and_description( $form, $args );
     
     
@@ -172,6 +173,12 @@ class AF_Core_Forms_Rendering {
   }
 
 
+  /**
+   * Renders all submission errors if any exist.
+   *
+   * @since 1.6.0
+   *
+   */
   function render_submission_error( $form, $args ) {
     if ( af_submission_failed() ) {
       $errors = AF()->submission['errors'];
@@ -185,6 +192,12 @@ class AF_Core_Forms_Rendering {
   }
 
 
+  /**
+   * Renders title and description of form if they should be shown.
+   *
+   * @since 1.6.0
+   *
+   */
   function render_title_and_description( $form, $args ) {
     // Display title
     if ( $args['display_title'] ) {
@@ -198,6 +211,12 @@ class AF_Core_Forms_Rendering {
   }
 
 
+  /**
+   * Renders the restriction message for a form.
+   *
+   * @since 1.6.0
+   *
+   */
   function render_restriction_message( $message ) {
     echo '<div class="af-restricted-message">';
       echo $restriction;
@@ -205,6 +224,12 @@ class AF_Core_Forms_Rendering {
   }
 
 
+  /**
+   * Renders the success message for a form.
+   *
+   * @since 1.6.0
+   *
+   */
   function render_success_message( $form, $args ) {
     $success_message = $form['display']['success_message'];
     $success_message = apply_filters( 'af/form/success_message', $success_message, $form, $args );
