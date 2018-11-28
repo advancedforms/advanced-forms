@@ -239,7 +239,7 @@ class AF_Admin_Emails {
 					'label' => __( 'From', 'advanced-forms' ),
 					'name' => 'from',
 					'type' => 'text',
-					'instructions' => '',
+					'instructions' => 'Must be either an email address or on the form "Name &#x3C;Email address&#x3E;".',
 					'required' => 0,
 					'conditional_logic' => 0,
 					'wrapper' => array (
