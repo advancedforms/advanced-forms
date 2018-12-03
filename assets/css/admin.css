@@ -109,9 +109,11 @@
 }
 
 .af-field-dropdown .af-dropdown .field-option {
-	padding: 8px 10px;
+	padding: 10px;
 	border-bottom: 1px solid #ccc;
 	font-weight: 500;
+	line-height: 1;
+	overflow: auto;
 }
 
 .af-field-dropdown .af-dropdown .field-option.sub-field {
@@ -128,16 +130,14 @@
 
 .af-field-dropdown .af-dropdown .field-option .field-name {
 	display: block;
-	line-height: 1;	
+	float: left;
 }
 
 .af-field-dropdown .af-dropdown .field-option .field-type {
 	display: block;
 	color: #888;
-	margin-top: 3px;
-	font-size: 12px;
+	float: right;
 	font-weight: 400;
-	line-height: 1;
 }
 
 
