@@ -236,7 +236,7 @@ class AF_Core_Forms_Rendering {
     $success_message = apply_filters( 'af/form/success_message/id=' . $form['post_id'], $success_message, $form, $args );
     $success_message = apply_filters( 'af/form/success_message/key=' . $form['key'], $success_message, $form, $args );
 
-    $success_message = af_resolve_field_includes( $success_message );
+    $success_message = af_resolve_merge_tags( $success_message );
     
     echo '<div class="af-success">';
     

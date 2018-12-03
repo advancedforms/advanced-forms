@@ -10,10 +10,11 @@
 class AF_Core_Entries {
 	
 	function __construct() {
-		
 		add_action( 'af/form/submission', array( $this, 'create_entry' ), 1, 1 );
 		add_action( 'save_post', array( $this, 'entry_saved' ), 10, 3 );
-		
+
+		add_action( 'af/merge_tags/custom', array( $this, 'add_entry_id_tag' ), 10, 2 );
+		add_action( 'af/merge_tags/resolve', array( $this, 'resolve_entry_id_tag' ), 10, 2 );
 	}
 	
 	
@@ -106,6 +107,38 @@ class AF_Core_Entries {
 			
 		}
 		
+	}
+
+
+	/**
+	 * Add custom merge tag {entry_id}
+	 *
+	 * @since 1.6.0
+	 *
+	 */
+	function add_entry_id_tag( $tags, $form ) {
+		$tags[] = array(
+			'value' => 'entry_id',
+			'label' => __( 'Entry ID', 'advanced-forms' ),
+		);
+
+		return $tags;
+	}
+
+
+	/**
+	 * Resolve merge tags on the form {entry_id}
+	 *
+	 * @since 1.6.0
+	 *
+	 */
+	function resolve_entry_id_tag( $output, $tag ) {
+		if ( ! empty( $output ) || 'entry_id' != $tag ) {
+			return $output;
+		}
+
+		$entry_id = isset( AF()->submission['entry'] ) ? AF()->submission['entry'] : '';
+		return $entry_id;
 	}
 	
 }

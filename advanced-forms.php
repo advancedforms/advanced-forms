@@ -91,6 +91,7 @@ class AF {
 		$this->classes['core_restrictions'] = include( $this->path . 'core/core-restrictions.php' );
 		$this->classes['core_emails'] = include( $this->path . 'core/core-emails.php' );
 		$this->classes['core_entries'] = include( $this->path . 'core/core-entries.php' );
+		$this->classes['core_merge_tags'] = include( $this->path . 'core/core-merge-tags.php' );
 
 		// ACF additions (fields, location rules, etc.)
 		$this->classes['acf_additions'] = include( $this->path . 'acf/acf-additions.php' );

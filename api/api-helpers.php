@@ -8,107 +8,22 @@
  * @since 1.0.1
  *
  */
-function af_resolve_field_includes( $input, $fields = false ) {
-	
+function af_resolve_merge_tags( $input, $fields = false ) {
 	// Get fields from the global submission object if fields weren't passed
 	if ( ! $fields && af_has_submission() ) {
-		
 		$fields = AF()->submission['fields'];
-		
 	}
-	
-	
-	// Render all fields as a table e.g. {all_fields}
-	if ( preg_match_all( "/{all_fields}/", $input, $matches ) ) {
-		
-		$output = '<table class="af-field-include">';
-		
-		foreach ( $fields as $field ) {
-			
-			if ( 'clone' == $field['type'] ) {
-				
-				foreach ( $field['sub_fields'] as $sub_field ) {
-					
-					$output .= sprintf( '<tr><th>%s</th></tr>', $sub_field['label'] );
-					$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $field['value'][ $sub_field['name'] ] ) );
-					
-				}
-				
-			} else {
-			
-				$output .= sprintf( '<tr><th>%s</th></tr>', $field['label'] );
-				$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $field ) );
-			
-			}
-			
+
+	// Find all merge tags
+	if ( preg_match_all( "/{(.*?)}/", $input, $matches ) ) {
+		foreach ( $matches[1] as $i=>$tag ) {
+			// Resolve each merge tag and insert the value
+			$value = apply_filters( 'af/merge_tags/resolve', '', $tag, $fields );
+			$input = str_replace( $matches[0][ $i ], $value, $input );
 		}
-		
-		$output .= '</table>';
-		
-		
-		$input = str_replace( '{all_fields}', $output, $input );
-		
-	}
-
-
-	// Render sub fields individually e.g. {field:group_field[sub_field]}
-	if ( preg_match_all( "/{field:(.*?)\[(.*?)\]}/", $input, $matches ) ) {
-		
-		foreach ( $matches[1] as $i => $field_name ) {
-			
-			$field = af_get_field_object( $field_name, $fields );
-
-			$sub_field_name = $matches[2][ $i ];
-
-
-			if ( isset( $field['sub_fields'] ) ) {
-
-				foreach ( $field['sub_fields'] as $sub_field ) {
-
-					if ( $sub_field['name'] == $sub_field_name || $sub_field['key'] == $sub_field_name ) {
-
-						$rendered_value = _af_render_field_include( $sub_field, $field['value'][ $sub_field['name'] ] );
-
-						$input = str_replace( $matches[0][$i], $rendered_value, $input );
-
-					}
-
-				}
-
-			}
-
-		}
-		
-	}
-	
-	
-	// Render single fields individually e.g. {field:field_name}
-	if ( preg_match_all( "/{field:(.*?)}/", $input, $matches ) ) {
-		
-		foreach ($matches[1] as $i => $field_name ) {
-			
-			$field = af_get_field_object( $field_name, $fields );
-			
-			$rendered_value = _af_render_field_include( $field );
-			
-			$input = str_replace( $matches[0][$i], $rendered_value, $input );
-			
-		}
-		
-	}
-
-
-	// Render entry ID e.g. {entry_id}
-	if ( preg_match_all( "/{entry_id}/", $input, $matches ) ) {
-
-		$entry_id = isset( AF()->submission['entry'] ) ? AF()->submission['entry'] : '';
-		
-		$input = str_replace( '{entry_id}', $entry_id, $input );
-		
 	}
 	
 	return $input;
-	
 }
 
 
@@ -119,11 +34,9 @@ function af_resolve_field_includes( $input, $fields = false ) {
  *
  */
 function _af_render_field_include( $field, $value = false ) {
-	
 	if ( ! $value ) {
 		$value = $field['value'];
 	}
-	
 
 	$output = '';
 	
@@ -258,7 +171,6 @@ function _af_render_field_include( $field, $value = false ) {
 	$output = apply_filters( 'af/field/render_include/key=' . $field['key'], $output, $field, $value );
 	
 	return $output;
-	
 }
 
 
@@ -269,26 +181,28 @@ function _af_render_field_include( $field, $value = false ) {
  * @since 1.1.1
  *
  */
-function _af_field_inserter_button( $form, $type = 'all', $floating = false ) {
-	
-	$fields = af_get_form_fields( $form, $type );
-	
-	
+function _af_field_inserter_button( $form, $type = 'all', $floating = false ) {	
 	$classses = ( $floating ) ? 'floating' : '';
 	
 	echo '<a class="af-field-dropdown ' . $classses . ' button">' . __( 'Insert field', 'advanced-forms' );
 		
 	echo '<div class="af-dropdown">';
 
-	echo sprintf( '<div class="field-option" data-insert-value="{entry_id}">%s</div>', __( 'Entry ID', 'advanced-forms' ) );
+	$custom_tags = apply_filters( 'af/merge_tags/custom', array(), $form );
+	foreach ( $custom_tags as $custom_tag ) {
+		echo sprintf( '<div class="field-option" data-insert-value="{%s}">%s</div>', $custom_tag['value'], $custom_tag['label'] );
+	}
+
+	if ( ! empty( $custom_tags ) ) {
 		echo '<div class="field-divider"></div>';
-	
-	if ( 'all' == $type ) {
-		
-		echo sprintf( '<div class="field-option" data-insert-value="{all_fields}">%s</div>', __( 'All fields', 'advanced-forms' ) );
-		
 	}
 	
+	if ( 'all' == $type ) {
+		echo sprintf( '<div class="field-option" data-insert-value="{all_fields}">%s</div>', __( 'All fields', 'advanced-forms' ) );
+	}
+	
+	$fields = af_get_form_fields( $form, $type );
+
 	foreach ( $fields as $field ) {
 		
 		echo sprintf( '<div class="field-option" data-insert-value="{field:%s}">', $field['name'] );

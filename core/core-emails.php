@@ -119,7 +119,7 @@ class AF_Core_Emails {
 		$subject = apply_filters( 'af/form/email/subject/id=' . $form['post_id'], $subject, $email, $form, $fields );
 		$subject = apply_filters( 'af/form/email/subject/key=' . $form['key'], $subject, $email, $form, $fields );
 
-		$subject = af_resolve_field_includes( $subject, $fields );
+		$subject = af_resolve_merge_tags( $subject, $fields );
 		
 		
 		// Email contents
@@ -128,7 +128,7 @@ class AF_Core_Emails {
 		$content = apply_filters( 'af/form/email/content/id=' . $form['post_id'], $content, $email, $form, $fields );
 		$content = apply_filters( 'af/form/email/content/key=' . $form['key'], $content, $email, $form, $fields );
 		
-		$content = af_resolve_field_includes( $content, $fields );
+		$content = af_resolve_merge_tags( $content, $fields );
 		
 		
 		// Construct email HTML
@@ -158,7 +158,7 @@ class AF_Core_Emails {
 		$headers[] = 'Content-type: text/html; charset=UTF-8';
 		
 		// From header
-		$from = af_resolve_field_includes( $email['from'], $fields );
+		$from = af_resolve_merge_tags( $email['from'], $fields );
 		$headers[] = 'From:' . $from;
 		
 		$headers = apply_filters( 'af/form/email/headers', $headers, $email, $form, $fields );
@@ -182,7 +182,7 @@ class AF_Core_Emails {
 		if ( is_array( $recipient ) ) {
 			$recipients = array_unique( $recipient );
 		} else {
-			$recipients = array( af_resolve_field_includes( $recipient, $fields ) );
+			$recipients = array( af_resolve_merge_tags( $recipient, $fields ) );
 		}
 
 		// Send separate emails to all recipients
