@@ -68,8 +68,11 @@ class AF_Form_Field_Picker extends acf_field {
 		if ( $field['allow_custom'] ) {
 			$field['choices']['custom'] = 'Custom format';
 		}
+
+		$form_key = get_post_meta( $post->ID, 'form_key', true );
+		$form = af_get_form( $form_key );
 		
-		if ( $post && $form_key = get_post_meta( $post->ID, 'form_key', true ) ) {
+		if ( $post && $form_key ) {
 			
 			$field['choices']['Fields'] = _af_form_field_choices( $form_key, $field['field_types'] );
 			
@@ -144,7 +147,7 @@ class AF_Form_Field_Picker extends acf_field {
 			
 			echo '<input ' . acf_esc_atts( $format_atts ) . '/>';
 			
-			_af_field_inserter_button( $form_key, 'all', true );
+			_af_field_inserter_button( $form, 'all', true );
 			
 			echo '</div>';
 			
