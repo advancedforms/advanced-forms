@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 5.0.0
-Stable tag: 1.5.6
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,7 @@ Advanced Forms lets you build flexible forms using the power of Advanced Custom 
 
 * Create/edit posts and users with ease
 * Integrate with Slack, Mailchimp, and Zapier
+* Use calculated fields to show live updating content
 * Get direct, priority support
 
 Available from [hookturn.io](https://hookturn.io/downloads/advanced-forms)
@@ -56,6 +57,18 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.6.0 =
+
+* Added `af/field/before_render` filter allowing fields to be modified before they are rendered.
+* Added `af/form/before_submission` action allowing code to be run before the submission is processed. Errors can be added using `af_add_submission_error( $message )`.
+
+*Pro*
+
+* Added calculated field which updates in real-time as form is filled in. Mix static content with field values or provide your own calculated value using the `af/field/calculated_value` hook. Perfect for previews, calculators, and payment flows.
+* Added option to edit current post and user by passing `current` as the post/user argument.
+* Added merge tags for post ID and permalink as well as user ID.
+* Fixed issue where some ACF hooks would have a missing `$post_id` argument whilst editing a post.
 
 = 1.5.6 =
 

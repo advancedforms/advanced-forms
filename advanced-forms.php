@@ -2,7 +2,7 @@
 /*
 	Plugin Name: Advanced Forms
 	Description: Flexible and developer-friendly forms with the power of Advanced Custom Fields.
-	Version: 1.5.6
+	Version: 1.6.0
 	Author: Fabian Lindfors
 	Copyright: Fabian Lindfors
 	Text Domain: advanced-forms
@@ -18,7 +18,7 @@ class AF {
 	 *
 	 * @since 1.2.0
 	 */
-	public $version = '1.5.6';
+	public $version = '1.6.0';
 	
 	
 	/**
