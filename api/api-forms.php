@@ -215,11 +215,11 @@ function af_register_form( $form ) {
 	}
 	
 	$form = af_get_valid_form( $form );
-	
+
 	if ( $form ) {
 		
-		$af_registered_forms[] = $form;
-		
+		$af_registered_forms[ $form['key'] ] = $form;
+
 	}
 	
 	
@@ -265,7 +265,7 @@ function af_get_valid_form( $form ) {
 	
 	// A form key is always required
 	if ( ! isset( $form['key'] ) ) {
-		return;
+		return false;
 	}
 	
 	$args = array(
@@ -338,17 +338,9 @@ function af_form_from_key( $key ) {
 	
 	global $af_registered_forms;
 	
-	if ( $af_registered_forms && is_array( $af_registered_forms ) ) {
-		
-		foreach ( $af_registered_forms as $registered_form ) {
-			
-			if ( $registered_form['key'] == $key ) {
-				
-				return af_get_valid_form( $registered_form );
-				
-			}
-			
-		}
+	if ( $af_registered_forms && isset( $af_registered_forms[ $key ] ) ) {
+
+		return af_get_valid_form( $af_registered_forms[ $key ] );
 	
 	}
 	
