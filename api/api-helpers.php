@@ -109,7 +109,7 @@ function _af_render_field_include( $field, $value = false ) {
 		// Output WYSIWYG content without sanitation
 		$output .= stripslashes( $value );
 
-	elseif ( 'textarea' == $field['type'] ) {
+	} elseif ( 'textarea' == $field['type'] ) {
 
 		// Output textarea content without sanitation
 		$output .= stripslashes( $value );
