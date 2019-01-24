@@ -6,10 +6,18 @@
  *
  * @since 1.1
  */
-function af_has_submission() {
+function af_has_submission( $key = false ) {
+  $submission = AF()->submission;
+
+  if ( is_null( $submission ) ) {
+    return false;
+  }
   
-  return ! is_null( AF()->submission );
+  if ( $key && $key != $submission['form']['key'] ) {
+    return false;
+  }
   
+  return true;
 }
 
 
@@ -50,8 +58,18 @@ function af_clear_session_submission() {
 }
 
 
-function af_submission_failed() {
-  if ( isset( AF()->submission['errors'] ) && ! empty( AF()->submission['errors'] ) ) {
+function af_submission_failed( $key = false ) {
+  $submission = AF()->submission;
+
+  if ( is_null( $submission ) ) {
+    return false;
+  }
+
+  if ( $key && $key != $submission['form']['key'] ) {
+    return false;
+  }
+
+  if ( isset( $submission['errors'] ) && ! empty( $submission['errors'] ) ) {
     return true;
   }
 

@@ -153,7 +153,7 @@ class AF_Core_Forms_Rendering {
 
 
     // Display success message, restriction message, or fields
-    if ( af_has_submission() && ! af_submission_failed() && ! $args['filter_mode'] ) {
+    if ( af_has_submission( $form['key'] ) && ! af_submission_failed( $form['key'] ) && ! $args['filter_mode'] ) {
 
       $this->render_success_message( $form, $args );
 
@@ -180,7 +180,7 @@ class AF_Core_Forms_Rendering {
    *
    */
   function render_submission_error( $form, $args ) {
-    if ( af_submission_failed() ) {
+    if ( af_submission_failed( $form['key'] ) ) {
       $errors = AF()->submission['errors'];
 
       foreach ( $errors as $error ) {
@@ -373,7 +373,7 @@ class AF_Core_Forms_Rendering {
       $field['value'] = $_POST['acf'][ $field['key'] ];
     }
 
-    if ( af_has_submission() && ( $args['filter_mode'] || af_submission_failed() ) ) {
+    if ( af_has_submission( $form['key'] ) && ( $args['filter_mode'] || af_submission_failed( $form['key'] ) ) ) {
       $field['value'] = af_get_field( $field['name'] );
     }
     
