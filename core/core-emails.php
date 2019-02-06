@@ -4,7 +4,7 @@ class AF_Core_Emails {
 	
 	function __construct() {
 		
-		add_action( 'af/form/submission', array( $this, 'send_form_emails' ), 2, 2 );
+		add_action( 'af/form/submission', array( $this, 'send_form_emails' ), 15, 2 );
 		add_action( 'af/emails/send_form_email', array( $this, 'send_single_form_email' ), 10, 3 );
 		
 		add_filter( 'af/form/valid_form', array( $this, 'valid_form' ), 10, 1 );
