@@ -17,7 +17,11 @@ var af;
 
       this.pages.initialize( form );
 
-      acf.doAction( 'af/form/setup', form );
+      if ('doAction' in acf) {
+        acf.doAction( 'af/form/setup', form );
+      } else {
+        acf.do_action( 'af/form/setup', form );
+      }
     },
 
   };
