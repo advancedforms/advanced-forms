@@ -197,7 +197,7 @@ class AF {
 	 */
 	function enqueue_styles() {
 
-		wp_enqueue_style( 'af-form-style', $this->url .  'assets/css/form.css' );
+		wp_enqueue_style( 'af-form-style', $this->url .  'assets/dist/css/form.css' );
 
 	}
 
