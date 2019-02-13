@@ -140,3 +140,11 @@
 .af-next-button {
 	margin-right: 10px;
 }
+
+.af-field-instructions {
+	margin: 0;
+}
+
+.af-field-instructions.-placement-field {
+	margin-top: 5px;
+}

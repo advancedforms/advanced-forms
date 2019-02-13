@@ -103,6 +103,7 @@ class AF_Core_Forms_Rendering {
       'uploader'          => 'wp',
       'filter_mode'       => false,
       'label_placement' => 'top',
+      'instruction_placement' => 'label',
     ));
     
     
@@ -430,10 +431,15 @@ class AF_Core_Forms_Rendering {
     $attributes = apply_filters( 'af/form/field_attributes/id=' . $form['post_id'], $attributes, $field, $form, $args );
     $attributes = apply_filters( 'af/form/field_attributes/key=' . $form['key'], $attributes, $field, $form, $args );
     
+    // Field instructions
+    if ( ! empty( $field['instructions'] ) ) {
+      $instructions = sprintf( '<p class="af-field-instructions -placement-%s">%s</p>', $args['instruction_placement'], $field['instructions'] );
+    } else {
+      $instructions = '';
+    }
     
     // Field wrapper
     echo sprintf( '<div %s>', acf_esc_atts( $attributes ) );
-    
     
     echo '<div class="af-label acf-label">';
     
@@ -442,14 +448,12 @@ class AF_Core_Forms_Rendering {
       $label .= $field['required'] ? ' <span class="acf-required">*</span>' : '';
       
       echo sprintf( '<label for="acf-%s">%s</label>', $field['key'], $label );
+
+      if ( 'label' == $args['instruction_placement'] ) {
+        echo $instructions;
+      }
       
     echo '</div>';
-    
-    
-    if ( '' != $field['instructions'] ) {
-      echo sprintf( '<p class="af-field-instructions">%s</p>', $field['instructions'] );
-    }
-    
     
     echo '<div class="af-input acf-input">';
 
@@ -459,9 +463,12 @@ class AF_Core_Forms_Rendering {
     
       // Render field with default ACF
       acf_render_field( $field );
-    
+
     echo '</div>';
-    
+
+    if ( 'field' == $args['instruction_placement'] ) {
+      echo $instructions;
+    }
     
     /*
      * Conditional logic Javascript for field.
