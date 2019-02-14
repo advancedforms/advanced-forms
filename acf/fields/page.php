@@ -119,14 +119,17 @@ class AF_Page_Field extends acf_field {
   
   function load_field( $field ) {
     
-    // remove name to avoid caching issue
+    // Remove name to avoid caching issue
     $field['name'] = '';
     
-    // remove required to avoid JS issues
+    // Remove required to avoid JS issues
     $field['required'] = 0;
     
-    // set value other than 'null' to avoid ACF loading / caching issue
+    // Set value other than 'null' to avoid ACF loading / caching issue
     $field['value'] = false;
+
+    // Hide field from admin
+    $field['hide_admin'] = true;
     
     // return
     return $field;
