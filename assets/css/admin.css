@@ -211,7 +211,7 @@
 	box-sizing: border-box;
 }
 
-.acf-fields > .acf-field:nth-child(3) {
+.af-form-preview .acf-fields > .acf-field:nth-child(3) {
 	border-top-width: 0;
 }
 
