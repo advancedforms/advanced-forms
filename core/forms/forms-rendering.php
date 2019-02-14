@@ -349,6 +349,9 @@ class AF_Core_Forms_Rendering {
    */
   function render_field( $field, $form, $args ) {
 
+    // Ignore hide from admin value
+    $field['hide_admin'] = false;
+
     // Include default value
     if ( empty( $field['value'] ) && isset( $field['default_value'] ) ) {
       $field['value'] = $field['default_value'];
