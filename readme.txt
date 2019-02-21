@@ -2,8 +2,8 @@
 Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
-Tested up to: 5.0.0
-Stable tag: 1.6.0
+Tested up to: 5.1.0
+Stable tag: 1.6.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,26 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.6.2 =
+
+* Added instruction placement argument to match ACF. Check out the [documentation](https://advancedforms.github.io/guides/basic/displaying-a-form/) for information on how to use it.
+* Improved ACF 5.6 compatibility.
+* Fixed issue where "Hide from admin" would also hide fields from previews.
+* Fixed issue where multiple forms on single page could conflict.
+* Fixed issue where page fields would display weirdly in the admin panel.
+* Fixed style which could interfere with ACF styling.
+
+*Pro*
+
+* Changed editing to default to creating posts and users if no argument is passed. `"post"="new"` and `"user"="new"` is no longer required.
+* Fixed issue where post ID and post URL couldn't be included in email notifications.
+
+= 1.6.1 =
+
+*Pro*
+
+* Fixed issue where merge tags wouldn't work when used inside custom format fields, such as post titles.
 
 = 1.6.0 =
 
