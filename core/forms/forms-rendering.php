@@ -220,7 +220,7 @@ class AF_Core_Forms_Rendering {
    */
   function render_restriction_message( $message ) {
     echo '<div class="af-restricted-message">';
-      echo $restriction;
+      echo $message;
     echo '</div>';
   }
 
