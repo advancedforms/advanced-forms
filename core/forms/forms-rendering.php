@@ -152,9 +152,9 @@ class AF_Core_Forms_Rendering {
     $restriction = apply_filters( 'af/form/restriction/id=' . $form['post_id'], $restriction, $form, $args );
     $restriction = apply_filters( 'af/form/restriction/key=' . $form['key'], $restriction, $form, $args );
 
-
     // Display success message, restriction message, or fields
-    if ( af_has_submission( $form['key'] ) && ! af_submission_failed( $form['key'] ) && ! $args['filter_mode'] ) {
+    $instance_hash = af_form_instance_hash( $form['key'], $args );
+    if ( af_has_submission( $instance_hash ) && ! af_submission_failed( $form['key'] ) && ! $args['filter_mode'] ) {
 
       $this->render_success_message( $form, $args );
 
