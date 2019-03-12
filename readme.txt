@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 5.1.0
-Stable tag: 1.6.2
+Stable tag: 1.6.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,15 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.6.3 =
+
+* Added support for having multiple forms with the same key on a single page. Forms are now differentiated both on key and arguments.
+* Fixed issue where restriction message wouldn't display correctly.
+
+*Pro*
+
+* Fixed issue where custom calculations using the `af/field/calculate_value` filter wouldn't work.
 
 = 1.6.2 =
 
