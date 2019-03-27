@@ -104,10 +104,10 @@ function _af_render_field_include( $field, $value = false ) {
 
 		$output .= sprintf( '<a href="%s">%s</a>', $value['url'], htmlspecialchars( $value['title'] ) );
 
-	} elseif ( 'wysiwyg' == $field['type'] ) {
+	} elseif ( 'wysiwyg' == $field['type'] || 'textarea' == $field['type'] ) {
 
-		// Output WYSIWYG content without sanitation
-		$output .= stripslashes( $value );
+		// Sanitize input using kses
+		$output .= wp_kses_post( stripslashes( $value ) );
 
 	} else {
 		
