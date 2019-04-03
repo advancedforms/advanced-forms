@@ -87,7 +87,7 @@ class AF_Core_Restrictions {
 		
 		if ( $form['restrictions']['schedule'] ) {
 			
-			$current_time = time();
+			$current_time = current_time( 'timestamp' );
 			$start_time = strtotime( $form['restrictions']['schedule']['start'] );
 			$end_time = strtotime( $form['restrictions']['schedule']['end'] );
 		
@@ -186,3 +186,4 @@ class AF_Core_Restrictions {
 }
 
 return new AF_Core_Restrictions();
+
