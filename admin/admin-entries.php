@@ -89,16 +89,16 @@ class AF_Admin_Entries {
 		
 		if ( $post && 'af_entry' == $post->post_type ) {
 			
-			$time = strtotime( get_post_meta( $post->ID, 'entry_submission_date', true ) );
+			$time = get_post_meta( $post->ID, 'entry_submission_date', true );
 		
 			$date_format = get_option( 'date_format' );
 			$time_format = get_option( 'time_format' );
 			
 			$field['instructions'] = sprintf( '<strong>%s: </strong>#%d', __( 'Entry ID', 'advanced-forms' ), $post->ID );
 			$field['instructions'] .= '<br>';
-			$field['instructions'] .= sprintf( '<strong>%s: </strong>%s', __( 'Date', 'advanced-forms' ), date( $date_format, $time ) );
+			$field['instructions'] .= sprintf( '<strong>%s: </strong>%s', __( 'Date', 'advanced-forms' ), get_date_from_gmt( $time, $date_format ) );
 			$field['instructions'] .= '<br>';
-			$field['instructions'] .= sprintf( '<strong>%s: </strong>%s', __( 'Time', 'advanced-forms' ), date( $time_format, $time ) );
+			$field['instructions'] .= sprintf( '<strong>%s: </strong>%s', __( 'Time', 'advanced-forms' ), get_date_from_gmt( $time, $time_format ) ); 
 			
 		}
 		
