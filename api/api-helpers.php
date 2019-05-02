@@ -117,57 +117,7 @@ function _af_render_field_include( $field, $value = false ) {
 
 	} else {
 		
-		/**
-		 * Handle the different shapes $value may take and create an appropriate string
-		 *
-		 * WP_Post 		- post title
-		 * WP_User 		- user first name and last name combined
-		 * User array	- user first name and last name combined
-		 * WP_Term 		- term name
-		 * Array 		- render each value and join with commas
-		 * Other 		- cast to string
-		 *
-		 * @since 1.3.0
-		 *
-		 */
-		$rendered_value = '';
-		 
-		if ( $value instanceof WP_Post ) {
-			
-			$rendered_value = $value->post_title;
-			
-		} elseif ( $value instanceof WP_User ) {
-			
-			$rendered_value = sprintf( '%s %s', $value->first_name, $value->last_name );
-		
-		} elseif ( is_array( $value ) && isset( $value['user_email'] ) ) {
-			
-			$rendered_value = sprintf( '%s %s', $value['user_firstname'], $value['user_lastname'] );
-			
-		} elseif ( $value instanceof WP_Term ) {
-			
-			$rendered_value = $value->name;
-			
-		} elseif ( is_array( $value ) ) {
-			
-			$rendered_values = array();
-			
-			foreach ( $value as $single_value ) {
-				
-				$rendered_values[] = _af_render_field_include( $field, $single_value );
-				
-			}
-			
-			$rendered_value = join( ', ', $rendered_values );
-			
-		} else {
-			
-			$rendered_value = (string)$value;
-			
-		}
-
-		// Sanitize output to protect against XSS
-		$output = htmlspecialchars( $rendered_value );
+		$output = _af_render_field_include_value( $value ); 
 		
 	}
 	
@@ -177,6 +127,61 @@ function _af_render_field_include( $field, $value = false ) {
 	$output = apply_filters( 'af/field/render_include/key=' . $field['key'], $output, $field, $value );
 	
 	return $output;
+}
+
+
+/**
+ * Handle the different shapes field values may take and create an appropriate string
+ *
+ * WP_Post 		- post title
+ * WP_User 		- user first name and last name combined
+ * User array	- user first name and last name combined
+ * WP_Term 		- term name
+ * Array 		- render each value and join with commas
+ * Other 		- cast to string
+ *
+ * @since 1.3.0
+ *
+ */
+function _af_render_field_include_value( $value ) {
+	$rendered_value = '';
+	 
+	if ( $value instanceof WP_Post ) {
+		
+		$rendered_value = $value->post_title;
+		
+	} elseif ( $value instanceof WP_User ) {
+		
+		$rendered_value = sprintf( '%s %s', $value->first_name, $value->last_name );
+	
+	} elseif ( is_array( $value ) && isset( $value['user_email'] ) ) {
+		
+		$rendered_value = sprintf( '%s %s', $value['user_firstname'], $value['user_lastname'] );
+		
+	} elseif ( $value instanceof WP_Term ) {
+		
+		$rendered_value = $value->name;
+		
+	} elseif ( is_array( $value ) ) {
+		
+		$rendered_values = array();
+		
+		foreach ( $value as $single_value ) {
+			
+			$rendered_values[] = _af_render_field_include_value( $single_value );
+			
+		}
+		
+		$rendered_value = join( ', ', $rendered_values );
+		
+	} else {
+		
+		$rendered_value = (string)$value;
+		
+	}
+
+	// Sanitize output to protect against XSS
+	return htmlspecialchars( $rendered_value );
 }
 
 
