@@ -33,6 +33,12 @@ class AF_Core_Forms_Submissions {
       return;
     }
 
+    // Make sure honeypot field is empty if one exists
+    if ( isset( $_POST['email_for_non_humans'] ) && ! empty( $_POST['email_for_non_humans'] ) ) {
+      wp_die( 'Non-human user detected' );
+      exit;
+    }
+
     // Try loading submission data
     if ( ! $this->load_submission_data() ) {
       return;

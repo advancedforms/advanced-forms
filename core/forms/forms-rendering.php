@@ -104,6 +104,7 @@ class AF_Core_Forms_Rendering {
       'filter_mode'       => false,
       'label_placement' => 'top',
       'instruction_placement' => 'label',
+      'honeypot' => true,
     ));
     
     
@@ -291,6 +292,12 @@ class AF_Core_Forms_Rendering {
       echo sprintf( '<input type="hidden" name="af_form" value="%s">', $form['key'] );
       echo sprintf( '<input type="hidden" name="af_form_args" value="%s">', base64_encode( json_encode( $args ) ) );
       echo sprintf( '<input type="hidden" name="_acf_form" value="%s">', base64_encode( json_encode( $args ) ) );
+
+      // Add honeypot field that is not visible to users.
+      // Bots should hopefully fill this in allowing them to be detected.
+      if ( $args['honeypot'] ) {
+        echo '<input type="text" name="email_for_non_humans" tabindex="-1" autocomplete="off" />';
+      }
       
       do_action( 'af/form/hidden_fields', $form, $args );
       do_action( 'af/form/hidden_fields/id=' . $form['post_id'], $form, $args );
