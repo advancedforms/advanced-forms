@@ -2,8 +2,8 @@
 Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
-Tested up to: 5.1.0
-Stable tag: 1.6.3
+Tested up to: 5.2.0
+Stable tag: 1.6.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,20 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.6.4 =
+
+* Added honeypot to prevent spam submissions. The honeypot is enabled by default.
+* Added support for gallery fields in success messages and emails.
+* Fixed issue where start and end time restrictions wouldn't account for timezone.
+* Fixed issue where entry date would be displayed without timezone adjustment.
+* Fixed issue where field includes could cause infinite loops with some field type combinations.
+
+*Pro*
+
+* Fixed issue where some post types weren't available for post editing.
+* Fixed issue where post title and content couldn't be cleared during editing.
+* Fixed issue where some Slack settings would be hidden.
 
 = 1.6.3 =
 
