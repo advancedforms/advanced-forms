@@ -13,6 +13,7 @@ class AF_Admin_Forms {
 		// Actions
 		add_action( 'admin_init', array( $this, 'add_fields_meta_box' ), 10, 0 );
 		add_action( 'edit_form_after_title', array( $this, 'display_form_key' ), 10, 0 );
+		add_filter( 'acf/prepare_field/name=form_shortcode_message', array( $this, 'display_form_shortcode' ), 10, 1 );
 		add_action( 'save_post', array( $this, 'add_form_key' ), 10, 3 );
 		add_action( 'acf/init', array( $this, 'register_fields' ), 10, 0 );
 		add_action( 'media_buttons', array( $this, 'add_wysiwyg_content_field_inserter' ), 10, 1 );
@@ -68,6 +69,24 @@ class AF_Admin_Forms {
 			
 		}
 		
+	}
+
+
+	/**
+	 * Display the form shortcode in the form settings.
+	 *
+	 * @since 1.6.4
+	 *
+	 */
+	function display_form_shortcode( $field ) {
+		global $post;
+
+		if ( $post && $key = get_post_meta( $post->ID, 'form_key', true ) ) {
+			$message = sprintf( '<code>[advanced_form form="%s"]</code>', $key );
+			$field['message'] = $message;
+		}
+
+		return $field;
 	}
 	
 	
@@ -352,6 +371,12 @@ class AF_Admin_Forms {
 					),
 					'placement' => 'left',
 					'endpoint' => 0,
+				),
+				array(
+					'key' => 'field_form_shortcode_message',
+					'label' => __( 'Shortcode', 'advanced-forms' ),
+					'name' => 'form_shortcode_message',
+					'type' => 'message',
 				),
 				array (
 					'key' => 'field_form_description',

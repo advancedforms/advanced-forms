@@ -32,6 +32,22 @@
 	margin-top: 0;
 }
 
+/**
+ * Form settings
+ */
+
+.acf-field-form-shortcode-message code {
+	/* Improve selection behaviour of shortcode */
+	-webkit-user-select: all;
+	user-select: all;
+	
+	padding: 5px;
+}
+
+.acf-field-form-shortcode-message p {
+	margin-bottom: 0;
+}
+
 
 /**
  * Make room for the field selector on the email fields
