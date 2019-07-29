@@ -26,35 +26,42 @@ function af_save_session_submission( $submission ) {
 		return;
 	}
 
-  if( '' == session_id() ) {
+  if( PHP_SESSION_ACTIVE !== session_status() ) {
     session_start();
   }
 
   $_SESSION['af_submission'] = AF()->submission;
+
+  session_write_close();
 }
 
 
 function af_get_session_submission() {
-	if( '' == session_id() ) {
+	if ( PHP_SESSION_ACTIVE !== session_status() ) {
     session_start();
   }
-
+  
+  $submission = false;
   if ( isset( $_SESSION['af_submission'] ) ) {
-  	return $_SESSION['af_submission'];
-  } else {
-  	return false;
+  	$submission = $_SESSION['af_submission'];
   }
+
+  session_write_close();
+
+  return $submission;
 }
 
 
 function af_clear_session_submission() {
-	if( '' == session_id() ) {
+	if( PHP_SESSION_ACTIVE !== session_status() ) {
     session_start();
   }
 
   if ( isset( $_SESSION['af_submission'] ) ) {
   	unset( $_SESSION['af_submission'] );
   }
+
+  session_write_close();
 }
 
 
