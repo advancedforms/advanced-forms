@@ -74,6 +74,11 @@ class AF_Core_Forms_Rendering {
      *
      */
     acf_enqueue_scripts();
+
+    // ACF fails to include all translations when running "acf_enqueue_scripts", hence we need to do it manually.
+    $acf_l10n = acf_get_instance('ACF_Assets')->text;
+    wp_localize_script( 'acf-input', 'acfL10n', $acf_l10n );
+
     wp_enqueue_script( 'af-forms-script', AF()->url . 'assets/dist/js/forms.js', array( 'jquery', 'acf-input' ), AF()->version, true );
     
     // Check if ACF version is < 5.7
