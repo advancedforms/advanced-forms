@@ -21,10 +21,9 @@ class AF_Admin_Forms {
 
 		add_action( 'post_submitbox_start', array( $this, 'add_actions' ), 10, 1 );
 		
-		
-		// Filters
 		add_filter( 'manage_af_form_posts_columns', array( $this, 'manage_columns' ), 10, 1 );
 		add_action( 'manage_af_form_posts_custom_column', array( $this, 'custom_columns_content' ), 10, 2 );
+		add_filter( 'disable_months_dropdown', array( $this, 'disable_months_filter' ), 10, 2 );
 		
 	}
 	
@@ -342,6 +341,21 @@ class AF_Admin_Forms {
     echo '</div>';
 
 	}
+
+
+	/**
+	 * Hides the months filter on the forms listing page.
+	 *
+	 * @since 1.6.5
+	 *
+	 */
+	function disable_months_filter( $disabled, $post_type ) {
+    if ( 'af_form' != $post_type ) {
+      return $disabled;
+    }
+
+    return true;
+  }
 
 
 	/**

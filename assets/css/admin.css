@@ -272,7 +272,6 @@
 /**
  * Information sidebar on forms page
  */
-.post-type-af_form .tablenav,
 .post-type-af_form .search-box {
 	display: none;
 }
