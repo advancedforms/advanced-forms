@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 5.2.0
-Stable tag: 1.6.4
+Stable tag: 1.6.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,14 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.6.5 =
+
+* Added support for exporting and importing forms as JSON files.
+* Added form shortcode to form settings for reference.
+* Fixed session issue which could cause deadlock.
+* Fixed issue where some ACF front end translations were missing.
+* Fixed issue where form pagination in the admin panel was missing.
 
 = 1.6.4 =
 
