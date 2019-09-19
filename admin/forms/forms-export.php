@@ -3,11 +3,10 @@
 class AF_Admin_Forms_Export {
 
   function __construct() {
-
     add_action( 'admin_menu', array( $this, 'register_admin_page' ), 10, 0 );
+    add_action( 'admin_init', array( $this, 'export_json_file' ), 10, 0 );
     add_action( 'af/admin/form/actions', array( $this, 'add_export_button' ), 15, 1 );
     add_filter( 'admin_title', array( $this, 'fix_admin_title' ), 10, 2 );
-
   }
 
 
@@ -37,7 +36,13 @@ class AF_Admin_Forms_Export {
       return;
     }
 
-    $form = af_form_from_post( $_GET['form_id'] );
+    $form_id = $_GET['form_id'];
+    $form = af_form_from_post( $form_id );
+
+    $admin_page_url = menu_page_url( 'af_export_form', false );
+    $form_json_link = add_query_arg( 'form_id', $form_id, $admin_page_url );
+    $form_json_link = add_query_arg( 'export_json', true, $form_json_link );
+
     $form_link = get_edit_post_link( $form['post_id'] );
     $code = $this->generate_form_code( $form );
     ?>
@@ -50,6 +55,17 @@ class AF_Admin_Forms_Export {
       <div id="poststuff">
         <div class="postbox">
           <div class="inside">
+            <h2><?php _e( 'Export JSON', 'advanced-forms' ); ?></h2>
+            <p>
+              <?php _e( 'Export your form as a JSON file. The form can then be imported on any site at Forms &rarr; Import.', 'advanced-forms' ); ?>
+            </p>
+            <a class="button button-primary" href="<?php echo $form_json_link; ?>">
+              <?php _e( 'Export file', 'advanced-forms' ); ?>
+            </a>
+          </div>
+
+          <div class="inside">
+            <h2><?php _e( 'Register programmatically', 'advanced-forms' ); ?></h2>
             <p>
               <?php _e( 'Place the following code in your theme or plugin to register your form programmatically.', 'advanced-forms' ); ?>
               <button class="copy-button button button-small" data-copied-text="Copied!">Copy to clipboard</button>    
@@ -71,7 +87,7 @@ class AF_Admin_Forms_Export {
 
 
   /**
-   * Wordpress won't display a page title, probably of the submenu hack in register_admin_page.
+   * Wordpress won't display a page title, probably because of the submenu hack in register_admin_page.
    * This function is hooked to the admin_title filter and fixes the issue.
    *
    * @since 1.5.0
@@ -121,6 +137,30 @@ class AF_Admin_Forms_Export {
 
     return $output;
 
+  }
+
+  /**
+   * Generate a JSON file for a form and output it to trigger a download.
+   *
+   * @since 1.6.5
+   */
+  function export_json_file() {
+    if ( ! isset( $_GET['form_id'] ) || ! isset( $_GET['export_json'] ) ) {
+      return;
+    }
+
+    $form = af_form_from_post( $_GET['form_id'] );
+
+    // PHP versions below 5.4 don't support JSON_PRETTY_PRINT.
+    $json_pretty_print = 128;
+    $json = json_encode( af_export_form( $form ), $json_pretty_print );
+
+    $file_name = sprintf( '%s.json', $form['key'] );
+    header( 'Content-disposition: attachment; filename=' . $file_name );
+    header( 'Content-type: application/json' );
+
+    echo $json;
+    exit;
   }
 
 }
