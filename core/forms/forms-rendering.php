@@ -447,8 +447,13 @@ class AF_Core_Forms_Rendering {
     $attributes = apply_filters( 'af/form/field_attributes/key=' . $form['key'], $attributes, $field, $form, $args );
     
     // Field instructions
+    $instruction_placement = $args['instruction_placement'];
+    $instruction_placement = apply_filters( 'af/field/instruction_placement', $instruction_placement, $field, $form, $args );
+    $instruction_placement = apply_filters( 'af/field/instruction_placement/name=' . $field['name'], $instruction_placement, $field, $form, $args );
+    $instruction_placement = apply_filters( 'af/field/instruction_placement/key=' . $field['key'], $instruction_placement, $field, $form, $args );
+    
     if ( ! empty( $field['instructions'] ) ) {
-      $instructions = sprintf( '<p class="af-field-instructions -placement-%s">%s</p>', $args['instruction_placement'], $field['instructions'] );
+      $instructions = sprintf( '<p class="af-field-instructions -placement-%s">%s</p>', $instruction_placement, $field['instructions'] );
     } else {
       $instructions = '';
     }
@@ -464,7 +469,7 @@ class AF_Core_Forms_Rendering {
       
       echo sprintf( '<label for="acf-%s">%s</label>', $field['key'], $label );
 
-      if ( 'label' == $args['instruction_placement'] ) {
+      if ( 'label' == $instruction_placement ) {
         echo $instructions;
       }
       
@@ -481,7 +486,7 @@ class AF_Core_Forms_Rendering {
 
     echo '</div>';
 
-    if ( 'field' == $args['instruction_placement'] ) {
+    if ( 'field' == $instruction_placement ) {
       echo $instructions;
     }
     
