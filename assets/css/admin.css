@@ -293,6 +293,26 @@
 
 
 /**
+ * Form import
+ */
+.af-form-import .acf-fields {
+	border: #ebebeb solid 1px;
+	background: #fafafa;
+	border-radius: 3px;
+	padding: 15px 12px;
+}
+
+.af-form-import .acf-label {
+	font-weight: bold;
+	margin: 0 0 3px;
+}
+
+.af-form-import .button {
+	margin-top: 1em;
+}
+
+
+/**
  * Form export
  */
 .af-form-export #poststuff .inside {
