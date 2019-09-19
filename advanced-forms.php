@@ -84,6 +84,7 @@ class AF {
 		include( $this->path . 'api/api-helpers.php' );
 		include( $this->path . 'api/api-forms.php' );
 		include( $this->path . 'api/api-entries.php' );
+		include( $this->path . 'api/api-import-export.php' );
 
 		// Core functionality
 		$this->classes['core_forms_rendering'] = include( $this->path . 'core/forms/forms-rendering.php' );

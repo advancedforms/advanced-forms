@@ -329,23 +329,69 @@ function af_form_from_post( $form_post ) {
 
 
 /**
+ * Save a form array to a form post.
+ * 
+ * @since 1.7.0
+ *
+ */
+function af_form_to_post( $form, $post ) {
+	// Get post object if ID has been passed
+	if ( is_numeric( $post ) ) {
+		$post = get_post( $post );
+	}
+
+	wp_update_post(array(
+		'ID' => $post->ID,
+		'post_title' => $form['title'],
+	));
+
+	$form = af_get_valid_form( $form );
+
+	update_post_meta( $post->ID, 'form_key', $form['key'] );
+
+	update_field( 'field_form_description', $form['display']['description'], $post->ID );
+	update_field( 'field_form_success_message', $form['display']['success_message'], $post->ID );
+
+	update_field( 'field_form_create_entries', $form['create_entries'], $post->ID );
+
+	$form = do_action( 'af/form/to_post', $form, $post );
+	$form = do_action( 'af/form/to_post/id=' . $post->ID, $form, $post );
+	$form = do_action( 'af/form/to_post/key=' . $form['key'], $form, $post );
+
+	return $post;
+}
+
+
+/**
  * Retrieves a form either 
  *
  * @since 1.0.0
  *
  */
 function af_form_from_key( $key ) {
-	
 	global $af_registered_forms;
 	
 	if ( $af_registered_forms && isset( $af_registered_forms[ $key ] ) ) {
-
 		return af_get_valid_form( $af_registered_forms[ $key ] );
-	
 	}
 	
-	
 	// Form not a registered one, search posts by key meta
+	$post = af_form_post_from_key( $key );
+	if ( $post ) {
+		return af_form_from_post( $post );
+	}
+
+	return false;
+}
+
+
+/**
+ * Retrieves a form post by key if one exists.
+ *
+ * @since 1.7.0
+ *
+ */
+function af_form_post_from_key( $key ) {
 	$args = array(
 		'post_type' => 'af_form',
 		'posts_per_page' => '1',
@@ -360,14 +406,10 @@ function af_form_from_key( $key ) {
 	$form_query = new WP_Query( $args );
 	
 	if ( $form_query->have_posts() ) {
-		
-		return af_form_from_post( $form_query->posts[0] );
-		
+		return $form_query->posts[0];
 	}
-	
-	
+
 	return false;
-	
 }
 
 

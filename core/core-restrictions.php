@@ -14,6 +14,7 @@ class AF_Core_Restrictions {
 		
 		add_filter( 'af/form/valid_form', array( $this, 'valid_form' ), 10, 1 );
 		add_filter( 'af/form/from_post', array( $this, 'form_from_post' ), 10, 2 );
+		add_action( 'af/form/to_post', array( $this, 'form_to_post' ), 10, 2 );
 		
 	}
 	
@@ -181,6 +182,37 @@ class AF_Core_Restrictions {
 		
 		return $form;
 		
+	}
+
+
+	/**
+	 * Add restriction settings from form array to form post.
+	 *
+	 * @since 1.7.0
+	 *
+	 */
+	function form_to_post( $form, $post ) {
+		if ( $entries = $form['restrictions']['entries'] ) {
+			update_field( 'field_form_restrict_entries', true, $post->ID );
+
+			update_field( 'field_form_max_entries', $entries['max_entries'], $post->ID );
+			update_field( 'field_form_entry_restriction_message', $entries['message'], $post->ID );
+		}
+
+		if ( $login = $form['restrictions']['user'] ) {
+			update_field( 'field_form_require_login', true, $post->ID );
+			
+			update_field( 'field_form_login_restriction_message', $login['message'], $post->ID );
+		}
+
+		if ( $schedule = $form['restrictions']['schedule'] ) {
+			update_field( 'field_form_schedule_form', true, $post->ID );
+
+			update_field( 'field_form_schedule_start', $schedule['start'], $post->ID );
+			update_field( 'field_form_schedule_end', $schedule['end'], $post->ID );
+			update_field( 'field_form_before_schedule_message', $schedule['message_before'], $post->ID );
+			update_field( 'field_form_after_schedule_message', $schedule['message_after'], $post->ID );
+		}
 	}
 	
 }
