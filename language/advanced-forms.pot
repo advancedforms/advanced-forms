@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-21 18:21+0000\n"
+"POT-Creation-Date: 2019-09-19 13:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,241 +14,305 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-#: advanced-forms.php:198
+#: advanced-forms.php:216
 msgctxt "Post Type General Name"
 msgid "Forms"
 msgstr ""
 
-#: advanced-forms.php:199
+#: advanced-forms.php:217
 msgctxt "Post Type Singular Name"
 msgid "Form"
 msgstr ""
 
-#: advanced-forms.php:200 advanced-forms.php:204
+#: advanced-forms.php:218 advanced-forms.php:222
 msgid "Forms"
 msgstr ""
 
-#: advanced-forms.php:201 advanced-forms.php:225 advanced-forms.php:226
-#: admin/admin-entries.php:119 admin/admin-entries.php:325
+#: advanced-forms.php:219 advanced-forms.php:243 advanced-forms.php:244
+#: admin/admin-entries.php:119 admin/admin-entries.php:310
 msgid "Form"
-msgstr ""
-
-#: advanced-forms.php:202
-msgid "Form Archives"
-msgstr ""
-
-#: advanced-forms.php:203
-msgid "Parent Form:"
-msgstr ""
-
-#: advanced-forms.php:205
-msgid "Add New Form"
-msgstr ""
-
-#: advanced-forms.php:206 advanced-forms.php:254
-msgid "Add New"
-msgstr ""
-
-#: advanced-forms.php:207
-msgid "New Form"
-msgstr ""
-
-#: advanced-forms.php:208
-msgid "Edit Form"
-msgstr ""
-
-#: advanced-forms.php:209
-msgid "Update Form"
-msgstr ""
-
-#: advanced-forms.php:210
-msgid "View Form"
-msgstr ""
-
-#: advanced-forms.php:211
-msgid "Search Form"
-msgstr ""
-
-#: advanced-forms.php:212 advanced-forms.php:260
-msgid "Not found"
-msgstr ""
-
-#: advanced-forms.php:213 advanced-forms.php:261
-msgid "Not found in Trash"
-msgstr ""
-
-#: advanced-forms.php:214 advanced-forms.php:262
-msgid "Featured Image"
-msgstr ""
-
-#: advanced-forms.php:215 advanced-forms.php:263
-msgid "Set featured image"
-msgstr ""
-
-#: advanced-forms.php:216 advanced-forms.php:264
-msgid "Remove featured image"
-msgstr ""
-
-#: advanced-forms.php:217 advanced-forms.php:265
-msgid "Use as featured image"
-msgstr ""
-
-#: advanced-forms.php:218
-msgid "Insert into form"
-msgstr ""
-
-#: advanced-forms.php:219
-msgid "Uploaded to this form"
 msgstr ""
 
 #: advanced-forms.php:220
-msgid "Forms list"
+msgid "Form Archives"
 msgstr ""
 
 #: advanced-forms.php:221
+msgid "Parent Form:"
+msgstr ""
+
+#: advanced-forms.php:223
+msgid "Add New Form"
+msgstr ""
+
+#: advanced-forms.php:224 advanced-forms.php:272
+msgid "Add New"
+msgstr ""
+
+#: advanced-forms.php:225
+msgid "New Form"
+msgstr ""
+
+#: advanced-forms.php:226
+msgid "Edit Form"
+msgstr ""
+
+#: advanced-forms.php:227
+msgid "Update Form"
+msgstr ""
+
+#: advanced-forms.php:228
+msgid "View Form"
+msgstr ""
+
+#: advanced-forms.php:229
+msgid "Search Form"
+msgstr ""
+
+#: advanced-forms.php:230 advanced-forms.php:278
+msgid "Not found"
+msgstr ""
+
+#: advanced-forms.php:231 advanced-forms.php:279
+msgid "Not found in Trash"
+msgstr ""
+
+#: advanced-forms.php:232 advanced-forms.php:280
+msgid "Featured Image"
+msgstr ""
+
+#: advanced-forms.php:233 advanced-forms.php:281
+msgid "Set featured image"
+msgstr ""
+
+#: advanced-forms.php:234 advanced-forms.php:282
+msgid "Remove featured image"
+msgstr ""
+
+#: advanced-forms.php:235 advanced-forms.php:283
+msgid "Use as featured image"
+msgstr ""
+
+#: advanced-forms.php:236
+msgid "Insert into form"
+msgstr ""
+
+#: advanced-forms.php:237
+msgid "Uploaded to this form"
+msgstr ""
+
+#: advanced-forms.php:238
+msgid "Forms list"
+msgstr ""
+
+#: advanced-forms.php:239
 msgid "Forms list navigation"
 msgstr ""
 
-#: advanced-forms.php:222
+#: advanced-forms.php:240
 msgid "Filter forms list"
 msgstr ""
 
-#: advanced-forms.php:246
+#: advanced-forms.php:264
 msgctxt "Post Type General Name"
 msgid "Entries"
 msgstr ""
 
-#: advanced-forms.php:247
+#: advanced-forms.php:265
 msgctxt "Post Type Singular Name"
 msgid "Entry"
 msgstr ""
 
-#: advanced-forms.php:248 advanced-forms.php:252 admin/admin-forms.php:167
-#: admin/admin-entries.php:240 admin/admin-entries.php:257
+#: advanced-forms.php:266 advanced-forms.php:270 admin/admin-forms.php:188
+#: admin/admin-entries.php:240
 msgid "Entries"
 msgstr ""
 
-#: advanced-forms.php:249 advanced-forms.php:273 advanced-forms.php:274
+#: advanced-forms.php:267 advanced-forms.php:291 advanced-forms.php:292
 msgid "Entry"
 msgstr ""
 
-#: advanced-forms.php:250
+#: advanced-forms.php:268
 msgid "Entry Archives"
 msgstr ""
 
-#: advanced-forms.php:251
+#: advanced-forms.php:269
 msgid "Parent Entry:"
 msgstr ""
 
-#: advanced-forms.php:253
+#: advanced-forms.php:271
 msgid "Add New Entry"
 msgstr ""
 
-#: advanced-forms.php:255
+#: advanced-forms.php:273
 msgid "New Entry"
 msgstr ""
 
-#: advanced-forms.php:256
+#: advanced-forms.php:274
 msgid "Edit Entry"
 msgstr ""
 
-#: advanced-forms.php:257
+#: advanced-forms.php:275
 msgid "Update Entry"
 msgstr ""
 
-#: advanced-forms.php:258
+#: advanced-forms.php:276
 msgid "View Entry"
 msgstr ""
 
-#: advanced-forms.php:259
+#: advanced-forms.php:277
 msgid "Search Entry"
 msgstr ""
 
-#: advanced-forms.php:266
+#: advanced-forms.php:284
 msgid "Insert into entry"
 msgstr ""
 
-#: advanced-forms.php:267
+#: advanced-forms.php:285
 msgid "Uploaded to this entry"
 msgstr ""
 
-#: advanced-forms.php:268
+#: advanced-forms.php:286
 msgid "Entries list"
 msgstr ""
 
-#: advanced-forms.php:269
+#: advanced-forms.php:287
 msgid "Entries list navigation"
 msgstr ""
 
-#: advanced-forms.php:270
+#: advanced-forms.php:288
 msgid "Filter entries list"
 msgstr ""
 
-#: core/core-forms.php:184
-msgid "Submit"
+#: core/core-entries.php:122 admin/admin-entries.php:97
+msgid "Entry ID"
 msgstr ""
 
-#: admin/admin-forms.php:62
+#: admin/admin-forms.php:65
 msgid "Form key:"
 msgstr ""
 
-#: admin/admin-forms.php:79 admin/admin-forms.php:166
+#: admin/admin-forms.php:100 admin/admin-forms.php:187
 msgid "Fields"
 msgstr ""
 
-#: admin/admin-forms.php:102
+#: admin/admin-forms.php:123
 msgid "Add fields by setting the location of your fields group to this form."
 msgstr ""
 
-#: admin/admin-forms.php:107
+#: admin/admin-forms.php:128
 msgid "Label"
 msgstr ""
 
-#: admin/admin-forms.php:108 admin/admin-emails.php:121
+#: admin/admin-forms.php:129 admin/admin-emails.php:121
 msgid "Name"
 msgstr ""
 
-#: admin/admin-forms.php:109
+#: admin/admin-forms.php:130
 msgid "Type"
 msgstr ""
 
-#: admin/admin-forms.php:145
+#: admin/admin-forms.php:166
 msgid "No field groups connected to this form"
 msgstr ""
 
-#: admin/admin-forms.php:165
+#: admin/admin-forms.php:186
 msgid "Key"
 msgstr ""
 
-#: admin/admin-forms.php:257
-msgid "Form settings"
+#: admin/admin-forms.php:290
+msgid "Resources"
 msgstr ""
 
-#: admin/admin-forms.php:261
-msgid "Display"
+#: admin/admin-forms.php:292
+msgid "Guides"
 msgstr ""
 
-#: admin/admin-forms.php:277
-msgid "Description"
+#: admin/admin-forms.php:293
+msgid "Actions"
 msgstr ""
 
-#: admin/admin-forms.php:295
-msgid "Success message"
+#: admin/admin-forms.php:294
+msgid "Filters"
 msgstr ""
 
 #: admin/admin-forms.php:298
-msgid "The message displayed after a successful submission."
+msgid "Pro"
+msgstr ""
+
+#: admin/admin-forms.php:300
+msgid "Create/edit posts and users"
+msgstr ""
+
+#: admin/admin-forms.php:301
+msgid "Integrate with Slack, Mailchimp, and Zapier"
+msgstr ""
+
+#: admin/admin-forms.php:302
+msgid "Get direct, priority support"
+msgstr ""
+
+#: admin/admin-forms.php:304
+msgid "Available from hookturn.io"
+msgstr ""
+
+#: admin/admin-forms.php:307
+msgid "Support"
+msgstr ""
+
+#: admin/admin-forms.php:309
+msgid "Issues, questions, or suggestions?"
+msgstr ""
+
+#: admin/admin-forms.php:311
+msgid "Contact us directly"
+msgstr ""
+
+#: admin/admin-forms.php:311
+msgid "for priority support"
 msgstr ""
 
 #: admin/admin-forms.php:313
+msgid "Create a ticket on the"
+msgstr ""
+
+#: admin/admin-forms.php:313
+msgid "Wordpress support forums"
+msgstr ""
+
+#: admin/admin-forms.php:371
+msgid "Form settings"
+msgstr ""
+
+#: admin/admin-forms.php:375
+msgid "Display"
+msgstr ""
+
+#: admin/admin-forms.php:391
+msgid "Shortcode"
+msgstr ""
+
+#: admin/admin-forms.php:397
+msgid "Description"
+msgstr ""
+
+#: admin/admin-forms.php:415
+msgid "Success message"
+msgstr ""
+
+#: admin/admin-forms.php:418
+msgid "The message displayed after a successful submission."
+msgstr ""
+
+#: admin/admin-forms.php:433
 msgid "Statistics"
 msgstr ""
 
-#: admin/admin-forms.php:329
+#: admin/admin-forms.php:449
 msgid "Number of submissions"
 msgstr ""
 
-#: admin/admin-forms.php:351
+#: admin/admin-forms.php:471
 msgid "Number of times viewed"
 msgstr ""
 
@@ -300,12 +364,8 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-#: admin/admin-entries.php:60
+#: admin/admin-entries.php:60 admin/forms/forms-import.php:81
 msgid "Edit form"
-msgstr ""
-
-#: admin/admin-entries.php:97 api/api-helpers.php:295
-msgid "Entry ID"
 msgstr ""
 
 #: admin/admin-entries.php:99
@@ -324,42 +384,22 @@ msgstr ""
 msgid "View entries for this form"
 msgstr ""
 
-#: admin/admin-entries.php:260
-msgid ""
-"When entries are enabled they will be automatically generated with form "
-"submissions. All form data will be saved to the generated entry."
-msgstr ""
-
-#: admin/admin-entries.php:273
+#: admin/admin-entries.php:258
 msgid "Create entries?"
 msgstr ""
 
-#: admin/admin-entries.php:307
+#: admin/admin-entries.php:261
+msgid ""
+"When entries are enabled they will be automatically generated with form "
+"submissions, with all the submitted field data."
+msgstr ""
+
+#: admin/admin-entries.php:292
 msgid "Entry data"
 msgstr ""
 
-#: admin/admin-entries.php:311
+#: admin/admin-entries.php:296
 msgid "Submission info"
-msgstr ""
-
-#: admin/admin-preview.php:45
-msgid "Previewing"
-msgstr ""
-
-#: admin/admin-preview.php:46
-msgid "Back to form"
-msgstr ""
-
-#: admin/admin-preview.php:51
-msgid "Form successfully submitted"
-msgstr ""
-
-#: admin/admin-preview.php:51
-msgid "Test again"
-msgstr ""
-
-#: admin/admin-preview.php:80 admin/admin-preview.php:98
-msgid "Preview form"
 msgstr ""
 
 #: admin/admin-restrictions.php:22
@@ -368,12 +408,6 @@ msgstr ""
 
 #: admin/admin-restrictions.php:40
 msgid "Restrict number of entries"
-msgstr ""
-
-#: admin/admin-restrictions.php:51 admin/admin-restrictions.php:77
-#: admin/admin-restrictions.php:120 admin/admin-restrictions.php:163
-#: api/api-helpers.php:193
-msgid "Yes"
 msgstr ""
 
 #: admin/admin-restrictions.php:57
@@ -412,16 +446,151 @@ msgstr ""
 msgid "Message after scheduled time"
 msgstr ""
 
-#: api/api-helpers.php:194
+#: api/api-helpers.php:94
+msgid "Yes"
+msgstr ""
+
+#: api/api-helpers.php:95
 msgid "No"
 msgstr ""
 
-#: api/api-helpers.php:291
+#: api/api-helpers.php:198
 msgid "Insert field"
 msgstr ""
 
-#: api/api-helpers.php:300
+#: api/api-helpers.php:212
 msgid "All fields"
+msgstr ""
+
+#: core/forms/forms-rendering.php:103
+msgid "Submit"
+msgstr ""
+
+#: acf/fields/page.php:15
+msgid "Page"
+msgstr ""
+
+#: acf/fields/page.php:48 acf/fields/page.php:101
+msgid "Previous"
+msgstr ""
+
+#: acf/fields/page.php:54 acf/fields/page.php:110
+msgid "Next"
+msgstr ""
+
+#: acf/fields/page.php:88
+msgid "Show numbering"
+msgstr ""
+
+#: acf/fields/page.php:97
+msgid "Previous text"
+msgstr ""
+
+#: acf/fields/page.php:98
+msgid "Text for the \"Previous\" button"
+msgstr ""
+
+#: acf/fields/page.php:106
+msgid "Next text"
+msgstr ""
+
+#: acf/fields/page.php:107
+msgid "Text for the \"Next\" button"
+msgstr ""
+
+#: admin/forms/forms-export.php:51
+msgid "Exporting"
+msgstr ""
+
+#: admin/forms/forms-export.php:52 admin/forms/forms-preview.php:51
+msgid "Back to form"
+msgstr ""
+
+#: admin/forms/forms-export.php:58
+msgid "Export JSON"
+msgstr ""
+
+#: admin/forms/forms-export.php:60
+msgid ""
+"Export your form as a JSON file. The form can then be imported on any site "
+"at Forms &rarr; Import."
+msgstr ""
+
+#: admin/forms/forms-export.php:63
+msgid "Export file"
+msgstr ""
+
+#: admin/forms/forms-export.php:68
+msgid "Register programmatically"
+msgstr ""
+
+#: admin/forms/forms-export.php:70
+msgid ""
+"Place the following code in your theme or plugin to register your form "
+"programmatically."
+msgstr ""
+
+#: admin/forms/forms-export.php:85
+msgid "Export"
+msgstr ""
+
+#: admin/forms/forms-export.php:101
+msgid "Export form"
+msgstr ""
+
+#: admin/forms/forms-import.php:18
+msgid "Import"
+msgstr ""
+
+#: admin/forms/forms-import.php:31 admin/forms/forms-import.php:100
+msgid "Import form"
+msgstr ""
+
+#: admin/forms/forms-import.php:40
+msgid ""
+"Select the form JSON file you would like to import. If a form with the same "
+"key already exists it will be overwritten."
+msgstr ""
+
+#: admin/forms/forms-import.php:46
+msgid "Select File"
+msgstr ""
+
+#: admin/forms/forms-import.php:55
+msgid "Import File"
+msgstr ""
+
+#: admin/forms/forms-import.php:71
+msgid "No files selected"
+msgstr ""
+
+#: admin/forms/forms-import.php:80
+#, php-format
+msgid "Form with key %s imported."
+msgstr ""
+
+#: admin/forms/forms-import.php:84
+msgid "Failed to import form"
+msgstr ""
+
+#: admin/forms/forms-preview.php:50
+msgid "Previewing"
+msgstr ""
+
+#: admin/forms/forms-preview.php:56
+msgid "Form successfully submitted"
+msgstr ""
+
+#: admin/forms/forms-preview.php:56
+msgid "Test again"
+msgstr ""
+
+#: admin/forms/forms-preview.php:86
+msgid "Preview form"
+msgstr ""
+
+#: admin/forms/forms-preview.php:116
+msgid "Preview"
 msgstr ""
 
 #. Name of the plugin
