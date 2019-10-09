@@ -21,50 +21,6 @@ function af_has_submission( $hash = false ) {
 }
 
 
-function af_save_session_submission( $submission ) {
-	if ( ! af_has_submission() ) {
-		return;
-	}
-
-  if( PHP_SESSION_ACTIVE !== session_status() ) {
-    session_start();
-  }
-
-  $_SESSION['af_submission'] = AF()->submission;
-
-  session_write_close();
-}
-
-
-function af_get_session_submission() {
-	if ( PHP_SESSION_ACTIVE !== session_status() ) {
-    session_start();
-  }
-  
-  $submission = false;
-  if ( isset( $_SESSION['af_submission'] ) ) {
-  	$submission = $_SESSION['af_submission'];
-  }
-
-  session_write_close();
-
-  return $submission;
-}
-
-
-function af_clear_session_submission() {
-	if( PHP_SESSION_ACTIVE !== session_status() ) {
-    session_start();
-  }
-
-  if ( isset( $_SESSION['af_submission'] ) ) {
-  	unset( $_SESSION['af_submission'] );
-  }
-
-  session_write_close();
-}
-
-
 function af_submission_failed( $key = false ) {
   $submission = AF()->submission;
 
