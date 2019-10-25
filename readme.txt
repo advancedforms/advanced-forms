@@ -2,8 +2,8 @@
 Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
-Tested up to: 5.2.0
-Stable tag: 1.6.5
+Tested up to: 5.3.0
+Stable tag: 1.6.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,16 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.6.6 =
+
+* Removed dependency on PHP sessions for submission handling. Should improve compatibility with caching solutions.
+
+*Pro*
+
+* Added support for calculated fields in emails and success messages.
+* Added JS hooks for extending calculated fields.
+* Fixed bug where only 10 lists would show up when configuring Mailchimp integration.
 
 = 1.6.5 =
 
