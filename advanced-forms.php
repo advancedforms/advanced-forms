@@ -18,7 +18,7 @@ class AF {
 	 *
 	 * @since 1.2.0
 	 */
-	public $version = '1.6.5';
+	public $version = '1.6.6';
 	
 	
 	/**
