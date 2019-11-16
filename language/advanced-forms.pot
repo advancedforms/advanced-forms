@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-19 13:43+0000\n"
+"POT-Creation-Date: 2019-11-11 15:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -123,7 +123,7 @@ msgctxt "Post Type Singular Name"
 msgid "Entry"
 msgstr ""
 
-#: advanced-forms.php:266 advanced-forms.php:270 admin/admin-forms.php:188
+#: advanced-forms.php:266 advanced-forms.php:270 admin/admin-forms.php:192
 #: admin/admin-entries.php:240
 msgid "Entries"
 msgstr ""
@@ -192,7 +192,7 @@ msgstr ""
 msgid "Form key:"
 msgstr ""
 
-#: admin/admin-forms.php:100 admin/admin-forms.php:187
+#: admin/admin-forms.php:100 admin/admin-forms.php:191
 msgid "Fields"
 msgstr ""
 
@@ -216,103 +216,107 @@ msgstr ""
 msgid "No field groups connected to this form"
 msgstr ""
 
-#: admin/admin-forms.php:186
+#: admin/admin-forms.php:175
+msgid "Create field group"
+msgstr ""
+
+#: admin/admin-forms.php:190
 msgid "Key"
 msgstr ""
 
-#: admin/admin-forms.php:290
+#: admin/admin-forms.php:294
 msgid "Resources"
 msgstr ""
 
-#: admin/admin-forms.php:292
+#: admin/admin-forms.php:296
 msgid "Guides"
 msgstr ""
 
-#: admin/admin-forms.php:293
+#: admin/admin-forms.php:297
 msgid "Actions"
 msgstr ""
 
-#: admin/admin-forms.php:294
+#: admin/admin-forms.php:298
 msgid "Filters"
 msgstr ""
 
-#: admin/admin-forms.php:298
+#: admin/admin-forms.php:302
 msgid "Pro"
 msgstr ""
 
-#: admin/admin-forms.php:300
+#: admin/admin-forms.php:304
 msgid "Create/edit posts and users"
 msgstr ""
 
-#: admin/admin-forms.php:301
+#: admin/admin-forms.php:305
 msgid "Integrate with Slack, Mailchimp, and Zapier"
 msgstr ""
 
-#: admin/admin-forms.php:302
+#: admin/admin-forms.php:306
 msgid "Get direct, priority support"
 msgstr ""
 
-#: admin/admin-forms.php:304
+#: admin/admin-forms.php:308
 msgid "Available from hookturn.io"
 msgstr ""
 
-#: admin/admin-forms.php:307
+#: admin/admin-forms.php:311
 msgid "Support"
 msgstr ""
 
-#: admin/admin-forms.php:309
+#: admin/admin-forms.php:313
 msgid "Issues, questions, or suggestions?"
 msgstr ""
 
-#: admin/admin-forms.php:311
+#: admin/admin-forms.php:315
 msgid "Contact us directly"
 msgstr ""
 
-#: admin/admin-forms.php:311
+#: admin/admin-forms.php:315
 msgid "for priority support"
 msgstr ""
 
-#: admin/admin-forms.php:313
+#: admin/admin-forms.php:317
 msgid "Create a ticket on the"
 msgstr ""
 
-#: admin/admin-forms.php:313
+#: admin/admin-forms.php:317
 msgid "Wordpress support forums"
 msgstr ""
 
-#: admin/admin-forms.php:371
+#: admin/admin-forms.php:375
 msgid "Form settings"
 msgstr ""
 
-#: admin/admin-forms.php:375
+#: admin/admin-forms.php:379
 msgid "Display"
 msgstr ""
 
-#: admin/admin-forms.php:391
+#: admin/admin-forms.php:395
 msgid "Shortcode"
 msgstr ""
 
-#: admin/admin-forms.php:397
+#: admin/admin-forms.php:401
 msgid "Description"
 msgstr ""
 
-#: admin/admin-forms.php:415
+#: admin/admin-forms.php:419
 msgid "Success message"
 msgstr ""
 
-#: admin/admin-forms.php:418
+#: admin/admin-forms.php:422
 msgid "The message displayed after a successful submission."
 msgstr ""
 
-#: admin/admin-forms.php:433
+#: admin/admin-forms.php:437
 msgid "Statistics"
 msgstr ""
 
-#: admin/admin-forms.php:449
+#: admin/admin-forms.php:453
 msgid "Number of submissions"
 msgstr ""
 
-#: admin/admin-forms.php:471
+#: admin/admin-forms.php:475
 msgid "Number of times viewed"
 msgstr ""
 

@@ -122,7 +122,7 @@ class AF_Admin_Forms {
 		
 		<p><?php _e( 'Add fields by setting the location of your fields group to this form.', 'advanced-forms' ); ?></p>
 		
-		<table class="widefat">
+		<table class="widefat af-field-group-table">
 			<thead>
 				<tr>
 					<th scope="col"><?php _e( 'Label', 'advanced-forms' ) ?></th>
@@ -161,15 +161,19 @@ class AF_Admin_Forms {
 					<?php endforeach; ?>
 					
 				<?php else: ?>
-				
 					<tr>
-						<td colspan="3"><?php _e( 'No field groups connected to this form', 'advanced-forms' ); ?></td>
+						<td colspan="3">
+							<?php _e( 'No field groups connected to this form', 'advanced-forms' ); ?>
+						</td>
 					</tr>
-				
 				<?php endif; ?>
 				
 			</tbody>
 		</table>
+
+		<a href="<?php echo admin_url( 'post-new.php?post_type=acf-field-group' ); ?>" class="button">
+			<?php _e( 'Create field group', 'advanced-forms' ); ?>
+		</a>
 		<?php
 	}
 	

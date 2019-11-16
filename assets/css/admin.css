@@ -20,6 +20,10 @@
 	border-top: 0;
 }
 
+.af-field-group-table {
+	margin-bottom: 1em;
+}
+
 
 /**
  * Hide title input on entries
