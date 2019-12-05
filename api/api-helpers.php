@@ -81,10 +81,10 @@ function _af_render_field_include( $field, $value = false ) {
 		$output .= sprintf( '<table class="af-field-include af-field-include-%s">', $field['type'] );
 	
 		foreach ( $field['sub_fields'] as $sub_field ) {
-			
-			$output .= sprintf( '<tr><th>%s</th></tr>', $sub_field['label'] );
-			$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $value[ $sub_field['name'] ] ) );
-			
+			if ( isset( $value[ $sub_field['name'] ] ) ) {
+				$output .= sprintf( '<tr><th>%s</th></tr>', $sub_field['label'] );
+				$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $value[ $sub_field['name'] ] ) );
+			}
 		}
 		
 		$output .= '</table>';
