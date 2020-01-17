@@ -35,7 +35,6 @@ function advanced_form( $form_id, $args = array() ) {
  *
  */
 function af_get_field( $field_key_or_name, $fields = false ) {
-	
 	// Get fields from the global submission object if fields weren't passed
 	if ( ! $fields && af_has_submission() ) {
 		
@@ -43,30 +42,20 @@ function af_get_field( $field_key_or_name, $fields = false ) {
 		
 	}
 	
-	
 	foreach( $fields as $field ) {
-		
 		if ( $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name ) {
-			
 			return $field['value'];
-			
 		}
 		
 		// Also search sub fields
-		if ( isset( $field['sub_fields'] ) ) {
-			
+		if ( isset( $field['sub_fields'] ) && is_array( $field['value'] ) ) {
 			foreach ( $field['value'] as $sub_field_name => $sub_field_value ) {
-				
 				if ( $sub_field_name == $field_key_or_name ) {
 					return $sub_field_value;
 				}
-				
 			}
-			
 		}
-		
 	}
-	
 	
 	return false;
 	
