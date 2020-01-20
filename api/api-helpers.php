@@ -100,7 +100,7 @@ function _af_render_field_include( $field, $value = false ) {
 
 		$output .= sprintf( '<img src="%s" alt="%s" />', esc_attr( $value['sizes']['medium'] ), esc_attr( $value['alt']));
 
-	} elseif ( 'gallery' == $field['type'] ) {
+	} elseif ( 'gallery' == $field['type'] && is_array( $value ) ) {
 
 		foreach ( $value as $image ) {
 			$output .= sprintf( '<img src="%s" alt="%s" />', esc_attr( $image['sizes']['medium'] ), esc_attr( $image['alt']));
