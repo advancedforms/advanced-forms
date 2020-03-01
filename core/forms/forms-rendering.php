@@ -252,7 +252,7 @@ class AF_Core_Forms_Rendering {
 
     $success_message = af_resolve_merge_tags( $success_message );
     
-    echo '<div class="af-success">';
+    echo '<div class="af-success" aria-live="assertive" role="alert">';
     
       echo $success_message;
     
