@@ -367,6 +367,9 @@ class AF_Core_Forms_Rendering {
    *
    */
   function render_field( $field, $form, $args ) {
+    do_action( 'af/field/before_field', $field, $form, $args );
+    do_action( 'af/field/before_field/name=' . $field['name'], $field, $form, $args );
+    do_action( 'af/field/before_field/key=' . $field['key'], $field, $form, $args );
 
     // Ignore hide from admin value
     $field['hide_admin'] = false;
@@ -468,7 +471,7 @@ class AF_Core_Forms_Rendering {
     
     // Field wrapper
     echo sprintf( '<div %s>', acf_esc_atts( $attributes ) );
-    
+
     echo '<div class="af-label acf-label">';
     
       $label = $field['label'];
@@ -508,10 +511,12 @@ class AF_Core_Forms_Rendering {
       }
     }
     
-    
     // End field wrapper
     echo '</div>';
 
+    do_action( 'af/field/after_field', $field, $form, $args );
+    do_action( 'af/field/after_field/name=' . $field['name'], $field, $form, $args );
+    do_action( 'af/field/after_field/key=' . $field['key'], $field, $form, $args );
   }
 
 
