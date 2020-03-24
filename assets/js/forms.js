@@ -10,12 +10,19 @@ var af;
 
   af = {
 
+    forms: {},
+
     setup_form: function( $form ) {
+      var key = $form.attr( 'data-key' );
       var form = {
         $el: $form,
+        key: key,
       }
 
+      // Initialize pages if this is a multi-page form
       this.pages.initialize( form );
+
+      this.forms[ key ] = form;
 
       if ('doAction' in acf) {
         acf.doAction( 'af/form/setup', form );

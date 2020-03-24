@@ -98,6 +98,7 @@ class AF_Core_Forms_Rendering {
       'method'  => 'POST',
       'action'  => $args['target'],
       'id'    => $args['id'],
+      'data-key' => $form['key'],
     );
     
     $form_attributes = apply_filters( 'af/form/attributes', $form_attributes, $form, $args );
