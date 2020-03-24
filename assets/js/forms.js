@@ -128,12 +128,7 @@ var af;
       var self = this;
 
       this.validatePage( form, form.current_page, function() {
-        form.current_page++;
-        if ( form.max_page <= form.current_page ) {
-          form.max_page = form.current_page
-        }
-
-        self.refresh( form );
+        self.changePage( form.current_page + 1, form );
       });
     },
 
@@ -141,8 +136,7 @@ var af;
     previousPage: function( form ) {
       if ( this.isFirstPage( form ) ) return;
 
-      form.current_page--;
-      this.refresh( form );
+      this.changePage( form.current_page - 1, form );
     },
 
     // Navigate to specific page
@@ -152,9 +146,26 @@ var af;
       var self = this;
 
       this.validatePage( form, form.current_page, function() {
-        form.current_page = page;
-        self.refresh( form );
+        self.changePage( page, form );
       });
+    },
+
+    changePage: function( page, form ) {
+      var previousPage = form.current_page;
+      form.current_page = page;
+
+      // Update max page if we have exceeded the previous max
+      if ( form.max_page <= form.current_page ) {
+        form.max_page = form.current_page
+      }
+
+      this.refresh( form );
+
+      if ('doAction' in acf) {
+        acf.doAction( 'af/form/page_changed', page, previousPage, form );
+      } else {
+        acf.do_action( 'af/form/page_changed', page, previousPage, form );
+      }
     },
 
     isFirstPage: function( form ) {
