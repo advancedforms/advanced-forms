@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 5.4.0
-Stable tag: 1.6.6
+Stable tag: 1.6.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,23 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.6.7 =
+
+* Added actions triggered before and after rendering each field called `af/field/before_field` and `af/field/after_field`.
+* Added JS action triggered when the page is changed in a multi-page form called `af/form/page_changed`.
+* Added ARIA attributes for success messages to improve accessibility.
+* Added action after form assets have been enqueued called `af/form/enqueue`. Should be used if any assets need to be dequeued.
+* Fixed warning which could appear when including subfields through merge tags.
+* Fixed warning which could appear when values were retrieved from an empty repeater.
+* Fixed warning when displaying an empty gallery field with `{all_fields}`.
+
+*Pro*
+
+* Added new setting to configure the post status used when creating new posts.
+* Added support for using calculated fields inside group fields.
+* Improved UX when setting up field mappings for post and user editing. New forms will now default to map all fields.
+* Added filter for Slack webhooks called `af/form/slack/webhook`.
 
 = 1.6.6 =
 
