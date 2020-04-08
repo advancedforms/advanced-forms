@@ -195,7 +195,9 @@ class AF_Core_Emails {
 
 		// Send separate emails to all recipients
 		foreach ( $recipients as $recipient ) {
-			wp_mail( $recipient, $subject, $html, $headers, $attachments );
+			if ( is_email( $recipient ) ) {
+				wp_mail( $recipient, $subject, $html, $headers, $attachments );
+			}
 		}
 		
 		do_action( 'af/email/after_send', $email, $form );
