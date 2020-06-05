@@ -9,7 +9,7 @@
  *
  */
 class AF_Core_Forms_Submissions {
-  const COOKIE_NAME = 'af_submission';
+  const DEFAULT_COOKIE_NAME = 'af_submission';
 
   const OPTION_EXPIRY_MINUTES = 5;
   const OPTION_DATA_PREFIX = 'af_submission_data_';
@@ -205,15 +205,15 @@ class AF_Core_Forms_Submissions {
    *
    */
   private function get_submission() {
-    if ( ! isset( $_COOKIE[ self::COOKIE_NAME ] ) ) {
+    if ( ! isset( $_COOKIE[ $this->get_cookie_name() ] ) ) {
       return false;
     }
 
-    $key = $_COOKIE[ self::COOKIE_NAME ];
+    $key = $_COOKIE[ $this->get_cookie_name() ];
     $submission = get_option( self::OPTION_DATA_PREFIX . $key, false );
 
     $this->delete_submission( $key );
-    setcookie( self::COOKIE_NAME, '', time() - HOUR_IN_SECONDS, '/' );
+    setcookie( $this->get_cookie_name(), '', time() - HOUR_IN_SECONDS, '/' );
 
     return $submission;
   }
@@ -233,7 +233,7 @@ class AF_Core_Forms_Submissions {
     add_option( self::OPTION_DATA_PREFIX . $key, $submission );
     add_option( self::OPTION_EXPIRY_PREFIX . $key, $expiration_time );
 
-    setcookie( self::COOKIE_NAME, $key, $expiration_time, '/' );
+    setcookie( $this->get_cookie_name(), $key, $expiration_time, '/' );
   }
 
   /**
@@ -245,6 +245,10 @@ class AF_Core_Forms_Submissions {
   private function delete_submission( $key ) {
     delete_option( self::OPTION_DATA_PREFIX . $key );
     delete_option( self::OPTION_EXPIRY_PREFIX . $key );
+  }
+
+  private function get_cookie_name() {
+    return apply_filters( 'af/settings/cookie_name', self::DEFAULT_COOKIE_NAME );
   }
 
   /**
