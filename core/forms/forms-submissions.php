@@ -210,7 +210,7 @@ class AF_Core_Forms_Submissions {
     $submission = get_option( self::OPTION_DATA_PREFIX . $key, false );
 
     $this->delete_submission( $key );
-    setcookie( self::COOKIE_NAME, '', time() - HOUR_IN_SECONDS );
+    setcookie( self::COOKIE_NAME, '', time() - HOUR_IN_SECONDS, '/' );
 
     return $submission;
   }
@@ -230,7 +230,7 @@ class AF_Core_Forms_Submissions {
     add_option( self::OPTION_DATA_PREFIX . $key, $submission );
     add_option( self::OPTION_EXPIRY_PREFIX . $key, $expiration_time );
 
-    setcookie( self::COOKIE_NAME, $key, $expiration_time );
+    setcookie( self::COOKIE_NAME, $key, $expiration_time, '/' );
   }
 
   /**
