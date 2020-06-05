@@ -18,6 +18,7 @@ class AF_Core_Forms_Submissions {
   function __construct() {
     add_action( 'init', array( $this, 'pre_form' ), 10, 0 );
     add_action( 'acf/validate_save_post', array( $this, 'validate' ), 10, 0 );
+    add_filter( 'acf/upload_prefilter', array( $this, 'intercept_upload_errors' ), 1000, 3 );
   }
   
   
@@ -136,7 +137,9 @@ class AF_Core_Forms_Submissions {
      *
      */
     if ( isset( $_FILES['acf'] ) ) {
+      $this->clear_upload_errors();
       acf_upload_files();
+      $this->handle_upload_errors();
     }
 
     // Generate submission from data
@@ -272,6 +275,63 @@ class AF_Core_Forms_Submissions {
       $submission_key = substr( $option_name, strlen( self::OPTION_EXPIRY_PREFIX ) );
       $this->delete_submission( $submission_key );
     }
+  }
+
+  /**
+   * ACF doesn't provide a simple way of catching upload errors when using the basic uploader.
+   * This function is hooked into the "acf/upload_prefilter" with a high priority.
+   * It will intercept all upload errors and save them together with field data.
+   *
+   * @since 1.7.0
+   *
+   */
+  function intercept_upload_errors( $errors, $file, $field ) {
+    if ( ! empty( $errors ) ) {
+      $this->upload_errors[ $field['key'] ] = array(
+        'field' => $field,
+        'messages' => $errors,
+      );
+    }
+
+    return $errors;
+  }
+
+  /**
+   * Removes all intercepted upload errors.
+   * Should be run before handling uploads using "acf_upload_files()".
+   *
+   * @since 1.7.0
+   *
+   */
+  private function clear_upload_errors() {
+    $this->upload_errors = array();
+  }
+
+  /**
+   * Checks if any upload errors have been caught and stops the submission.
+   * This is a very rudimentary way of handling upload errors but it's necessary as ACF can't handle errors when using the basic uploader.
+   * The errors checks should in the future be implemented client-side for a good user experience and this is mostly meant to be a fallback.
+   * 
+   *
+   * @since 1.7.0
+   *
+   */
+  private function handle_upload_errors() {
+    if ( empty( $this->upload_errors ) ) {
+      return;
+    }
+
+    $message = sprintf( '<h2>%s</h2>', __('Validation failed', 'acf') );
+    $message .= '<ul>';
+    foreach( $this->upload_errors as $error ) {
+      $field = $error['field'];
+      foreach ( $error['messages'] as $error_message ) {
+        $message .= '<li>' . sprintf( '%s: %s', $field['label'], $error_message ) . '</li>';
+      }
+    }
+    $message .= '</ul>';
+
+    wp_die( $message, __('Validation failed', 'acf') );
   }
 }
 
