@@ -298,13 +298,20 @@ class AF_Core_Forms_Rendering {
     // Hidden fields to identify form
     echo '<div class="acf-hidden">';
 
-      $nonce = wp_create_nonce( 'acf_nonce' );
-      echo sprintf( '<input type="hidden" name="_acfnonce" value="%s">', $nonce );
-      echo sprintf( '<input type="hidden" name="nonce" value="%s">', $nonce );
+      $acf_nonce = wp_create_nonce( 'acf_nonce' );
+      echo sprintf( '<input type="hidden" name="_acfnonce" value="%s">', $acf_nonce );
+      echo sprintf( '<input type="hidden" name="nonce" value="%s">', $acf_nonce );
     
       echo sprintf( '<input type="hidden" name="af_form" value="%s">', $form['key'] );
-      echo sprintf( '<input type="hidden" name="af_form_args" value="%s">', base64_encode( json_encode( $args ) ) );
-      echo sprintf( '<input type="hidden" name="_acf_form" value="%s">', base64_encode( json_encode( $args ) ) );
+
+      $encoded_args = base64_encode( json_encode( $args ) );
+      echo sprintf( '<input type="hidden" name="af_form_args" value="%s">', $encoded_args );
+      echo sprintf( '<input type="hidden" name="_acf_form" value="%s">', $encoded_args );
+
+      // Add nonce to ensure arguments can't be altered.
+      $hashed_args = hash( 'sha256', $encoded_args );
+      $nonce = wp_create_nonce( sprintf( 'af_submission_%s_%s', $form['key'], $hashed_args ) );
+      echo sprintf( '<input type="hidden" name="af_form_nonce" value="%s">', $nonce );
 
       // Add honeypot field that is not visible to users.
       // Bots should hopefully fill this in allowing them to be detected.

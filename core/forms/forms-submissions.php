@@ -173,7 +173,17 @@ class AF_Core_Forms_Submissions {
     }
 
     // Retrieve the args used to display the form
-    $args = json_decode( base64_decode( $_POST['af_form_args'] ), true );
+    $encoded_args = $_POST['af_form_args'];
+    $args = json_decode( base64_decode( $encoded_args ), true );
+
+    // Verify nonce
+    $nonce = $_POST['af_form_nonce'];
+    $hashed_args = hash( 'sha256', $encoded_args );
+    $nonce_value = sprintf( 'af_submission_%s_%s', $form['key'], $hashed_args );
+    if ( ! wp_verify_nonce( $nonce, $nonce_value ) ) {
+      wp_die( 'Invalid form nonce' );
+      exit;
+    }
 
     // Retrieve all form fields and their values
     $fields = array();
