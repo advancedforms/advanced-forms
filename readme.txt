@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 5.4.0
-Stable tag: 1.6.8
+Stable tag: 1.6.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,6 +57,19 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.6.9 =
+
+* Added filter `af/settings/cookie_name` to change cookie name used for submissions.
+* Added server-side handling of file validation errors. Should prevent submission with invalid uploads from being processed.
+* Fixed security issue where arguments could be altered client-side.
+* Fixed issue where submissions sometimes wouldn't be processed after a redirection.
+* Fixed issue with button styles in WordPress 5.4.
+
+*Pro*
+
+* Added automatic validation of email and username when registering users.
+* Fixed issue where some form post editing settings would get lost when importing a form.
 
 = 1.6.8 =
 
