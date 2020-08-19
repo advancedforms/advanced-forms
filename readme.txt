@@ -2,8 +2,8 @@
 Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
-Tested up to: 5.4.0
-Stable tag: 1.6.9
+Tested up to: 5.5.0
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,6 +28,7 @@ Advanced Forms lets you build flexible forms using the power of Advanced Custom 
 * Create/edit posts and users with ease
 * Integrate with Slack, Mailchimp, and Zapier
 * Use calculated fields to show live updating content
+* Protect against spam using Google reCAPTCHA
 * Get direct, priority support
 
 Available from [hookturn.io](https://hookturn.io/downloads/advanced-forms)
@@ -57,6 +58,13 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.7.0 =
+
+*Pro*
+
+* Added support for Google reCAPTCHA. Use an invisible captcha to protect your forms against spam without bothering users.
+* Changed editing to default to create users if no `user` argument is set. `user="new"` is no longed needed.
 
 = 1.6.9 =
 
