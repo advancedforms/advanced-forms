@@ -123,15 +123,11 @@ function af_save_field( $field_key_or_name, $object_id ) {
  * @since 1.3.0
  *
  */
-function af_save_all_fields( $object_id ) {
-	
+function af_save_all_fields( $object_id, $excluded_fields = array() ) {
 	// Make sure we have a submission to work with
 	if ( ! af_has_submission() ) {
-		
 		return false;
-		
 	}
-	
 	
 	$fields = AF()->submission['fields'];
 	
@@ -141,16 +137,15 @@ function af_save_all_fields( $object_id ) {
 	 * $field['_input'] should match the raw $_POST value.
 	 */
 	foreach ( $fields as $field ) {
+		if ( in_array( $field['key'], $excluded_fields ) ) {
+			continue;
+		}
 		
 		$value = $field['_input'];
-		
 		acf_update_value( $value, $object_id, $field );
-		
 	}
 	
-	
 	return true;
-	
 }
 
 
