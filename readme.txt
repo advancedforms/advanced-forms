@@ -65,6 +65,7 @@ Yes. Versions 4 or lower of ACF are not supported.
 
 * Added support for Google reCAPTCHA. Use an invisible captcha to protect your forms against spam without bothering users.
 * Changed editing to default to create users if no `user` argument is set. `user="new"` is no longer needed.
+* Changed "Map all fields" to never save fields that are used for user passwords. 
 
 = 1.6.9 =
 
