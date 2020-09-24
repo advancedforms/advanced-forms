@@ -186,26 +186,6 @@ var af;
     validatePage: function( form, page_index, callback ) {
       var page = form.pages[ page_index ];
 
-      // Create temporary div to hold fake form (for serialization)
-      var $temp = $( '<div>' );
-      $temp.append( form.$el.find( '#acf-form-data' ).clone() );
-      $temp.append( form.$el.find( '.acf-hidden' ).clone() );
-      
-      // Detach page fields and insert into temporary div.
-      // Detach is necessary as a regular clone won't work with select2.
-      var $fields = page.$fields.detach();
-      $temp.append( $fields );
-
-      // Serialize data from ephemeral form
-      var data = acf.serialize( $temp );
-
-      // Put page fields back into the DOM
-      $fields.detach().insertAfter( page.$field );
-
-      
-      data.action = 'acf/validate_save_post';
-      data = acf.prepare_for_ajax( data );
-
       /**
        * With ACF 5.7 large parts of the JS code base was redone.
        * With these changes the custom page validation became a lot simpler to implement.
@@ -214,21 +194,44 @@ var af;
 
       // Check if ACF 5.7 or later (the lockForm function was introduced then)
       if ( acf.validation.lockForm !== undefined ) {
-        var dataFilter = function() { return data; };
+        // Trigger browser validation manually.
+        // This is normally triggered automatically when a form is submitted.
+        page.$fields.find( 'input' ).each(function() {
+          this.checkValidity();
+        });
 
-        // Temporary override of prepare_for_ajax to inject custom data
-        acf.addFilter( 'prepare_for_ajax', dataFilter );
+        // Helper function to apply a function on pages except the current one.
+        var forEachOtherPage = function(f) {
+          for (i = 0; i < form.pages.length; i++) {
+            if ( i == page_index ) {
+              continue;
+            }
+
+            var otherPage = form.pages[ i ];
+            f(otherPage);
+          }
+        }
+
+        // Temporarily remove all other fields outside the current page.
+        // This way we can use the regular ACF validation on the entire form.
+        forEachOtherPage(function(otherPage) {
+          otherPage.$fields.detach();
+        });
 
         acf.validation.fetch({
           form: form.$el,
           lock: false,
           reset: true,
+          complete: function() {
+            // Put back the previously removed fields.
+            forEachOtherPage(function(otherPage) {
+              otherPage.$fields.insertAfter( otherPage.$field );
+            });
+          },
           success: function() {
             callback();
           },
         })
-
-        acf.removeFilter( 'prepare_for_ajax', dataFilter )
       } else {
         // Lock form and show spinner
         acf.validation.toggle( form.$el, 'lock' );
