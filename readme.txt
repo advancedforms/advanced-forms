@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
 Requires at least: 3.6.0
 Tested up to: 5.5.0
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,15 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.7.1 =
+
+* Improved validation handling for multi-page forms. Validation and error messages should now work the same as for regular forms.
+* Fixed issue where comma-separated email addresses wouldn't work.
+
+*Pro*
+
+* Fixed warning which sometimes was triggered by user editing forms.
 
 = 1.7.0 =
 
