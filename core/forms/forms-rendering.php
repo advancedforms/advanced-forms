@@ -289,11 +289,17 @@ class AF_Core_Forms_Rendering {
     
 
     // Form data required by ACF for validation to work.
-    acf_form_data(array( 
+    $acf_form_data = array( 
       'screen'  => 'acf_form',
       'post_id' => false,
       'form'    => false,
-    ));
+    );
+
+    $acf_form_data = apply_filters( 'af/form/acf_data', $acf_form_data, $form, $args );
+    $acf_form_data = apply_filters( 'af/form/acf_data/id=' . $form['post_id'], $acf_form_data, $form, $args );
+    $acf_form_data = apply_filters( 'af/form/acf_data/key=' . $form['key'], $acf_form_data, $form, $args );
+
+    acf_form_data( $acf_form_data );
 
     // Hidden fields to identify form
     echo '<div class="acf-hidden">';
