@@ -1,6 +1,6 @@
 === Advanced Forms ===
 Contributors: fabianlindfors
-Tags: af, advanced, forms, form, acf, advanced, custom, fields, flexible, developer, developer-friendly
+Tags: acf, advanced custom fields, acf form, form builder, contact form, frontend editing
 Requires at least: 3.6.0
 Tested up to: 5.5.0
 Stable tag: 1.7.1
