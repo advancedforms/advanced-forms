@@ -277,6 +277,24 @@
 /**
  * Information sidebar on forms page
  */
+
+/* Wraps the posts list and sidebar */
+.af-forms-wrapper {
+	margin-right: 300px;
+	clear: both;
+}
+
+.af-forms-list {
+	float: left;
+	width: 100%;
+}
+
+.af-sidebar {
+	float: right;
+	margin-right: -300px;
+	width: 280px;
+}
+
 .post-type-af_form .search-box {
 	display: none;
 }
@@ -291,8 +309,21 @@
 }
 
 @media only screen and (max-width: 850px) {
-	.acf-columns-2 .af-sidebar {
+	.af-forms-wrapper {
+		margin-right: 0;
+	}
+
+	.af-forms-list {
+		float: none;
+		width: auto;
+		margin: 0;
+	}
+
+	.af-sidebar {
+		margin: 0;
 		margin-top: 20px;
+		float: none;
+		width: auto;
 	}
 }
 

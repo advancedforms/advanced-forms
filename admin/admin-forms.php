@@ -286,7 +286,7 @@ class AF_Admin_Forms {
 		$icon = '<i aria-hidden="true" class="dashicons dashicons-external"></i>';
 		?>
 		<script type="text/html" id="af-sidebar-template">
-		<div class="acf-column-2 af-sidebar">
+		<div class="af-sidebar">
 			<div class="acf-box">
 				<div class="inner">
 					<h2><?php echo $title; ?></h2>
