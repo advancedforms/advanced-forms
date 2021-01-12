@@ -301,8 +301,10 @@ class AF_Admin_Forms {
 					<?php if ( ! AF()->pro ) : ?>
 					<h3><?php _e( 'Pro','advanced-forms' ); ?></h3>
 					<ul class="feature-list">
-						<li><?php _e( 'Create/edit posts and users', 'advanced-forms' ); ?></li>
+						<li><?php _e( 'Create and edit posts and users', 'advanced-forms' ); ?></li>
 						<li><?php _e( 'Integrate with Slack, Mailchimp, and Zapier', 'advanced-forms' ); ?></li>
+						<li><?php _e( 'Protect your form against spam with Google reCAPTCHA', 'advanced-forms' ); ?></li>
+						<li><?php _e( 'Use calculated fields to give fields to give users immediate feedback', 'advanced-forms' ); ?></li>
 						<li><?php _e( 'Get direct, priority support', 'advanced-forms' ); ?></li>
 					</ul>
 					<a href="<?php echo $pro_url; ?>"><?php echo $icon; ?> <?php _e( 'Available from hookturn.io', 'advanced-forms' ); ?></a>
@@ -312,7 +314,7 @@ class AF_Admin_Forms {
 					<p>
 						<?php _e( 'Issues, questions, or suggestions?', 'advanced-forms' ); ?>
 						<?php if ( AF()->pro ) : ?>
-						<?php _e( 'Contact us directly', 'advanced-forms' ); ?><a href="https://hookturn.io/contact/"></a> <?php _e( 'for priority support', 'advanced-forms' ); ?>.
+						<?php _e( 'Contact us directly', 'advanced-forms' ); ?><a href="mailto:support@hookturn.io?subject=Advanced%20Forms%20Pro"></a> <?php _e( 'for priority support', 'advanced-forms' ); ?>.
 						<?php else : ?>
 						<?php _e( 'Create a ticket on the', 'advanced-forms' ); ?> <a href="https://wordpress.org/support/plugin/advanced-forms"><?php _e( 'Wordpress support forums', 'advanced-forms' ); ?></a>.
 						<?php endif; ?>
