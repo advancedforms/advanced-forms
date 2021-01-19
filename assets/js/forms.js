@@ -218,19 +218,25 @@ var af;
           otherPage.$fields.detach();
         });
 
+        // Put back the previously removed fields.
+        var putFieldsBack = function() {
+          forEachOtherPage(function(otherPage) {
+            otherPage.$fields.insertAfter( otherPage.$field );
+          });
+        }
+
         acf.validation.fetch({
           form: form.$el,
           lock: false,
           reset: true,
-          complete: function() {
-            // Put back the previously removed fields.
-            forEachOtherPage(function(otherPage) {
-              otherPage.$fields.insertAfter( otherPage.$field );
-            });
-          },
           success: function() {
+            putFieldsBack();
             callback();
           },
+          failure: function() {
+            // We can't use the "complete" callback to put fields back as it's triggered after "success".
+            putFieldsBack();
+          }
         })
       } else {
         // Lock form and show spinner
