@@ -380,10 +380,6 @@ class AF_Core_Forms_Rendering {
    *
    */
   function render_field( $field, $form, $args ) {
-    do_action( 'af/field/before_field', $field, $form, $args );
-    do_action( 'af/field/before_field/name=' . $field['name'], $field, $form, $args );
-    do_action( 'af/field/before_field/key=' . $field['key'], $field, $form, $args );
-
     // Ignore hide from admin value
     $field['hide_admin'] = false;
 
@@ -419,6 +415,11 @@ class AF_Core_Forms_Rendering {
     $field = apply_filters( 'af/field/before_render', $field, $form, $args );
     $field = apply_filters( 'af/field/before_render/name=' . $field['name'], $field, $form, $args );
     $field = apply_filters( 'af/field/before_render/key=' . $field['key'], $field, $form, $args );
+
+    // Allow "af/field/before_render" to remove a field by returning false
+    if ( ! $field ) {
+      return;
+    }
 
     // Attributes to be used on the wrapper element
     $attributes = array();
@@ -481,6 +482,10 @@ class AF_Core_Forms_Rendering {
     } else {
       $instructions = '';
     }
+
+    do_action( 'af/field/before_field', $field, $form, $args );
+    do_action( 'af/field/before_field/name=' . $field['name'], $field, $form, $args );
+    do_action( 'af/field/before_field/key=' . $field['key'], $field, $form, $args );
     
     // Field wrapper
     echo sprintf( '<div %s>', acf_esc_atts( $attributes ) );
