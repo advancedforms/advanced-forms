@@ -367,9 +367,8 @@ class AF_Core_Forms_Rendering {
         }
         
       }
-      
+
       $this->render_field( $field, $form, $args );
-      
     }
   }
 
@@ -418,9 +417,9 @@ class AF_Core_Forms_Rendering {
     }
     
     $field = apply_filters( 'af/field/before_render', $field, $form, $args );
-    $field = apply_filters( 'af/field/before_render/id=' . $form['post_id'], $field, $form, $args );
-    $field = apply_filters( 'af/field/before_render/key=' . $form['key'], $field, $form, $args );
-    
+    $field = apply_filters( 'af/field/before_render/name=' . $field['name'], $field, $form, $args );
+    $field = apply_filters( 'af/field/before_render/key=' . $field['key'], $field, $form, $args );
+
     // Attributes to be used on the wrapper element
     $attributes = array();
     
