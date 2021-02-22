@@ -268,8 +268,12 @@ class AF_Core_Forms_Rendering {
    *
    */
   function render_fields( $form, $args ) {
-    // Increase the form view counter
-    if ( $form['post_id'] && ! $args['filter_mode'] ) {
+    // Increment the form view counter
+    $view_counter_enabled = true;
+    $view_counter_enabled = apply_filters( 'af/form/view_counter_enabled', $view_counter_enabled,  $form, $args );
+    $view_counter_enabled = apply_filters( 'af/form/view_counter_enabled/id=' . $form['post_id'], $view_counter_enabled, $form, $args );
+    $view_counter_enabled = apply_filters( 'af/form/view_counter_enabled/key=' . $form['key'], $view_counter_enabled, $form, $args );
+    if ( $form['post_id'] && ! $args['filter_mode'] && $view_counter_enabled ) {
       $views = get_post_meta( $form['post_id'], 'form_num_of_views', true );
       $views = $views ? $views + 1 : 1;
       update_post_meta( $form['post_id'], 'form_num_of_views', $views );
