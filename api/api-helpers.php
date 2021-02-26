@@ -273,6 +273,50 @@ function _af_form_field_choices( $form_key, $type = 'all' ) {
 
 
 /**
+ * Find a nested sub field based on some selector.
+ * If the selector is ["g1", "g2", "f1"] then the function will find a
+ * field named "f1" inside "g2" which is inside field "g1".
+ * The $field parameter should be the top-level field, "g1" in the example.
+ * 
+ * @since 1.7.2
+ * 
+ */
+function af_pick_sub_field( $field, $selector ) {
+	while ( ! empty( $selector ) && $field && isset( $field['sub_fields'] ) ) {
+		$search = array_shift( $selector );
+		$field = acf_search_fields( $search, $field['sub_fields'] );
+	}
+
+	return $field;
+}
+
+
+/**
+ * Find a nested value of a sub field based on some selector.
+ * If the selector is ["g1", "g2", "f1"] then the function will return the
+ * value of field "f1" inside "g2" which is inside "g1".
+ * The $field parameter should be the top-level field, "g1" in the example.
+ * 
+ * @since 1.7.2
+ * 
+ */
+function af_pick_sub_field_value( $field, $selector ) {
+	$value = $field['value'];
+
+	while ( ! empty( $selector ) ) {
+		$search = array_shift( $selector );
+		if ( isset( $value[ $search ] ) ) {
+			$value = $value[ $search ];
+		} else {
+			return false;
+		}
+	}
+
+	return $value;
+}
+
+
+/**
  * Retrieves full URL (with trailing slash) to the plugin assets folder
  *
  * @since 1.3.0

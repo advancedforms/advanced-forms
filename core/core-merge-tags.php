@@ -49,25 +49,32 @@ class AF_Core_Merge_Tags {
 
 
   /**
-   * Resolve merge tags on the form {field:FIELD_NAME[SUBFIELD_NMAE]} to render a single subfield.
+   * Resolve merge tags on the form {field:FIELD_NAME[SUBFIELD_NAME_1][SUBFIELD_NAME_2]} to render a single subfield.
+   * Arbitrary levels of nesting is supported and only field names may be used for the subfields.
    * Needs to be apply before resolve_field_tag to avoid override.
    *
    * @since 1.6.0
    *
    */
   function resolve_sub_field_tag( $output, $tag, $fields ) {
-    if ( ! empty( $output ) || ! preg_match_all( '/field:(.*)\[(.*?)\]/', $tag, $matches ) ) {
+    if ( ! empty( $output ) || ! preg_match_all( '/field:(.*?)\[(.*)\]/', $tag, $matches ) ) {
       return $output;
     }
 
     $field_name = $matches[1][0];
-    $sub_field_name = $matches[2][0];
     $field = af_get_field_object( $field_name, $fields );
 
-    if ( isset( $field['sub_fields'] ) ) {
-      $sub_field = af_get_field_object( $sub_field_name, $field['sub_fields'] );
-      $value = _af_render_field_include( $sub_field, $field['value'][ $sub_field['name'] ] );
-      return $value;
+    // The previous regex will greedily match everything inside brackets.
+    // For example "field:f1[s1][s2][s3] will yield "s1][s2][s3".
+    // By splitting this we get the selector: array( "s1", "s2", "s3" )
+    $selector = explode( '][', $matches[2][0] );
+
+    // Find the nested subfield and its value
+    $sub_field = af_pick_sub_field( $field, $selector );
+    $sub_field_value = af_pick_sub_field_value( $field, $selector );
+
+    if ( $sub_field ) {
+      return _af_render_field_include( $sub_field, $sub_field_value );
     }
 
     return $output;
