@@ -137,11 +137,17 @@
 	overflow: auto;
 }
 
+.af-field-dropdown .af-dropdown .sub-fields-wrapper {
+	border-left: 3px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
 .af-field-dropdown .af-dropdown .field-option.sub-field {
 	border-left: 3px solid #ccc;
 }
 
-.af-field-dropdown .af-dropdown .field-option:last-child {
+.af-field-dropdown .af-dropdown .field-option:last-child,
+.af-field-dropdown .af-dropdown .sub-fields-wrapper:last-child {
 	border-bottom: 0;
 }
 

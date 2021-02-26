@@ -51,7 +51,7 @@ class AF_Core_Merge_Tags {
   /**
    * Resolve merge tags on the form {field:FIELD_NAME[SUBFIELD_NAME_1][SUBFIELD_NAME_2]} to render a single subfield.
    * Arbitrary levels of nesting is supported and only field names may be used for the subfields.
-   * Needs to be apply before resolve_field_tag to avoid override.
+   * Needs to be applied before resolve_field_tag to avoid override.
    *
    * @since 1.6.0
    *
