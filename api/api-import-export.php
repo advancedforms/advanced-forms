@@ -30,8 +30,6 @@ function af_import_form( $form ) {
       'post_status' => 'publish',
     ));
 
-    error_log(print_r($post_id,1));
-
     if ( is_wp_error( $post_id ) ) {
       return false;
     }
