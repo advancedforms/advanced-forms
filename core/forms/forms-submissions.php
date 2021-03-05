@@ -36,7 +36,7 @@ class AF_Core_Forms_Submissions {
     }
 
     // Make sure honeypot field is empty if one exists
-    if ( isset( $_POST['email_for_non_humans'] ) && ! empty( $_POST['email_for_non_humans'] ) ) {
+    if ( ! $this->is_honeypot_valid() ) {
       wp_die( 'Non-human user detected' );
       exit;
     }
@@ -47,45 +47,72 @@ class AF_Core_Forms_Submissions {
     }
       
     // Validate the posted data, this validation has already been performed once over AJAX
-    if ( acf_validate_save_post( true ) ) {
-      $form = AF()->submission['form'];
-      $args = AF()->submission['args'];
-      $fields = AF()->submission['fields'];
-      
-      // Increase the form submissions counter
-      if ( $form['post_id'] ) {
-        $submissions = get_post_meta( $form['post_id'], 'form_num_of_submissions', true );
-        $submissions = $submissions ? $submissions + 1 : 1;
-        update_post_meta( $form['post_id'], 'form_num_of_submissions', $submissions );
-      }
+    if ( ! acf_validate_save_post( true ) ) {
+      return;
+    }
 
-      do_action( 'af/form/before_submission', $form, $fields, $args );
-      do_action( 'af/form/before_submission/id=' . $form['post_id'], $form, $fields, $args );
-      do_action( 'af/form/before_submission/key=' . $form['key'], $form, $fields, $args );
-      
-      if ( ! af_submission_failed() ) {
-        do_action( 'af/form/submission', $form, $fields, $args );
-        do_action( 'af/form/submission/id=' . $form['post_id'], $form, $fields, $args );
-        do_action( 'af/form/submission/key=' . $form['key'], $form, $fields, $args );
-      }
+    $form = AF()->submission['form'];
+    $args = AF()->submission['args'];
+    $fields = AF()->submission['fields'];
 
-      // Redirect to different URL if redirect argument has been passed
-      $redirect_url = $args['redirect'];
+    $this->process_submission( $form, $args, $fields );
 
-      // By default the user is redirected back to the form page.
-      // Some browsers will prompt to submit the form again if the form page is reloaded.
-      // Redirecting back avoid the confusion and risk for duplicate submissions.
-      if ( NULL === $redirect_url ) {
-        $redirect_url = $_POST['af_origin_url'];
-      }
+    // Redirect to different URL if redirect argument has been passed
+    $redirect_url = $args['redirect'];
 
-      if ( $redirect_url && '' !== $redirect_url ) {
-        $this->clear_expired_submissions();
-        $this->save_submission( AF()->submission );
+    // By default the user is redirected back to the form page.
+    // Some browsers will prompt to submit the form again if the form page is reloaded.
+    // Redirecting back removes the risk of duplicate submissions.
+    if ( NULL === $redirect_url ) {
+      $redirect_url = $_POST['af_origin_url'];
+    }
 
-        wp_redirect( $redirect_url );
-        exit;
-      }
+    if ( $redirect_url && '' !== $redirect_url ) {
+      $this->clear_expired_submissions();
+      $this->save_submission( AF()->submission );
+
+      wp_redirect( $redirect_url );
+      exit;
+    }
+  }
+
+
+  /**
+   * Check that the honeypot has not been filled.
+   * 
+   * @since 1.8.0
+   */
+  function is_honeypot_valid() {
+    if ( isset( $_POST['email_for_non_humans'] ) && ! empty( $_POST['email_for_non_humans'] ) ) {
+      return false;
+    }
+
+    return true;
+  }
+
+
+  /**
+   * Process a form submission.
+   * 
+   * @since 1.8.0
+   * 
+   */
+  function process_submission( $form, $args, $fields ) {
+    // Increase the form submissions counter
+    if ( $form['post_id'] ) {
+      $submissions = get_post_meta( $form['post_id'], 'form_num_of_submissions', true );
+      $submissions = $submissions ? $submissions + 1 : 1;
+      update_post_meta( $form['post_id'], 'form_num_of_submissions', $submissions );
+    }
+
+    do_action( 'af/form/before_submission', $form, $fields, $args );
+    do_action( 'af/form/before_submission/id=' . $form['post_id'], $form, $fields, $args );
+    do_action( 'af/form/before_submission/key=' . $form['key'], $form, $fields, $args );
+    
+    if ( ! af_submission_failed() ) {
+      do_action( 'af/form/submission', $form, $fields, $args );
+      do_action( 'af/form/submission/id=' . $form['post_id'], $form, $fields, $args );
+      do_action( 'af/form/submission/key=' . $form['key'], $form, $fields, $args );
     }
   }
 
