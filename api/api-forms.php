@@ -545,3 +545,21 @@ function af_get_form_fields( $form_key, $type = 'all' ) {
 	return $form_fields;
 	
 }
+
+
+/**
+ * Renders the success message for a form. Requires that the submission has already been loaded.
+ * 
+ * @since 1.8.0
+ * 
+ */
+function af_form_success_message( $form, $args ) {
+  $success_message = $form['display']['success_message'];
+  $success_message = apply_filters( 'af/form/success_message', $success_message, $form, $args );
+  $success_message = apply_filters( 'af/form/success_message/id=' . $form['post_id'], $success_message, $form, $args );
+  $success_message = apply_filters( 'af/form/success_message/key=' . $form['key'], $success_message, $form, $args );
+
+  $success_message = af_resolve_merge_tags( $success_message );
+
+  return sprintf( '<div class="af-success" aria-live="assertive" role="alert">%s</div>', $success_message );
+}

@@ -131,7 +131,7 @@ class AF_Core_Forms_Rendering {
     $instance_hash = af_form_instance_hash( $form['key'], $args );
     if ( af_has_submission( $instance_hash ) && ! af_submission_failed( $form['key'] ) && ! $args['filter_mode'] ) {
 
-      $this->render_success_message( $form, $args );
+      echo af_form_success_message( $form, $args );
 
     } elseif ( $restriction ) {
     
@@ -235,28 +235,6 @@ class AF_Core_Forms_Rendering {
   function render_restriction_message( $message ) {
     echo '<div class="af-restricted-message">';
       echo $message;
-    echo '</div>';
-  }
-
-
-  /**
-   * Renders the success message for a form.
-   *
-   * @since 1.6.0
-   *
-   */
-  function render_success_message( $form, $args ) {
-    $success_message = $form['display']['success_message'];
-    $success_message = apply_filters( 'af/form/success_message', $success_message, $form, $args );
-    $success_message = apply_filters( 'af/form/success_message/id=' . $form['post_id'], $success_message, $form, $args );
-    $success_message = apply_filters( 'af/form/success_message/key=' . $form['key'], $success_message, $form, $args );
-
-    $success_message = af_resolve_merge_tags( $success_message );
-    
-    echo '<div class="af-success" aria-live="assertive" role="alert">';
-    
-      echo $success_message;
-    
     echo '</div>';
   }
 
