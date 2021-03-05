@@ -70,11 +70,20 @@ class AF_Core_Forms_Submissions {
       }
 
       // Redirect to different URL if redirect argument has been passed
-      if ( $args['redirect'] && '' != $args['redirect'] ) {
+      $redirect_url = $args['redirect'];
+
+      // By default the user is redirected back to the form page.
+      // Some browsers will prompt to submit the form again if the form page is reloaded.
+      // Redirecting back avoid the confusion and risk for duplicate submissions.
+      if ( NULL === $redirect_url ) {
+        $redirect_url = $_POST['af_origin_url'];
+      }
+
+      if ( $redirect_url && '' !== $redirect_url ) {
         $this->clear_expired_submissions();
         $this->save_submission( AF()->submission );
 
-        wp_redirect( $args['redirect'] );
+        wp_redirect( $redirect_url );
         exit;
       }
     }

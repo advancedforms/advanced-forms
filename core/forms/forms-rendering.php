@@ -72,7 +72,7 @@ class AF_Core_Forms_Rendering {
       'id'            => $form['key'],
       'values'          => array(),
       'submit_text'         => __( 'Submit', 'advanced-forms' ),
-      'redirect'          => acf_get_current_url(),
+      'redirect'          => NULL,
       'target'          => acf_get_current_url(),
       'echo'            => true,
       'exclude_fields'      => array(),
@@ -328,6 +328,9 @@ class AF_Core_Forms_Rendering {
       if ( $args['honeypot'] ) {
         echo '<input type="text" name="email_for_non_humans" tabindex="-1" autocomplete="off" />';
       }
+
+      // Add origin URL to enable an automatic redirect back to the form page after submission.
+      echo sprintf( '<input type="hidden" name="af_origin_url" value="%s" />', acf_get_current_url() );
       
       do_action( 'af/form/hidden_fields', $form, $args );
       do_action( 'af/form/hidden_fields/id=' . $form['post_id'], $form, $args );
