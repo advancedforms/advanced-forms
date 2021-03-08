@@ -16,9 +16,65 @@ class AF_Core_Forms_Submissions {
   const OPTION_EXPIRY_PREFIX = 'af_submission_expiry_';
   
   function __construct() {
+    add_action( 'wp_ajax_af_submission', array( $this, 'ajax_submission' ), 10, 0 );
+    add_action( 'wp_ajax_nopriv_af_submission', array( $this, 'ajax_submission' ), 10, 0 );
     add_action( 'init', array( $this, 'pre_form' ), 10, 0 );
     add_action( 'acf/validate_save_post', array( $this, 'validate' ), 10, 0 );
     add_filter( 'acf/upload_prefilter', array( $this, 'intercept_upload_errors' ), 1000, 3 );
+  }
+
+
+  function ajax_submission() {
+    // Make sure honeypot field is empty if one exists
+    if ( ! $this->is_honeypot_valid() ) {
+      wp_send_json_error(array(
+        'errors' => array(
+          array( 'message' => 'Non-human user detected' ),
+        ),
+      ), 400 );
+      wp_die();
+    }
+
+    // Validate the posted data. This validation has already been performed once over AJAX.
+    if( ! acf_validate_save_post() ) {
+      wp_send_json_error( array(
+        'errors' => array(
+          array( 'message' => 'Validation failed' ),
+        ),
+      ), 400 );
+      wp_die();
+    }
+
+    $form = AF()->submission['form'];
+    $args = AF()->submission['args'];
+    $fields = AF()->submission['fields'];
+
+    $this->process_submission( $form, $args, $fields );
+
+    $response = array(
+      'type' => 'none',
+    );
+
+    // Redirect to different URL if redirect argument has been passed
+    $redirect_url = $args['redirect'];
+    if ( ! empty( $redirect_url ) ) {
+      $response = array(
+        'type' => 'redirect',
+        'redirect_url' => $redirect_url,
+      );
+    } else if ( ! empty( $args['filter_mode'] ) ) {
+      // Do nothing and let the response type be "none".
+      // Filter mode is equivalent to changing nothing after submission.
+    } else {
+      $success_message = af_form_success_message( $form, $args );
+      $response = array(
+        'type' => 'success_message',
+        'success_message' => $success_message,
+      );
+    }
+
+    wp_send_json_success( $response );
+    wp_die();
   }
   
   

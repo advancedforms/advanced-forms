@@ -67,6 +67,7 @@ class AF_Core_Forms_Rendering {
     $form = apply_filters( 'af/form/before_render/key=' . $form['key'], $form, $args );
     
     $args = wp_parse_args($args, array(
+      'ajax' => false,
       'display_title'       => false,
       'display_description'     => false,
       'id'            => $form['key'],
@@ -100,6 +101,11 @@ class AF_Core_Forms_Rendering {
       'id'    => $args['id'],
       'data-key' => $form['key'],
     );
+    
+    // Add data attribute to indicate that the form should use AJAX submissions
+    if ( $args['ajax'] ) {
+      $form_attributes['data-ajax'] = true;
+    }
     
     $form_attributes = apply_filters( 'af/form/attributes', $form_attributes, $form, $args );
     $form_attributes = apply_filters( 'af/form/attributes/id=' . $form['post_id'], $form_attributes, $form, $args );
