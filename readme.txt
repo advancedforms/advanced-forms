@@ -2,7 +2,7 @@
 Contributors: fabianlindfors
 Tags: acf, advanced custom fields, acf form, form builder, contact form, frontend editing
 Requires at least: 3.6.0
-Tested up to: 5.5.0
+Tested up to: 5.7.0
 Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -11,31 +11,38 @@ Flexible and developer-friendly forms using the power of Advanced Custom Fields
 
 == Description ==
 
-*Requires ACF PRO v5*
+[Documentation](https://advancedforms.github.io) | [Purchase Pro](https://hookturn.io/downloads/advanced-forms-pro)
 
-Documentation: [advancedforms.github.io](https://advancedforms.github.io)
+Advanced Forms is a WordPress plugin for creating front-end forms using [Advanced Custom Fields](https://advancedcustomfields.com). It supports all ACF field types, including repeaters and flexible content fields, and provides the same field editing interface you are already familiar with. *Advanced Forms requires ACF PRO v5*.
 
-Advanced Forms lets you build flexible forms using the power of Advanced Custom Fields. The plugin has been built with developers in mind and offers a large variety of helper functions and customization hooks.
+- **Email notifications**: Configure an unlimited number of email notifications, including support for dynamic recipients and field includes.
+- **Entries**: Save form submissions as entries with all fields.
+- **Spam protection**: Every form is protected against spam using a honeypot. If you need more sophisticated spam protection, Advanced Forms Pro includes support for reCAPTCHA.
+- **Restrictions**: Place limits on your form using the built-in restrictions or [create your own](https://advancedforms.github.io/guides/advanced/adding-custom-restrictions/):
+    + Limit the total number of submissions
+    + Limit your form to only logged-in users
+    + Limit the time when your form can be used
+- **User-friendly UI**: Create forms either through the admin UI or programmatically for easy integration.
+- **Developer-friendly**: Designed for developers with a large variety of hooks and helper functions and [comprehensive documentation](https://advancedforms.github.io).
 
-* Use all the fields provided by ACF, including repeaters and flexible content fields
-* Define forms and fields fully programmatically for easy integration with your theme/plugin, or use the intuitive UI
-* Either use the provided hooks to process form submissions as you wish or let the plugin automatically save them as entries
-* Optionally set up emails to be sent automatically with form submissions
-* Set a maximum number of entries created, limit a form to only logged in users, or schedule a form to only display during certain times. Custom restrictions can be applied by hooking in to a simple filter.
+= Pro =
 
-= Advanced Forms Pro =
+On top of that, **Advanced Forms Pro** offers even more features for advanced use cases. You can purchase a license through [Hookturn](https://hookturn.io/downloads/advanced-forms-pro/) which can be used on an unlimited number of sites.
 
-* Create/edit posts and users with ease
-* Integrate with Slack, Mailchimp, and Zapier
-* Use calculated fields to show live updating content
-* Protect against spam using Google reCAPTCHA
-* Get direct, priority support
+- **Priority support**: Get direct support with an average response time of 1-2 days.
+- **Post editing**: Set up forms to create and edit posts. Configure the post title, content and status and automatically map your existing ACF fields.
+- **User editing**: Register new users or let people edit their user profile with automatic mapping of your user fields.
+- **Calculated fields**: Give your users immediate feedback as they fill out your form. Calculated fields update live with the values from other fields. Calculated fields are also [fully programmable](https://advancedforms.github.io/pro/configuration/using-calculated-fields/) for more complex calculations.
+- **Slack**: Get a message in [Slack](https://slack.com) for each form submission, including all form data.
+- **Mailchimp**: Create a form to sign users up for your [Mailchimp](https://mailchimp.com) mailing list.
+- **Zapier**: Connect your form to thousands of third-party services using [Zapier](https://zapier.com).
+- **Google reCAPTCHA**: Protect your forms against spam using an invisible captcha.
 
-Available from [hookturn.io](https://hookturn.io/downloads/advanced-forms)
+= Support =
 
-= Developers =
+If you need help, have a feature request, or think you've found a bug, don't hesitate to reach out. Either create a ticket on the [WordPress Support Forums](https://wordpress.org/support/plugin/advanced-forms/) or an issue on [Github](http://github.com/advancedforms/advanced-forms/issues).
 
-Advanced Forms is first and foremost built for developers and allows for simple integration with themes/plugins. Check out the [documentation](https://advancedforms.github.io) for guides and details about functions/hooks.
+For Pro users, please send an email to [support@hookturn.io](mailto:support@hookturn.io?subject=Advanced%20Forms) and we'll respond as fast as we can, most often within 1-2 days.
 
 == Installation ==
 
@@ -43,7 +50,6 @@ Advanced Forms is first and foremost built for developers and allows for simple 
 2. Make sure ACF PRO v5 is installed and activated.
 3. Activate the plugin through the 'Plugins' screen in WordPress.
 4. Read the [documentation](https://advancedforms.github.io) for instructions on how to create, configure, and display forms.
-
 
 == Frequently Asked Questions ==
 

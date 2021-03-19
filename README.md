@@ -7,7 +7,7 @@ Advanced Forms is a WordPress plugin for creating front-end forms using [Advance
 - **Email notifications**: Configure an unlimited number of email notifications, including support for dynamic recipients and field includes.
 - **Entries**: Save form submissions as entries with all fields.
 - **Spam protection**: Every form is protected against spam using a honeypot. If you need more sophisticated spam protection, Advanced Forms Pro includes support for reCAPTCHA.
-- **Restrictions**: Place limits on your form using the built-in restrictions or create your own:
+- **Restrictions**: Place limits on your form using the built-in restrictions or [create your own](https://advancedforms.github.io/guides/advanced/adding-custom-restrictions/):
     + Limit the total number of submissions
     + Limit your form to only logged-in users
     + Limit the time when your form can be used
