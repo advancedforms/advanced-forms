@@ -80,7 +80,7 @@ class AF_Core_Forms_Submissions {
   /**
    * Check that the honeypot has not been filled.
    * 
-   * @since 1.8.0
+   * @since 1.7.2
    */
   function is_honeypot_valid() {
     if ( isset( $_POST['email_for_non_humans'] ) && ! empty( $_POST['email_for_non_humans'] ) ) {
@@ -94,7 +94,7 @@ class AF_Core_Forms_Submissions {
   /**
    * Process a form submission.
    * 
-   * @since 1.8.0
+   * @since 1.7.2
    * 
    */
   function process_submission( $form, $args, $fields ) {

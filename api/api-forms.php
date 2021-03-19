@@ -550,7 +550,7 @@ function af_get_form_fields( $form_key, $type = 'all' ) {
 /**
  * Renders the success message for a form. Requires that the submission has already been loaded.
  * 
- * @since 1.8.0
+ * @since 1.7.2
  * 
  */
 function af_form_success_message( $form, $args ) {

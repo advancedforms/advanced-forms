@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: acf, advanced custom fields, acf form, form builder, contact form, frontend editing
 Requires at least: 3.6.0
 Tested up to: 5.7.0
-Stable tag: 1.7.1
+Stable tag: 1.7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -64,6 +64,21 @@ Yes. Versions 4 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.7.2 =
+
+* Added support for nested group fields in emails and success messages.
+* Added ability to remove fields by returning `false` from the `af/field/before_field` filter.
+* Added filter to control view counter. Use `add_filter( 'af/form/view_counter_enabled', '__return_false' )` to disable the view counter.
+* Fixed incorrect variations for the `af/field/before_render` filter.
+* Fixed incorrect callback order for the `af/form/page_changed` action. Fields were temporarily removed from the form when the action was triggered.
+* Fixed warning when including a non-existent field with a merge tag.
+* Fixed sidebar formatting on the forms page in the admin panel.
+
+*Pro*
+
+* Fixed issue where post title and content could be cleared if their mapped fields were excluded from the form.
+* Added support for custom format for email field in Mailchimp integration.
 
 = 1.7.1 =
 
