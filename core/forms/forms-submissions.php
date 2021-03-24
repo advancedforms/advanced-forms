@@ -217,7 +217,7 @@ class AF_Core_Forms_Submissions {
     $hashed_args = hash( 'sha256', $encoded_args );
     $nonce_value = sprintf( 'af_submission_%s_%s', $form['key'], $hashed_args );
     if ( ! wp_verify_nonce( $nonce, $nonce_value ) ) {
-      wp_die( 'This form is no longer valid. Please reload the page and try again.' );
+      wp_die( 'Your submission failed. Please reload the page and try again.' );
       exit;
     }
 
