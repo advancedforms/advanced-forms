@@ -329,6 +329,8 @@ var af;
     onSuccess: function( form ) {
       return function( resp ) {
         var data = resp.data;
+
+        acf.doAction( 'af/form/ajax/submission', data, form );
       
         switch ( data.type ) {
           case 'success_message':
