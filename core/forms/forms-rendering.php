@@ -60,8 +60,12 @@ class AF_Core_Forms_Rendering {
     }
     
     // Enqueue scripts and styles
-    af_enqueue( $form, $args );
-    
+    af_enqueue();
+
+    do_action( 'af/form/enqueue', $form, $args );
+    do_action( 'af/form/enqueue/id=' . $form['post_id'], $form, $args );
+    do_action( 'af/form/enqueue/key=' . $form['key'], $form, $args );
+
     // Allow the form to be modified before rendering form
     $form = apply_filters( 'af/form/before_render', $form, $args );
     $form = apply_filters( 'af/form/before_render/id=' . $form['post_id'], $form, $args );

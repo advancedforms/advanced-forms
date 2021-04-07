@@ -571,7 +571,7 @@ function af_form_success_message( $form, $args ) {
  * @since 1.8.0
  * 
  */
-function af_enqueue( $form, $args ) {
+function af_enqueue() {
 	// Enqueue ACF scripts and styles
   acf_enqueue_scripts();
 
@@ -580,8 +580,4 @@ function af_enqueue( $form, $args ) {
   wp_localize_script( 'acf-input', 'acfL10n', $acf_l10n );
 
   wp_enqueue_script( 'af-forms-script', AF()->url . 'assets/dist/js/forms.js', array( 'jquery', 'acf-input' ), AF()->version, true );
-  
-  do_action( 'af/form/enqueue', $form, $args );
-  do_action( 'af/form/enqueue/id=' . $form['post_id'], $form, $args );
-  do_action( 'af/form/enqueue/key=' . $form['key'], $form, $args );
 }
