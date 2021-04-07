@@ -563,3 +563,25 @@ function af_form_success_message( $form, $args ) {
 
   return sprintf( '<div class="af-success" aria-live="assertive" role="alert">%s</div>', $success_message );
 }
+
+
+/**
+ * Enqueues the necessary scripts and styles for a form.
+ * 
+ * @since 1.8.0
+ * 
+ */
+function af_enqueue( $form, $args ) {
+	// Enqueue ACF scripts and styles
+  acf_enqueue_scripts();
+
+  // ACF fails to include all translations when running "acf_enqueue_scripts", hence we need to do it manually.
+  $acf_l10n = acf_get_instance('ACF_Assets')->text;
+  wp_localize_script( 'acf-input', 'acfL10n', $acf_l10n );
+
+  wp_enqueue_script( 'af-forms-script', AF()->url . 'assets/dist/js/forms.js', array( 'jquery', 'acf-input' ), AF()->version, true );
+  
+  do_action( 'af/form/enqueue', $form, $args );
+  do_action( 'af/form/enqueue/id=' . $form['post_id'], $form, $args );
+  do_action( 'af/form/enqueue/key=' . $form['key'], $form, $args );
+}
