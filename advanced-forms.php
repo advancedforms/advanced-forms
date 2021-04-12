@@ -10,6 +10,8 @@
 */
 
 
+if ( ! class_exists( 'AF' ) ) :
+
 class AF {
 	
 	
@@ -310,7 +312,6 @@ class AF {
 
 }
 
-
 /**
  * Helper function to access the global AF object
  * 
@@ -330,3 +331,5 @@ function AF() {
 
 // Initalize plugin
 AF();
+
+endif;
