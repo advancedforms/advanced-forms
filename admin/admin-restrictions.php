@@ -266,6 +266,8 @@ class AF_Admin_Restrictions {
 			'default_value' => '',
 		);
 
+
+		$field_group = apply_filters( 'af/form/restriction_settings_fields', $field_group );
 		
 		return $field_group;
 		
