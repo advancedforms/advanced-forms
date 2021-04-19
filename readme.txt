@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: acf, advanced custom fields, acf form, form builder, contact form, frontend editing
 Requires at least: 3.6.0
 Tested up to: 5.7.0
-Stable tag: 1.7.2
+Stable tag: 1.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,7 @@ Flexible and developer-friendly forms using the power of Advanced Custom Fields
 Advanced Forms is a WordPress plugin for creating front-end forms using [Advanced Custom Fields](https://advancedcustomfields.com). It supports all ACF field types, including repeaters and flexible content fields, and provides the same field editing interface you are already familiar with. *Advanced Forms requires ACF PRO v5.7 or later*.
 
 - **Email notifications**: Configure an unlimited number of email notifications, including support for dynamic recipients and field includes.
+- **AJAX submissions**: Use AJAX for a better user experience with faster submissions and no page reloads.
 - **Entries**: Save form submissions as entries with all fields.
 - **Spam protection**: Every form is protected against spam using a honeypot. If you need more sophisticated spam protection, Advanced Forms Pro includes support for reCAPTCHA.
 - **Restrictions**: Place limits on your form using the built-in restrictions or [create your own](https://advancedforms.github.io/guides/advanced/adding-custom-restrictions/):
@@ -64,6 +65,17 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.8.0 =
+
+This version drops support for ACF 5.6 and earlier. Make sure you're running ACF 5.7 or later before installing the update.
+
+* Added support for submissions using AJAX. This enables forms to be submitted without a page reload. Activate it using the `ajax` argument: `[advanced_form form="KEY" ajax="1"]`.
+* Fixed warning which would appear when having multiple versions of Advanced Forms activated at the same time.
+
+*Pro*
+
+* Added new restriction to only let users edit their own posts.
 
 = 1.7.2 =
 

@@ -5,6 +5,7 @@
 Advanced Forms is a WordPress plugin for creating front-end forms using [Advanced Custom Fields](https://advancedcustomfields.com). It supports all ACF field types, including repeaters and flexible content fields, and provides the same field editing interface you are already familiar with. Advanced Forms is available on the [plugin directory](https://wordpress.org/plugins/advanced-forms/).
 
 - **Email notifications**: Configure an unlimited number of email notifications, including support for dynamic recipients and field includes.
+- **AJAX submissions**: Use AJAX for a better user experience with faster submissions and no page reloads.
 - **Entries**: Save form submissions as entries with all fields.
 - **Spam protection**: Every form is protected against spam using a honeypot. If you need more sophisticated spam protection, Advanced Forms Pro includes support for reCAPTCHA.
 - **Restrictions**: Place limits on your form using the built-in restrictions or [create your own](https://advancedforms.github.io/guides/advanced/adding-custom-restrictions/):
