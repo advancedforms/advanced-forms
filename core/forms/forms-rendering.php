@@ -407,13 +407,6 @@ class AF_Core_Forms_Rendering {
     $attributes['data-key'] = $field['key'];
     $attributes['data-type'] = $field['type'];
 
-    /**
-     * ACF 5.7 totally changes how conditional logic works.
-     * Instead of running a script after each field we now pass the conditional rules JSON encoded to the data-conditions attribute.
-     *
-     * @since 1.4.0
-     *
-     */
     if( ! empty( $field['conditional_logic'] ) ) {
       $field['conditions'] = $field['conditional_logic'];
     }
@@ -469,20 +462,6 @@ class AF_Core_Forms_Rendering {
 
     if ( 'field' == $instruction_placement ) {
       echo $instructions;
-    }
-    
-    /*
-     * Conditional logic Javascript for field.
-     * This is not needed after ACF 5.7 and won't be included.
-     */
-    if ( acf_version_compare( acf()->version, '<', '5.7' ) ) {
-      if ( ! empty( $field['conditional_logic'] ) ) {
-        ?>
-        <script type="text/javascript">
-          if(typeof acf !== 'undefined'){ acf.conditional_logic.add( '<?php echo $field['key']; ?>', <?php echo json_encode($field['conditional_logic']); ?>); }
-        </script>
-        <?php
-      }
     }
     
     // End field wrapper

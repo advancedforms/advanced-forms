@@ -24,11 +24,7 @@ var af;
 
       this.forms[ key ] = form;
 
-      if ('doAction' in acf) {
-        acf.doAction( 'af/form/setup', form );
-      } else {
-        acf.do_action( 'af/form/setup', form );
-      }
+      acf.doAction( 'af/form/setup', form );
     },
   };
 
@@ -166,11 +162,7 @@ var af;
 
       this.refresh( form );
 
-      if ('doAction' in acf) {
-        acf.doAction( 'af/form/page_changed', page, previousPage, form );
-      } else {
-        acf.do_action( 'af/form/page_changed', page, previousPage, form );
-      }
+      acf.doAction( 'af/form/page_changed', page, previousPage, form );
     },
 
     isFirstPage: function( form ) {
@@ -184,100 +176,50 @@ var af;
     validatePage: function( form, page_index, callback ) {
       var page = form.pages[ page_index ];
 
-      /**
-       * With ACF 5.7 large parts of the JS code base was redone.
-       * With these changes the custom page validation became a lot simpler to implement.
-       * The old implementation remains for compatibility.
-       */
+      // Trigger browser validation manually.
+      // This is normally triggered automatically when a form is submitted.
+      page.$fields.find( 'input' ).each(function() {
+        this.checkValidity();
+      });
 
-      // Check if ACF 5.7 or later (the lockForm function was introduced then)
-      if ( acf.validation.lockForm !== undefined ) {
-        // Trigger browser validation manually.
-        // This is normally triggered automatically when a form is submitted.
-        page.$fields.find( 'input' ).each(function() {
-          this.checkValidity();
-        });
-
-        // Helper function to apply a function on pages except the current one.
-        var forEachOtherPage = function(f) {
-          for (i = 0; i < form.pages.length; i++) {
-            if ( i == page_index ) {
-              continue;
-            }
-
-            var otherPage = form.pages[ i ];
-            f(otherPage);
+      // Helper function to apply a function on pages except the current one.
+      var forEachOtherPage = function(f) {
+        for (i = 0; i < form.pages.length; i++) {
+          if ( i == page_index ) {
+            continue;
           }
-        }
 
-        // Temporarily remove all other fields outside the current page.
-        // This way we can use the regular ACF validation on the entire form.
+          var otherPage = form.pages[ i ];
+          f(otherPage);
+        }
+      }
+
+      // Temporarily remove all other fields outside the current page.
+      // This way we can use the regular ACF validation on the entire form.
+      forEachOtherPage(function(otherPage) {
+        otherPage.$fields.detach();
+      });
+
+      // Put back the previously removed fields.
+      var putFieldsBack = function() {
         forEachOtherPage(function(otherPage) {
-          otherPage.$fields.detach();
-        });
-
-        // Put back the previously removed fields.
-        var putFieldsBack = function() {
-          forEachOtherPage(function(otherPage) {
-            otherPage.$fields.insertAfter( otherPage.$field );
-          });
-        }
-
-        acf.validation.fetch({
-          form: form.$el,
-          lock: false,
-          reset: true,
-          success: function() {
-            putFieldsBack();
-            callback();
-          },
-          failure: function() {
-            // We can't use the "complete" callback to put fields back as it's triggered after "success".
-            putFieldsBack();
-          }
-        })
-      } else {
-        // Lock form and show spinner
-        acf.validation.toggle( form.$el, 'lock' );
-
-        // vars
-        var data = acf.serialize( page.$fields.clone() );
-          
-        // append AJAX action   
-        data.action = 'acf/validate_save_post';
-        
-        // prepare
-        data = acf.prepare_for_ajax(data);
-
-        // ajax
-        $.ajax({
-          url: acf.get('ajaxurl'),
-          data: data,
-          type: 'post',
-          dataType: 'json',
-          success: function( json ){
-
-            // Unlock form, hiding spinner
-            acf.validation.toggle( form.$el, 'unlock' );
-            
-            // bail early if not json success
-            if( !acf.is_ajax_success(json) ) {
-              return;
-            }
-
-            acf.validation.fetch_success( form.$el, json.data );            
-          },
-          complete: function(){
-            if ( acf.validation.valid ) {
-              // remove previous error message
-              acf.remove_el( form.$el.children('.acf-error-message') );
-
-              // Run callback (which will proceed to the next page)
-              callback()
-            }
-          }
+          otherPage.$fields.insertAfter( otherPage.$field );
         });
       }
+
+      acf.validation.fetch({
+        form: form.$el,
+        lock: false,
+        reset: true,
+        success: function() {
+          putFieldsBack();
+          callback();
+        },
+        failure: function() {
+          // We can't use the "complete" callback to put fields back as it's triggered after "success".
+          putFieldsBack();
+        }
+      })
     }
   };
 

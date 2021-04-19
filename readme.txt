@@ -13,7 +13,7 @@ Flexible and developer-friendly forms using the power of Advanced Custom Fields
 
 [Documentation](https://advancedforms.github.io) | [Purchase Pro](https://hookturn.io/downloads/advanced-forms-pro)
 
-Advanced Forms is a WordPress plugin for creating front-end forms using [Advanced Custom Fields](https://advancedcustomfields.com). It supports all ACF field types, including repeaters and flexible content fields, and provides the same field editing interface you are already familiar with. *Advanced Forms requires ACF PRO v5*.
+Advanced Forms is a WordPress plugin for creating front-end forms using [Advanced Custom Fields](https://advancedcustomfields.com). It supports all ACF field types, including repeaters and flexible content fields, and provides the same field editing interface you are already familiar with. *Advanced Forms requires ACF PRO v5.7 or later*.
 
 - **Email notifications**: Configure an unlimited number of email notifications, including support for dynamic recipients and field includes.
 - **Entries**: Save form submissions as entries with all fields.
@@ -53,9 +53,9 @@ For Pro users, please send an email to [support@hookturn.io](mailto:support@hook
 
 == Frequently Asked Questions ==
 
-= Q: Does this plugin only work with ACF PRO v5? =
+= Q: Does this plugin only work with ACF PRO v5.7 or later? =
 
-Yes. Versions 4 or lower of ACF are not supported.
+Yes. Versions 5.6 or lower of ACF are not supported.
 
 == Screenshots ==
 
