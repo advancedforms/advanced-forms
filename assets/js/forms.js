@@ -1,7 +1,6 @@
 var af;
 
 (function($) {
-
   // Ensure acf-input.js is available
   if (typeof acf === 'undefined') {
     console.error( 'acf-input.js not found. AF requires ACF to work.' );
@@ -9,7 +8,6 @@ var af;
   }
 
   af = {
-
     forms: {},
 
     setup_form: function( $form ) {
@@ -22,6 +20,8 @@ var af;
       // Initialize pages if this is a multi-page form
       this.pages.initialize( form );
 
+      this.ajax.initialize( form );
+
       this.forms[ key ] = form;
 
       if ('doAction' in acf) {
@@ -30,11 +30,9 @@ var af;
         acf.do_action( 'af/form/setup', form );
       }
     },
-
   };
 
   af.pages = {
-
     initialize: function( form ) {
       var self = this;
       $page_fields = form.$el.find( '.acf-field-page' );
@@ -281,6 +279,84 @@ var af;
         });
       }
     }
+  };
+
+  af.ajax = {
+    initialize: function( form ) {
+      var self = this;
+
+      // Check if form has data-ajax attribute
+      if ( ! form.$el.is( '[data-ajax]' ) ) {
+        return;
+      }
+
+      form.$el.on('submit', function( e ) {
+        e.preventDefault();
+      
+        // Validate form 
+        acf.validation.fetch({
+          form: form.$el,
+          lock: false,
+          reset: true,
+          success: function() {
+            self.sendSubmission( form );
+          },
+        });
+      });
+    },
+
+    sendSubmission: function( form ) {
+      acf.validation.lockForm( form.$el );
+
+      var formData = new FormData( form.$el.get(0) );
+      formData.append( 'action', 'af_submission' );
+
+      // Send AJAX request with action "af_submission"
+      $.ajax({
+        url: acf.get( 'ajaxurl' ),
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'post',
+        success: this.onSuccess( form ),
+        error: this.onError( form ),
+        complete: function() {
+          acf.validation.unlockForm( form.$el );
+        }
+      });
+    },
+
+    onSuccess: function( form ) {
+      return function( resp ) {
+        var data = resp.data;
+
+        acf.doAction( 'af/form/ajax/submission', data, form );
+      
+        switch ( data.type ) {
+          case 'success_message':
+            // Replace form fields with the success message
+            var $success_message = $( data.success_message );
+            var $fields = form.$el.find( '.af-fields' );
+            $fields.replaceWith( $success_message );
+            break;
+          case 'redirect':
+            // Redirect user to another URL
+            window.location.href = data.redirect_url;
+            break;
+        }
+      };
+    },
+
+    onError: function( form ) {
+      return function( resp ) {
+        var validator = form.$el.data( 'acf' );
+        var errors = resp.responseJSON.data.errors;
+      
+        // Add errors to form
+        validator.addErrors( errors );
+        validator.showErrors();
+      }
+    },
   };
 
   // Set up all forms on page
