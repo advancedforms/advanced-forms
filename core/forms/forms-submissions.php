@@ -49,7 +49,20 @@ class AF_Core_Forms_Submissions {
     $args = AF()->submission['args'];
     $fields = AF()->submission['fields'];
 
-    $this->process_submission( $form, $args, $fields );
+    // Process submission. If it fails we return all errors.
+    if ( ! $this->process_submission( $form, $args, $fields ) ) {
+      $errors = array();
+      foreach ( AF()->submission['errors'] as $message ) {
+        $errors[] = array(
+          'message' => $message,
+        );
+      }
+
+      wp_send_json_error( array(
+        'errors' => $errors,
+      ), 400 );
+      wp_die();
+    }
 
     $response = array(
       'type' => 'none',
@@ -169,11 +182,15 @@ class AF_Core_Forms_Submissions {
     do_action( 'af/form/before_submission/id=' . $form['post_id'], $form, $fields, $args );
     do_action( 'af/form/before_submission/key=' . $form['key'], $form, $fields, $args );
     
-    if ( ! af_submission_failed() ) {
-      do_action( 'af/form/submission', $form, $fields, $args );
-      do_action( 'af/form/submission/id=' . $form['post_id'], $form, $fields, $args );
-      do_action( 'af/form/submission/key=' . $form['key'], $form, $fields, $args );
+    if ( af_submission_failed() ) {
+      return false;
     }
+
+    do_action( 'af/form/submission', $form, $fields, $args );
+    do_action( 'af/form/submission/id=' . $form['post_id'], $form, $fields, $args );
+    do_action( 'af/form/submission/key=' . $form['key'], $form, $fields, $args );
+    
+    return true;
   }
 
 
