@@ -15,6 +15,7 @@ var af;
       var form = {
         $el: $form,
         key: key,
+        submissionSteps: [],
       }
 
       // Initialize pages if this is a multi-page form
@@ -24,7 +25,69 @@ var af;
 
       this.forms[ key ] = form;
 
+      var self = this;
+
+      // Intercept the form submission and run ACF validations manually.
+      // ACF can do this for us but we want control to be able to run our own submission steps after validation.
+      form.$el.on('submit', function( e ) {
+        e.preventDefault();
+      
+        // Validate form 
+        acf.validation.fetch({
+          form: form.$el,
+          lock: false,
+          reset: true,
+          success: function() {
+            // Clone steps to not alter the original array
+            var steps = form.submissionSteps.slice();
+            self.executeSubmissionSteps( form, steps );
+          },
+        });
+      }); 
+
       acf.doAction( 'af/form/setup', form );
+    },
+
+    addSubmissionStep( form, priority, fn ) {
+      var step = {
+        priority: priority,
+        fn: fn,
+      };
+
+      // Insert the step at the right position given its priority
+      for ( var i = 0; i < form.submissionSteps.length; i++ ) {
+        var currentStep = form.submissionSteps[i];
+        if ( priority < currentStep.priority) {
+          // Insert step at index i
+          form.submissionSteps.splice( i, 0, step );
+          return;
+        }
+      }
+
+      // If we get this far, the step was never inserted and should end up at the end
+      form.submissionSteps.push( step );
+    },
+
+    executeSubmissionSteps( form, steps ) {
+      // Get the next step to execute
+      var step = steps.shift();
+      var self = this;
+
+      var callback;
+      if ( steps.length == 0 ) {
+        // If there are no more steps after this one, we want to submit the form
+        callback = function() {
+          form.$el.get(0).submit();
+        };
+      } else {
+        // If there are more steps, then we will recursively continue executing steps until none remain
+        callback = function() {
+          self.executeSubmissionSteps( form, steps );
+        };
+      }
+
+      // Execute next step and pass along callback
+      step.fn( callback );
     },
   };
 
@@ -232,18 +295,11 @@ var af;
         return;
       }
 
-      form.$el.on('submit', function( e ) {
-        e.preventDefault();
-      
-        // Validate form 
-        acf.validation.fetch({
-          form: form.$el,
-          lock: false,
-          reset: true,
-          success: function() {
-            self.sendSubmission( form );
-          },
-        });
+      af.addSubmissionStep(form, 100, function( callback ) {
+        self.sendSubmission( form );
+
+        // Don't call callback. The high priority makes sure AJAX is the last step to run.
+        // By not calling the callback, the standard form submission won't happen.
       });
     },
 
