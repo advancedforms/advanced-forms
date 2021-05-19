@@ -69,6 +69,16 @@ var af;
     },
 
     executeSubmissionSteps( form, steps ) {
+      var submitForm = function() {
+        form.$el.get(0).submit();
+      };
+
+      // If there are no steps then we should submit the form immediately
+      if ( steps.length == 0 ) {
+        submitForm();
+        return;
+      }
+
       // Get the next step to execute
       var step = steps.shift();
       var self = this;
@@ -76,9 +86,7 @@ var af;
       var callback;
       if ( steps.length == 0 ) {
         // If there are no more steps after this one, we want to submit the form
-        callback = function() {
-          form.$el.get(0).submit();
-        };
+        callback = submitForm;
       } else {
         // If there are more steps, then we will recursively continue executing steps until none remain
         callback = function() {
