@@ -116,9 +116,7 @@ class AF {
 		}
 
 
-		// Include assets
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 10, 0 );
-
+		// Enqueue admin assets
 		if ( $this->show_admin ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ), 10, 0 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ), 10, 0 );
@@ -189,19 +187,6 @@ class AF {
 	function enqueue_admin_styles() {
 
 		wp_enqueue_style( 'af-admin-style', $this->url .  'assets/dist/css/admin.css' );
-
-	}
-
-
-	/**
-	 * Enqueues global styles
-	 *
-	 * @since 1.0.0
-	 *
-	 */
-	function enqueue_styles() {
-
-		wp_enqueue_style( 'af-form-style', $this->url .  'assets/dist/css/form.css' );
 
 	}
 

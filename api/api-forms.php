@@ -580,4 +580,6 @@ function af_enqueue() {
   wp_localize_script( 'acf-input', 'acfL10n', $acf_l10n );
 
   wp_enqueue_script( 'af-forms-script', AF()->url . 'assets/dist/js/forms.js', array( 'jquery', 'acf-input' ), AF()->version, true );
+
+	wp_enqueue_style( 'af-form-style', AF()->url .  'assets/dist/css/form.css' );
 }
