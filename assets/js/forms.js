@@ -154,8 +154,6 @@ var af;
 
           form.$page_wrap.append( $page_button );
 
-          $page_field.hide();
-
           var $fields = $page_field.nextUntil( '.acf-field-page', '.acf-field' );
 
           form.pages.push({

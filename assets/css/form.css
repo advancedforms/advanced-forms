@@ -141,6 +141,10 @@
 	margin-right: 10px;
 }
 
+.af-field-type-page {
+	display: none;
+}
+
 .af-field-instructions {
 	margin: 0;
 }
