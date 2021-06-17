@@ -119,7 +119,6 @@ class AF {
 		// Enqueue admin assets
 		if ( $this->show_admin ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ), 10, 0 );
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ), 10, 0 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ), 10, 0 );
 		}
 
