@@ -94,6 +94,10 @@ class AF_Core_Forms_Rendering {
     $args = apply_filters( 'af/form/args/id=' . $form['post_id'], $args, $form );
     $args = apply_filters( 'af/form/args/key=' . $form['key'], $args, $form );
 
+    // Allow a comma separated string for excluded fields
+    if ( is_string( $args['exclude_fields'] ) ) {
+      $args['exclude_fields'] = explode( ',', $args['exclude_fields'] );
+    }
 
     // Set ACF uploader type setting
     acf_update_setting( 'uploader', $args['uploader'] );
