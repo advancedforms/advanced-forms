@@ -384,7 +384,9 @@ class AF_Core_Forms_Rendering {
     // Attributes to be used on the wrapper element
     $attributes = array();
     
-    $attributes['id'] = $field['wrapper']['id'];
+    if ( ! empty( $field['wrapper']['id'] ) ) {
+      $attributes['id'] = $field['wrapper']['id'];
+    }
     
     $attributes['class'] = $field['wrapper']['class'];
     
