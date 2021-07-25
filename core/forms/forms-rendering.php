@@ -283,7 +283,7 @@ class AF_Core_Forms_Rendering {
       }
 
       // Add origin URL to enable an automatic redirect back to the form page after submission.
-      echo sprintf( '<input type="hidden" name="af_origin_url" value="%s" />', acf_get_current_url() );
+      echo sprintf( '<input type="hidden" name="af_origin_url" value="%s" />', esc_attr( acf_get_current_url() ) );
       
       do_action( 'af/form/hidden_fields', $form, $args );
       do_action( 'af/form/hidden_fields/id=' . $form['post_id'], $form, $args );
