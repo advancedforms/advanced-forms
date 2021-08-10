@@ -35,8 +35,6 @@ var af;
         // Validate form 
         acf.validation.fetch({
           form: form.$el,
-          lock: false,
-          reset: true,
           success: function() {
             // Clone steps to not alter the original array
             var steps = form.submissionSteps.slice();
@@ -136,31 +134,40 @@ var af;
         submit_wrap.prepend( form.$previous_button );
         form.$submit_button = submit_wrap.find( '.af-submit-button' );
 
-        $page_fields.each(function(i, el) {
+        var page_counter = 0;
+        $page_fields.each(function(_, el) {
           var $page_field = $( el );
+          var index = page_counter;
+
+          var $fields = $page_field.nextUntil( '.acf-field-page', '.acf-field' );
+
+          // If the page contains no fields, we skip it
+          if ( $fields.length == 0 ) {
+            return;
+          }
 
           // Create navigation button
-          var $page_button = $page_field.find( '.af-page-button' ).attr( 'data-index', i );
+          var $page_button = $page_field.find( '.af-page-button' ).attr( 'data-index', index );
           $page_button.click(function(e) {
             e.preventDefault();
-            af.pages.navigateToPage( i, form );
+            af.pages.navigateToPage( index, form );
           });
 
           // Add index indicator
           if ( form.show_numbering ) {
-            $index = $( '<span class="index">' ).html( i + 1 );
+            $index = $( '<span class="index">' ).html( index + 1 );
             $page_button.prepend( $index );
           }
 
           form.$page_wrap.append( $page_button );
-
-          var $fields = $page_field.nextUntil( '.acf-field-page', '.acf-field' );
 
           form.pages.push({
             $field: $page_field,
             $fields: $fields,
             $button: $page_button,
           });
+
+          page_counter++;
         })
 
         this.refresh( form );
@@ -310,8 +317,6 @@ var af;
     },
 
     sendSubmission: function( form ) {
-      acf.validation.lockForm( form.$el );
-
       var formData = new FormData( form.$el.get(0) );
       formData.append( 'action', 'af_submission' );
 
