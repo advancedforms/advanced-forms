@@ -69,7 +69,7 @@ class AF_Core_Forms_Submissions {
     );
 
     // Redirect to different URL if redirect argument has been passed
-    $redirect_url = $args['redirect'];
+    $redirect_url = isset( $args['redirect'] ) ? $args['redirect'] : null;
     if ( ! empty( $redirect_url ) ) {
       $response = array(
         'type' => 'redirect',
@@ -131,7 +131,7 @@ class AF_Core_Forms_Submissions {
     $this->process_submission( $form, $args, $fields );
 
     // Redirect to different URL if redirect argument has been passed
-    $redirect_url = $args['redirect'];
+    $redirect_url = isset( $args['redirect'] ) ? $args['redirect'] : null;
 
     // By default the user is redirected back to the form page.
     // Some browsers will prompt to submit the form again if the form page is reloaded.
