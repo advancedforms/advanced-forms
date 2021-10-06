@@ -4,8 +4,8 @@ class AF_Core_Emails {
 	
 	function __construct() {
 		
-		add_action( 'af/form/submission', array( $this, 'send_form_emails' ), 15, 2 );
-		add_action( 'af/emails/send_form_email', array( $this, 'send_single_form_email' ), 10, 3 );
+		add_action( 'af/form/submission', array( $this, 'send_form_emails' ), 15, 3 );
+		add_action( 'af/emails/send_form_email', array( $this, 'send_single_form_email' ), 10, 4 );
 		
 		add_filter( 'af/form/valid_form', array( $this, 'valid_form' ), 10, 1 );
 		add_filter( 'af/form/from_post', array( $this, 'form_from_post' ), 10, 2 );
@@ -62,7 +62,7 @@ class AF_Core_Emails {
 	 * @since 1.0.0
 	 *
 	 */
-	function send_form_emails( $form, $fields ) {
+	function send_form_emails( $form, $fields, $args ) {
 		
 		$emails = $form['emails'];
 		
@@ -70,7 +70,7 @@ class AF_Core_Emails {
 			
 			foreach ( $emails as $email ) {
 				
-				do_action( 'af/emails/send_form_email', $email, $form, $fields );
+				do_action( 'af/emails/send_form_email', $email, $form, $fields, $args );
 				
 			}
 			
@@ -85,7 +85,7 @@ class AF_Core_Emails {
 	 * @since 1.0.0
 	 *
 	 */
-	function send_single_form_email( $email, $form, $fields ) {
+	function send_single_form_email( $email, $form, $fields, $args ) {
 
 		// Bail if this email is deactivated
 		if ( ! $email['active'] ) {
@@ -138,32 +138,42 @@ class AF_Core_Emails {
 		
 		$content = af_resolve_merge_tags( $content, $fields );
 		
+		// Add default HTML template
+		$use_template = true;
+		$use_template = apply_filters( 'af/form/email/use_template', $use_template, $email, $form, $args );
+		$use_template = apply_filters( 'af/form/email/use_template/id=' . $form['post_id'], $use_template, $email, $form, $args );
+		$use_template = apply_filters( 'af/form/email/use_template/key=' . $form['key'], $use_template, $email, $form, $args );
 		
-		// Construct email HTML
-		$html = sprintf(
-			'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-			<html xmlns="http://www.w3.org/1999/xhtml">
-				<head>
-					<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-					<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-					<title>%s</title>
-					<style>%s</style>
-				</head>
-				<body>
-					%s
-				</body>
-			</html>',
-			$subject,
-			$this->get_email_style( $email, $form ),
-			$content
-		);
+		if ( $use_template ) {
+			$content = sprintf(
+				'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+				<html xmlns="http://www.w3.org/1999/xhtml">
+					<head>
+						<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+						<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+						<title>%s</title>
+						<style>%s</style>
+					</head>
+					<body>
+						%s
+					</body>
+				</html>',
+				$subject,
+				$this->get_email_style( $email, $form ),
+				$content
+			);
+		}
 		
 		
 		// Headers
 		$headers = array();
 		
 		// HTML content type
-		$headers[] = 'Content-type: text/html; charset=UTF-8';
+		$content_type = 'text/html; charset=UTF-8';
+		$content_type = apply_filters( 'af/form/email/content_type', $content_type, $email, $form, $args );
+		$content_type = apply_filters( 'af/form/email/content_type/id=' . $form['post_id'], $content_type, $email, $form, $args );
+		$content_type = apply_filters( 'af/form/email/content_type/key=' . $form['key'], $content_type, $email, $form, $args );
+		$headers[] = sprintf( 'Content-type: %s', $content_type );
 		
 		// From header
 		$from = af_resolve_merge_tags( $email['from'], $fields );
@@ -195,7 +205,7 @@ class AF_Core_Emails {
 
 		// Send separate emails to all recipients
 		foreach ( $recipients as $recipient ) {
-			wp_mail( $recipient, $subject, $html, $headers, $attachments );
+			wp_mail( $recipient, $subject, $content, $headers, $attachments );
 		}
 		
 		do_action( 'af/email/after_send', $email, $form );
