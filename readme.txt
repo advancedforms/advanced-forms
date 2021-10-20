@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: acf, advanced custom fields, acf form, form builder, contact form, frontend editing
 Requires at least: 3.6.0
 Tested up to: 5.8.0
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,19 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.8.2 =
+
+* Added support for excluding multiple fields by comma-separating field names in the `exclude_fields` argument on shortcodes.
+* Added automatic hiding of form pages if the page has no fields.
+* Added filter to remove the default HTML email template (`af/form/email/use_template`).
+* Added filter to change the content type of en email (`af/form/email/content_type`).
+* Improved support for duplicating forms with post duplication plugins.
+
+*Pro*
+
+* Fixed issue where users could accidentally submit a reCAPTCHA protected form with large uploads multiple times.
+* Fixed issue where reCAPTCHA protected forms could conflict with other reCAPTCHA instances on the same page.
 
 = 1.8.1 =
 
