@@ -41,43 +41,63 @@ function _af_render_field_include( $field, $value = false ) {
 	$output = '';
 	
 	if ( 'repeater' == $field['type'] && is_array( $value ) ) {
-		
 		$output .= '<table class="af-field-include af-field-include-repeater">';
 		
 		// Column headings
 		$output .= '<thead><tr>';
-		
 		foreach ( $field['sub_fields'] as $sub_field ) {
 			$output .= sprintf( '<th>%s</th>', $sub_field['label'] );
 		}
-		
 		$output .= '</tr></thead>';
-		
 		
 		// Rows
 		$output .= '<tbody>';
-		
 		if ( is_array( $value ) ) {
 			foreach ( $value as $row_values ) {
 				$output .= '<tr>';
-				
 				foreach ( $field['sub_fields'] as $sub_field ) {
-					
 					$output .= sprintf( '<td>%s</td>', _af_render_field_include( $sub_field, $row_values[ $sub_field['name'] ] ) );
-					
 				}
-				
 				$output .= '</tr>';
 			}
 		}
-		
 		$output .= '</tbody>';
-		
-		
+
 		$output .= '</table>';
-		
+	} elseif ( 'flexible_content' === $field['type'] ) {
+		$output .= '<table class="af-field-include af-field-include-flexible_content">';
+
+		foreach ( $value as $row ) {
+			$row_layout_name = $row['acf_fc_layout'];
+
+			// Find layout based on name
+			$row_layout = NULL;
+			foreach ( $field['layouts'] as $layout ) {
+				if ( $layout['name'] === $row_layout_name ) {
+					$row_layout = $layout;
+					break;
+				}
+			}
+
+			// Output header with layout name for the row
+			$output .= sprintf( '<tr><th>%s</th></tr>', $layout['label'] );
+			$output .= '<tr><td>';
+
+			// The subfield values will be displayed in a nested table, similar to a group field
+			$output .= '<table class="af-field-include af-field-include-flexible_content-inner">';
+			foreach ( $layout['sub_fields'] as $sub_field ) {
+				if ( isset( $row[ $sub_field['name'] ] ) ) {
+					$output .= sprintf( '<tr><th>%s</th></tr>', $sub_field['label'] );
+					$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $row[ $sub_field['name'] ] ) );
+				}
+			}
+			$output .= '</table>';
+
+			$output .= '</td></tr>';
+		}
+
+		$output .= '</table>';
 	} elseif ( 'clone' == $field['type'] || 'group' == $field['type'] ) {
-		
 		$output .= sprintf( '<table class="af-field-include af-field-include-%s">', $field['type'] );
 	
 		foreach ( $field['sub_fields'] as $sub_field ) {
@@ -88,37 +108,24 @@ function _af_render_field_include( $field, $value = false ) {
 		}
 		
 		$output .= '</table>';
-		
 	} elseif ( 'true_false' == $field['type'] ) {
-	
 		$true_text = isset( $field['ui_on_text'] ) && ! empty( $field['ui_on_text'] ) ? $field['ui_on_text'] : __( 'Yes', 'advanced-forms' );
 		$false_text = isset( $field['ui_off_text'] ) && ! empty( $field['ui_off_text'] ) ? $field['ui_off_text'] : __( 'No', 'advanced-forms' );
 		
 		$output = $value ? $true_text : $false_text;
-	
 	} elseif ( 'image' == $field['type'] ) {
-
 		$output .= sprintf( '<img src="%s" alt="%s" />', esc_attr( $value['sizes']['medium'] ), esc_attr( $value['alt']));
-
 	} elseif ( 'gallery' == $field['type'] && is_array( $value ) ) {
-
 		foreach ( $value as $image ) {
 			$output .= sprintf( '<img src="%s" alt="%s" />', esc_attr( $image['sizes']['medium'] ), esc_attr( $image['alt']));
 		}
-
 	} elseif ( 'file' == $field['type'] ) {
-
 		$output .= sprintf( '<a href="%s">%s</a>', $value['url'], htmlspecialchars( $value['title'] ) );
-
-	} elseif ( 'wysiwyg' == $field['type'] || 'textarea' == $field['type'] ) {
-
+	} elseif ( in_array( $field['type'], array( 'wysiwyg', 'textarea', 'calculated' ) ) ) {
 		// Sanitize input using kses
 		$output .= wp_kses_post( stripslashes( $value ) );
-
 	} else {
-		
 		$output = _af_render_field_include_value( $value ); 
-		
 	}
 	
 	// Allow third-parties to alter rendered field
