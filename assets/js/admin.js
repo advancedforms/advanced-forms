@@ -209,6 +209,56 @@
 
 	});
 	
-	
-	
+	// Gutenberg block
+    $(document).ready(function() {
+		function form_selected(form_key, $block) {
+			if ( !form_key ) {
+				return;
+			}
+
+			$.ajax({
+				url: acf.get( 'ajaxurl' ),
+				data: {
+					action: 'af_gutenberg_get_form_data',
+					form_key: form_key,
+				},
+				type: 'post',
+				success: function(resp) {
+					// Update edit form link href
+					var $link = $block.find( '.edit-form-link' );
+					if ( resp.data.edit_url ) {
+						$link.show();
+						$link.attr( 'href', resp.data.edit_url );
+					} else {
+						$link.hide();
+					}
+
+					acf.doAction( 'af/admin/gutenberg/form_selected', resp.data, $block );
+				},
+			});
+		}
+
+		acf.addAction( 'new_field/name=af_block_form', function(field) {
+			var $block = field.$el.closest( '.acf-block-component' );
+			form_selected( field.val(), $block );
+
+			field.$input().change(function() {
+				form_selected( field.val(), $block );
+			})
+		});
+
+		// Add currently selected form to the AJAX request for the "exclude fields" field.
+		// The form key is used in the backend to return the fields for the currently selected form.
+		acf.addFilter( 'select2_ajax_data', function( data, args, $input, field, instance ) {
+			if ( field.data.key != 'field_af_block_exclude_fields' ) {
+				return data;
+			}
+
+			var $block = field.$el.closest( '.acf-block-component' );
+			var form_field = acf.getField( $block.find( '.acf-field-af-block-form' ) );
+			
+			data.form = form_field.val();
+			return data;
+		});
+	});
 })(jQuery);

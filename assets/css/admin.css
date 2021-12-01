@@ -198,7 +198,8 @@
 /**
  * Divider field 
  */
-.acf-fields > .acf-field.acf-field-divider {
+.acf-fields > .acf-field.acf-field-divider,
+.acf-block-body .acf-fields > .acf-field.acf-field-divider {
 	background: #f9f9f9;
 	padding: 3px 0;
 }
@@ -381,4 +382,52 @@
 
 .af-form-export .copy-button {
 	float: right;
+}
+
+
+/**
+ * Gutenberg block
+ */
+.af-block-preview {
+	padding: 30px;
+	text-align: center;
+	background: #f5f5f5;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+.af-block-preview .af-block-no-form {
+	color: #888;
+	font-size: 1.5rem;
+}
+
+.af-block-preview .af-block-description {
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	color: #888;
+	font-weight: 700;
+}
+
+.af-block-preview .af-block-form-name {
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.af-block-preview .af-block-subtitle {
+	margin-top: 15px;
+	color: #555;
+}
+
+.wp-block-acf-advanced-form .edit-form-link {
+	text-decoration: none;
+}
+
+.wp-block-acf-advanced-form .edit-form-link:hover {
+	text-decoration: underline;
+}
+
+.wp-block-acf-advanced-form code {
+	padding: 3px 5px;
+	background: rgba(0, 0, 0, 0.07);
+	font-size: 13px;
 }
