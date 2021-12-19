@@ -36,6 +36,7 @@ class AF_Core_Forms_Rendering {
       ob_start();
       
       $this->render( $form_id_or_key, $atts );
+	    do_action( 'af/form/render', $form_id_or_key, $atts );
       
       $output = ob_get_clean();
       
@@ -160,6 +161,10 @@ class AF_Core_Forms_Rendering {
     
     // End form
     echo '</form>';
+
+    do_action( 'af/form/after', $form, $args );
+    do_action( 'af/form/after/id=' . $form['post_id'], $form, $args );
+    do_action( 'af/form/after/key=' . $form['key'], $form, $args );
   }
 
 
