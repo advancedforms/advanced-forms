@@ -31,6 +31,13 @@ var af;
       // ACF can do this for us but we want control to be able to run our own submission steps after validation.
       form.$el.on('submit', function( e ) {
         e.preventDefault();
+    
+        // Reset validation status if the form has already been submitted once
+        // Without this, filter mode won't work as ACF will refuse to validate again
+        var validator = form.$el.data('acf');
+        if (validator) {
+          validator.set('status', '');
+        }
       
         // Validate form 
         acf.validation.fetch({
