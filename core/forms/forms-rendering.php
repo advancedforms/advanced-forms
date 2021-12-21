@@ -36,7 +36,6 @@ class AF_Core_Forms_Rendering {
       ob_start();
       
       $this->render( $form_id_or_key, $atts );
-	    do_action( 'af/form/render', $form_id_or_key, $atts );
       
       $output = ob_get_clean();
       
