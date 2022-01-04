@@ -13,6 +13,7 @@ Advanced Forms is a WordPress plugin for creating front-end forms using [Advance
     + Limit your form to only logged-in users
     + Limit the time when your form can be used
 - **User-friendly UI**: Create forms either through the admin UI or programmatically for easy integration.
+- **Gutenberg support**: Add forms to your site using Gutenberg blocks.
 - **Developer-friendly**: Designed for developers with a large variety of hooks and helper functions and [comprehensive documentation](https://advancedforms.github.io).
 
 ## Pro

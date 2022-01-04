@@ -1,9 +1,9 @@
-=== Advanced Forms ===
+=== Advanced Forms for ACF ===
 Contributors: fabianlindfors
 Tags: acf, advanced custom fields, acf form, form builder, contact form, frontend editing
 Requires at least: 3.6.0
-Tested up to: 5.8.0
-Stable tag: 1.8.2
+Tested up to: 5.9
+Stable tag: 1.9.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,7 +23,8 @@ Advanced Forms is a WordPress plugin for creating front-end forms using [Advance
     + Limit the total number of submissions
     + Limit your form to only logged-in users
     + Limit the time when your form can be used
-- **User-friendly UI**: Create forms either through the admin UI or programmatically for easy integration.
+- **User-friendly UI**: Create forms either through the admin panel or programmatically for easy integration.
+- **Gutenberg support**: Add forms to your site using Gutenberg blocks.
 - **Developer-friendly**: Designed for developers with a large variety of hooks and helper functions and [comprehensive documentation](https://advancedforms.github.io).
 
 = Pro =
@@ -65,6 +66,18 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.9.0 =
+
+* Added support for Gutenberg with the "Advanced Form" block.
+* Added support for flexible fields in merge tags.
+* Added "af/form/after" action triggered after a form has been rendered.
+* Fixed issue where form couldn't be submitted multiple times when using AJAX and filter mode.
+
+*Pro*
+
+* Added support for configuring a form to create/edit posts and user at the same time.
+* Added option to specify post to edit through a `post` query parameter. 
 
 = 1.8.2 =
 
