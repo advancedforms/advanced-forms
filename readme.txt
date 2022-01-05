@@ -3,7 +3,7 @@ Contributors: fabianlindfors
 Tags: acf, advanced custom fields, acf form, form builder, contact form, frontend editing
 Requires at least: 3.6.0
 Tested up to: 5.9
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,13 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.9.1 =
+
+*Pro*
+
+* Added filter `af/form/editing/query_param` to change the query parameter used for post editing. The default is `post`.
+* Fixed warnings about undefined `$post` which could show up in the form settings.
 
 = 1.9.0 =
 
