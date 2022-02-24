@@ -31,6 +31,9 @@ var af;
       // ACF can do this for us but we want control to be able to run our own submission steps after validation.
       form.$el.on('submit', function( e ) {
         e.preventDefault();
+
+        // Disable button to avoid duplicate submissions
+        form.$el.find( '.af-submit-button' ).prop( 'disabled', true );
     
         // Reset validation status if the form has already been submitted once
         // Without this, filter mode won't work as ACF will refuse to validate again
@@ -47,10 +50,24 @@ var af;
             var steps = form.submissionSteps.slice();
             self.executeSubmissionSteps( form, steps );
           },
+          complete: function() {
+            form.$el.find( '.af-submit-button' ).prop( 'disabled', false );
+          }
         });
       }); 
 
       acf.doAction( 'af/form/setup', form );
+    },
+
+    lock( form ) {
+      // Disable button to avoid duplicate submissions
+      form.$el.find( '.af-submit-button' ).prop( 'disabled', true );
+      acf.validation.lockForm( form.$el );
+    },
+
+    unlock( form ) {
+      form.$el.find( '.af-submit-button' ).prop( 'disabled', false );
+      acf.validation.unlockForm( form.$el );
     },
 
     addSubmissionStep( form, priority, fn ) {
@@ -75,6 +92,7 @@ var af;
 
     executeSubmissionSteps( form, steps ) {
       var submitForm = function() {
+        af.lock( form );
         form.$el.get(0).submit();
       };
 
@@ -337,7 +355,7 @@ var af;
         success: this.onSuccess( form ),
         error: this.onError( form ),
         complete: function() {
-          acf.validation.unlockForm( form.$el );
+          af.unlock( form );
         }
       });
     },
