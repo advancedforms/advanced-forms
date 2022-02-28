@@ -32,8 +32,8 @@ var af;
       form.$el.on('submit', function( e ) {
         e.preventDefault();
 
-        // Disable button to avoid duplicate submissions
-        form.$el.find( '.af-submit-button' ).prop( 'disabled', true );
+        // Lock form to avoid duplicate submissions
+        af.lock( form );
     
         // Reset validation status if the form has already been submitted once
         // Without this, filter mode won't work as ACF will refuse to validate again
@@ -45,14 +45,14 @@ var af;
         // Validate form 
         acf.validation.fetch({
           form: form.$el,
+          failure: function() {
+            af.unlock( form );
+          },
           success: function() {
             // Clone steps to not alter the original array
             var steps = form.submissionSteps.slice();
             self.executeSubmissionSteps( form, steps );
           },
-          complete: function() {
-            form.$el.find( '.af-submit-button' ).prop( 'disabled', false );
-          }
         });
       }); 
 
