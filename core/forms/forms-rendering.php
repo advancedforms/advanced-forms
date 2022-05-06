@@ -283,6 +283,7 @@ class AF_Core_Forms_Rendering {
       // Add honeypot field that is not visible to users.
       // Bots should hopefully fill this in allowing them to be detected.
       if ( $args['honeypot'] ) {
+        echo '<label for="email_for_non_humans" aria-hidden="true">Email for non-humans</label>';
         echo '<input type="text" name="email_for_non_humans" tabindex="-1" autocomplete="off" />';
       }
 
