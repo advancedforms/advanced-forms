@@ -284,7 +284,7 @@ class AF_Core_Forms_Rendering {
       // Bots should hopefully fill this in allowing them to be detected.
       if ( $args['honeypot'] ) {
         echo '<label for="email_for_non_humans" aria-hidden="true">Email for non-humans</label>';
-        echo '<input type="text" name="email_for_non_humans" tabindex="-1" autocomplete="off" />';
+        echo '<input type="text" name="email_for_non_humans" id="email_for_non_humans" tabindex="-1" autocomplete="off" />';
       }
 
       // Add origin URL to enable an automatic redirect back to the form page after submission.
