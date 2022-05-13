@@ -174,7 +174,7 @@ class AF {
 
 		wp_enqueue_script( 'jquery' );
 
-		wp_enqueue_script( 'af-admin-script', $this->url .  'assets/dist/js/admin.js', array( 'jquery' ) );
+		wp_enqueue_script( 'af-admin-script', $this->url .  'assets/dist/js/admin.js', array( 'jquery', 'acf-input' ) );
 
 	}
 
