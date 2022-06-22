@@ -67,6 +67,22 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 
 == Changelog ==
 
+= 1.10.0 =
+
+* Added actions triggered before and after rendering the field wrapper called `af/field/before_field_wrapper` and `af/field/after_field_wrapper`.
+* Added filter `af/form/entry/should_create` to enable dynamically stopping entries from being created.
+* Added support for file fields with return type "URL" in merge tags.
+* Added hidden label for honeypot field for accessibility compliance.
+* Fixed issue where filter mode wouldn't work.
+* Fixed issue which could cause duplicate submissions.
+* Fixed Javascript error which could appear in some places in the admin panel.
+
+*Pro*
+
+* Added support for payments using Stripe.
+* Improved performance for forms with many calculated fields.
+* Changed order of operations for forms which both create users and posts to create user first.
+
 = 1.9.1 =
 
 *Pro*
