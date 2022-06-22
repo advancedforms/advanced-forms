@@ -50,7 +50,7 @@ class AF_Core_Forms_Submissions {
     $fields = AF()->submission['fields'];
 
     // Process submission. If it fails we return all errors.
-    if ( ! $this->process_submission( $form, $args, $fields ) ) {
+    if ( ! $this->process_submission( AF()->submission ) ) {
       $errors = array();
       foreach ( AF()->submission['errors'] as $message ) {
         $errors[] = array(
@@ -124,25 +124,24 @@ class AF_Core_Forms_Submissions {
       return;
     }
 
-    $form = AF()->submission['form'];
-    $args = AF()->submission['args'];
-    $fields = AF()->submission['fields'];
+    $this->process_submission( AF()->submission );
+    Self::handle_submission_done( AF()->submission );
+  }
 
-    $this->process_submission( $form, $args, $fields );
-
+  static function handle_submission_done( $submission ) {
     // Redirect to different URL if redirect argument has been passed
-    $redirect_url = $args['redirect'];
+    $redirect_url = $submission['args']['redirect'];
 
     // By default the user is redirected back to the form page.
     // Some browsers will prompt to submit the form again if the form page is reloaded.
     // Redirecting back removes the risk of duplicate submissions.
     if ( NULL === $redirect_url ) {
-      $redirect_url = $_POST['af_origin_url'];
+      $redirect_url = $submission['origin_url'];
     }
 
     if ( $redirect_url && '' !== $redirect_url ) {
-      $this->clear_expired_submissions();
-      $this->save_submission( AF()->submission );
+      Self::clear_expired_submissions();
+      Self::save_submission( $submission );
 
       wp_redirect( $redirect_url );
       exit;
@@ -170,7 +169,11 @@ class AF_Core_Forms_Submissions {
    * @since 1.7.2
    * 
    */
-  function process_submission( $form, $args, $fields ) {
+  function process_submission( $submission ) {
+    $form = $submission['form'];
+    $args = $submission['args'];
+    $fields = $submission['fields'];
+
     // Increase the form submissions counter
     if ( $form['post_id'] ) {
       $submissions = get_post_meta( $form['post_id'], 'form_num_of_submissions', true );
@@ -186,11 +189,20 @@ class AF_Core_Forms_Submissions {
       return false;
     }
 
+    Self::call_submission_handlers( $submission );
+    
+    return true;
+  }
+
+  static function call_submission_handlers( $submission ) {
+    error_log('Submission: ' . print_r($submission,1));
+    $form = $submission['form'];
+    $args = $submission['args'];
+    $fields = $submission['fields'];
+
     do_action( 'af/form/submission', $form, $fields, $args );
     do_action( 'af/form/submission/id=' . $form['post_id'], $form, $fields, $args );
     do_action( 'af/form/submission/key=' . $form['key'], $form, $fields, $args );
-    
-    return true;
   }
 
 
@@ -321,6 +333,7 @@ class AF_Core_Forms_Submissions {
       'args' => $args,
       'fields' => $fields,
       'errors' => array(),
+      'origin_url' => $_POST['af_origin_url'],
     );
   }
 
@@ -332,15 +345,15 @@ class AF_Core_Forms_Submissions {
    *
    */
   private function get_submission() {
-    if ( ! isset( $_COOKIE[ $this->get_cookie_name() ] ) ) {
+    if ( ! isset( $_COOKIE[ Self::get_cookie_name() ] ) ) {
       return false;
     }
 
-    $key = $_COOKIE[ $this->get_cookie_name() ];
+    $key = $_COOKIE[ Self::get_cookie_name() ];
     $submission = get_option( self::OPTION_DATA_PREFIX . $key, false );
 
-    $this->delete_submission( $key );
-    setcookie( $this->get_cookie_name(), '', time() - HOUR_IN_SECONDS, '/' );
+    Self::delete_submission( $key );
+    setcookie( Self::get_cookie_name(), '', time() - HOUR_IN_SECONDS, '/' );
 
     return $submission;
   }
@@ -352,7 +365,7 @@ class AF_Core_Forms_Submissions {
    * @since 1.6.6
    *
    */
-  private function save_submission( $submission ) {
+  private static function save_submission( $submission ) {
     $key = wp_generate_password( 12, false, false );
 
     $expiration_time = time() + self::OPTION_EXPIRY_MINUTES * MINUTE_IN_SECONDS;
@@ -360,7 +373,7 @@ class AF_Core_Forms_Submissions {
     add_option( self::OPTION_DATA_PREFIX . $key, $submission );
     add_option( self::OPTION_EXPIRY_PREFIX . $key, $expiration_time );
 
-    setcookie( $this->get_cookie_name(), $key, $expiration_time, '/' );
+    setcookie( Self::get_cookie_name(), $key, $expiration_time, '/' );
   }
 
   /**
@@ -369,12 +382,12 @@ class AF_Core_Forms_Submissions {
    * @since 1.6.6
    *
    */
-  private function delete_submission( $key ) {
+  private static function delete_submission( $key ) {
     delete_option( self::OPTION_DATA_PREFIX . $key );
     delete_option( self::OPTION_EXPIRY_PREFIX . $key );
   }
 
-  private function get_cookie_name() {
+  private static function get_cookie_name() {
     return apply_filters( 'af/settings/cookie_name', self::DEFAULT_COOKIE_NAME );
   }
 
@@ -385,7 +398,7 @@ class AF_Core_Forms_Submissions {
    * @since 1.6.6
    *
    */
-  private function clear_expired_submissions() {
+  private static function clear_expired_submissions() {
     global $wpdb;
 
     $options_table = $wpdb->prefix . 'options';
@@ -404,7 +417,7 @@ class AF_Core_Forms_Submissions {
     foreach ( $expired_submissions as $option_name ) {
       // Find submission key by removing prefix from option name.
       $submission_key = substr( $option_name, strlen( self::OPTION_EXPIRY_PREFIX ) );
-      $this->delete_submission( $submission_key );
+      Self::delete_submission( $submission_key );
     }
   }
 
