@@ -240,6 +240,9 @@ class AF_Core_Forms_Rendering {
     // Get field groups for the form and display their fields
     $field_groups = af_get_form_field_groups( $form['key'] );
     
+    do_action( 'af/form/before_field_wrapper', $form, $args );
+    do_action( 'af/form/before_field_wrapper/id=' . $form['post_id'], $form, $args );
+    do_action( 'af/form/before_field_wrapper/key=' . $form['key'], $form, $args );
     
     echo sprintf( '<div class="af-fields acf-fields acf-form-fields -%s">', $args['label_placement'] );
     
@@ -309,6 +312,10 @@ class AF_Core_Forms_Rendering {
     
     // End fields wrapper
     echo '</div>';
+
+    do_action( 'af/form/after_field_wrapper', $form, $args );
+    do_action( 'af/form/after_field_wrapper/id=' . $form['post_id'], $form, $args );
+    do_action( 'af/form/after_field_wrapper/key=' . $form['key'], $form, $args );
   }
 
 
