@@ -67,7 +67,7 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 
 == Changelog ==
 
-= 1.10.0 =
+= [Unreleased] =
 
 * Added actions triggered before and after rendering the field wrapper called `af/field/before_field_wrapper` and `af/field/after_field_wrapper`.
 * Added filter `af/form/entry/should_create` to enable dynamically stopping entries from being created.
