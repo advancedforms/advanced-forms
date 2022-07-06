@@ -4,7 +4,7 @@
  * Description: Flexible and developer-friendly forms with the power of Advanced Custom Fields.
  * Version: 1.9.1
  * Author: Phil Kurth (Hookturn)
- * Author URI: http://hookturn.io
+ * Author URI: https://hookturn.io
  * Copyright: Hookturn Digital
  * Text Domain: advanced-forms
  * Domain Path: /language
