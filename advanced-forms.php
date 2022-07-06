@@ -1,13 +1,14 @@
 <?php
 /*
-	Plugin Name: Advanced Forms
-	Description: Flexible and developer-friendly forms with the power of Advanced Custom Fields.
-	Version: 1.9.1
-	Author: Fabian Lindfors
-	Copyright: Fabian Lindfors
-	Text Domain: advanced-forms
-	Domain Path: /language
-*/
+ * Plugin Name: Advanced Forms
+ * Description: Flexible and developer-friendly forms with the power of Advanced Custom Fields.
+ * Version: 1.9.1
+ * Author: Phil Kurth (Hookturn)
+ * Author URI: http://hookturn.io
+ * Copyright: Hookturn Digital
+ * Text Domain: advanced-forms
+ * Domain Path: /language
+ */
 
 
 if ( ! class_exists( 'AF' ) ) :
