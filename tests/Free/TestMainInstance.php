@@ -6,9 +6,8 @@ use WP_UnitTestCase;
 
 class TestMainInstance extends WP_UnitTestCase {
 
-	public function test_AF_function_returns_main_instance() {
-		$this->assertTrue( AF() instanceof \AF );
-		$this->assertSame( AF(), AF(), 'Subsequent calls did not return the same instance.' );
+	public function test_main_instance_has_no_pro_flag() {
+		//$this->assertFalse(AF()->is) // todo
 	}
 
 }
