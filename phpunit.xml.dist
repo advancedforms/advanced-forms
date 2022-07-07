@@ -9,8 +9,12 @@
 	>
 	<testsuites>
 		<testsuite>
-			<directory prefix="test-" suffix=".php">./tests/</directory>
-			<exclude>./tests/test-sample.php</exclude>
+			<directory prefix="Test" suffix=".php">./tests/</directory>
 		</testsuite>
 	</testsuites>
+	<groups>
+		<exclude>
+			<group>ignore</group>
+		</exclude>
+	</groups>
 </phpunit>

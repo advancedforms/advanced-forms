@@ -1,0 +1,12 @@
+{
+	"require-dev": {
+		"phpunit/phpunit": "6",
+		"yoast/phpunit-polyfills": "^1.0",
+		"vlucas/phpdotenv": "^5.4"
+	},
+	"autoload": {
+		"psr-4": {
+			"AdvancedFormsTests\\": "tests/"
+		}
+	}
+}
