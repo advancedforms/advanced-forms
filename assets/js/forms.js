@@ -243,7 +243,9 @@ var af;
 
 		// Navigate to specific page
 		navigateToPage: function (page, form) {
-			if (page < 0 || page > form.max_page) return;
+			if (page < 0 || page > form.max_page) {
+				return;
+			}
 
 			var self = this;
 
