@@ -279,4 +279,4 @@ class AF_Core_Gutenberg {
 	}
 }
 
-new AF_Core_Gutenberg();
+return new AF_Core_Gutenberg();

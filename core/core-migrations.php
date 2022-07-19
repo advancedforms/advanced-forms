@@ -88,4 +88,4 @@ class AF_Core_Migrations {
 	}
 }
 
-new AF_Core_Migrations();
+return new AF_Core_Migrations();
