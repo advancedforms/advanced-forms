@@ -1,7 +1,7 @@
 {
 	"scripts": {
 		"build": "gulp build",
-		"watch": "gulp watch"
+		"dev": "gulp watch"
 	},
 	"devDependencies": {
 		"gulp": "^4.0.2",
