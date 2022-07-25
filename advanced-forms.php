@@ -83,6 +83,7 @@ class AF {
 		$this->classes = array();
 
 		// API functions
+		include( $this->path . 'api/api-utils.php' );
 		include( $this->path . 'api/api-submissions.php' );
 		include( $this->path . 'api/api-helpers.php' );
 		include( $this->path . 'api/api-forms.php' );
