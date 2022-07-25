@@ -16,6 +16,10 @@
  * @return array|mixed|null
  */
 function af_arr_get( $array, $key, $default = null ) {
+	if ( ! is_array( $array ) ) {
+		return $default;
+	}
+
 	$current = $array;
 
 	if ( is_array( $key ) ) {
