@@ -38,3 +38,29 @@ function af_arr_get( $array, $key, $default = null ) {
 
 	return $current;
 }
+
+/**
+ * Print a rendered view.
+ *
+ * @param string $name
+ * @param array $data
+ * @param string $extension
+ */
+function af_view( $name, $data = [], $extension = '.php' ) {
+	echo af_view_get( $name, $data, $extension );
+}
+
+/**
+ * Render a view and return the markup.
+ *
+ * @param string $name
+ * @param array $data
+ * @param string $extension
+ *
+ * @return string
+ */
+function af_view_get( $name, $data = [], $extension = '.php' ) {
+	/** @var AF_Core_View_Renderer $renderer */
+	$renderer = AF()->classes['core_view_renderer'];
+	return $renderer->prepare( $name, $data, $extension );
+}

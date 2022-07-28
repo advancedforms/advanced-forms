@@ -100,6 +100,12 @@ class AF {
 		$this->classes['core_gutenberg'] = include( $this->path . 'core/core-gutenberg.php' );
 		$this->classes['core_migrations'] = include( $this->path . 'core/core-migrations.php' );
 
+		// Set up core view renderer
+		include_once( $this->path . 'core/core-view-renderer.php' );
+		$view = new AF_Core_View_Renderer();
+		$view->set_view_base_dir( $this->path . 'views' );
+		$this->classes['core_view_renderer'] = $view;
+
 		// ACF additions (fields, location rules, etc.)
 		$this->classes['acf_additions'] = include( $this->path . 'acf/acf-additions.php' );
 		include( $this->path . 'acf/fields/field_select.php' );
