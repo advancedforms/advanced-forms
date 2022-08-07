@@ -72,6 +72,7 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 * Added condition to stop ACF file nonces being treated as fields on submission.
 * Added condition to prevent email sending if recipient is false. `af/form/email/recipient` filter can now be used to prevent email sending.
 * Added support for file fields with return type "URL" in merge tags.
+* Fixed issue which could cause duplicate submissions.
 
 = 1.9.1 =
 
