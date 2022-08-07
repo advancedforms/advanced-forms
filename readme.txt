@@ -74,6 +74,7 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 * Added support for file fields with return type "URL" in merge tags.
 * Fixed issue which could cause duplicate submissions.
 * Added filter `af/form/entry/should_create` to enable dynamically stopping entries from being created.
+* Added hidden label for honeypot field for accessibility compliance.
 
 = 1.9.1 =
 
