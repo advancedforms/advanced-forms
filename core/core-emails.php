@@ -86,40 +86,26 @@ class AF_Core_Emails {
 	 *
 	 */
 	function send_single_form_email( $email, $form, $fields, $args ) {
-
 		// Bail if this email is deactivated
 		if ( ! $email['active'] ) {
-			
 			return;
-			
 		}
-		
 		
 		// Recipient
 		$recipient = '';
-		
 		if ( 'field' == $email['recipient_type'] ) {
-			
 			foreach( $fields as $field ) {
-				
 				if ( $field['key'] == $email['recipient_field'] ) {
-					
 					$recipient = $field['_input'];
-					
 				}
-				
 			}
-			
 		} elseif ( 'custom' == $email['recipient_type'] ) {
-			
 			$recipient = $email['recipient_custom'];
-			
 		}
 		
 		$recipient = apply_filters( 'af/form/email/recipient', $recipient, $email, $form, $fields );
 		$recipient = apply_filters( 'af/form/email/recipient/id=' . $form['post_id'], $recipient, $email, $form, $fields );
 		$recipient = apply_filters( 'af/form/email/recipient/key=' . $form['key'], $recipient, $email, $form, $fields );
-		
 		
 		// Subject line
 		$subject = $email['subject'];
