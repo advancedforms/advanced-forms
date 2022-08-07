@@ -304,6 +304,10 @@ class AF_Core_Forms_Submissions {
     if ( isset( $_POST['acf'] ) ) {
       foreach ( $_POST['acf'] as $k => $value ) {
         $field = acf_get_field( $k );
+
+		if( empty( $field ) ){
+			continue;
+		}
         
         $field['_input'] = $value;
         $field['value'] = acf_format_value( $value, 0, $field );
