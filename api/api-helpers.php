@@ -120,7 +120,11 @@ function _af_render_field_include( $field, $value = false ) {
 			$output .= sprintf( '<img src="%s" alt="%s" />', esc_attr( $image['sizes']['medium'] ), esc_attr( $image['alt']));
 		}
 	} elseif ( 'file' == $field['type'] ) {
-		$output .= sprintf( '<a href="%s">%s</a>', $value['url'], htmlspecialchars( $value['title'] ) );
+		if ( 'url' === $field['return_format'] ) {
+			$output .= sprintf( '<a href="%s">Download</a>', $value );
+		} else if ( 'array' == $field['return_format'] ) {
+			$output .= sprintf( '<a href="%s">%s</a>', $value['url'], htmlspecialchars( $value['title'] ) );
+		}
 	} elseif ( in_array( $field['type'], array( 'wysiwyg', 'textarea', 'calculated' ) ) ) {
 		// Sanitize input using kses
 		$output .= wp_kses_post( stripslashes( $value ) );
