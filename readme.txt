@@ -75,6 +75,8 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 * Fixed issue which could cause duplicate submissions.
 * Added filter `af/form/entry/should_create` to enable dynamically stopping entries from being created.
 * Added hidden label for honeypot field for accessibility compliance.
+* Added `af/field/before_field_wrapper` action.
+* Added `af/field/after_field_wrapper` action.
 
 = 1.9.1 =
 
