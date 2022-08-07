@@ -106,6 +106,12 @@ class AF_Core_Emails {
 		$recipient = apply_filters( 'af/form/email/recipient', $recipient, $email, $form, $fields );
 		$recipient = apply_filters( 'af/form/email/recipient/id=' . $form['post_id'], $recipient, $email, $form, $fields );
 		$recipient = apply_filters( 'af/form/email/recipient/key=' . $form['key'], $recipient, $email, $form, $fields );
+
+		// Bail early if there are no recipients
+		// This allows emails to be stopped by returning false from the filter
+		if ( $recipient === false ) {
+			return;
+		}
 		
 		// Subject line
 		$subject = $email['subject'];
