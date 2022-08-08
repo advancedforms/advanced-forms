@@ -195,7 +195,6 @@ class AF_Core_Forms_Submissions {
   }
 
   static function call_submission_handlers( $submission ) {
-    error_log('Submission: ' . print_r($submission,1));
     $form = $submission['form'];
     $args = $submission['args'];
     $fields = $submission['fields'];
