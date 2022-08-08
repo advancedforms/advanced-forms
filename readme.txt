@@ -3,7 +3,7 @@ Contributors: philkurth, fabianlindfors
 Tags: acf, advanced custom fields, acf form, form builder, contact form, frontend editing
 Requires at least: 3.6.0
 Tested up to: 6.0.1
-Stable tag: 1.9.2
+Stable tag: 1.9.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
