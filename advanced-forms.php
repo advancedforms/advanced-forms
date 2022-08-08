@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Advanced Forms
  * Description: Flexible and developer-friendly forms with the power of Advanced Custom Fields.
- * Version: 1.9.1
+ * Version: 1.9.2
  * Author: Phil Kurth (Hookturn)
  * Author URI: http://hookturn.io
  * Copyright: Hookturn Digital
@@ -21,7 +21,7 @@ class AF {
 	 *
 	 * @since 1.2.0
 	 */
-	public $version = '1.9.1';
+	public $version = '1.9.2';
 	
 	
 	/**

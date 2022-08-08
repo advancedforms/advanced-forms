@@ -67,7 +67,7 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 
 == Changelog ==
 
-= [UNRELEASED] =
+= [1.9.2] =
 
 * Added condition to stop ACF file nonces being treated as fields on submission.
 * Added condition to prevent email sending if recipient is false. `af/form/email/recipient` filter can now be used to prevent email sending.
