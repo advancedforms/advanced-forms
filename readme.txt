@@ -67,6 +67,10 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 
 == Changelog ==
 
+= [UNRELEASED] =
+
+* Added the `af_render_content` private field type for internal use in form settings UI.
+
 = [1.9.2] =
 
 * Added condition to stop ACF file nonces being treated as fields on submission.

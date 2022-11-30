@@ -101,6 +101,7 @@ class AF {
 
 		// ACF additions (fields, location rules, etc.)
 		$this->classes['acf_additions'] = include( $this->path . 'acf/acf-additions.php' );
+		include( $this->path . 'acf/fields/af-render-content-field.php' );
 		include( $this->path . 'acf/fields/field_select.php' );
 		include( $this->path . 'acf/fields/divider.php' );
 		include( $this->path . 'acf/fields/page.php' );
