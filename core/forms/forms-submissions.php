@@ -123,7 +123,7 @@ class AF_Core_Forms_Submissions {
 		}
 
 		$this->process_submission( AF()->submission );
-		Self::handle_submission_done( AF()->submission );
+		self::handle_submission_done( AF()->submission );
 	}
 
 	static function handle_submission_done( $submission ) {
@@ -138,8 +138,8 @@ class AF_Core_Forms_Submissions {
 		}
 
 		if ( $redirect_url && '' !== $redirect_url ) {
-			Self::clear_expired_submissions();
-			Self::save_submission( $submission );
+			self::clear_expired_submissions();
+			self::save_submission( $submission );
 
 			wp_redirect( $redirect_url );
 			exit;
@@ -185,7 +185,7 @@ class AF_Core_Forms_Submissions {
 			return false;
 		}
 
-		Self::call_submission_handlers( $submission );
+		self::call_submission_handlers( $submission );
 
 		return true;
 	}
@@ -337,15 +337,15 @@ class AF_Core_Forms_Submissions {
 	 *
 	 */
 	private function get_submission() {
-		if ( ! isset( $_COOKIE[ Self::get_cookie_name() ] ) ) {
+		if ( ! isset( $_COOKIE[ self::get_cookie_name() ] ) ) {
 			return false;
 		}
 
-		$key = $_COOKIE[ Self::get_cookie_name() ];
+		$key = $_COOKIE[ self::get_cookie_name() ];
 		$submission = get_option( self::OPTION_DATA_PREFIX . $key, false );
 
-		Self::delete_submission( $key );
-		setcookie( Self::get_cookie_name(), '', time() - HOUR_IN_SECONDS, '/' );
+		self::delete_submission( $key );
+		setcookie( self::get_cookie_name(), '', time() - HOUR_IN_SECONDS, '/' );
 
 		return $submission;
 	}
@@ -365,7 +365,7 @@ class AF_Core_Forms_Submissions {
 		add_option( self::OPTION_DATA_PREFIX . $key, $submission );
 		add_option( self::OPTION_EXPIRY_PREFIX . $key, $expiration_time );
 
-		setcookie( Self::get_cookie_name(), $key, $expiration_time, '/' );
+		setcookie( self::get_cookie_name(), $key, $expiration_time, '/' );
 	}
 
 	/**
@@ -409,7 +409,7 @@ class AF_Core_Forms_Submissions {
 		foreach ( $expired_submissions as $option_name ) {
 			// Find submission key by removing prefix from option name.
 			$submission_key = substr( $option_name, strlen( self::OPTION_EXPIRY_PREFIX ) );
-			Self::delete_submission( $submission_key );
+			self::delete_submission( $submission_key );
 		}
 	}
 
