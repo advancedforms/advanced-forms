@@ -35,6 +35,26 @@ if ( ! class_exists( 'AF' ) ) :
 		 */
 		public $pro;
 
+		/**
+		 * @var mixed|null
+		 */
+		public $show_admin;
+
+		/**
+		 * @var string
+		 */
+		public $path;
+
+		/**
+		 * @var string
+		 */
+		public $url;
+
+		/**
+		 * @var array
+		 */
+		public $classes;
+
 		function __construct() {
 			add_action( 'plugins_loaded', array( $this, 'setup_plugin' ), 1, 0 );
 			add_action( 'acf/init', array( $this, 'load_plugin' ), 1, 0 );
