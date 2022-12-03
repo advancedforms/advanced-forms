@@ -72,6 +72,7 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 * Added the `af_render_content` private field type for internal use in form settings UI.
 * Added a hotfix for ACF validation bug when using multiple forms on the one page.
 * Added the `af/settings/enqueue_validation_hotfix` filter for disabling the validation hotfix.
+* Fix deprecation notices related to admin page registration that occur in PHP 8.1.
 
 = [1.9.2] =
 

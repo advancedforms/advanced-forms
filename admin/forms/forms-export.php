@@ -17,7 +17,7 @@ class AF_Admin_Forms_Export {
 	function register_admin_page() {
 		// By using add_submenu_page without a parent the page won't be shown in the admin menu.
 		add_submenu_page(
-			null,
+			'admin.php',
 			'Export form',
 			'Export',
 			'edit_pages',
