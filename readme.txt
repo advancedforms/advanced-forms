@@ -70,6 +70,8 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 = [UNRELEASED] =
 
 * Added the `af_render_content` private field type for internal use in form settings UI.
+* Added a hotfix for ACF validation bug when using multiple forms on the one page.
+* Added the `af/settings/enqueue_validation_hotfix` filter for disabling the validation hotfix.
 
 = [1.9.2] =
 

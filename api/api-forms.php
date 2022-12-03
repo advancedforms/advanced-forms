@@ -442,6 +442,11 @@ function af_form_success_message( $form, $args ) {
  * @since 1.8.0
  */
 function af_enqueue() {
+	// Enqueue the hotfix that prevents validation from firing across all forms on the same page when one is submitted.
+	if ( apply_filters( 'af/settings/enqueue_validation_hotfix', true ) ) {
+		wp_enqueue_script( 'af-multi-form-validation-hotfix', AF()->url . 'assets/dist/js/multi-form-validation-hotfix.js', [ 'acf-input' ] );
+	}
+
 	// Enqueue ACF scripts and styles
 	acf_enqueue_scripts();
 

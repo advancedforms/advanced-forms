@@ -24,6 +24,10 @@ gulp.task('admin-css', function () {
 });
 
 gulp.task('forms-js', function () {
+	gulp.src('assets/js/multi-form-validation-hotfix.js', {allowEmpty: true})
+		.pipe(uglify())
+		.pipe(gulp.dest('assets/dist/js'));
+	
 	return gulp.src(formJS, {allowEmpty: true})
 		.pipe(concat('forms.js'))
 		.pipe(uglify())
