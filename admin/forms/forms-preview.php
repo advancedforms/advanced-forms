@@ -48,7 +48,7 @@ class AF_Admin_Forms_Preview {
 		echo sprintf( '<a href="%s" class="page-title-action">%s</a>', get_edit_post_link( $form['post_id'] ), __( 'Back to form', 'advanced-forms' ) );
 		echo '<hr class="wp-header-end">';
 
-		if ( af_has_submission() ) {
+		if ( af_has_submission() && ! af_submission_failed() ) {
 			echo '<div id="message" class="notice notice-success">';
 			echo sprintf( '<p>%s. <a href="%s">%s</a></p>', __( 'Form successfully submitted', 'advanced-forms' ), '', __( 'Test again', 'advanced-forms' ) );
 			echo '</div>';
