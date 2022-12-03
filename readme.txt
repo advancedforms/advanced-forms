@@ -73,6 +73,7 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 * Added a hotfix for ACF validation bug when using multiple forms on the one page.
 * Added the `af/settings/enqueue_validation_hotfix` filter for disabling the validation hotfix.
 * Fix deprecation notices related to admin page registration that occur in PHP 8.1.
+* Fix deprecation notices related to dynamic property usage in PHP 8.2.
 
 = [1.9.2] =
 
