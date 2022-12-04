@@ -40,33 +40,20 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 			return sprintf( '--exclude="%s"', $exc );
 		}, self::EXCLUSIONS ) );
 
+		// Only run this on the pro branch to ensure we get all the strings.
+		if ( ! AF()->pro ) {
+			WP_CLI::error( 'You need to be on the pro branch to run this command as that will generate translations for the whole plugin. Once generated there, we can commit here in the free branch and then merge it back into pro.' );
+		}
+
 		// Rebuild the .pot file
 		$year = date( 'Y' );
-		WP_CLI::runcommand("i18n make-pot . language/advanced-forms.pot $exclusions --package-name='Advanced Forms' --subtract='.ignore.pot' --file-comment='Copyright (C) $year Hookturn'");
+		WP_CLI::runcommand( "i18n make-pot . language/advanced-forms.pot $exclusions --package-name='Advanced Forms' --subtract=.ignore.pot --file-comment='Copyright (C) $year Hookturn'" );
 
 		// Update any existing .po files
-		WP_CLI::runcommand("i18n update-po language/advanced-forms.pot language");
+		WP_CLI::runcommand( "i18n update-po language/advanced-forms.pot language" );
 
 		// Rebuild the .mo files
-		WP_CLI::runcommand("i18n make-mo language");
-	}
-
-	/**
-	 * @subcommand update-pro-lang
-	 */
-	public function update_pro_lang(  ) {
-		$exclusions = implode( ' ', array_map( function ( $exc ) {
-			return sprintf( '--exclude="%s"', $exc );
-		}, self::EXCLUSIONS ) );
-
-		// Rebuild the .pot file
-		WP_CLI::runcommand("i18n make-pot . language/pro/advanced-forms.pot $exclusions");
-
-		// Update any existing .po files
-		WP_CLI::runcommand("i18n update-po language/pro/advanced-forms.pot language");
-
-		// Rebuild the .mo files
-		WP_CLI::runcommand("i18n make-mo language/pro");
+		WP_CLI::runcommand( "i18n make-mo language" );
 	}
 
 	/**
