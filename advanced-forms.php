@@ -1,6 +1,7 @@
 <?php
-/*
+/**
  * Plugin Name: Advanced Forms
+ * Plugin URI: https://wordpress.org/plugins/advanced-forms/
  * Description: Flexible and developer-friendly forms with the power of Advanced Custom Fields.
  * Version: 1.9.2.1
  * Author: Phil Kurth (Hookturn)
