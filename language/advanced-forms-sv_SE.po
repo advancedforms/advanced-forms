@@ -673,3 +673,101 @@ msgstr ""
 #: core/core-gutenberg.php:227
 msgid "Select fields to exclude from the form"
 msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:14
+msgctxt "noun"
+msgid "Calculated admin"
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:32
+msgid "There are no calculated fields assigned to this form. Add calculated fields to the ACF field group/s and then come back here to configure the contents of each field."
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:55
+#: pro/acf/fields/af-calculated-admin.php:85
+msgid "Note:"
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:56
+msgid "This calculated field is being handled by a hooked PHP function which may override this calculation entirely."
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:86
+msgid "There is a PHP function hooked directly to the <code>af/field/calculate_value</code> hook. This hook is global and executes for all calculated fields which means the field calculations here may be overridden entirely."
+msgstr ""
+
+#: pro/acf/fields/calculated.php:15
+msgid "Calculated"
+msgstr ""
+
+#: pro/acf/fields/calculated.php:40
+msgid "Instructions"
+msgstr ""
+
+#: pro/acf/fields/calculated.php:43
+msgid "After creating your calculated field here you need to define its contents. The contents can be edited in your form settings under the \"Calculated\" tab."
+msgstr ""
+
+#: pro/admin/admin-calculated.php:31
+msgid "Calculated fields"
+msgstr ""
+
+#: pro/admin/admin-calculated.php:34
+msgid "Set the content for each calculated form here or for more flexibility, you may define computations using hooked PHP functions. <br> Change the order in which calculated fields are computed by dragging & dropping."
+msgstr ""
+
+#: pro/admin/admin-integrations.php:66
+msgid "Send test submission"
+msgstr ""
+
+#: pro/admin/admin-restrictions.php:11
+msgid "Only allow users to edit their own posts"
+msgstr ""
+
+#: pro/admin/admin-restrictions.php:28
+msgid "Message if user is not author of post"
+msgstr ""
+
+#: pro/core/core-editing.php:319
+msgid "This email has already been used"
+msgstr ""
+
+#: pro/core/core-editing.php:329
+msgid "This username has already been used"
+msgstr ""
+
+#: pro/core/core-editing.php:458
+msgid "Post ID"
+msgstr ""
+
+#: pro/core/core-editing.php:463
+msgid "Post URL"
+msgstr ""
+
+#: pro/core/integrations/core-recaptcha.php:52
+msgid "Captcha is required"
+msgstr ""
+
+#: pro/edd/edd-integration.php:165
+msgid "License valid and active"
+msgstr ""
+
+#: pro/edd/edd-integration.php:172
+msgid "Your previous license could not be deactivated. Please visit hookturn.io and verify that your license is no longer active for this site. If you want to activate a new license, enter it below and save again."
+msgstr ""
+
+#: pro/edd/edd-integration.php:176
+msgid "Your license has expired"
+msgstr ""
+
+#: pro/edd/edd-integration.php:180
+msgid "Your license has reached its activation limit"
+msgstr ""
+
+#: pro/edd/edd-integration.php:187
+msgid "Invalid license key"
+msgstr ""
+
+#: pro/edd/edd-integration.php:191
+msgid "An error occurred, please try again"
+msgstr ""
