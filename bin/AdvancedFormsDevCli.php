@@ -33,15 +33,16 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 // todo - check dir names VS zip file names
 
 	/**
-	 * @subcommand update-core-lang
+	 * @subcommand update-lang
 	 */
-	public function update_core_lang() {
+	public function update_lang() {
 		$exclusions = implode( ' ', array_map( function ( $exc ) {
 			return sprintf( '--exclude="%s"', $exc );
 		}, self::EXCLUSIONS ) );
 
 		// Rebuild the .pot file
-		WP_CLI::runcommand("i18n make-pot . language/advanced-forms.pot $exclusions");
+		$year = date( 'Y' );
+		WP_CLI::runcommand("i18n make-pot . language/advanced-forms.pot $exclusions --package-name='Advanced Forms' --subtract='.ignore.pot' --file-comment='Copyright (C) $year Hookturn'");
 
 		// Update any existing .po files
 		WP_CLI::runcommand("i18n update-po language/advanced-forms.pot language");

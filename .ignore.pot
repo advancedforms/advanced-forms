@@ -1,0 +1,25 @@
+# These are strings we don't want to see in the generated pot files.
+
+#. Plugin Name of the plugin
+msgid "Advanced Forms"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://wordpress.org/plugins/advanced-forms/"
+msgstr ""
+
+#. Plugin Name of the plugin
+msgid "Advanced Forms Pro"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://hookturn.io/downloads/advanced-forms-pro/"
+msgstr ""
+
+#. Author of the plugin
+msgid "Phil Kurth (Hookturn)"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://hookturn.io"
+msgstr ""

@@ -1,37 +1,20 @@
-# Copyright (C) 2022 Phil Kurth (Hookturn)
-# This file is distributed under the same license as the Advanced Forms plugin.
+# Copyright (C) 2022 Hookturn
 msgid ""
 msgstr ""
-"Project-Id-Version: Advanced Forms 1.9.3\n"
+"Project-Id-Version: Advanced Forms 1.9.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/advanced-forms\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-12-04T04:32:00+00:00\n"
+"POT-Creation-Date: 2022-12-04T06:34:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: advanced-forms\n"
 
-#. Plugin Name of the plugin
-msgid "Advanced Forms"
-msgstr ""
-
-#. Plugin URI of the plugin
-msgid "https://wordpress.org/plugins/advanced-forms/"
-msgstr ""
-
 #. Description of the plugin
 msgid "Flexible and developer-friendly forms with the power of Advanced Custom Fields."
-msgstr ""
-
-#. Author of the plugin
-msgid "Phil Kurth (Hookturn)"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "http://hookturn.io"
 msgstr ""
 
 #: acf/fields/af-render-content-field.php:69

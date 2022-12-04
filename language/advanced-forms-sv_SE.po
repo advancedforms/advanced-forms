@@ -612,25 +612,9 @@ msgstr "Förhandsgranska formulär"
 msgid "Preview"
 msgstr "Förhandsgranska"
 
-#. Plugin Name of the plugin
-msgid "Advanced Forms"
-msgstr "Advanced Forms"
-
 #. Description of the plugin
 msgid "Flexible and developer-friendly forms with the power of Advanced Custom Fields."
 msgstr "Flexibla och utvecklarvänliga formulär med kraften från Advanced Custom Fields."
-
-#. Plugin URI of the plugin
-msgid "https://wordpress.org/plugins/advanced-forms/"
-msgstr ""
-
-#. Author of the plugin
-msgid "Phil Kurth (Hookturn)"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "http://hookturn.io"
-msgstr ""
 
 #: acf/fields/af-render-content-field.php:69
 msgctxt "noun"
