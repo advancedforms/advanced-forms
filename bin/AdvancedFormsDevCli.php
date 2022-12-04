@@ -33,6 +33,42 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 // todo - check dir names VS zip file names
 
 	/**
+	 * @subcommand update-core-lang
+	 */
+	public function update_core_lang() {
+		$exclusions = implode( ' ', array_map( function ( $exc ) {
+			return sprintf( '--exclude="%s"', $exc );
+		}, self::EXCLUSIONS ) );
+
+		// Rebuild the .pot file
+		WP_CLI::runcommand("i18n make-pot . language/advanced-forms.pot $exclusions");
+
+		// Update any existing .po files
+		WP_CLI::runcommand("i18n update-po language/advanced-forms.pot language");
+
+		// Rebuild the .mo files
+		WP_CLI::runcommand("i18n make-mo language");
+	}
+
+	/**
+	 * @subcommand update-pro-lang
+	 */
+	public function update_pro_lang(  ) {
+		$exclusions = implode( ' ', array_map( function ( $exc ) {
+			return sprintf( '--exclude="%s"', $exc );
+		}, self::EXCLUSIONS ) );
+
+		// Rebuild the .pot file
+		WP_CLI::runcommand("i18n make-pot . language/pro/advanced-forms.pot $exclusions");
+
+		// Update any existing .po files
+		WP_CLI::runcommand("i18n update-po language/pro/advanced-forms.pot language");
+
+		// Rebuild the .mo files
+		WP_CLI::runcommand("i18n make-mo language/pro");
+	}
+
+	/**
 	 * Creates a release archive with the version name appended to the archive file. e.g; acf-custom-database-tables-v1.2.3.zip
 	 *
 	 * ## OPTIONS
