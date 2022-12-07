@@ -67,6 +67,11 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 	 * @subcommand make-free-release-zip
 	 */
 	public function make_free_release( $args, $assoc_args ) {
+		// Only run this on the pro branch to ensure we get all the strings.
+		if ( AF()->pro ) {
+			WP_CLI::error( 'You need to be on the free branch to make a free release.' );
+		}
+
 		self::make_release_zip( WP_CONTENT_DIR . '/releases/free', self::PLUGIN_DIR_NAME, $args, $assoc_args );
 	}
 
@@ -76,6 +81,11 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 	 * @subcommand make-free-release-svn
 	 */
 	public function make_free_release_svn( $args, $assoc_args ) {
+		// Only run this on the pro branch to ensure we get all the strings.
+		if ( AF()->pro ) {
+			WP_CLI::error( 'You need to be on the free branch to make a free release.' );
+		}
+
 		$svn_dir = WP_CONTENT_DIR . '/releases/free-svn';
 		$plugin_dir = WP_CONTENT_DIR . '/plugins/' . self::PLUGIN_DIR_NAME;
 		$svn_trunk_dir = $svn_dir . '/trunk';
@@ -125,6 +135,11 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 	 * @subcommand make-pro-release-zip
 	 */
 	public function make_pro_release( $args, $assoc_args ) {
+		// Only run this on the pro branch to ensure we get all the strings.
+		if ( ! AF()->pro ) {
+			WP_CLI::error( 'You need to be on the pro branch to make a free release.' );
+		}
+
 		self::make_release_zip( WP_CONTENT_DIR . '/releases/pro', self::PLUGIN_PRO_DIR_NAME, $args, $assoc_args );
 	}
 
@@ -210,6 +225,8 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 			}
 
 			WP_CLI::error( $output );
+		} else {
+			WP_CLI::success( 'No shorthand echo syntax found.' );
 		}
 	}
 
