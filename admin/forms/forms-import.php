@@ -77,6 +77,7 @@ class AF_Admin_Forms_Import {
 
     $post = af_import_form( $json );
     if ( $post ) {
+	  /* translators: The ACF field key */
       $message = sprintf( __( 'Form with key %s imported.', 'advanced-forms' ), $json['key'] );
       $link = sprintf( '<a href="%s">%s</a>', get_edit_post_link( $post ), __( 'Edit form', 'advanced-forms' ) );
       acf_add_admin_notice( $message . ' ' . $link, 'success' );

@@ -32,19 +32,22 @@ var af;
       form.$el.on('submit', function( e ) {
         e.preventDefault();
 
-        // Disable button to avoid duplicate submissions
-        form.$el.find( '.af-submit-button' ).prop( 'disabled', true );
-    
+        // Lock form to avoid duplicate submissions
+        af.lock( form );
+
         // Reset validation status if the form has already been submitted once
         // Without this, filter mode won't work as ACF will refuse to validate again
         var validator = form.$el.data('acf');
         if (validator) {
           validator.set('status', '');
         }
-      
-        // Validate form 
+
+        // Validate form
         acf.validation.fetch({
           form: form.$el,
+          failure: function() {
+            af.unlock( form );
+          },
           success: function() {
             // Clone steps to not alter the original array
             var steps = form.submissionSteps.slice();
@@ -54,7 +57,7 @@ var af;
             form.$el.find( '.af-submit-button' ).prop( 'disabled', false );
           }
         });
-      }); 
+      });
 
       acf.doAction( 'af/form/setup', form );
     },
@@ -365,7 +368,7 @@ var af;
         var data = resp.data;
 
         acf.doAction( 'af/form/ajax/submission', data, form );
-      
+
         switch ( data.type ) {
           case 'success_message':
             // Replace form fields with the success message
@@ -385,7 +388,7 @@ var af;
       return function( resp ) {
         var validator = form.$el.data( 'acf' );
         var errors = resp.responseJSON.data.errors;
-      
+
         // Add errors to form
         validator.addErrors( errors );
         validator.showErrors();

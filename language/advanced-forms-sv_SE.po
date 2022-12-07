@@ -2,323 +2,337 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Forms\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-11 15:18+0000\n"
-"PO-Revision-Date: 2019-11-11 15:18+0000\n"
 "Last-Translator: admin <fabianadmin@local.dev>\n"
 "Language-Team: Svenska\n"
-"Language: sv_SE\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-11-11 15:18+0000\n"
+"PO-Revision-Date: 2019-11-11 15:18+0000\n"
+"Language: sv_SE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.3.0; wp-5.3-RC1-46561"
+"X-Loco-Version: 2.3.0; wp-5.3-RC1-46561\n"
 
-#: advanced-forms.php:216
+#: advanced-forms.php:195
 msgctxt "Post Type General Name"
 msgid "Forms"
 msgstr "Formulär"
 
-#: advanced-forms.php:217
+#: advanced-forms.php:196
 msgctxt "Post Type Singular Name"
 msgid "Form"
 msgstr "Formulär"
 
-#: advanced-forms.php:218 advanced-forms.php:222
+#: advanced-forms.php:197
+#: advanced-forms.php:201
 msgid "Forms"
 msgstr "Formulär"
 
-#: advanced-forms.php:219 advanced-forms.php:243 advanced-forms.php:244
-#: admin/admin-entries.php:119 admin/admin-entries.php:310
+#: admin/admin-entries.php:119
+#: admin/admin-entries.php:310
+#: advanced-forms.php:198
+#: advanced-forms.php:222
+#: advanced-forms.php:223
+#: core/core-gutenberg.php:45
 msgid "Form"
 msgstr "Formulär"
 
-#: advanced-forms.php:220
+#: advanced-forms.php:199
 msgid "Form Archives"
 msgstr "Formulärsarkiv"
 
-#: advanced-forms.php:221
+#: advanced-forms.php:200
 msgid "Parent Form:"
 msgstr "Formulärsförälder:"
 
-#: advanced-forms.php:223
+#: advanced-forms.php:202
 msgid "Add New Form"
 msgstr "Skapa nytt formulär"
 
-#: advanced-forms.php:224 advanced-forms.php:272
+#: advanced-forms.php:203
+#: advanced-forms.php:250
 msgid "Add New"
 msgstr "Skapa nytt"
 
-#: advanced-forms.php:225
+#: advanced-forms.php:204
 msgid "New Form"
 msgstr "Nytt formulär"
 
-#: advanced-forms.php:226
+#: advanced-forms.php:205
 msgid "Edit Form"
 msgstr "Redigera formulär"
 
-#: advanced-forms.php:227
+#: advanced-forms.php:206
 msgid "Update Form"
 msgstr "Uppdatera formulär"
 
-#: advanced-forms.php:228
+#: advanced-forms.php:207
 msgid "View Form"
 msgstr "Visa formulär"
 
-#: advanced-forms.php:229
+#: advanced-forms.php:208
 msgid "Search Form"
 msgstr "Sök bland formulär"
 
-#: advanced-forms.php:230 advanced-forms.php:278
+#: advanced-forms.php:209
+#: advanced-forms.php:256
 msgid "Not found"
 msgstr "Hittades inte"
 
-#: advanced-forms.php:231 advanced-forms.php:279
+#: advanced-forms.php:210
+#: advanced-forms.php:257
 msgid "Not found in Trash"
 msgstr "Hittade inte i papperskorgen"
 
-#: advanced-forms.php:232 advanced-forms.php:280
+#: advanced-forms.php:211
+#: advanced-forms.php:258
 msgid "Featured Image"
 msgstr "Utvald bild"
 
-#: advanced-forms.php:233 advanced-forms.php:281
+#: advanced-forms.php:212
+#: advanced-forms.php:259
 msgid "Set featured image"
 msgstr "Välj utvald bild"
 
-#: advanced-forms.php:234 advanced-forms.php:282
+#: advanced-forms.php:213
+#: advanced-forms.php:260
 msgid "Remove featured image"
 msgstr "Ta bort utvald bild"
 
-#: advanced-forms.php:235 advanced-forms.php:283
+#: advanced-forms.php:214
+#: advanced-forms.php:261
 msgid "Use as featured image"
 msgstr "Använd som utvald bild"
 
-#: advanced-forms.php:236
+#: advanced-forms.php:215
 msgid "Insert into form"
 msgstr "Lägg till i formulär"
 
-#: advanced-forms.php:237
+#: advanced-forms.php:216
 msgid "Uploaded to this form"
 msgstr "Uppladdat till detta formulär"
 
-#: advanced-forms.php:238
+#: advanced-forms.php:217
 msgid "Forms list"
 msgstr "Formulärslista"
 
-#: advanced-forms.php:239
+#: advanced-forms.php:218
 msgid "Forms list navigation"
 msgstr "Formulärslistanavigation"
 
-#: advanced-forms.php:240
+#: advanced-forms.php:219
 msgid "Filter forms list"
 msgstr "Filtrera formulärslista"
 
-#: advanced-forms.php:264
+#: advanced-forms.php:242
 msgctxt "Post Type General Name"
 msgid "Entries"
 msgstr "Inlägg"
 
-#: advanced-forms.php:265
+#: advanced-forms.php:243
 msgctxt "Post Type Singular Name"
 msgid "Entry"
 msgstr "Inlägg"
 
-#: advanced-forms.php:266 advanced-forms.php:270 admin/admin-forms.php:192
 #: admin/admin-entries.php:240
+#: admin/admin-forms.php:175
+#: advanced-forms.php:244
+#: advanced-forms.php:248
 msgid "Entries"
 msgstr "Inlägg"
 
-#: advanced-forms.php:267 advanced-forms.php:291 advanced-forms.php:292
+#: advanced-forms.php:245
+#: advanced-forms.php:269
+#: advanced-forms.php:270
 msgid "Entry"
 msgstr "Inlägg"
 
-#: advanced-forms.php:268
+#: advanced-forms.php:246
 msgid "Entry Archives"
 msgstr "Inläggsarkiv"
 
-#: advanced-forms.php:269
+#: advanced-forms.php:247
 msgid "Parent Entry:"
 msgstr "Inläggsförälder:"
 
-#: advanced-forms.php:271
+#: advanced-forms.php:249
 msgid "Add New Entry"
 msgstr "Skapa nytt inlägg"
 
-#: advanced-forms.php:273
+#: advanced-forms.php:251
 msgid "New Entry"
 msgstr "Nytt inlägg"
 
-#: advanced-forms.php:274
+#: advanced-forms.php:252
 msgid "Edit Entry"
 msgstr "Redigera inlägg"
 
-#: advanced-forms.php:275
+#: advanced-forms.php:253
 msgid "Update Entry"
 msgstr "Uppdatera inlägg"
 
-#: advanced-forms.php:276
+#: advanced-forms.php:254
 msgid "View Entry"
 msgstr "Visa inlägg"
 
-#: advanced-forms.php:277
+#: advanced-forms.php:255
 msgid "Search Entry"
 msgstr "Sök bland inlägg"
 
-#: advanced-forms.php:284
+#: advanced-forms.php:262
 msgid "Insert into entry"
 msgstr "Lägg till i inlägg"
 
-#: advanced-forms.php:285
+#: advanced-forms.php:263
 msgid "Uploaded to this entry"
 msgstr "Uppladdat till detta inlägg"
 
-#: advanced-forms.php:286
+#: advanced-forms.php:264
 msgid "Entries list"
 msgstr "Inläggslista"
 
-#: advanced-forms.php:287
+#: advanced-forms.php:265
 msgid "Entries list navigation"
 msgstr "Inläggslistanavigation"
 
-#: advanced-forms.php:288
+#: advanced-forms.php:266
 msgid "Filter entries list"
 msgstr "Filterera inläggslista"
 
-#: core/core-entries.php:122 admin/admin-entries.php:97
+#: admin/admin-entries.php:97
+#: core/core-entries.php:110
 msgid "Entry ID"
 msgstr "Inläggs-ID"
 
-#: admin/admin-forms.php:65
+#: admin/admin-forms.php:72
 msgid "Form key:"
 msgstr "Formulärsnyckel:"
 
-#: admin/admin-forms.php:100 admin/admin-forms.php:191
+#: admin/admin-forms.php:101
+#: admin/admin-forms.php:174
 msgid "Fields"
 msgstr "Fält"
 
-#: admin/admin-forms.php:123
+#: admin/admin-forms.php:120
 msgid "Add fields by setting the location of your fields group to this form."
-msgstr ""
-"Lägg till fält genom att ställa in platsreglerna för er fältgrupp till detta "
-"formulär."
+msgstr "Lägg till fält genom att ställa in platsreglerna för er fältgrupp till detta formulär."
 
-#: admin/admin-forms.php:128
+#: admin/admin-forms.php:125
 msgid "Label"
 msgstr "Titel"
 
-#: admin/admin-forms.php:129 admin/admin-emails.php:121
+#: admin/admin-emails.php:121
+#: admin/admin-forms.php:126
 msgid "Name"
 msgstr "Namn"
 
-#: admin/admin-forms.php:130
+#: admin/admin-forms.php:127
 msgid "Type"
 msgstr "Typ"
 
-#: admin/admin-forms.php:166
+#: admin/admin-forms.php:153
 msgid "No field groups connected to this form"
 msgstr "Inga fältgrupper kopplade till detta formulär"
 
-#: admin/admin-forms.php:175
+#: admin/admin-forms.php:160
 msgid "Create field group"
 msgstr "Skapa ny fältgrupp"
 
-#: admin/admin-forms.php:190
+#: admin/admin-forms.php:173
 msgid "Key"
 msgstr "Nyckel"
 
-#: admin/admin-forms.php:294
+#: admin/admin-forms.php:254
 msgid "Resources"
 msgstr ""
 
-#: admin/admin-forms.php:296
+#: admin/admin-forms.php:256
 msgid "Guides"
 msgstr ""
 
-#: admin/admin-forms.php:297
+#: admin/admin-forms.php:257
 msgid "Actions"
 msgstr ""
 
-#: admin/admin-forms.php:298
+#: admin/admin-forms.php:258
 msgid "Filters"
 msgstr ""
 
-#: admin/admin-forms.php:302
+#: admin/admin-forms.php:262
 msgid "Pro"
 msgstr ""
 
-#: admin/admin-forms.php:304
-msgid "Create/edit posts and users"
-msgstr ""
-
-#: admin/admin-forms.php:305
+#: admin/admin-forms.php:265
 msgid "Integrate with Slack, Mailchimp, and Zapier"
 msgstr ""
 
-#: admin/admin-forms.php:306
+#: admin/admin-forms.php:268
 msgid "Get direct, priority support"
 msgstr ""
 
-#: admin/admin-forms.php:308
+#: admin/admin-forms.php:270
 msgid "Available from hookturn.io"
 msgstr ""
 
-#: admin/admin-forms.php:311
+#: admin/admin-forms.php:273
 msgid "Support"
 msgstr ""
 
-#: admin/admin-forms.php:313
+#: admin/admin-forms.php:275
 msgid "Issues, questions, or suggestions?"
 msgstr ""
 
-#: admin/admin-forms.php:315
+#: admin/admin-forms.php:277
 msgid "Contact us directly"
 msgstr ""
 
-#: admin/admin-forms.php:315
+#: admin/admin-forms.php:277
 msgid "for priority support"
 msgstr ""
 
-#: admin/admin-forms.php:317
+#: admin/admin-forms.php:279
 msgid "Create a ticket on the"
 msgstr ""
 
-#: admin/admin-forms.php:317
+#: admin/admin-forms.php:279
 msgid "Wordpress support forums"
 msgstr ""
 
-#: admin/admin-forms.php:375
+#: admin/admin-forms.php:329
 msgid "Form settings"
 msgstr "Formulärsinställningar"
 
-#: admin/admin-forms.php:379
+#: admin/admin-forms.php:333
 msgid "Display"
 msgstr "Visning"
 
-#: admin/admin-forms.php:395
+#: admin/admin-forms.php:349
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: admin/admin-forms.php:401
+#: admin/admin-forms.php:355
 msgid "Description"
 msgstr "Beskrivning"
 
-#: admin/admin-forms.php:419
+#: admin/admin-forms.php:373
+#: core/core-gutenberg.php:159
 msgid "Success message"
 msgstr "Bekräftelse"
 
-#: admin/admin-forms.php:422
+#: admin/admin-forms.php:376
 msgid "The message displayed after a successful submission."
 msgstr "Meddelande som visas efter formulär har skickats."
 
-#: admin/admin-forms.php:437
+#: admin/admin-forms.php:391
 msgid "Statistics"
 msgstr "Statistik"
 
-#: admin/admin-forms.php:453
+#: admin/admin-forms.php:407
 msgid "Number of submissions"
 msgstr "Antal skickade formulär"
 
-#: admin/admin-forms.php:475
+#: admin/admin-forms.php:429
 msgid "Number of times viewed"
 msgstr "Antal visningar"
 
@@ -332,8 +346,7 @@ msgstr "E-post"
 
 #: admin/admin-emails.php:105
 msgid "The emails defined here will be sent upon successful submission."
-msgstr ""
-"Brev som definieras här kommer skickas efter att ett formulär har skickats."
+msgstr "Brev som definieras här kommer skickas efter att ett formulär har skickats."
 
 #: admin/admin-emails.php:117
 msgid "Add new email"
@@ -351,7 +364,8 @@ msgstr "Skicka till"
 msgid "Select from field"
 msgstr "Välj fält"
 
-#: admin/admin-emails.php:169 admin/admin-emails.php:212
+#: admin/admin-emails.php:169
+#: admin/admin-emails.php:212
 msgid "Custom recipient"
 msgstr "Anpassad mottagare"
 
@@ -371,7 +385,8 @@ msgstr "Ämne"
 msgid "Content"
 msgstr "Innehåll"
 
-#: admin/admin-entries.php:60 admin/forms/forms-import.php:81
+#: admin/admin-entries.php:60
+#: admin/forms/forms-import.php:82
 msgid "Edit form"
 msgstr "Redigera formulär"
 
@@ -396,12 +411,8 @@ msgid "Create entries?"
 msgstr "Skapa inlägg?"
 
 #: admin/admin-entries.php:261
-msgid ""
-"When entries are enabled they will be automatically generated with form "
-"submissions, with all the submitted field data."
-msgstr ""
-"När inlägg är aktiverade kommer de automatiskt skapas varje gång ett "
-"formulär skickas."
+msgid "When entries are enabled they will be automatically generated with form submissions, with all the submitted field data."
+msgstr "När inlägg är aktiverade kommer de automatiskt skapas varje gång ett formulär skickas."
 
 #: admin/admin-entries.php:292
 msgid "Entry data"
@@ -455,23 +466,23 @@ msgstr "Meddelande före begränsad tid"
 msgid "Message after scheduled time"
 msgstr "Meddelande efter begränsad tid"
 
-#: api/api-helpers.php:94
+#: api/api-helpers.php:112
 msgid "Yes"
 msgstr "Ja"
 
-#: api/api-helpers.php:95
+#: api/api-helpers.php:113
 msgid "No"
 msgstr "Nej"
 
-#: api/api-helpers.php:198
+#: api/api-helpers.php:209
 msgid "Insert field"
 msgstr "Infoga fält"
 
-#: api/api-helpers.php:212
+#: api/api-helpers.php:223
 msgid "All fields"
 msgstr "Alla fält"
 
-#: core/forms/forms-rendering.php:103
+#: core/forms/forms-rendering.php:67
 msgid "Submit"
 msgstr "Skicka"
 
@@ -479,11 +490,13 @@ msgstr "Skicka"
 msgid "Page"
 msgstr "Sida"
 
-#: acf/fields/page.php:48 acf/fields/page.php:101
+#: acf/fields/page.php:48
+#: acf/fields/page.php:101
 msgid "Previous"
 msgstr "Föregående"
 
-#: acf/fields/page.php:54 acf/fields/page.php:110
+#: acf/fields/page.php:54
+#: acf/fields/page.php:110
 msgid "Next"
 msgstr "Nästa"
 
@@ -507,47 +520,40 @@ msgstr "\"Nästa\"-text"
 msgid "Text for the \"Next\" button"
 msgstr "Text för \"Nästa\"-knappen"
 
-#: admin/forms/forms-export.php:51
+#: admin/forms/forms-export.php:50
 msgid "Exporting"
 msgstr "Exporterar"
 
-#: admin/forms/forms-export.php:52 admin/forms/forms-preview.php:51
+#: admin/forms/forms-export.php:53
+#: admin/forms/forms-preview.php:48
 msgid "Back to form"
 msgstr "Tillbaka till formulär"
 
-#: admin/forms/forms-export.php:58
+#: admin/forms/forms-export.php:59
 msgid "Export JSON"
 msgstr "Exportera JSON"
 
-#: admin/forms/forms-export.php:60
-msgid ""
-"Export your form as a JSON file. The form can then be imported on any site "
-"at Forms &rarr; Import."
-msgstr ""
-"Exportera ditt formulär som JSON. Formuläret kan importeras igen genom att "
-"gå till Formulär &rarr; Inlägg."
+#: admin/forms/forms-export.php:61
+msgid "Export your form as a JSON file. The form can then be imported on any site at Forms &rarr; Import."
+msgstr "Exportera ditt formulär som JSON. Formuläret kan importeras igen genom att gå till Formulär &rarr; Inlägg."
 
-#: admin/forms/forms-export.php:63
+#: admin/forms/forms-export.php:64
 msgid "Export file"
 msgstr "Exportera fil"
 
-#: admin/forms/forms-export.php:68
+#: admin/forms/forms-export.php:69
 msgid "Register programmatically"
 msgstr "Registera med kod"
 
-#: admin/forms/forms-export.php:70
-msgid ""
-"Place the following code in your theme or plugin to register your form "
-"programmatically."
-msgstr ""
-"Lägg till följande kod i ditt tema eller plugin för att register ditt "
-"formulär."
+#: admin/forms/forms-export.php:71
+msgid "Place the following code in your theme or plugin to register your form programmatically."
+msgstr "Lägg till följande kod i ditt tema eller plugin för att register ditt formulär."
 
-#: admin/forms/forms-export.php:85
+#: admin/forms/forms-export.php:86
 msgid "Export"
 msgstr "Exportera"
 
-#: admin/forms/forms-export.php:101
+#: admin/forms/forms-export.php:100
 msgid "Export form"
 msgstr "Exportera formulär"
 
@@ -555,17 +561,14 @@ msgstr "Exportera formulär"
 msgid "Import"
 msgstr "Importera"
 
-#: admin/forms/forms-import.php:31 admin/forms/forms-import.php:100
+#: admin/forms/forms-import.php:31
+#: admin/forms/forms-import.php:101
 msgid "Import form"
 msgstr "Importera formulär"
 
 #: admin/forms/forms-import.php:40
-msgid ""
-"Select the form JSON file you would like to import. If a form with the same "
-"key already exists it will be overwritten."
-msgstr ""
-"Välj en JSON-fil att importera. Om ett formulär med samma nyckel redan "
-"existerar kommer den att skrivas över."
+msgid "Select the form JSON file you would like to import. If a form with the same key already exists it will be overwritten."
+msgstr "Välj en JSON-fil att importera. Om ett formulär med samma nyckel redan existerar kommer den att skrivas över."
 
 #: admin/forms/forms-import.php:46
 msgid "Select File"
@@ -579,47 +582,196 @@ msgstr "Importera Fil"
 msgid "No files selected"
 msgstr "Inga filer valda"
 
-#: admin/forms/forms-import.php:80
+#. translators: The ACF field key
+#: admin/forms/forms-import.php:81
 #, php-format
 msgid "Form with key %s imported."
 msgstr "Formulär med nyckel %s har importerats."
 
-#: admin/forms/forms-import.php:84
+#: admin/forms/forms-import.php:85
 msgid "Failed to import form"
 msgstr "Import av formulär misslyckades"
 
-#: admin/forms/forms-preview.php:50
+#: admin/forms/forms-preview.php:47
 msgid "Previewing"
 msgstr "Förhandsgranskar"
 
-#: admin/forms/forms-preview.php:56
+#: admin/forms/forms-preview.php:53
 msgid "Form successfully submitted"
 msgstr "Formulär skickat"
 
-#: admin/forms/forms-preview.php:56
+#: admin/forms/forms-preview.php:53
 msgid "Test again"
 msgstr "Testa formulär igen"
 
-#: admin/forms/forms-preview.php:86
+#: admin/forms/forms-preview.php:80
 msgid "Preview form"
 msgstr "Förhandsgranska formulär"
 
-#: admin/forms/forms-preview.php:116
+#: admin/forms/forms-preview.php:104
 msgid "Preview"
 msgstr "Förhandsgranska"
 
-#. Name of the plugin
-msgid "Advanced Forms"
-msgstr "Advanced Forms"
-
 #. Description of the plugin
-msgid ""
-"Flexible and developer-friendly forms with the power of Advanced Custom "
-"Fields."
-msgstr ""
-"Flexibla och utvecklarvänliga formulär med kraften från Advanced Custom "
-"Fields."
+msgid "Flexible and developer-friendly forms with the power of Advanced Custom Fields."
+msgstr "Flexibla och utvecklarvänliga formulär med kraften från Advanced Custom Fields."
 
-#. Author of the plugin
-msgid "Fabian Lindfors"
-msgstr "Fabian Lindfors"
+#: acf/fields/af-render-content-field.php:69
+msgctxt "noun"
+msgid "Render"
+msgstr ""
+
+#: admin/admin-forms.php:264
+msgid "Create and edit posts and users"
+msgstr ""
+
+#: admin/admin-forms.php:266
+msgid "Protect your form against spam with Google reCAPTCHA"
+msgstr ""
+
+#: admin/admin-forms.php:267
+msgid "Use calculated fields to give fields to give users immediate feedback"
+msgstr ""
+
+#: core/core-gutenberg.php:18
+msgid "Advanced Form"
+msgstr ""
+
+#: core/core-gutenberg.php:32
+msgid "No form selected"
+msgstr ""
+
+#: core/core-gutenberg.php:47
+msgid "Preview page to view form"
+msgstr ""
+
+#: core/core-gutenberg.php:112
+msgid "Edit form settings"
+msgstr ""
+
+#: core/core-gutenberg.php:133
+msgid "Submit button text"
+msgstr ""
+
+#: core/core-gutenberg.php:144
+msgid "After submission"
+msgstr ""
+
+#: core/core-gutenberg.php:162
+msgid "You can configure the success message in your <a class=\"edit-form-link\">form settings</a>"
+msgstr ""
+
+#: core/core-gutenberg.php:179
+#: core/core-gutenberg.php:199
+msgid "Redirect to"
+msgstr ""
+
+#: core/core-gutenberg.php:219
+msgid "Exclude fields"
+msgstr ""
+
+#: core/core-gutenberg.php:227
+msgid "Select fields to exclude from the form"
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:14
+msgctxt "noun"
+msgid "Calculated admin"
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:63
+#: pro/acf/fields/af-calculated-admin.php:93
+msgid "Note:"
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:64
+msgid "This calculated field is being handled by a hooked PHP function which may override this calculation entirely."
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:94
+msgid "There is a PHP function hooked directly to the <code>af/field/calculate_value</code> hook. This hook is global and executes for all calculated fields which means the field calculations here may be overridden entirely."
+msgstr ""
+
+#: pro/acf/fields/calculated.php:15
+msgid "Calculated"
+msgstr ""
+
+#: pro/acf/fields/calculated.php:40
+msgid "Instructions"
+msgstr ""
+
+#: pro/acf/fields/calculated.php:43
+msgid "After creating your calculated field here you need to define its contents. The contents can be edited in your form settings under the \"Calculated\" tab."
+msgstr ""
+
+#: pro/admin/admin-calculated.php:31
+msgid "Calculated fields"
+msgstr ""
+
+#: pro/admin/admin-integrations.php:66
+msgid "Send test submission"
+msgstr ""
+
+#: pro/admin/admin-restrictions.php:11
+msgid "Only allow users to edit their own posts"
+msgstr ""
+
+#: pro/admin/admin-restrictions.php:28
+msgid "Message if user is not author of post"
+msgstr ""
+
+#: pro/core/core-editing.php:319
+msgid "This email has already been used"
+msgstr ""
+
+#: pro/core/core-editing.php:329
+msgid "This username has already been used"
+msgstr ""
+
+#: pro/core/core-editing.php:458
+msgid "Post ID"
+msgstr ""
+
+#: pro/core/core-editing.php:463
+msgid "Post URL"
+msgstr ""
+
+#: pro/core/integrations/core-recaptcha.php:52
+msgid "Captcha is required"
+msgstr ""
+
+#: pro/edd/edd-integration.php:165
+msgid "License valid and active"
+msgstr ""
+
+#: pro/edd/edd-integration.php:172
+msgid "Your previous license could not be deactivated. Please visit hookturn.io and verify that your license is no longer active for this site. If you want to activate a new license, enter it below and save again."
+msgstr ""
+
+#: pro/edd/edd-integration.php:176
+msgid "Your license has expired"
+msgstr ""
+
+#: pro/edd/edd-integration.php:180
+msgid "Your license has reached its activation limit"
+msgstr ""
+
+#: pro/edd/edd-integration.php:187
+msgid "Invalid license key"
+msgstr ""
+
+#: pro/edd/edd-integration.php:191
+msgid "An error occurred, please try again"
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:35
+msgid "There are no calculated fields assigned to this form. Add calculated fields to the ACF field group/s then return here to configure the contents of each calculated field."
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:37
+msgid "Learn more about calculated fields"
+msgstr ""
+
+#: pro/admin/admin-calculated.php:36
+msgid "Set the content for each calculated form here or for more flexibility, you may define computations using <a href=\"%s\" target=\"_blank\">hooked PHP functions</a>. <br> Change the order in which calculated fields are computed by dragging & dropping."
+msgstr ""

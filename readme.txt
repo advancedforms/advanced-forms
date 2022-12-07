@@ -1,9 +1,10 @@
 === Advanced Forms for ACF ===
 Contributors: philkurth, fabianlindfors
 Tags: acf, advanced custom fields, acf form, form builder, contact form, frontend editing
-Requires at least: 3.6.0
-Tested up to: 6.0.1
-Stable tag: 1.9.2.1
+Stable tag: 1.9.3
+Requires at least: 5.4.0
+Tested up to: 6.1.1
+Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +67,14 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= [1.9.3] =
+
+* Added the `af_render_content` private field type for internal use in form settings UI.
+* Added a hotfix for ACF validation bug when using multiple forms on the one page.
+* Added the `af/settings/enqueue_validation_hotfix` filter for disabling the validation hotfix.
+* Fix deprecation notices related to admin page registration that occur in PHP 8.1.
+* Fix deprecation notices related to dynamic property usage in PHP 8.2.
 
 = [1.9.2] =
 

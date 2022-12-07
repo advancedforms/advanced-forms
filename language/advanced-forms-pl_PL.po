@@ -2,201 +2,774 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-12 15:32+0000\n"
-"PO-Revision-Date: 2017-08-27 11:22+0200\n"
+"Last-Translator: \n"
 "Language-Team: \n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.3\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2016-11-12 15:32+0000\n"
+"PO-Revision-Date: 2017-08-27 11:22+0200\n"
 "Language: pl_PL\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 2.0.3\n"
 
-#: advanced-forms.php:97
+#: advanced-forms.php:195
 msgctxt "Post Type General Name"
 msgid "Forms"
 msgstr "Formularz"
 
-#: advanced-forms.php:98
+#: advanced-forms.php:196
 msgctxt "Post Type Singular Name"
 msgid "Form"
 msgstr "Formularz"
 
-#: advanced-forms.php:99 advanced-forms.php:103
+#: advanced-forms.php:197
+#: advanced-forms.php:201
 msgid "Forms"
 msgstr "Formularze"
 
-#: advanced-forms.php:100 advanced-forms.php:124 advanced-forms.php:125
+#: admin/admin-entries.php:119
+#: admin/admin-entries.php:310
+#: advanced-forms.php:198
+#: advanced-forms.php:222
+#: advanced-forms.php:223
+#: core/core-gutenberg.php:45
 msgid "Form"
 msgstr "Formularz"
 
-#: advanced-forms.php:101
-msgid "Item Archives"
-msgstr "Archiwa pozycji"
-
-#: advanced-forms.php:102
-msgid "Parent Item:"
-msgstr "Pozycja nadrzędna:"
-
-#: advanced-forms.php:104
+#: advanced-forms.php:202
 msgid "Add New Form"
 msgstr "Dodaj nowy formularz"
 
-#: advanced-forms.php:105 advanced-forms.php:156
+#: advanced-forms.php:203
+#: advanced-forms.php:250
 msgid "Add New"
 msgstr "Dodaj nowy"
 
-#: advanced-forms.php:106
+#: advanced-forms.php:204
 msgid "New Form"
 msgstr "Nowy formularz"
 
-#: advanced-forms.php:107
+#: advanced-forms.php:205
 msgid "Edit Form"
 msgstr "Edytuj formularz"
 
-#: advanced-forms.php:108
+#: advanced-forms.php:206
 msgid "Update Form"
 msgstr "Aktualizuj formularz"
 
-#: advanced-forms.php:109
+#: advanced-forms.php:207
 msgid "View Form"
 msgstr "Pokaż formularz"
 
-#: advanced-forms.php:110
+#: advanced-forms.php:208
 msgid "Search Form"
 msgstr "Wyszukaj formularz"
 
-#: advanced-forms.php:111 advanced-forms.php:162
+#: advanced-forms.php:209
+#: advanced-forms.php:256
 msgid "Not found"
 msgstr "Nie znaleziono"
 
-#: advanced-forms.php:112 advanced-forms.php:163
+#: advanced-forms.php:210
+#: advanced-forms.php:257
 msgid "Not found in Trash"
 msgstr "Nie znaleziono w koszu"
 
-#: advanced-forms.php:113 advanced-forms.php:164
+#: advanced-forms.php:211
+#: advanced-forms.php:258
 msgid "Featured Image"
 msgstr "Obrazek wyróżniający"
 
-#: advanced-forms.php:114 advanced-forms.php:165
+#: advanced-forms.php:212
+#: advanced-forms.php:259
 msgid "Set featured image"
 msgstr "Ustaw obrazek wyróżniający"
 
-#: advanced-forms.php:115 advanced-forms.php:166
+#: advanced-forms.php:213
+#: advanced-forms.php:260
 msgid "Remove featured image"
 msgstr "Usuń obrazek wyróżniający"
 
-#: advanced-forms.php:116 advanced-forms.php:167
+#: advanced-forms.php:214
+#: advanced-forms.php:261
 msgid "Use as featured image"
 msgstr "Użyj jako obrazek wyróżniający"
 
-#: advanced-forms.php:117
+#: advanced-forms.php:215
 msgid "Insert into form"
 msgstr "Wstaw do formularza"
 
-#: advanced-forms.php:118
-msgid "Uploaded to this item"
-msgstr "Przesłano do tego elementu"
-
-#: advanced-forms.php:119
+#: advanced-forms.php:217
 msgid "Forms list"
 msgstr "Lista formularzy"
 
-#: advanced-forms.php:120
+#: advanced-forms.php:218
 msgid "Forms list navigation"
 msgstr "Nawigacja listy formularzy"
 
-#: advanced-forms.php:121
+#: advanced-forms.php:219
 msgid "Filter forms list"
 msgstr "Lista filtrów"
 
-#: advanced-forms.php:148
+#: advanced-forms.php:242
 msgctxt "Post Type General Name"
 msgid "Entries"
 msgstr "Wpisy"
 
-#: advanced-forms.php:149
+#: advanced-forms.php:243
 msgctxt "Post Type Singular Name"
 msgid "Entry"
 msgstr "Wpis"
 
-#: advanced-forms.php:150 advanced-forms.php:154
+#: admin/admin-entries.php:240
+#: admin/admin-forms.php:175
+#: advanced-forms.php:244
+#: advanced-forms.php:248
 msgid "Entries"
 msgstr "Wpisy"
 
-#: advanced-forms.php:151 advanced-forms.php:175 advanced-forms.php:176
+#: advanced-forms.php:245
+#: advanced-forms.php:269
+#: advanced-forms.php:270
 msgid "Entry"
 msgstr "Wpis"
 
-#: advanced-forms.php:152
+#: advanced-forms.php:246
 msgid "Entry Archives"
 msgstr "Wpisy archiwalne"
 
-#: advanced-forms.php:153
+#: advanced-forms.php:247
 msgid "Parent Entry:"
 msgstr "Wpis nadrzędny:"
 
-#: advanced-forms.php:155
+#: advanced-forms.php:249
 msgid "Add New Entry"
 msgstr "Dodaj nowy wpis"
 
-#: advanced-forms.php:157
+#: advanced-forms.php:251
 msgid "New Entry"
 msgstr "Nowy wpis"
 
-#: advanced-forms.php:158
+#: advanced-forms.php:252
 msgid "Edit Entry"
 msgstr "Edytuj wpis"
 
-#: advanced-forms.php:159
+#: advanced-forms.php:253
 msgid "Update Entry"
 msgstr "Aktualizuj wpis"
 
-#: advanced-forms.php:160
+#: advanced-forms.php:254
 msgid "View Entry"
 msgstr "Pokaż wpis"
 
-#: advanced-forms.php:161
+#: advanced-forms.php:255
 msgid "Search Entry"
 msgstr "Wyszukaj wpis"
 
-#: advanced-forms.php:168
+#: advanced-forms.php:262
 msgid "Insert into entry"
 msgstr "Wstaw do wpisu"
 
-#: advanced-forms.php:169
-msgid "Uploaded to this entries"
-msgstr "Prześlij do tego wpisu"
-
-#: advanced-forms.php:170
+#: advanced-forms.php:264
 msgid "Entries list"
 msgstr "Lista wpisów"
 
-#: advanced-forms.php:171
+#: advanced-forms.php:265
 msgid "Entries list navigation"
 msgstr "Nawigacja listy wpisów"
 
-#: advanced-forms.php:172
+#: advanced-forms.php:266
 msgid "Filter entries list"
 msgstr "Filtruj listę wpisów"
 
-#: admin/admin-forms.php:210
+#: admin/admin-entries.php:221
 msgid "View entries for this form"
 msgstr "Pokaż wpisy dla tego formularza"
 
-#. Name of the plugin
-msgid "Advanced Forms"
-msgstr "Advanced Forms"
-
 #. Description of the plugin
-msgid ""
-"Build flexible and developer-friendly forms with the power of Advanced "
-"Custom Fields."
+msgid "Flexible and developer-friendly forms with the power of Advanced Custom Fields."
 msgstr ""
-"Twórz przyjazne deweloperom i elastyczne formularze za pomocą ACF."
 
-#. Author of the plugin
-msgid "Fabian Lindfors"
-msgstr "Fabian Lindfors"
+#: acf/fields/af-render-content-field.php:69
+msgctxt "noun"
+msgid "Render"
+msgstr ""
+
+#: acf/fields/page.php:15
+msgid "Page"
+msgstr ""
+
+#: acf/fields/page.php:48
+#: acf/fields/page.php:101
+msgid "Previous"
+msgstr ""
+
+#: acf/fields/page.php:54
+#: acf/fields/page.php:110
+msgid "Next"
+msgstr ""
+
+#: acf/fields/page.php:88
+msgid "Show numbering"
+msgstr ""
+
+#: acf/fields/page.php:97
+msgid "Previous text"
+msgstr ""
+
+#: acf/fields/page.php:98
+msgid "Text for the \"Previous\" button"
+msgstr ""
+
+#: acf/fields/page.php:106
+msgid "Next text"
+msgstr ""
+
+#: acf/fields/page.php:107
+msgid "Text for the \"Next\" button"
+msgstr ""
+
+#: admin/admin-emails.php:85
+msgid "Notifications"
+msgstr ""
+
+#: admin/admin-emails.php:102
+msgid "Emails"
+msgstr ""
+
+#: admin/admin-emails.php:105
+msgid "The emails defined here will be sent upon successful submission."
+msgstr ""
+
+#: admin/admin-emails.php:117
+msgid "Add new email"
+msgstr ""
+
+#: admin/admin-emails.php:121
+#: admin/admin-forms.php:126
+msgid "Name"
+msgstr ""
+
+#: admin/admin-emails.php:140
+msgid "Active?"
+msgstr ""
+
+#: admin/admin-emails.php:156
+msgid "Send to"
+msgstr ""
+
+#: admin/admin-emails.php:168
+msgid "Select from field"
+msgstr ""
+
+#: admin/admin-emails.php:169
+#: admin/admin-emails.php:212
+msgid "Custom recipient"
+msgstr ""
+
+#: admin/admin-emails.php:180
+msgid "Recipient field"
+msgstr ""
+
+#: admin/admin-emails.php:239
+msgid "From"
+msgstr ""
+
+#: admin/admin-emails.php:258
+msgid "Subject"
+msgstr ""
+
+#: admin/admin-emails.php:277
+msgid "Content"
+msgstr ""
+
+#: admin/admin-entries.php:60
+#: admin/forms/forms-import.php:82
+msgid "Edit form"
+msgstr ""
+
+#: admin/admin-entries.php:97
+#: core/core-entries.php:110
+msgid "Entry ID"
+msgstr ""
+
+#: admin/admin-entries.php:99
+msgid "Date"
+msgstr ""
+
+#: admin/admin-entries.php:101
+msgid "Time"
+msgstr ""
+
+#: admin/admin-entries.php:169
+msgid "All forms"
+msgstr ""
+
+#: admin/admin-entries.php:258
+msgid "Create entries?"
+msgstr ""
+
+#: admin/admin-entries.php:261
+msgid "When entries are enabled they will be automatically generated with form submissions, with all the submitted field data."
+msgstr ""
+
+#: admin/admin-entries.php:292
+msgid "Entry data"
+msgstr ""
+
+#: admin/admin-entries.php:296
+msgid "Submission info"
+msgstr ""
+
+#: admin/admin-forms.php:72
+msgid "Form key:"
+msgstr ""
+
+#: admin/admin-forms.php:101
+#: admin/admin-forms.php:174
+msgid "Fields"
+msgstr ""
+
+#: admin/admin-forms.php:120
+msgid "Add fields by setting the location of your fields group to this form."
+msgstr ""
+
+#: admin/admin-forms.php:125
+msgid "Label"
+msgstr ""
+
+#: admin/admin-forms.php:127
+msgid "Type"
+msgstr ""
+
+#: admin/admin-forms.php:153
+msgid "No field groups connected to this form"
+msgstr ""
+
+#: admin/admin-forms.php:160
+msgid "Create field group"
+msgstr ""
+
+#: admin/admin-forms.php:173
+msgid "Key"
+msgstr ""
+
+#: admin/admin-forms.php:254
+msgid "Resources"
+msgstr ""
+
+#: admin/admin-forms.php:256
+msgid "Guides"
+msgstr ""
+
+#: admin/admin-forms.php:257
+msgid "Actions"
+msgstr ""
+
+#: admin/admin-forms.php:258
+msgid "Filters"
+msgstr ""
+
+#: admin/admin-forms.php:262
+msgid "Pro"
+msgstr ""
+
+#: admin/admin-forms.php:264
+msgid "Create and edit posts and users"
+msgstr ""
+
+#: admin/admin-forms.php:265
+msgid "Integrate with Slack, Mailchimp, and Zapier"
+msgstr ""
+
+#: admin/admin-forms.php:266
+msgid "Protect your form against spam with Google reCAPTCHA"
+msgstr ""
+
+#: admin/admin-forms.php:267
+msgid "Use calculated fields to give fields to give users immediate feedback"
+msgstr ""
+
+#: admin/admin-forms.php:268
+msgid "Get direct, priority support"
+msgstr ""
+
+#: admin/admin-forms.php:270
+msgid "Available from hookturn.io"
+msgstr ""
+
+#: admin/admin-forms.php:273
+msgid "Support"
+msgstr ""
+
+#: admin/admin-forms.php:275
+msgid "Issues, questions, or suggestions?"
+msgstr ""
+
+#: admin/admin-forms.php:277
+msgid "Contact us directly"
+msgstr ""
+
+#: admin/admin-forms.php:277
+msgid "for priority support"
+msgstr ""
+
+#: admin/admin-forms.php:279
+msgid "Create a ticket on the"
+msgstr ""
+
+#: admin/admin-forms.php:279
+msgid "Wordpress support forums"
+msgstr ""
+
+#: admin/admin-forms.php:329
+msgid "Form settings"
+msgstr ""
+
+#: admin/admin-forms.php:333
+msgid "Display"
+msgstr ""
+
+#: admin/admin-forms.php:349
+msgid "Shortcode"
+msgstr ""
+
+#: admin/admin-forms.php:355
+msgid "Description"
+msgstr ""
+
+#: admin/admin-forms.php:373
+#: core/core-gutenberg.php:159
+msgid "Success message"
+msgstr ""
+
+#: admin/admin-forms.php:376
+msgid "The message displayed after a successful submission."
+msgstr ""
+
+#: admin/admin-forms.php:391
+msgid "Statistics"
+msgstr ""
+
+#: admin/admin-forms.php:407
+msgid "Number of submissions"
+msgstr ""
+
+#: admin/admin-forms.php:429
+msgid "Number of times viewed"
+msgstr ""
+
+#: admin/admin-restrictions.php:22
+msgid "Restrictions"
+msgstr ""
+
+#: admin/admin-restrictions.php:40
+msgid "Restrict number of entries"
+msgstr ""
+
+#: admin/admin-restrictions.php:57
+msgid "Maximum number of entries"
+msgstr ""
+
+#: admin/admin-restrictions.php:83
+msgid "Message after entry limit has been reached"
+msgstr ""
+
+#: admin/admin-restrictions.php:109
+msgid "Require user to be logged in"
+msgstr ""
+
+#: admin/admin-restrictions.php:126
+msgid "Message if user is not logged in"
+msgstr ""
+
+#: admin/admin-restrictions.php:152
+msgid "Only display form during a specific time"
+msgstr ""
+
+#: admin/admin-restrictions.php:169
+msgid "Start time"
+msgstr ""
+
+#: admin/admin-restrictions.php:195
+msgid "End time"
+msgstr ""
+
+#: admin/admin-restrictions.php:221
+msgid "Message before scheduled time"
+msgstr ""
+
+#: admin/admin-restrictions.php:246
+msgid "Message after scheduled time"
+msgstr ""
+
+#: admin/forms/forms-export.php:50
+msgid "Exporting"
+msgstr ""
+
+#: admin/forms/forms-export.php:53
+#: admin/forms/forms-preview.php:48
+msgid "Back to form"
+msgstr ""
+
+#: admin/forms/forms-export.php:59
+msgid "Export JSON"
+msgstr ""
+
+#: admin/forms/forms-export.php:61
+msgid "Export your form as a JSON file. The form can then be imported on any site at Forms &rarr; Import."
+msgstr ""
+
+#: admin/forms/forms-export.php:64
+msgid "Export file"
+msgstr ""
+
+#: admin/forms/forms-export.php:69
+msgid "Register programmatically"
+msgstr ""
+
+#: admin/forms/forms-export.php:71
+msgid "Place the following code in your theme or plugin to register your form programmatically."
+msgstr ""
+
+#: admin/forms/forms-export.php:86
+msgid "Export"
+msgstr ""
+
+#: admin/forms/forms-export.php:100
+msgid "Export form"
+msgstr ""
+
+#: admin/forms/forms-import.php:18
+msgid "Import"
+msgstr ""
+
+#: admin/forms/forms-import.php:31
+#: admin/forms/forms-import.php:101
+msgid "Import form"
+msgstr ""
+
+#: admin/forms/forms-import.php:40
+msgid "Select the form JSON file you would like to import. If a form with the same key already exists it will be overwritten."
+msgstr ""
+
+#: admin/forms/forms-import.php:46
+msgid "Select File"
+msgstr ""
+
+#: admin/forms/forms-import.php:55
+msgid "Import File"
+msgstr ""
+
+#: admin/forms/forms-import.php:71
+msgid "No files selected"
+msgstr ""
+
+#. translators: The ACF field key
+#: admin/forms/forms-import.php:81
+msgid "Form with key %s imported."
+msgstr ""
+
+#: admin/forms/forms-import.php:85
+msgid "Failed to import form"
+msgstr ""
+
+#: admin/forms/forms-preview.php:47
+msgid "Previewing"
+msgstr ""
+
+#: admin/forms/forms-preview.php:53
+msgid "Form successfully submitted"
+msgstr ""
+
+#: admin/forms/forms-preview.php:53
+msgid "Test again"
+msgstr ""
+
+#: admin/forms/forms-preview.php:80
+msgid "Preview form"
+msgstr ""
+
+#: admin/forms/forms-preview.php:104
+msgid "Preview"
+msgstr ""
+
+#: advanced-forms.php:199
+msgid "Form Archives"
+msgstr ""
+
+#: advanced-forms.php:200
+msgid "Parent Form:"
+msgstr ""
+
+#: advanced-forms.php:216
+msgid "Uploaded to this form"
+msgstr ""
+
+#: advanced-forms.php:263
+msgid "Uploaded to this entry"
+msgstr ""
+
+#: api/api-helpers.php:112
+msgid "Yes"
+msgstr ""
+
+#: api/api-helpers.php:113
+msgid "No"
+msgstr ""
+
+#: api/api-helpers.php:209
+msgid "Insert field"
+msgstr ""
+
+#: api/api-helpers.php:223
+msgid "All fields"
+msgstr ""
+
+#: core/core-gutenberg.php:18
+msgid "Advanced Form"
+msgstr ""
+
+#: core/core-gutenberg.php:32
+msgid "No form selected"
+msgstr ""
+
+#: core/core-gutenberg.php:47
+msgid "Preview page to view form"
+msgstr ""
+
+#: core/core-gutenberg.php:112
+msgid "Edit form settings"
+msgstr ""
+
+#: core/core-gutenberg.php:133
+msgid "Submit button text"
+msgstr ""
+
+#: core/core-gutenberg.php:144
+msgid "After submission"
+msgstr ""
+
+#: core/core-gutenberg.php:162
+msgid "You can configure the success message in your <a class=\"edit-form-link\">form settings</a>"
+msgstr ""
+
+#: core/core-gutenberg.php:179
+#: core/core-gutenberg.php:199
+msgid "Redirect to"
+msgstr ""
+
+#: core/core-gutenberg.php:219
+msgid "Exclude fields"
+msgstr ""
+
+#: core/core-gutenberg.php:227
+msgid "Select fields to exclude from the form"
+msgstr ""
+
+#: core/forms/forms-rendering.php:67
+msgid "Submit"
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:14
+msgctxt "noun"
+msgid "Calculated admin"
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:63
+#: pro/acf/fields/af-calculated-admin.php:93
+msgid "Note:"
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:64
+msgid "This calculated field is being handled by a hooked PHP function which may override this calculation entirely."
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:94
+msgid "There is a PHP function hooked directly to the <code>af/field/calculate_value</code> hook. This hook is global and executes for all calculated fields which means the field calculations here may be overridden entirely."
+msgstr ""
+
+#: pro/acf/fields/calculated.php:15
+msgid "Calculated"
+msgstr ""
+
+#: pro/acf/fields/calculated.php:40
+msgid "Instructions"
+msgstr ""
+
+#: pro/acf/fields/calculated.php:43
+msgid "After creating your calculated field here you need to define its contents. The contents can be edited in your form settings under the \"Calculated\" tab."
+msgstr ""
+
+#: pro/admin/admin-calculated.php:31
+msgid "Calculated fields"
+msgstr ""
+
+#: pro/admin/admin-integrations.php:66
+msgid "Send test submission"
+msgstr ""
+
+#: pro/admin/admin-restrictions.php:11
+msgid "Only allow users to edit their own posts"
+msgstr ""
+
+#: pro/admin/admin-restrictions.php:28
+msgid "Message if user is not author of post"
+msgstr ""
+
+#: pro/core/core-editing.php:319
+msgid "This email has already been used"
+msgstr ""
+
+#: pro/core/core-editing.php:329
+msgid "This username has already been used"
+msgstr ""
+
+#: pro/core/core-editing.php:458
+msgid "Post ID"
+msgstr ""
+
+#: pro/core/core-editing.php:463
+msgid "Post URL"
+msgstr ""
+
+#: pro/core/integrations/core-recaptcha.php:52
+msgid "Captcha is required"
+msgstr ""
+
+#: pro/edd/edd-integration.php:165
+msgid "License valid and active"
+msgstr ""
+
+#: pro/edd/edd-integration.php:172
+msgid "Your previous license could not be deactivated. Please visit hookturn.io and verify that your license is no longer active for this site. If you want to activate a new license, enter it below and save again."
+msgstr ""
+
+#: pro/edd/edd-integration.php:176
+msgid "Your license has expired"
+msgstr ""
+
+#: pro/edd/edd-integration.php:180
+msgid "Your license has reached its activation limit"
+msgstr ""
+
+#: pro/edd/edd-integration.php:187
+msgid "Invalid license key"
+msgstr ""
+
+#: pro/edd/edd-integration.php:191
+msgid "An error occurred, please try again"
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:35
+msgid "There are no calculated fields assigned to this form. Add calculated fields to the ACF field group/s then return here to configure the contents of each calculated field."
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:37
+msgid "Learn more about calculated fields"
+msgstr ""
+
+#: pro/admin/admin-calculated.php:36
+msgid "Set the content for each calculated form here or for more flexibility, you may define computations using <a href=\"%s\" target=\"_blank\">hooked PHP functions</a>. <br> Change the order in which calculated fields are computed by dragging & dropping."
+msgstr ""
