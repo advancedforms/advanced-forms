@@ -1,7 +1,7 @@
 === Advanced Forms for ACF ===
 Contributors: philkurth, fabianlindfors
 Tags: acf, advanced custom fields, acf form, form builder, contact form, frontend editing
-Stable tag: 1.9.2.1
+Stable tag: 1.9.3
 Requires at least: 5.4.0
 Tested up to: 6.1.1
 Requires PHP: 7.0
@@ -68,7 +68,7 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 
 == Changelog ==
 
-= [UNRELEASED] =
+= [1.9.3] =
 
 * Added the `af_render_content` private field type for internal use in form settings UI.
 * Added a hotfix for ACF validation bug when using multiple forms on the one page.
