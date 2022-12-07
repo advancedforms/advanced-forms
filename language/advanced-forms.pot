@@ -1,14 +1,14 @@
 # Copyright (C) 2022 Hookturn
 msgid ""
 msgstr ""
-"Project-Id-Version: Advanced Forms 1.9.2.1\n"
+"Project-Id-Version: Advanced Forms 1.9.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/advanced-forms\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-12-04T07:07:49+00:00\n"
+"POT-Creation-Date: 2022-12-07T06:11:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: advanced-forms\n"
@@ -677,20 +677,24 @@ msgctxt "noun"
 msgid "Calculated admin"
 msgstr ""
 
-#: pro/acf/fields/af-calculated-admin.php:32
-msgid "There are no calculated fields assigned to this form. Add calculated fields to the ACF field group/s and then come back here to configure the contents of each field."
+#: pro/acf/fields/af-calculated-admin.php:35
+msgid "There are no calculated fields assigned to this form. Add calculated fields to the ACF field group/s then return here to configure the contents of each calculated field."
 msgstr ""
 
-#: pro/acf/fields/af-calculated-admin.php:55
-#: pro/acf/fields/af-calculated-admin.php:85
+#: pro/acf/fields/af-calculated-admin.php:37
+msgid "Learn more about calculated fields"
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:63
+#: pro/acf/fields/af-calculated-admin.php:93
 msgid "Note:"
 msgstr ""
 
-#: pro/acf/fields/af-calculated-admin.php:56
+#: pro/acf/fields/af-calculated-admin.php:64
 msgid "This calculated field is being handled by a hooked PHP function which may override this calculation entirely."
 msgstr ""
 
-#: pro/acf/fields/af-calculated-admin.php:86
+#: pro/acf/fields/af-calculated-admin.php:94
 msgid "There is a PHP function hooked directly to the <code>af/field/calculate_value</code> hook. This hook is global and executes for all calculated fields which means the field calculations here may be overridden entirely."
 msgstr ""
 
@@ -710,8 +714,8 @@ msgstr ""
 msgid "Calculated fields"
 msgstr ""
 
-#: pro/admin/admin-calculated.php:34
-msgid "Set the content for each calculated form here or for more flexibility, you may define computations using hooked PHP functions. <br> Change the order in which calculated fields are computed by dragging & dropping."
+#: pro/admin/admin-calculated.php:36
+msgid "Set the content for each calculated form here or for more flexibility, you may define computations using <a href=\"%s\" target=\"_blank\">hooked PHP functions</a>. <br> Change the order in which calculated fields are computed by dragging & dropping."
 msgstr ""
 
 #: pro/admin/admin-integrations.php:66

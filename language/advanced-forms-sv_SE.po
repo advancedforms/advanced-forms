@@ -679,20 +679,16 @@ msgctxt "noun"
 msgid "Calculated admin"
 msgstr ""
 
-#: pro/acf/fields/af-calculated-admin.php:32
-msgid "There are no calculated fields assigned to this form. Add calculated fields to the ACF field group/s and then come back here to configure the contents of each field."
-msgstr ""
-
-#: pro/acf/fields/af-calculated-admin.php:55
-#: pro/acf/fields/af-calculated-admin.php:85
+#: pro/acf/fields/af-calculated-admin.php:63
+#: pro/acf/fields/af-calculated-admin.php:93
 msgid "Note:"
 msgstr ""
 
-#: pro/acf/fields/af-calculated-admin.php:56
+#: pro/acf/fields/af-calculated-admin.php:64
 msgid "This calculated field is being handled by a hooked PHP function which may override this calculation entirely."
 msgstr ""
 
-#: pro/acf/fields/af-calculated-admin.php:86
+#: pro/acf/fields/af-calculated-admin.php:94
 msgid "There is a PHP function hooked directly to the <code>af/field/calculate_value</code> hook. This hook is global and executes for all calculated fields which means the field calculations here may be overridden entirely."
 msgstr ""
 
@@ -710,10 +706,6 @@ msgstr ""
 
 #: pro/admin/admin-calculated.php:31
 msgid "Calculated fields"
-msgstr ""
-
-#: pro/admin/admin-calculated.php:34
-msgid "Set the content for each calculated form here or for more flexibility, you may define computations using hooked PHP functions. <br> Change the order in which calculated fields are computed by dragging & dropping."
 msgstr ""
 
 #: pro/admin/admin-integrations.php:66
@@ -770,4 +762,16 @@ msgstr ""
 
 #: pro/edd/edd-integration.php:191
 msgid "An error occurred, please try again"
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:35
+msgid "There are no calculated fields assigned to this form. Add calculated fields to the ACF field group/s then return here to configure the contents of each calculated field."
+msgstr ""
+
+#: pro/acf/fields/af-calculated-admin.php:37
+msgid "Learn more about calculated fields"
+msgstr ""
+
+#: pro/admin/admin-calculated.php:36
+msgid "Set the content for each calculated form here or for more flexibility, you may define computations using <a href=\"%s\" target=\"_blank\">hooked PHP functions</a>. <br> Change the order in which calculated fields are computed by dragging & dropping."
 msgstr ""
