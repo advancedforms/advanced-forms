@@ -118,6 +118,10 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 		// Copy trunk to new tagged release dir
 		exec( "cd $svn_dir && svn cp {$svn_trunk_dir}/. $tagged_dir", $output );
 
+		// todo - need something in here that adds and new files and deletes and removes ones. Until we have something
+		//  automated for this, use SmartSVN and the svn status command to see what's changed and then commit it. This
+		//  needs to happen before committing and deploying to WordPress.org.
+
 		// Check in the new code using svn ci -m "tagging version $version"
 		//exec( 'cd ' . $svn_dir . '&& svn ci -m "tagging version "' . $version, $output );
 
