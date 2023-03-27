@@ -122,7 +122,6 @@ function af_get_field_object( $field_key_or_name, $fields = false ) {
 	}
 
 	foreach ( $fields as $field ) {
-		// Save submitted value to post using ACFs acf_update_value
 		if ( $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name ) {
 			return $field;
 		}
