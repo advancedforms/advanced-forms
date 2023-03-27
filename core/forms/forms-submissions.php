@@ -310,13 +310,10 @@ class AF_Core_Forms_Submissions {
 				if ( empty( $field ) ) {
 					continue;
 				}
-
 				// Set the raw submitted value under the `_input` key.
 				$field['_input'] = $value;
-
 				// Set the formatted value under the `value` key.
 				$field['value'] = acf_format_value( $value, 0, $field );
-
 				$fields[] = $field;
 			}
 		}
