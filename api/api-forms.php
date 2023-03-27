@@ -22,11 +22,18 @@ function advanced_form( $form_id, $args = array() ) {
  * Helper function to extract a specific field value from either the current submission or from a given array of fields.
  *
  * @param string $field_key_or_name The field key or name to search for
- * @param array $fields Optional. An array of fields to search. If not provided, the current submission will be used.
+ * @param array $fields An array of fields to search. If not provided, the current submission will be used.
+ * @param array $options Additional options to further modify this function's behaviour.
  *
  * @since 1.0.0
  */
-function af_get_field( $field_key_or_name, $fields = false ) {
+function af_get_field( $field_key_or_name, $fields = null, $options = [] ) {
+	$options = wp_parse_args( $options, [
+		// Whether to return the formatted value or the raw input value. The raw input value is needed when re-rendering
+		// a form after submission.
+		'formatted' => true,
+	] );
+
 	// Get fields from the global submission object if fields weren't passed
 	if ( ! $fields && af_has_submission() ) {
 		$fields = AF()->submission['fields'];
@@ -34,15 +41,17 @@ function af_get_field( $field_key_or_name, $fields = false ) {
 
 	// Look through the fields array to find the matching field.
 	foreach ( $fields as $field ) {
+		// Determine whether we want to get the formatted value or the raw input value.
+		$key = $options['formatted'] ? 'value' : '_input';
 
 		// If we find a match, return the value.
 		if ( $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name ) {
-			return $field['value'];
+			return $field[ $key ];
 		}
 
 		// Fallback to check through sub fields, if there are any.
-		if ( isset( $field['sub_fields'] ) && is_array( $field['value'] ) ) {
-			foreach ( $field['value'] as $sub_field_name => $sub_field_value ) {
+		if ( isset( $field['sub_fields'] ) && is_array( $field[ $key ] ) ) {
+			foreach ( $field[ $key ] as $sub_field_name => $sub_field_value ) {
 				if ( $sub_field_name == $field_key_or_name ) {
 					return $sub_field_value;
 				}
