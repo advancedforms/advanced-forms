@@ -131,17 +131,13 @@ class AF_Core_Forms_Rendering {
 		// Display success message, restriction message, or fields
 		$instance_hash = af_form_instance_hash( $form['key'], $args );
 		if ( af_has_submission( $instance_hash ) && ! af_submission_failed( $form['key'] ) && ! $args['filter_mode'] ) {
-
 			echo af_form_success_message( $form, $args );
 
 		} elseif ( $restriction ) {
-
 			$this->render_restriction_message( $restriction );
 
 		} else {
-
 			$this->render_fields( $form, $args );
-
 		}
 
 		// End form
