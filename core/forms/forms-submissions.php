@@ -302,18 +302,19 @@ class AF_Core_Forms_Submissions {
 			exit;
 		}
 
-		// Retrieve all form fields and their values
-		$fields = array();
-
+		// Retrieve all form fields and load their submitted values onto the field array.
+		$fields = [];
 		if ( isset( $_POST['acf'] ) ) {
 			foreach ( $_POST['acf'] as $k => $value ) {
 				$field = acf_get_field( $k );
-
 				if ( empty( $field ) ) {
 					continue;
 				}
 
+				// Set the raw submitted value under the `_input` key.
 				$field['_input'] = $value;
+
+				// Set the formatted value under the `value` key.
 				$field['value'] = acf_format_value( $value, 0, $field );
 
 				$fields[] = $field;
