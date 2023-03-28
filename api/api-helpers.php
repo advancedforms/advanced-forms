@@ -106,7 +106,7 @@ function _af_render_field_include( $field, $value = false ) {
 	} elseif ( 'true_false' == $field['type'] ) {
 		$true_text = isset( $field['ui_on_text'] ) && ! empty( $field['ui_on_text'] ) ? $field['ui_on_text'] : __( 'Yes', 'advanced-forms' );
 		$false_text = isset( $field['ui_off_text'] ) && ! empty( $field['ui_off_text'] ) ? $field['ui_off_text'] : __( 'No', 'advanced-forms' );
-		$output = $value ? $true_text : $false_text;
+		$output .= $value ? $true_text : $false_text;
 
 	} elseif ( 'image' == $field['type'] ) {
 		// Ensure we always have a full image array. Using the $attachment variable here instead of overriding $value
