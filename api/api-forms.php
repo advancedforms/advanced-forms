@@ -22,27 +22,34 @@ function advanced_form( $form_id, $args = array() ) {
  * Helper function to extract a specific field value from either the current submission or from a given array of fields.
  *
  * @param string $field_key_or_name The field key or name to search for
- * @param array $fields An array of fields to search. If not provided, the current submission will be used.
- * @param array $options Additional options to further modify this function's behaviour.
+ * @param array $args Additional options to further modify this function's behaviour.
  *
  * @since 1.0.0
  */
-function af_get_field( $field_key_or_name, $fields = null, $options = [] ) {
-	$options = wp_parse_args( $options, [
+function af_get_field( $field_key_or_name, $args = [] ) {
+	// Back-compat: if $args is an array of field arrays, assign it to the `fields` key.
+	if ( isset( $args[0] ) && acf_is_field( $args[0] ) ) {
+		$args = [ 'fields' => $args ];
+	}
+
+	// Parse args against defaults.
+	$opts = wp_parse_args( $args, [
+		// An array of fields to search. If not provided, the current submission will be used.
+		'fields' => [],
 		// Whether to return the formatted value or the raw input value. The raw input value is needed when re-rendering
 		// a form after submission.
 		'formatted' => true,
 	] );
 
 	// Get fields from the global submission object if fields weren't passed
-	if ( ! $fields && af_has_submission() ) {
-		$fields = AF()->submission['fields'];
+	if ( ! $opts['fields'] && af_has_submission() ) {
+		$opts['fields'] = AF()->submission['fields'];
 	}
 
 	// Look through the fields array to find the matching field.
-	foreach ( $fields as $field ) {
+	foreach ( $opts['fields'] as $field ) {
 		// Determine whether we want to get the formatted value or the raw input value.
-		$key = $options['formatted'] ? 'value' : '_input';
+		$key = $opts['formatted'] ? 'value' : '_input';
 
 		// If we find a match, return the value.
 		if ( $field['key'] == $field_key_or_name || $field['name'] == $field_key_or_name ) {
