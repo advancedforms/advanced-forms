@@ -42,14 +42,12 @@ function _af_render_field_include( $field, $value = false ) {
 	
 	if ( 'repeater' == $field['type'] && is_array( $value ) ) {
 		$output .= '<table class="af-field-include af-field-include-repeater">';
-		
 		// Column headings
 		$output .= '<thead><tr>';
 		foreach ( $field['sub_fields'] as $sub_field ) {
 			$output .= sprintf( '<th>%s</th>', $sub_field['label'] );
 		}
 		$output .= '</tr></thead>';
-		
 		// Rows
 		$output .= '<tbody>';
 		if ( is_array( $value ) ) {
@@ -62,14 +60,12 @@ function _af_render_field_include( $field, $value = false ) {
 			}
 		}
 		$output .= '</tbody>';
-
 		$output .= '</table>';
+
 	} elseif ( 'flexible_content' === $field['type'] ) {
 		$output .= '<table class="af-field-include af-field-include-flexible_content">';
-
 		foreach ( $value as $row ) {
 			$row_layout_name = $row['acf_fc_layout'];
-
 			// Find layout based on name
 			$row_layout = NULL;
 			foreach ( $field['layouts'] as $layout ) {
@@ -78,11 +74,9 @@ function _af_render_field_include( $field, $value = false ) {
 					break;
 				}
 			}
-
 			// Output header with layout name for the row
 			$output .= sprintf( '<tr><th>%s</th></tr>', $layout['label'] );
 			$output .= '<tr><td>';
-
 			// The subfield values will be displayed in a nested table, similar to a group field
 			$output .= '<table class="af-field-include af-field-include-flexible_content-inner">';
 			foreach ( $layout['sub_fields'] as $sub_field ) {
@@ -92,11 +86,10 @@ function _af_render_field_include( $field, $value = false ) {
 				}
 			}
 			$output .= '</table>';
-
 			$output .= '</td></tr>';
 		}
-
 		$output .= '</table>';
+
 	} elseif ( 'clone' == $field['type'] || 'group' == $field['type'] ) {
 		$output .= sprintf( '<table class="af-field-include af-field-include-%s">', $field['type'] );
 		foreach ( $field['sub_fields'] as $sub_field ) {
@@ -109,11 +102,12 @@ function _af_render_field_include( $field, $value = false ) {
 			}
 		}
 		$output .= '</table>';
+
 	} elseif ( 'true_false' == $field['type'] ) {
 		$true_text = isset( $field['ui_on_text'] ) && ! empty( $field['ui_on_text'] ) ? $field['ui_on_text'] : __( 'Yes', 'advanced-forms' );
 		$false_text = isset( $field['ui_off_text'] ) && ! empty( $field['ui_off_text'] ) ? $field['ui_off_text'] : __( 'No', 'advanced-forms' );
-		
 		$output = $value ? $true_text : $false_text;
+
 	} elseif ( 'image' == $field['type'] ) {
 		// Ensure we always have a full image array. Using the $attachment variable here instead of overriding $value
 		// to avoid breaking any functionality hooked to the `af/field/render_include` filters below.
@@ -122,19 +116,23 @@ function _af_render_field_include( $field, $value = false ) {
 				$output .= sprintf( '<img src="%s" alt="%s" />', esc_attr( $attachment['sizes']['medium'] ), esc_attr( $attachment['alt'] ) );
 			}
 		}
+
 	} elseif ( 'gallery' == $field['type'] && is_array( $value ) ) {
 		foreach ( $value as $image ) {
 			$output .= sprintf( '<img src="%s" alt="%s" />', esc_attr( $image['sizes']['medium'] ), esc_attr( $image['alt']));
 		}
+
 	} elseif ( 'file' == $field['type'] ) {
 		if ( 'url' === $field['return_format'] ) {
 			$output .= sprintf( '<a href="%s">Download</a>', $value );
 		} else if ( 'array' == $field['return_format'] ) {
 			$output .= sprintf( '<a href="%s">%s</a>', $value['url'], htmlspecialchars( $value['title'] ) );
 		}
+
 	} elseif ( in_array( $field['type'], array( 'wysiwyg', 'textarea', 'calculated' ) ) ) {
 		// Sanitize input using kses
 		$output .= wp_kses_post( stripslashes( $value ) );
+
 	} else {
 		$output = _af_render_field_include_value( $value ); 
 	}
