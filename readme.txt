@@ -68,6 +68,10 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 
 == Changelog ==
 
+= [UNRELEASED] =
+
+* Improved internal field value rendering for complex fields. This fixes issues with repeaters, groups, and flexible content fields not being rendered correctly in filter mode.
+
 = [1.9.3] =
 
 * Added the `af_render_content` private field type for internal use in form settings UI.

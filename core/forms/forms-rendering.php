@@ -131,17 +131,13 @@ class AF_Core_Forms_Rendering {
 		// Display success message, restriction message, or fields
 		$instance_hash = af_form_instance_hash( $form['key'], $args );
 		if ( af_has_submission( $instance_hash ) && ! af_submission_failed( $form['key'] ) && ! $args['filter_mode'] ) {
-
 			echo af_form_success_message( $form, $args );
 
 		} elseif ( $restriction ) {
-
 			$this->render_restriction_message( $restriction );
 
 		} else {
-
 			$this->render_fields( $form, $args );
-
 		}
 
 		// End form
@@ -349,9 +345,10 @@ class AF_Core_Forms_Rendering {
 		}
 
 		// If the previous submission failed or filter mode is enabled, the submitted field values should be reused
-		$instance_hash = af_form_instance_hash( $form['key'], $args );
-		if ( af_has_submission( $instance_hash ) && ( $args['filter_mode'] || af_submission_failed( $form['key'] ) ) ) {
-			$field['value'] = af_get_field( $field['name'] );
+		if ( af_has_submission( af_form_instance_hash( $form['key'], $args ) ) ) {
+			if ( $args['filter_mode'] || af_submission_failed( $form['key'] ) ) {
+				$field['value'] = af_get_field( $field['name'], [ 'formatted' => false ] );
+			}
 		}
 
 		$field = apply_filters( 'af/field/before_render', $field, $form, $args );
