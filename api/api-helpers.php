@@ -114,7 +114,12 @@ function _af_render_field_include( $field, $value = false ) {
 		
 		$output = $value ? $true_text : $false_text;
 	} elseif ( 'image' == $field['type'] ) {
-		$output .= sprintf( '<img src="%s" alt="%s" />', esc_attr( $value['sizes']['medium'] ), esc_attr( $value['alt']));
+		// Ensure we always have a full image array. Using the $attachment variable here instead of overriding $value
+		// to avoid breaking any functionality hooked to the `af/field/render_include` filters below.
+		$attachment = acf_get_attachment( $field['_input'] );
+		if ( is_array( $attachment ) ) {
+			$output .= sprintf( '<img src="%s" alt="%s" />', esc_attr( $attachment['sizes']['medium'] ), esc_attr( $attachment['alt'] ) );
+		}
 	} elseif ( 'gallery' == $field['type'] && is_array( $value ) ) {
 		foreach ( $value as $image ) {
 			$output .= sprintf( '<img src="%s" alt="%s" />', esc_attr( $image['sizes']['medium'] ), esc_attr( $image['alt']));
