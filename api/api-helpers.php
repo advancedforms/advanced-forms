@@ -99,14 +99,15 @@ function _af_render_field_include( $field, $value = false ) {
 		$output .= '</table>';
 	} elseif ( 'clone' == $field['type'] || 'group' == $field['type'] ) {
 		$output .= sprintf( '<table class="af-field-include af-field-include-%s">', $field['type'] );
-	
 		foreach ( $field['sub_fields'] as $sub_field ) {
-			if ( isset( $value[ $sub_field['name'] ] ) ) {
+			if ( isset( $value[ $sub_field['name'] ], $field['_input'][ $sub_field['key'] ] ) ) {
+				// We need to set the _input value for the sub field using the values on the parent field. This is a
+				// workaround for now but we should consider refining how submissions are processed later on.
+				$sub_field['_input'] = $field['_input'][$sub_field['key']];
 				$output .= sprintf( '<tr><th>%s</th></tr>', $sub_field['label'] );
 				$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $value[ $sub_field['name'] ] ) );
 			}
 		}
-		
 		$output .= '</table>';
 	} elseif ( 'true_false' == $field['type'] ) {
 		$true_text = isset( $field['ui_on_text'] ) && ! empty( $field['ui_on_text'] ) ? $field['ui_on_text'] : __( 'Yes', 'advanced-forms' );
@@ -116,9 +117,10 @@ function _af_render_field_include( $field, $value = false ) {
 	} elseif ( 'image' == $field['type'] ) {
 		// Ensure we always have a full image array. Using the $attachment variable here instead of overriding $value
 		// to avoid breaking any functionality hooked to the `af/field/render_include` filters below.
-		$attachment = acf_get_attachment( $field['_input'] );
-		if ( is_array( $attachment ) ) {
-			$output .= sprintf( '<img src="%s" alt="%s" />', esc_attr( $attachment['sizes']['medium'] ), esc_attr( $attachment['alt'] ) );
+		if ( isset( $field['_input'] ) and $attachment = acf_get_attachment( $field['_input'] ) ) {
+			if ( is_array( $attachment ) ) {
+				$output .= sprintf( '<img src="%s" alt="%s" />', esc_attr( $attachment['sizes']['medium'] ), esc_attr( $attachment['alt'] ) );
+			}
 		}
 	} elseif ( 'gallery' == $field['type'] && is_array( $value ) ) {
 		foreach ( $value as $image ) {
