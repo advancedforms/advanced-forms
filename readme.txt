@@ -70,8 +70,9 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 
 = [UNRELEASED] =
 
-* Improved internal field value rendering for complex fields. This fixes issues with repeaters, groups, and flexible content fields not being rendered correctly in filter mode.
+* Improved field value rendering for groups, repeaters, and flexible content fields in filter mode.
 * Fixed rendering of image fields so that the image will render in notifications and success messages regardless of the return format.
+* Fixed rendering issues with image fields within groups, repeaters, and flexible content fields. This ensures images render in notifications and success messages regardless of their location.
 
 = [1.9.3] =
 
