@@ -51,9 +51,12 @@ function _af_render_field_include( $field, $value = false ) {
 		// Rows
 		$output .= '<tbody>';
 		if ( is_array( $value ) ) {
-			foreach ( $value as $row_values ) {
+			foreach ( $value as $row_key => $row_values ) {
 				$output .= '<tr>';
 				foreach ( $field['sub_fields'] as $sub_field ) {
+					// We need to set the _input value for the sub field using the values on the parent field. This is a
+					// workaround for now but we should consider refining how submissions are processed later on.
+					$sub_field['_input'] = $field['_input'][ $row_key ][ $sub_field['key'] ];
 					$output .= sprintf( '<td>%s</td>', _af_render_field_include( $sub_field, $row_values[ $sub_field['name'] ] ) );
 				}
 				$output .= '</tr>';
