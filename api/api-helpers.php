@@ -65,7 +65,7 @@ function _af_render_field_include( $field, $value = false ) {
 
 	} elseif ( 'flexible_content' === $field['type'] ) {
 		$output .= '<table class="af-field-include af-field-include-flexible_content">';
-		foreach ( $value as $row ) {
+		foreach ( $value as $row_key => $row ) {
 			$row_layout_name = $row['acf_fc_layout'];
 			// Find layout based on name
 			$row_layout = null;
@@ -82,6 +82,9 @@ function _af_render_field_include( $field, $value = false ) {
 			$output .= '<table class="af-field-include af-field-include-flexible_content-inner">';
 			foreach ( $layout['sub_fields'] as $sub_field ) {
 				if ( isset( $row[ $sub_field['name'] ] ) ) {
+					// We need to set the _input value for the sub field using the values on the parent field. This is a
+					// workaround for now but we should consider refining how submissions are processed later on.
+					$sub_field['_input'] = $field['_input'][ $row_key ][ $sub_field['key'] ];
 					$output .= sprintf( '<tr><th>%s</th></tr>', $sub_field['label'] );
 					$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $row[ $sub_field['name'] ] ) );
 				}
