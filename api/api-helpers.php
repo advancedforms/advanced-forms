@@ -66,12 +66,9 @@ function _af_render_field_include( $field, $value = false ) {
 	} elseif ( 'flexible_content' === $field['type'] ) {
 		$output .= '<table class="af-field-include af-field-include-flexible_content">';
 		foreach ( $value as $row_key => $row ) {
-			$row_layout_name = $row['acf_fc_layout'];
 			// Find layout based on name
-			$row_layout = null;
 			foreach ( $field['layouts'] as $layout ) {
-				if ( $layout['name'] === $row_layout_name ) {
-					$row_layout = $layout;
+				if ( $layout['name'] === $row['acf_fc_layout'] ) {
 					break;
 				}
 			}
