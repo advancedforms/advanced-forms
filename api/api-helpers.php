@@ -72,22 +72,24 @@ function _af_render_field_include( $field, $value = false ) {
 					break;
 				}
 			}
-			// Output header with layout name for the row
-			$output .= sprintf( '<tr><th>%s</th></tr>', $layout['label'] );
-			$output .= '<tr><td>';
-			// The subfield values will be displayed in a nested table, similar to a group field
-			$output .= '<table class="af-field-include af-field-include-flexible_content-inner">';
-			foreach ( $layout['sub_fields'] as $sub_field ) {
-				if ( isset( $row[ $sub_field['name'] ] ) ) {
-					// We need to set the _input value for the sub field using the values on the parent field. This is a
-					// workaround for now but we should consider refining how submissions are processed later on.
-					$sub_field['_input'] = $field['_input'][ $row_key ][ $sub_field['key'] ];
-					$output .= sprintf( '<tr><th>%s</th></tr>', $sub_field['label'] );
-					$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $row[ $sub_field['name'] ] ) );
+			if ( ! empty( $layout ) ) {
+				// Output header with layout name for the row
+				$output .= sprintf( '<tr><th>%s</th></tr>', $layout['label'] );
+				$output .= '<tr><td>';
+				// The subfield values will be displayed in a nested table, similar to a group field
+				$output .= '<table class="af-field-include af-field-include-flexible_content-inner">';
+				foreach ( $layout['sub_fields'] as $sub_field ) {
+					if ( isset( $row[ $sub_field['name'] ] ) ) {
+						// We need to set the _input value for the sub field using the values on the parent field. This is a
+						// workaround for now but we should consider refining how submissions are processed later on.
+						$sub_field['_input'] = $field['_input'][ $row_key ][ $sub_field['key'] ];
+						$output .= sprintf( '<tr><th>%s</th></tr>', $sub_field['label'] );
+						$output .= sprintf( '<tr><td>%s</td></tr>', _af_render_field_include( $sub_field, $row[ $sub_field['name'] ] ) );
+					}
 				}
+				$output .= '</table>';
+				$output .= '</td></tr>';
 			}
-			$output .= '</table>';
-			$output .= '</td></tr>';
 		}
 		$output .= '</table>';
 
