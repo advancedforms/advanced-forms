@@ -16,7 +16,8 @@ class AF_Admin_Restrictions {
 	 * @since 1.0.3
 	 */
 	function add_form_settings_fields( $field_group ) {
-		
+		$form_restricted_placeholder = __( 'This form is restricted.', 'advanced-forms' );
+
 		$field_group['fields'][] = array(
 			'key' => 'field_form_restrictions_tab',
 			'label' => '<span class="dashicons dashicons-dismiss"></span>' . __( 'Restrictions', 'advanced-forms' ),
@@ -77,11 +78,12 @@ class AF_Admin_Restrictions {
 			'ui' => true,
 			'default_value' => 0,
 		);
-		
+
 		$field_group['fields'][] = array (
 			'key' => 'field_form_entry_restriction_message',
 			'label' => __( 'Message after entry limit has been reached', 'advanced-forms' ),
 			'name' => 'form_entry_restriction_message',
+			'placeholder' => $form_restricted_placeholder,
 			'type' => 'textarea',
 			'instructions' => '',
 			'required' => 0,
@@ -125,6 +127,7 @@ class AF_Admin_Restrictions {
 			'key' => 'field_form_login_restriction_message',
 			'label' => __( 'Message if user is not logged in', 'advanced-forms' ),
 			'name' => 'form_login_restriction_message',
+			'placeholder' => $form_restricted_placeholder,
 			'type' => 'textarea',
 			'instructions' => '',
 			'required' => 0,
@@ -220,6 +223,7 @@ class AF_Admin_Restrictions {
 			'key' => 'field_form_before_schedule_message',
 			'label' => __( 'Message before scheduled time', 'advanced-forms' ),
 			'name' => 'form_before_schedule_message',
+			'placeholder' => $form_restricted_placeholder,
 			'type' => 'textarea',
 			'instructions' => '',
 			'required' => 0,
@@ -245,6 +249,7 @@ class AF_Admin_Restrictions {
 			'key' => 'field_form_after_schedule_message',
 			'label' => __( 'Message after scheduled time', 'advanced-forms' ),
 			'name' => 'form_after_schedule_message',
+			'placeholder' => $form_restricted_placeholder,
 			'type' => 'textarea',
 			'instructions' => '',
 			'required' => 0,

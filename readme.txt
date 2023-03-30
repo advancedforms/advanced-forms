@@ -75,6 +75,9 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 * Fixed rendering issues with image fields within groups, repeaters, and flexible content fields. This ensures images render in notifications and success messages regardless of their location.
 * Fixed rendering of file fields so that a link to download the file will render in notifications and success messages regardless of the return format.
 * Added the `af/field/file_link_text` text to allow override of the file `Download` link text in notifications and success messages.
+* Fixed issue where a restricted form would still be accessible if no restriction message was set.
+* Added `af/form/default_restriction_message` filter to allow override of the default restriction message.
+* Added `af/form/restriction_output` filter to allow override or hiding of the entire restriction message output.
 
 = [1.9.3] =
 

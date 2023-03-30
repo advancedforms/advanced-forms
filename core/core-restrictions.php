@@ -27,7 +27,7 @@ class AF_Core_Restrictions {
 
 		if ( $form['restrictions']['entries'] ) {
 			if ( $form['restrictions']['entries']['max_entries'] <= af_get_entry_count( $form['key'] ) ) {
-				return $form['restrictions']['entries']['message'];
+				return $form['restrictions']['entries']['message'] ?: true;
 			}
 		}
 
@@ -46,7 +46,7 @@ class AF_Core_Restrictions {
 
 		if ( $form['restrictions']['user'] ) {
 			if ( ! is_user_logged_in() ) {
-				return $form['restrictions']['user']['message'];
+				return $form['restrictions']['user']['message'] ?: true;
 			}
 		}
 
@@ -70,12 +70,12 @@ class AF_Core_Restrictions {
 
 			// Before schedule
 			if ( $current_time < $start_time ) {
-				return $form['restrictions']['schedule']['message_before'];
+				return $form['restrictions']['schedule']['message_before'] ?: true;
 			}
 
 			// After schedule
 			if ( $current_time > $end_time ) {
-				return $form['restrictions']['schedule']['message_after'];
+				return $form['restrictions']['schedule']['message_after'] ?: true;
 			}
 
 		}

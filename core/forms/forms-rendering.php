@@ -120,11 +120,14 @@ class AF_Core_Forms_Rendering {
 		$this->render_title_and_description( $form, $args );
 
 		/**
-		 * Check if form should be restricted and not displayed.
-		 * Filter will return false if no restriction is applied otherwise it will return a string to display.
+		 * Check if a restricted access message should be displayed in place of the form. Callbacks for this filter may
+		 * return one of the following:
+		 *
+		 *  1. FALSE (default) to indicate no restriction and display the form.
+		 *  2. A string to display as a custom restriction message.
+		 *  3. TRUE to display the default restriction message handled in \AF_Core_Forms_Rendering::render_restriction_message().
 		 */
-		$restriction = false;
-		$restriction = apply_filters( 'af/form/restriction', $restriction, $form, $args );
+		$restriction = apply_filters( 'af/form/restriction', false, $form, $args );
 		$restriction = apply_filters( 'af/form/restriction/id=' . $form['post_id'], $restriction, $form, $args );
 		$restriction = apply_filters( 'af/form/restriction/key=' . $form['key'], $restriction, $form, $args );
 
@@ -134,7 +137,7 @@ class AF_Core_Forms_Rendering {
 			echo af_form_success_message( $form, $args );
 
 		} elseif ( $restriction ) {
-			$this->render_restriction_message( $restriction );
+			$this->render_restriction_message( $restriction, $form, $args );
 
 		} else {
 			$this->render_fields( $form, $args );
@@ -187,10 +190,17 @@ class AF_Core_Forms_Rendering {
 	 *
 	 * @since 1.6.0
 	 */
-	function render_restriction_message( $message ) {
-		echo '<div class="af-restricted-message">';
-		echo $message;
-		echo '</div>';
+	function render_restriction_message( $message, $form, $args ) {
+		// If TRUE is passed, use a default restriction message.
+		if ( $message === true ) {
+			$message = apply_filters( 'af/form/default_restriction_message', __( 'This form is restricted.', 'advanced-forms' ), $form, $args );
+		}
+
+		// Render the restriction message.
+		$message = "<div class=\"af-restricted-message\">$message</div>";
+
+		// Allow the entire restriction message (including markup) to be overridden, if desired.
+		echo apply_filters( 'af/form/restriction_output', $message, $form, $args );
 	}
 
 	/**
