@@ -126,10 +126,15 @@ function _af_render_field_include( $field, $value = false ) {
 		}
 
 	} elseif ( 'file' == $field['type'] ) {
-		if ( 'url' === $field['return_format'] ) {
-			$output .= sprintf( '<a href="%s">Download</a>', $value );
-		} else if ( 'array' == $field['return_format'] ) {
-			$output .= sprintf( '<a href="%s">%s</a>', $value['url'], htmlspecialchars( $value['title'] ) );
+		// Ensure we always have a full image array. Using the $attachment variable here instead of overriding $value
+		// to avoid breaking any functionality hooked to the `af/field/render_include` filters below.
+		if ( isset( $field['_input'] ) and $attachment = acf_get_attachment( $field['_input'] ) ) {
+			if ( is_array( $attachment ) ) {
+				$output .= sprintf( '<a href="%s">%s</a>',
+					esc_url( $attachment['url'] ),
+					apply_filters( 'af/field/file_link_text', __( 'Download', 'advanced-forms' ), $attachment, $field )
+				);
+			}
 		}
 
 	} elseif ( in_array( $field['type'], array( 'wysiwyg', 'textarea', 'calculated' ) ) ) {

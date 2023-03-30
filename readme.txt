@@ -73,6 +73,8 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 * Improved field value rendering for groups, repeaters, and flexible content fields in filter mode.
 * Fixed rendering of image fields so that the image will render in notifications and success messages regardless of the return format.
 * Fixed rendering issues with image fields within groups, repeaters, and flexible content fields. This ensures images render in notifications and success messages regardless of their location.
+* Fixed rendering of file fields so that a link to download the file will render in notifications and success messages regardless of the return format.
+* Added the `af/field/file_link_text` text to allow override of the file `Download` link text in notifications and success messages.
 
 = [1.9.3] =
 
