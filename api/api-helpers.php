@@ -1,11 +1,10 @@
 <?php
 
 /**
- * Searches input for tags {field:FIELD_NAME} and replaces with field values.
- * Also replaces general tags such as {all_fields}.
+ * Searches input for tags {field:FIELD_NAME} and replaces with field values. Also replaces general tags such as
+ * {all_fields}.
  *
  * @since 1.0.1
- *
  */
 function af_resolve_merge_tags( $input, $fields = false ) {
 	// Get fields from the global submission object if fields weren't passed
@@ -29,7 +28,6 @@ function af_resolve_merge_tags( $input, $fields = false ) {
  * Renders a single field include (for emails, success messages etc.)
  *
  * @since 1.2.0
- *
  */
 function _af_render_field_include( $field, $value = false ) {
 	if ( ! $value ) {
@@ -156,51 +154,37 @@ function _af_render_field_include( $field, $value = false ) {
 /**
  * Handle the different shapes field values may take and create an appropriate string
  *
- * WP_Post        - post title
- * WP_User        - user first name and last name combined
- * User array    - user first name and last name combined
- * WP_Term        - term name
+ * WP_Post      - post title
+ * WP_User      - user first name and last name combined
+ * User array   - user first name and last name combined
+ * WP_Term      - term name
  * Array        - render each value and join with commas
  * Other        - cast to string
  *
  * @since 1.3.0
- *
  */
 function _af_render_field_include_value( $value ) {
-	$rendered_value = '';
-
 	if ( $value instanceof WP_Post ) {
-
 		$rendered_value = $value->post_title;
 
 	} elseif ( $value instanceof WP_User ) {
-
 		$rendered_value = sprintf( '%s %s', $value->first_name, $value->last_name );
 
 	} elseif ( is_array( $value ) && isset( $value['user_email'] ) ) {
-
 		$rendered_value = sprintf( '%s %s', $value['user_firstname'], $value['user_lastname'] );
 
 	} elseif ( $value instanceof WP_Term ) {
-
 		$rendered_value = $value->name;
 
 	} elseif ( is_array( $value ) ) {
-
 		$rendered_values = array();
-
 		foreach ( $value as $single_value ) {
-
 			$rendered_values[] = _af_render_field_include_value( $single_value );
-
 		}
-
 		$rendered_value = join( ', ', $rendered_values );
 
 	} else {
-
 		$rendered_value = (string) $value;
-
 	}
 
 	// Sanitize output to protect against XSS
@@ -209,10 +193,10 @@ function _af_render_field_include_value( $value ) {
 
 /**
  * Output an "Insert field" button populated with $fields
- * $floating adds class "floating" to the wrapper making the button float right in an input field
  *
- * @since 1.1.1
+ * @param bool $floating Adds class "floating" to the wrapper making the button float right in an input field.
  *
+ * @since 1.1.1
  */
 function _af_field_inserter_button( $form, $type = 'all', $floating = false ) {
 	$classses = ( $floating ) ? 'floating' : '';
@@ -244,7 +228,6 @@ function _af_field_inserter_button( $form, $type = 'all', $floating = false ) {
 }
 
 function _af_field_inserter_render_option( $field, $ancestors = array() ) {
-	$insert_value = '';
 	if ( empty( $ancestors ) ) {
 		$insert_value = sprintf( '{field:%s}', $field['name'] );
 	} else {
@@ -274,42 +257,32 @@ function _af_field_inserter_render_option( $field, $ancestors = array() ) {
 }
 
 /**
- * Generates choices for a form field picker.
- * Returns an array with field key => field label suitable for usage with an ACF select field.
+ * Generates choices for a form field picker. Returns an array with field key => field label suitable for usage with an
+ * ACF select field.
  *
- * $type can be either 'all' or 'regular'.
+ * @param string $type Can be either 'all' or 'regular'.
  *
  * @since 1.3.0
- *
  */
 function _af_form_field_choices( $form_key, $type = 'all' ) {
-
 	$form_fields = af_get_form_fields( $form_key, $type );
 
 	$choices = array();
-
 	if ( ! empty( $form_fields ) ) {
-
 		foreach ( $form_fields as $field ) {
-
 			$choices[ $field['key'] ] = $field['label'];
-
 		}
-
 	}
 
 	return $choices;
-
 }
 
 /**
- * Find a nested sub field based on some selector.
- * If the selector is ["g1", "g2", "f1"] then the function will find a
- * field named "f1" inside "g2" which is inside field "g1".
- * The $field parameter should be the top-level field, "g1" in the example.
+ * Find a nested sub field based on some selector. If the selector is ["g1", "g2", "f1"] then the function will find a
+ * field named "f1" inside "g2" which is inside field "g1". The $field parameter should be the top-level field, "g1" in
+ * the example.
  *
  * @since 1.7.2
- *
  */
 function af_pick_sub_field( $field, $selector ) {
 	while ( ! empty( $selector ) && $field && isset( $field['sub_fields'] ) ) {
@@ -321,13 +294,11 @@ function af_pick_sub_field( $field, $selector ) {
 }
 
 /**
- * Find a nested value of a sub field based on some selector.
- * If the selector is ["g1", "g2", "f1"] then the function will return the
- * value of field "f1" inside "g2" which is inside "g1".
- * The $field parameter should be the top-level field, "g1" in the example.
+ * Find a nested value of a sub field based on some selector. If the selector is ["g1", "g2", "f1"] then the function
+ * will return the value of field "f1" inside "g2" which is inside "g1". The $field parameter should be the top-level
+ * field, "g1" in the example.
  *
  * @since 1.7.2
- *
  */
 function af_pick_sub_field_value( $field, $selector ) {
 	$value = $field['value'];
@@ -348,10 +319,7 @@ function af_pick_sub_field_value( $field, $selector ) {
  * Retrieves full URL (with trailing slash) to the plugin assets folder
  *
  * @since 1.3.0
- *
  */
 function af_assets_url( $path = '' ) {
-
 	return plugin_dir_url( dirname( __FILE__ ) ) . 'assets/' . $path;
-
 }
