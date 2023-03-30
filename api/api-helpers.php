@@ -278,6 +278,27 @@ function _af_form_field_choices( $form_key, $type = 'all' ) {
 }
 
 /**
+ * Get value of field picker from current form. Either from a picked field or custom format.
+ */
+function _af_resolve_field_picker_value( $picker_value ) {
+	if ( ! isset( $picker_value['field'] ) || ! isset( $picker_value['format'] ) ) {
+		return false;
+	}
+
+	if ( $picker_value['field'] == 'custom' ) {
+		return af_resolve_merge_tags( $picker_value['format'] );
+
+	} elseif ( ! empty( $picker_value['field'] ) ) {
+		$field_object = af_get_field_object( $picker_value['field'] );
+		if ( false !== $field_object ) {
+			return _af_render_field_include( $field_object );
+		}
+	}
+
+	return false;
+}
+
+/**
  * Find a nested sub field based on some selector. If the selector is ["g1", "g2", "f1"] then the function will find a
  * field named "f1" inside "g2" which is inside field "g1". The $field parameter should be the top-level field, "g1" in
  * the example.
