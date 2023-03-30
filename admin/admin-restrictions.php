@@ -1,15 +1,11 @@
 <?php
 
 class AF_Admin_Restrictions {
-	
+
 	function __construct() {
-		
-		// Filters
 		add_filter( 'af/form/settings_fields', array( $this, 'add_form_settings_fields' ), 10, 1 );
-		
 	}
-	
-	
+
 	/**
 	 * Add form settings for restrictions
 	 *
@@ -26,7 +22,7 @@ class AF_Admin_Restrictions {
 			'instructions' => '',
 			'required' => 0,
 			'conditional_logic' => 0,
-			'wrapper' => array (
+			'wrapper' => array(
 				'width' => '',
 				'class' => '',
 				'id' => '',
@@ -34,7 +30,7 @@ class AF_Admin_Restrictions {
 			'placement' => 'left',
 			'endpoint' => 0,
 		);
-		
+
 		// Entry limits
 		$field_group['fields'][] = array(
 			'key' => 'field_form_restrict_entries',
@@ -44,7 +40,7 @@ class AF_Admin_Restrictions {
 			'instructions' => '',
 			'required' => 0,
 			'placeholder' => '',
-			'wrapper' => array (
+			'wrapper' => array(
 				'width' => '',
 				'class' => '',
 				'id' => '',
@@ -52,7 +48,7 @@ class AF_Admin_Restrictions {
 			'ui' => true,
 			'default_value' => 0,
 		);
-		
+
 		$field_group['fields'][] = array(
 			'key' => 'field_form_max_entries',
 			'label' => __( 'Maximum number of entries', 'advanced-forms' ),
@@ -70,7 +66,7 @@ class AF_Admin_Restrictions {
 					),
 				),
 			),
-			'wrapper' => array (
+			'wrapper' => array(
 				'width' => '50',
 				'class' => '',
 				'id' => '',
@@ -79,7 +75,7 @@ class AF_Admin_Restrictions {
 			'default_value' => 0,
 		);
 
-		$field_group['fields'][] = array (
+		$field_group['fields'][] = array(
 			'key' => 'field_form_entry_restriction_message',
 			'label' => __( 'Message after entry limit has been reached', 'advanced-forms' ),
 			'name' => 'form_entry_restriction_message',
@@ -96,7 +92,7 @@ class AF_Admin_Restrictions {
 					),
 				),
 			),
-			'wrapper' => array (
+			'wrapper' => array(
 				'width' => '50',
 				'class' => '',
 				'id' => '',
@@ -104,7 +100,7 @@ class AF_Admin_Restrictions {
 			'rows' => 4,
 			'default_value' => '',
 		);
-		
+
 		// User logged in
 		$field_group['fields'][] = array(
 			'key' => 'field_form_require_login',
@@ -114,7 +110,7 @@ class AF_Admin_Restrictions {
 			'instructions' => '',
 			'required' => 0,
 			'placeholder' => '',
-			'wrapper' => array (
+			'wrapper' => array(
 				'width' => '',
 				'class' => '',
 				'id' => '',
@@ -122,8 +118,8 @@ class AF_Admin_Restrictions {
 			'ui' => true,
 			'default_value' => 0,
 		);
-		
-		$field_group['fields'][] = array (
+
+		$field_group['fields'][] = array(
 			'key' => 'field_form_login_restriction_message',
 			'label' => __( 'Message if user is not logged in', 'advanced-forms' ),
 			'name' => 'form_login_restriction_message',
@@ -140,7 +136,7 @@ class AF_Admin_Restrictions {
 					),
 				),
 			),
-			'wrapper' => array (
+			'wrapper' => array(
 				'width' => '',
 				'class' => '',
 				'id' => '',
@@ -148,7 +144,7 @@ class AF_Admin_Restrictions {
 			'rows' => 4,
 			'default_value' => '',
 		);
-		
+
 		// Scheduled form
 		$field_group['fields'][] = array(
 			'key' => 'field_form_schedule_form',
@@ -158,7 +154,7 @@ class AF_Admin_Restrictions {
 			'instructions' => '',
 			'required' => 0,
 			'placeholder' => '',
-			'wrapper' => array (
+			'wrapper' => array(
 				'width' => '',
 				'class' => '',
 				'id' => '',
@@ -166,8 +162,8 @@ class AF_Admin_Restrictions {
 			'ui' => true,
 			'default_value' => 0,
 		);
-		
-		$field_group['fields'][] = array (
+
+		$field_group['fields'][] = array(
 			'key' => 'field_form_schedule_start',
 			'label' => __( 'Start time', 'advanced-forms' ),
 			'name' => 'form_schedule_start',
@@ -186,14 +182,14 @@ class AF_Admin_Restrictions {
 					),
 				),
 			),
-			'wrapper' => array (
+			'wrapper' => array(
 				'width' => '50',
 				'class' => '',
 				'id' => '',
 			),
 		);
-		
-		$field_group['fields'][] = array (
+
+		$field_group['fields'][] = array(
 			'key' => 'field_form_schedule_end',
 			'label' => __( 'End time', 'advanced-forms' ),
 			'name' => 'form_schedule_end',
@@ -212,13 +208,13 @@ class AF_Admin_Restrictions {
 					),
 				),
 			),
-			'wrapper' => array (
+			'wrapper' => array(
 				'width' => '50',
 				'class' => '',
 				'id' => '',
 			),
 		);
-		
+
 		$field_group['fields'][] = array(
 			'key' => 'field_form_before_schedule_message',
 			'label' => __( 'Message before scheduled time', 'advanced-forms' ),
@@ -236,7 +232,7 @@ class AF_Admin_Restrictions {
 					),
 				),
 			),
-			'wrapper' => array (
+			'wrapper' => array(
 				'width' => '50',
 				'class' => '',
 				'id' => '',
@@ -244,8 +240,8 @@ class AF_Admin_Restrictions {
 			'rows' => 4,
 			'default_value' => '',
 		);
-		
-		$field_group['fields'][] = array (
+
+		$field_group['fields'][] = array(
 			'key' => 'field_form_after_schedule_message',
 			'label' => __( 'Message after scheduled time', 'advanced-forms' ),
 			'name' => 'form_after_schedule_message',
@@ -262,7 +258,7 @@ class AF_Admin_Restrictions {
 					),
 				),
 			),
-			'wrapper' => array (
+			'wrapper' => array(
 				'width' => '50',
 				'class' => '',
 				'id' => '',
@@ -271,13 +267,9 @@ class AF_Admin_Restrictions {
 			'default_value' => '',
 		);
 
-
-		$field_group = apply_filters( 'af/form/restriction_settings_fields', $field_group );
-		
-		return $field_group;
-		
+		return apply_filters( 'af/form/restriction_settings_fields', $field_group );
 	}
-	
+
 }
 
 return new AF_Admin_Restrictions();
