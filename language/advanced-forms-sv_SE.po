@@ -14,189 +14,189 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.3.0; wp-5.3-RC1-46561\n"
 
-#: advanced-forms.php:195
+#: advanced-forms.php:198
 msgctxt "Post Type General Name"
 msgid "Forms"
 msgstr "Formulär"
 
-#: advanced-forms.php:196
+#: advanced-forms.php:199
 msgctxt "Post Type Singular Name"
 msgid "Form"
 msgstr "Formulär"
 
-#: advanced-forms.php:197
-#: advanced-forms.php:201
+#: advanced-forms.php:200
+#: advanced-forms.php:204
 msgid "Forms"
 msgstr "Formulär"
 
 #: admin/admin-entries.php:119
 #: admin/admin-entries.php:310
-#: advanced-forms.php:198
-#: advanced-forms.php:222
-#: advanced-forms.php:223
+#: advanced-forms.php:201
+#: advanced-forms.php:225
+#: advanced-forms.php:226
 #: core/core-gutenberg.php:45
 msgid "Form"
 msgstr "Formulär"
 
-#: advanced-forms.php:199
+#: advanced-forms.php:202
 msgid "Form Archives"
 msgstr "Formulärsarkiv"
 
-#: advanced-forms.php:200
+#: advanced-forms.php:203
 msgid "Parent Form:"
 msgstr "Formulärsförälder:"
 
-#: advanced-forms.php:202
+#: advanced-forms.php:205
 msgid "Add New Form"
 msgstr "Skapa nytt formulär"
 
-#: advanced-forms.php:203
-#: advanced-forms.php:250
+#: advanced-forms.php:206
+#: advanced-forms.php:253
 msgid "Add New"
 msgstr "Skapa nytt"
 
-#: advanced-forms.php:204
+#: advanced-forms.php:207
 msgid "New Form"
 msgstr "Nytt formulär"
 
-#: advanced-forms.php:205
+#: advanced-forms.php:208
 msgid "Edit Form"
 msgstr "Redigera formulär"
 
-#: advanced-forms.php:206
+#: advanced-forms.php:209
 msgid "Update Form"
 msgstr "Uppdatera formulär"
 
-#: advanced-forms.php:207
+#: advanced-forms.php:210
 msgid "View Form"
 msgstr "Visa formulär"
 
-#: advanced-forms.php:208
+#: advanced-forms.php:211
 msgid "Search Form"
 msgstr "Sök bland formulär"
 
-#: advanced-forms.php:209
-#: advanced-forms.php:256
+#: advanced-forms.php:212
+#: advanced-forms.php:259
 msgid "Not found"
 msgstr "Hittades inte"
 
-#: advanced-forms.php:210
-#: advanced-forms.php:257
+#: advanced-forms.php:213
+#: advanced-forms.php:260
 msgid "Not found in Trash"
 msgstr "Hittade inte i papperskorgen"
 
-#: advanced-forms.php:211
-#: advanced-forms.php:258
+#: advanced-forms.php:214
+#: advanced-forms.php:261
 msgid "Featured Image"
 msgstr "Utvald bild"
 
-#: advanced-forms.php:212
-#: advanced-forms.php:259
+#: advanced-forms.php:215
+#: advanced-forms.php:262
 msgid "Set featured image"
 msgstr "Välj utvald bild"
 
-#: advanced-forms.php:213
-#: advanced-forms.php:260
+#: advanced-forms.php:216
+#: advanced-forms.php:263
 msgid "Remove featured image"
 msgstr "Ta bort utvald bild"
 
-#: advanced-forms.php:214
-#: advanced-forms.php:261
+#: advanced-forms.php:217
+#: advanced-forms.php:264
 msgid "Use as featured image"
 msgstr "Använd som utvald bild"
 
-#: advanced-forms.php:215
+#: advanced-forms.php:218
 msgid "Insert into form"
 msgstr "Lägg till i formulär"
 
-#: advanced-forms.php:216
+#: advanced-forms.php:219
 msgid "Uploaded to this form"
 msgstr "Uppladdat till detta formulär"
 
-#: advanced-forms.php:217
+#: advanced-forms.php:220
 msgid "Forms list"
 msgstr "Formulärslista"
 
-#: advanced-forms.php:218
+#: advanced-forms.php:221
 msgid "Forms list navigation"
 msgstr "Formulärslistanavigation"
 
-#: advanced-forms.php:219
+#: advanced-forms.php:222
 msgid "Filter forms list"
 msgstr "Filtrera formulärslista"
 
-#: advanced-forms.php:242
+#: advanced-forms.php:245
 msgctxt "Post Type General Name"
 msgid "Entries"
 msgstr "Inlägg"
 
-#: advanced-forms.php:243
+#: advanced-forms.php:246
 msgctxt "Post Type Singular Name"
 msgid "Entry"
 msgstr "Inlägg"
 
 #: admin/admin-entries.php:240
 #: admin/admin-forms.php:175
-#: advanced-forms.php:244
-#: advanced-forms.php:248
+#: advanced-forms.php:247
+#: advanced-forms.php:251
 msgid "Entries"
 msgstr "Inlägg"
 
-#: advanced-forms.php:245
-#: advanced-forms.php:269
-#: advanced-forms.php:270
+#: advanced-forms.php:248
+#: advanced-forms.php:272
+#: advanced-forms.php:273
 msgid "Entry"
 msgstr "Inlägg"
 
-#: advanced-forms.php:246
+#: advanced-forms.php:249
 msgid "Entry Archives"
 msgstr "Inläggsarkiv"
 
-#: advanced-forms.php:247
+#: advanced-forms.php:250
 msgid "Parent Entry:"
 msgstr "Inläggsförälder:"
 
-#: advanced-forms.php:249
+#: advanced-forms.php:252
 msgid "Add New Entry"
 msgstr "Skapa nytt inlägg"
 
-#: advanced-forms.php:251
+#: advanced-forms.php:254
 msgid "New Entry"
 msgstr "Nytt inlägg"
 
-#: advanced-forms.php:252
+#: advanced-forms.php:255
 msgid "Edit Entry"
 msgstr "Redigera inlägg"
 
-#: advanced-forms.php:253
+#: advanced-forms.php:256
 msgid "Update Entry"
 msgstr "Uppdatera inlägg"
 
-#: advanced-forms.php:254
+#: advanced-forms.php:257
 msgid "View Entry"
 msgstr "Visa inlägg"
 
-#: advanced-forms.php:255
+#: advanced-forms.php:258
 msgid "Search Entry"
 msgstr "Sök bland inlägg"
 
-#: advanced-forms.php:262
+#: advanced-forms.php:265
 msgid "Insert into entry"
 msgstr "Lägg till i inlägg"
 
-#: advanced-forms.php:263
+#: advanced-forms.php:266
 msgid "Uploaded to this entry"
 msgstr "Uppladdat till detta inlägg"
 
-#: advanced-forms.php:264
+#: advanced-forms.php:267
 msgid "Entries list"
 msgstr "Inläggslista"
 
-#: advanced-forms.php:265
+#: advanced-forms.php:268
 msgid "Entries list navigation"
 msgstr "Inläggslistanavigation"
 
-#: advanced-forms.php:266
+#: advanced-forms.php:269
 msgid "Filter entries list"
 msgstr "Filterera inläggslista"
 
@@ -422,43 +422,43 @@ msgstr "Inläggsinfo"
 msgid "Submission info"
 msgstr "Info"
 
-#: admin/admin-restrictions.php:22
+#: admin/admin-restrictions.php:19
 msgid "Restrictions"
 msgstr "Begränsningar"
 
-#: admin/admin-restrictions.php:40
+#: admin/admin-restrictions.php:37
 msgid "Restrict number of entries"
 msgstr "Begränsa antalet inlägg"
 
-#: admin/admin-restrictions.php:57
+#: admin/admin-restrictions.php:54
 msgid "Maximum number of entries"
 msgstr "Maximalt antal inlägg"
 
-#: admin/admin-restrictions.php:83
+#: admin/admin-restrictions.php:80
 msgid "Message after entry limit has been reached"
 msgstr "Meddelande efter att inläggsgräns har nåtts"
 
-#: admin/admin-restrictions.php:109
+#: admin/admin-restrictions.php:107
 msgid "Require user to be logged in"
 msgstr "Kräv att användaren är inloggad"
 
-#: admin/admin-restrictions.php:126
+#: admin/admin-restrictions.php:124
 msgid "Message if user is not logged in"
 msgstr "Meddelande om användare inte är inloggad"
 
-#: admin/admin-restrictions.php:152
+#: admin/admin-restrictions.php:151
 msgid "Only display form during a specific time"
 msgstr "Visa endast formulär under en begränsad tid"
 
-#: admin/admin-restrictions.php:169
+#: admin/admin-restrictions.php:168
 msgid "Start time"
 msgstr "Starttid"
 
-#: admin/admin-restrictions.php:195
+#: admin/admin-restrictions.php:194
 msgid "End time"
 msgstr "Sluttid"
 
-#: admin/admin-restrictions.php:221
+#: admin/admin-restrictions.php:220
 msgid "Message before scheduled time"
 msgstr "Meddelande före begränsad tid"
 
@@ -466,19 +466,19 @@ msgstr "Meddelande före begränsad tid"
 msgid "Message after scheduled time"
 msgstr "Meddelande efter begränsad tid"
 
-#: api/api-helpers.php:112
+#: api/api-helpers.php:108
 msgid "Yes"
 msgstr "Ja"
 
-#: api/api-helpers.php:113
+#: api/api-helpers.php:109
 msgid "No"
 msgstr "Nej"
 
-#: api/api-helpers.php:209
+#: api/api-helpers.php:204
 msgid "Insert field"
 msgstr "Infoga fält"
 
-#: api/api-helpers.php:223
+#: api/api-helpers.php:218
 msgid "All fields"
 msgstr "Alla fält"
 
@@ -774,4 +774,17 @@ msgstr ""
 
 #: pro/admin/admin-calculated.php:36
 msgid "Set the content for each calculated form here or for more flexibility, you may define computations using <a href=\"%s\" target=\"_blank\">hooked PHP functions</a>. <br> Change the order in which calculated fields are computed by dragging & dropping."
+msgstr ""
+
+#: admin/admin-restrictions.php:15
+#: core/forms/forms-rendering.php:196
+msgid "This form is restricted."
+msgstr ""
+
+#: advanced-forms.php:163
+msgid "Couldn't find ACF PRO. Advanced Forms requires ACF PRO to function correctly."
+msgstr ""
+
+#: api/api-helpers.php:133
+msgid "Download"
 msgstr ""

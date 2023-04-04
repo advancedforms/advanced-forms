@@ -13,173 +13,173 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 2.0.3\n"
 
-#: advanced-forms.php:195
+#: advanced-forms.php:198
 msgctxt "Post Type General Name"
 msgid "Forms"
 msgstr "Formularz"
 
-#: advanced-forms.php:196
+#: advanced-forms.php:199
 msgctxt "Post Type Singular Name"
 msgid "Form"
 msgstr "Formularz"
 
-#: advanced-forms.php:197
-#: advanced-forms.php:201
+#: advanced-forms.php:200
+#: advanced-forms.php:204
 msgid "Forms"
 msgstr "Formularze"
 
 #: admin/admin-entries.php:119
 #: admin/admin-entries.php:310
-#: advanced-forms.php:198
-#: advanced-forms.php:222
-#: advanced-forms.php:223
+#: advanced-forms.php:201
+#: advanced-forms.php:225
+#: advanced-forms.php:226
 #: core/core-gutenberg.php:45
 msgid "Form"
 msgstr "Formularz"
 
-#: advanced-forms.php:202
+#: advanced-forms.php:205
 msgid "Add New Form"
 msgstr "Dodaj nowy formularz"
 
-#: advanced-forms.php:203
-#: advanced-forms.php:250
+#: advanced-forms.php:206
+#: advanced-forms.php:253
 msgid "Add New"
 msgstr "Dodaj nowy"
 
-#: advanced-forms.php:204
+#: advanced-forms.php:207
 msgid "New Form"
 msgstr "Nowy formularz"
 
-#: advanced-forms.php:205
+#: advanced-forms.php:208
 msgid "Edit Form"
 msgstr "Edytuj formularz"
 
-#: advanced-forms.php:206
+#: advanced-forms.php:209
 msgid "Update Form"
 msgstr "Aktualizuj formularz"
 
-#: advanced-forms.php:207
+#: advanced-forms.php:210
 msgid "View Form"
 msgstr "Pokaż formularz"
 
-#: advanced-forms.php:208
+#: advanced-forms.php:211
 msgid "Search Form"
 msgstr "Wyszukaj formularz"
 
-#: advanced-forms.php:209
-#: advanced-forms.php:256
+#: advanced-forms.php:212
+#: advanced-forms.php:259
 msgid "Not found"
 msgstr "Nie znaleziono"
 
-#: advanced-forms.php:210
-#: advanced-forms.php:257
+#: advanced-forms.php:213
+#: advanced-forms.php:260
 msgid "Not found in Trash"
 msgstr "Nie znaleziono w koszu"
 
-#: advanced-forms.php:211
-#: advanced-forms.php:258
+#: advanced-forms.php:214
+#: advanced-forms.php:261
 msgid "Featured Image"
 msgstr "Obrazek wyróżniający"
 
-#: advanced-forms.php:212
-#: advanced-forms.php:259
+#: advanced-forms.php:215
+#: advanced-forms.php:262
 msgid "Set featured image"
 msgstr "Ustaw obrazek wyróżniający"
 
-#: advanced-forms.php:213
-#: advanced-forms.php:260
+#: advanced-forms.php:216
+#: advanced-forms.php:263
 msgid "Remove featured image"
 msgstr "Usuń obrazek wyróżniający"
 
-#: advanced-forms.php:214
-#: advanced-forms.php:261
+#: advanced-forms.php:217
+#: advanced-forms.php:264
 msgid "Use as featured image"
 msgstr "Użyj jako obrazek wyróżniający"
 
-#: advanced-forms.php:215
+#: advanced-forms.php:218
 msgid "Insert into form"
 msgstr "Wstaw do formularza"
 
-#: advanced-forms.php:217
+#: advanced-forms.php:220
 msgid "Forms list"
 msgstr "Lista formularzy"
 
-#: advanced-forms.php:218
+#: advanced-forms.php:221
 msgid "Forms list navigation"
 msgstr "Nawigacja listy formularzy"
 
-#: advanced-forms.php:219
+#: advanced-forms.php:222
 msgid "Filter forms list"
 msgstr "Lista filtrów"
 
-#: advanced-forms.php:242
+#: advanced-forms.php:245
 msgctxt "Post Type General Name"
 msgid "Entries"
 msgstr "Wpisy"
 
-#: advanced-forms.php:243
+#: advanced-forms.php:246
 msgctxt "Post Type Singular Name"
 msgid "Entry"
 msgstr "Wpis"
 
 #: admin/admin-entries.php:240
 #: admin/admin-forms.php:175
-#: advanced-forms.php:244
-#: advanced-forms.php:248
+#: advanced-forms.php:247
+#: advanced-forms.php:251
 msgid "Entries"
 msgstr "Wpisy"
 
-#: advanced-forms.php:245
-#: advanced-forms.php:269
-#: advanced-forms.php:270
+#: advanced-forms.php:248
+#: advanced-forms.php:272
+#: advanced-forms.php:273
 msgid "Entry"
 msgstr "Wpis"
 
-#: advanced-forms.php:246
+#: advanced-forms.php:249
 msgid "Entry Archives"
 msgstr "Wpisy archiwalne"
 
-#: advanced-forms.php:247
+#: advanced-forms.php:250
 msgid "Parent Entry:"
 msgstr "Wpis nadrzędny:"
 
-#: advanced-forms.php:249
+#: advanced-forms.php:252
 msgid "Add New Entry"
 msgstr "Dodaj nowy wpis"
 
-#: advanced-forms.php:251
+#: advanced-forms.php:254
 msgid "New Entry"
 msgstr "Nowy wpis"
 
-#: advanced-forms.php:252
+#: advanced-forms.php:255
 msgid "Edit Entry"
 msgstr "Edytuj wpis"
 
-#: advanced-forms.php:253
+#: advanced-forms.php:256
 msgid "Update Entry"
 msgstr "Aktualizuj wpis"
 
-#: advanced-forms.php:254
+#: advanced-forms.php:257
 msgid "View Entry"
 msgstr "Pokaż wpis"
 
-#: advanced-forms.php:255
+#: advanced-forms.php:258
 msgid "Search Entry"
 msgstr "Wyszukaj wpis"
 
-#: advanced-forms.php:262
+#: advanced-forms.php:265
 msgid "Insert into entry"
 msgstr "Wstaw do wpisu"
 
-#: advanced-forms.php:264
+#: advanced-forms.php:267
 msgid "Entries list"
 msgstr "Lista wpisów"
 
-#: advanced-forms.php:265
+#: advanced-forms.php:268
 msgid "Entries list navigation"
 msgstr "Nawigacja listy wpisów"
 
-#: advanced-forms.php:266
+#: advanced-forms.php:269
 msgid "Filter entries list"
 msgstr "Filtruj listę wpisów"
 
@@ -460,43 +460,43 @@ msgstr ""
 msgid "Number of times viewed"
 msgstr ""
 
-#: admin/admin-restrictions.php:22
+#: admin/admin-restrictions.php:19
 msgid "Restrictions"
 msgstr ""
 
-#: admin/admin-restrictions.php:40
+#: admin/admin-restrictions.php:37
 msgid "Restrict number of entries"
 msgstr ""
 
-#: admin/admin-restrictions.php:57
+#: admin/admin-restrictions.php:54
 msgid "Maximum number of entries"
 msgstr ""
 
-#: admin/admin-restrictions.php:83
+#: admin/admin-restrictions.php:80
 msgid "Message after entry limit has been reached"
 msgstr ""
 
-#: admin/admin-restrictions.php:109
+#: admin/admin-restrictions.php:107
 msgid "Require user to be logged in"
 msgstr ""
 
-#: admin/admin-restrictions.php:126
+#: admin/admin-restrictions.php:124
 msgid "Message if user is not logged in"
 msgstr ""
 
-#: admin/admin-restrictions.php:152
+#: admin/admin-restrictions.php:151
 msgid "Only display form during a specific time"
 msgstr ""
 
-#: admin/admin-restrictions.php:169
+#: admin/admin-restrictions.php:168
 msgid "Start time"
 msgstr ""
 
-#: admin/admin-restrictions.php:195
+#: admin/admin-restrictions.php:194
 msgid "End time"
 msgstr ""
 
-#: admin/admin-restrictions.php:221
+#: admin/admin-restrictions.php:220
 msgid "Message before scheduled time"
 msgstr ""
 
@@ -595,35 +595,35 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: advanced-forms.php:199
+#: advanced-forms.php:202
 msgid "Form Archives"
 msgstr ""
 
-#: advanced-forms.php:200
+#: advanced-forms.php:203
 msgid "Parent Form:"
 msgstr ""
 
-#: advanced-forms.php:216
+#: advanced-forms.php:219
 msgid "Uploaded to this form"
 msgstr ""
 
-#: advanced-forms.php:263
+#: advanced-forms.php:266
 msgid "Uploaded to this entry"
 msgstr ""
 
-#: api/api-helpers.php:112
+#: api/api-helpers.php:108
 msgid "Yes"
 msgstr ""
 
-#: api/api-helpers.php:113
+#: api/api-helpers.php:109
 msgid "No"
 msgstr ""
 
-#: api/api-helpers.php:209
+#: api/api-helpers.php:204
 msgid "Insert field"
 msgstr ""
 
-#: api/api-helpers.php:223
+#: api/api-helpers.php:218
 msgid "All fields"
 msgstr ""
 
@@ -772,4 +772,17 @@ msgstr ""
 
 #: pro/admin/admin-calculated.php:36
 msgid "Set the content for each calculated form here or for more flexibility, you may define computations using <a href=\"%s\" target=\"_blank\">hooked PHP functions</a>. <br> Change the order in which calculated fields are computed by dragging & dropping."
+msgstr ""
+
+#: admin/admin-restrictions.php:15
+#: core/forms/forms-rendering.php:196
+msgid "This form is restricted."
+msgstr ""
+
+#: advanced-forms.php:163
+msgid "Couldn't find ACF PRO. Advanced Forms requires ACF PRO to function correctly."
+msgstr ""
+
+#: api/api-helpers.php:133
+msgid "Download"
 msgstr ""

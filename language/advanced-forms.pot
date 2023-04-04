@@ -1,14 +1,14 @@
-# Copyright (C) 2022 Hookturn
+# Copyright (C) 2023 Hookturn
 msgid ""
 msgstr ""
-"Project-Id-Version: Advanced Forms 1.9.3\n"
+"Project-Id-Version: Advanced Forms 1.9.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/advanced-forms\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-12-07T06:11:14+00:00\n"
+"POT-Creation-Date: 2023-04-04T05:58:31+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: advanced-forms\n"
@@ -130,9 +130,9 @@ msgstr ""
 
 #: admin/admin-entries.php:119
 #: admin/admin-entries.php:310
-#: advanced-forms.php:198
-#: advanced-forms.php:222
-#: advanced-forms.php:223
+#: advanced-forms.php:201
+#: advanced-forms.php:225
+#: advanced-forms.php:226
 #: core/core-gutenberg.php:45
 msgid "Form"
 msgstr ""
@@ -147,8 +147,8 @@ msgstr ""
 
 #: admin/admin-entries.php:240
 #: admin/admin-forms.php:175
-#: advanced-forms.php:244
-#: advanced-forms.php:248
+#: advanced-forms.php:247
+#: advanced-forms.php:251
 msgid "Entries"
 msgstr ""
 
@@ -306,43 +306,48 @@ msgstr ""
 msgid "Number of times viewed"
 msgstr ""
 
-#: admin/admin-restrictions.php:22
+#: admin/admin-restrictions.php:15
+#: core/forms/forms-rendering.php:196
+msgid "This form is restricted."
+msgstr ""
+
+#: admin/admin-restrictions.php:19
 msgid "Restrictions"
 msgstr ""
 
-#: admin/admin-restrictions.php:40
+#: admin/admin-restrictions.php:37
 msgid "Restrict number of entries"
 msgstr ""
 
-#: admin/admin-restrictions.php:57
+#: admin/admin-restrictions.php:54
 msgid "Maximum number of entries"
 msgstr ""
 
-#: admin/admin-restrictions.php:83
+#: admin/admin-restrictions.php:80
 msgid "Message after entry limit has been reached"
 msgstr ""
 
-#: admin/admin-restrictions.php:109
+#: admin/admin-restrictions.php:107
 msgid "Require user to be logged in"
 msgstr ""
 
-#: admin/admin-restrictions.php:126
+#: admin/admin-restrictions.php:124
 msgid "Message if user is not logged in"
 msgstr ""
 
-#: admin/admin-restrictions.php:152
+#: admin/admin-restrictions.php:151
 msgid "Only display form during a specific time"
 msgstr ""
 
-#: admin/admin-restrictions.php:169
+#: admin/admin-restrictions.php:168
 msgid "Start time"
 msgstr ""
 
-#: admin/admin-restrictions.php:195
+#: admin/admin-restrictions.php:194
 msgid "End time"
 msgstr ""
 
-#: admin/admin-restrictions.php:221
+#: admin/admin-restrictions.php:220
 msgid "Message before scheduled time"
 msgstr ""
 
@@ -441,189 +446,197 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: advanced-forms.php:195
+#: advanced-forms.php:163
+msgid "Couldn't find ACF PRO. Advanced Forms requires ACF PRO to function correctly."
+msgstr ""
+
+#: advanced-forms.php:198
 msgctxt "Post Type General Name"
-msgid "Forms"
-msgstr ""
-
-#: advanced-forms.php:196
-msgctxt "Post Type Singular Name"
-msgid "Form"
-msgstr ""
-
-#: advanced-forms.php:197
-#: advanced-forms.php:201
 msgid "Forms"
 msgstr ""
 
 #: advanced-forms.php:199
-msgid "Form Archives"
+msgctxt "Post Type Singular Name"
+msgid "Form"
 msgstr ""
 
 #: advanced-forms.php:200
-msgid "Parent Form:"
+#: advanced-forms.php:204
+msgid "Forms"
 msgstr ""
 
 #: advanced-forms.php:202
-msgid "Add New Form"
+msgid "Form Archives"
 msgstr ""
 
 #: advanced-forms.php:203
-#: advanced-forms.php:250
-msgid "Add New"
-msgstr ""
-
-#: advanced-forms.php:204
-msgid "New Form"
+msgid "Parent Form:"
 msgstr ""
 
 #: advanced-forms.php:205
-msgid "Edit Form"
+msgid "Add New Form"
 msgstr ""
 
 #: advanced-forms.php:206
-msgid "Update Form"
+#: advanced-forms.php:253
+msgid "Add New"
 msgstr ""
 
 #: advanced-forms.php:207
-msgid "View Form"
+msgid "New Form"
 msgstr ""
 
 #: advanced-forms.php:208
-msgid "Search Form"
+msgid "Edit Form"
 msgstr ""
 
 #: advanced-forms.php:209
-#: advanced-forms.php:256
-msgid "Not found"
+msgid "Update Form"
 msgstr ""
 
 #: advanced-forms.php:210
-#: advanced-forms.php:257
-msgid "Not found in Trash"
+msgid "View Form"
 msgstr ""
 
 #: advanced-forms.php:211
-#: advanced-forms.php:258
-msgid "Featured Image"
+msgid "Search Form"
 msgstr ""
 
 #: advanced-forms.php:212
 #: advanced-forms.php:259
-msgid "Set featured image"
+msgid "Not found"
 msgstr ""
 
 #: advanced-forms.php:213
 #: advanced-forms.php:260
-msgid "Remove featured image"
+msgid "Not found in Trash"
 msgstr ""
 
 #: advanced-forms.php:214
 #: advanced-forms.php:261
-msgid "Use as featured image"
+msgid "Featured Image"
 msgstr ""
 
 #: advanced-forms.php:215
-msgid "Insert into form"
+#: advanced-forms.php:262
+msgid "Set featured image"
 msgstr ""
 
 #: advanced-forms.php:216
-msgid "Uploaded to this form"
+#: advanced-forms.php:263
+msgid "Remove featured image"
 msgstr ""
 
 #: advanced-forms.php:217
-msgid "Forms list"
+#: advanced-forms.php:264
+msgid "Use as featured image"
 msgstr ""
 
 #: advanced-forms.php:218
-msgid "Forms list navigation"
+msgid "Insert into form"
 msgstr ""
 
 #: advanced-forms.php:219
+msgid "Uploaded to this form"
+msgstr ""
+
+#: advanced-forms.php:220
+msgid "Forms list"
+msgstr ""
+
+#: advanced-forms.php:221
+msgid "Forms list navigation"
+msgstr ""
+
+#: advanced-forms.php:222
 msgid "Filter forms list"
 msgstr ""
 
-#: advanced-forms.php:242
+#: advanced-forms.php:245
 msgctxt "Post Type General Name"
 msgid "Entries"
 msgstr ""
 
-#: advanced-forms.php:243
+#: advanced-forms.php:246
 msgctxt "Post Type Singular Name"
 msgid "Entry"
 msgstr ""
 
-#: advanced-forms.php:245
-#: advanced-forms.php:269
-#: advanced-forms.php:270
+#: advanced-forms.php:248
+#: advanced-forms.php:272
+#: advanced-forms.php:273
 msgid "Entry"
 msgstr ""
 
-#: advanced-forms.php:246
+#: advanced-forms.php:249
 msgid "Entry Archives"
 msgstr ""
 
-#: advanced-forms.php:247
+#: advanced-forms.php:250
 msgid "Parent Entry:"
 msgstr ""
 
-#: advanced-forms.php:249
+#: advanced-forms.php:252
 msgid "Add New Entry"
 msgstr ""
 
-#: advanced-forms.php:251
+#: advanced-forms.php:254
 msgid "New Entry"
 msgstr ""
 
-#: advanced-forms.php:252
+#: advanced-forms.php:255
 msgid "Edit Entry"
 msgstr ""
 
-#: advanced-forms.php:253
+#: advanced-forms.php:256
 msgid "Update Entry"
 msgstr ""
 
-#: advanced-forms.php:254
+#: advanced-forms.php:257
 msgid "View Entry"
 msgstr ""
 
-#: advanced-forms.php:255
+#: advanced-forms.php:258
 msgid "Search Entry"
 msgstr ""
 
-#: advanced-forms.php:262
+#: advanced-forms.php:265
 msgid "Insert into entry"
 msgstr ""
 
-#: advanced-forms.php:263
+#: advanced-forms.php:266
 msgid "Uploaded to this entry"
 msgstr ""
 
-#: advanced-forms.php:264
+#: advanced-forms.php:267
 msgid "Entries list"
 msgstr ""
 
-#: advanced-forms.php:265
+#: advanced-forms.php:268
 msgid "Entries list navigation"
 msgstr ""
 
-#: advanced-forms.php:266
+#: advanced-forms.php:269
 msgid "Filter entries list"
 msgstr ""
 
-#: api/api-helpers.php:112
+#: api/api-helpers.php:108
 msgid "Yes"
 msgstr ""
 
-#: api/api-helpers.php:113
+#: api/api-helpers.php:109
 msgid "No"
 msgstr ""
 
-#: api/api-helpers.php:209
+#: api/api-helpers.php:133
+msgid "Download"
+msgstr ""
+
+#: api/api-helpers.php:204
 msgid "Insert field"
 msgstr ""
 
-#: api/api-helpers.php:223
+#: api/api-helpers.php:218
 msgid "All fields"
 msgstr ""
 
