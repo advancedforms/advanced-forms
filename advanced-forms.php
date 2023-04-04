@@ -158,7 +158,10 @@ if ( ! class_exists( 'AF' ) ) :
 		 */
 		function missing_acf_notice() {
 			if ( ! $this->has_acf() ) {
-				echo sprintf( '<div class="notice notice-error is-dismissible"><p>%s</p></div>', 'Couldn\'t find ACF 5 PRO. Advanced Forms requires ACF 5 PRO to function correctly.' );
+				echo sprintf(
+					'<div class="notice notice-error is-dismissible"><p>%s</p></div>',
+					__( 'Couldn\'t find ACF PRO. Advanced Forms requires ACF PRO to function correctly.', 'advanced-forms' )
+				);
 			}
 		}
 
