@@ -36,7 +36,8 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 	 * @subcommand update-lang
 	 */
 	public function update_lang() {
-		// Note: we need to be in the plugin directory for this to work.
+		// Note: we need to be in the plugin directory for this to work. `cd` doesn't seem to work here so if we can
+		// figure out a workaround at some point, great. For now, just check the current dir and error if it's not right.
 		exec( 'pwd', $output );
 		if ( $output[0] !== WP_CONTENT_DIR . '/plugins/' . self::PLUGIN_DIR_NAME ) {
 			WP_CLI::error( 'You need to be in the plugin directory to run this command.' );
