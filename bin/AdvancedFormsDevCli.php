@@ -36,6 +36,12 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 	 * @subcommand update-lang
 	 */
 	public function update_lang() {
+		// Note: we need to be in the plugin directory for this to work.
+		exec( 'pwd', $output );
+		if ( $output[0] !== WP_CONTENT_DIR . '/plugins/' . self::PLUGIN_DIR_NAME ) {
+			WP_CLI::error( 'You need to be in the plugin directory to run this command.' );
+		}
+
 		$exclusions = implode( ' ', array_map( function ( $exc ) {
 			return sprintf( '--exclude="%s"', $exc );
 		}, self::EXCLUSIONS ) );
