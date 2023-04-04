@@ -1,7 +1,7 @@
 === Advanced Forms for ACF ===
 Contributors: philkurth, fabianlindfors
 Tags: acf, advanced custom fields, acf form, form builder, contact form, frontend editing
-Stable tag: 1.9.3.1
+Stable tag: 1.9.4
 Requires at least: 5.4.0
 Tested up to: 6.1.1
 Requires PHP: 7.0
