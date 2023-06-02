@@ -33,7 +33,7 @@ class AF_Admin_Forms_Import {
 
       <div id="poststuff" class="af-postbox-wrapper">
         <div class="postbox af-postbox-left">
-          <h2 class="hndle"><span>Import JSON file</span></h2>
+          <h2 class="hndle"><span><?php echo __( 'Import JSON file', 'advanced-forms' ); ?></span></h2>
           <div class="inside">
             <form method="post" enctype="multipart/form-data">
               <p>
