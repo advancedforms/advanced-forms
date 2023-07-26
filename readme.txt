@@ -1,7 +1,7 @@
 === Advanced Forms for ACF ===
 Contributors: philkurth, fabianlindfors
 Tags: acf, advanced custom fields, acf form, form builder, contact form, frontend editing
-Stable tag: 1.9.3
+Stable tag: 1.9.3.1
 Requires at least: 5.4.0
 Tested up to: 6.1.1
 Requires PHP: 7.0
@@ -67,6 +67,11 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= [1.9.3.2] =
+
+* Added the `af/field_group/before_field_group` action hook to support custom markup before field groups.
+* Added the `af/field_group/after_field_group` action hook to support custom markup after field groups.
 
 = [1.9.3] =
 
