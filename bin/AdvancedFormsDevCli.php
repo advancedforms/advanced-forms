@@ -103,7 +103,7 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 		}, self::EXCLUSIONS ) );
 		$shell_command = /** @lang Bash */
 			"
-            rsync -a $exclusions $plugin_dir/ $svn_trunk_dir \
+            rsync -a $exclusions $plugin_dir/ $svn_trunk_dir --delete --delete-excluded \
             && open $svn_dir;
 			";
 		exec( $shell_command, $output );
@@ -115,12 +115,14 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 		$tagged_dir = $svn_dir . '/tags/' . $version;
 		exec( 'rm -rf ' . $tagged_dir, $output );
 
+		// SVN add all files
+		exec( 'svn add . --force', $output );
+
+		// SVN delete all deleted files
+		exec( "svn status | grep '^\!' | sed 's/! *//' | xargs -I% svn rm %@", $output );
+
 		// Copy trunk to new tagged release dir
 		exec( "cd $svn_dir && svn cp {$svn_trunk_dir}/. $tagged_dir", $output );
-
-		// todo - need something in here that adds and new files and deletes and removes ones. Until we have something
-		//  automated for this, use SmartSVN and the svn status command to see what's changed and then commit it. This
-		//  needs to happen before committing and deploying to WordPress.org.
 
 		// Check in the new code using svn ci -m "tagging version $version"
 		//exec( 'cd ' . $svn_dir . '&& svn ci -m "tagging version "' . $version, $output );
