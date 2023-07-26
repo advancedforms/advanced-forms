@@ -298,6 +298,8 @@ class AF_Core_Forms_Rendering {
 	 * @since 1.6.0
 	 */
 	function render_field_group( $field_group, $form, $args ) {
+		do_action( 'af/field_group/before_field_group', $field_group, $form, $args );
+
 		// Get all fields for field group
 		$fields = acf_get_fields( $field_group );
 
@@ -314,6 +316,8 @@ class AF_Core_Forms_Rendering {
 
 			$this->render_field( $field, $form, $args );
 		}
+
+		do_action( 'af/field_group/after_field_group', $field_group, $form, $args );
 	}
 
 	/**

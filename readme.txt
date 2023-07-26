@@ -68,6 +68,11 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 
 == Changelog ==
 
+= [1.9.3.2] =
+
+* Added the `af/field_group/before_field_group` action hook to support custom markup before field groups.
+* Added the `af/field_group/after_field_group` action hook to support custom markup after field groups.
+
 = [1.9.3] =
 
 * Added the `af_render_content` private field type for internal use in form settings UI.
