@@ -124,8 +124,11 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 		// Copy trunk to new tagged release dir
 		exec( "cd $svn_dir && svn cp {$svn_trunk_dir}/. $tagged_dir", $output );
 
+		// Let's also make a zip file for the tagged release so we can test it locally before we commit it.
+		//$zip_file = $svn_dir . '/tags/' . $version . '.zip';
+
 		// Check in the new code using svn ci -m "tagging version $version"
-		//exec( 'cd ' . $svn_dir . '&& svn ci -m "tagging version "' . $version, $output );
+		self::make_zip_from_svg_tag( $version );
 
 		WP_CLI::success( print_r( $output ) );
 	}
@@ -189,6 +192,48 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
             rsync -a $exclusions $plugin_dev_dir/ $releases_dir/$release_dirname \
             && cd $releases_dir \
             && zip -rm {$release_dirname}{$version}{$suffix}.zip $release_dirname \
+            && cd - \
+            && open $releases_dir;
+			";
+
+		exec( $shell_command, $output );
+
+		foreach ( $output as $line ) {
+			WP_CLI::log( $line );
+		}
+
+		\WP_CLI::success( 'Done.' );
+	}
+
+	/**
+	 * This simple takes a tagged release and creates a zipped version of it in the releases/free dir for us to test
+	 * locally. This ensures the version we upload to WordPress.org will work before we commit it to SVN.
+	 *
+	 * @return void
+	 */
+	private function make_zip_from_svg_tag( $tag ) {
+		// Always develop using `advanced-forms` dir but we release pro version under `advanced-forms-pro`
+		$dirname = self::PLUGIN_DIR_NAME;
+		$tagged_release_dir = WP_CONTENT_DIR . '/releases/free-svn/tags/' . $tag;
+
+		$data = get_plugin_data( "$tagged_release_dir/$dirname.php", false, false );
+		$version = ( isset( $data['Version'] ) and $data['Version'] ) ? $data['Version'] : '';
+
+		if ( $version !== $tag ) {
+			WP_CLI::error( 'The version in the plugin file does not match the tagged directory. This is a problem.' );
+		}
+
+		$release_dirname = self::PLUGIN_DIR_NAME;
+		$releases_dir = WP_CONTENT_DIR . '/releases/free';
+
+		// First, clear out the existing release dir, if there
+		exec( 'rm -rf ' . $releases_dir . '/' . $release_dirname, $output );
+
+		$shell_command = /** @lang Bash */
+			"
+            rsync -a $tagged_release_dir/ $releases_dir/$release_dirname \
+            && cd $releases_dir \
+            && zip -rm {$release_dirname}-v{$version}.zip $release_dirname \
             && cd - \
             && open $releases_dir;
 			";
