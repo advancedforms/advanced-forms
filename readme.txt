@@ -1,9 +1,9 @@
 === Advanced Forms for ACF ===
 Contributors: philkurth, fabianlindfors
 Tags: acf, advanced custom fields, acf form, form builder, contact form, frontend editing
-Stable tag: 1.9.4
+Stable tag: 1.9.3.2
 Requires at least: 5.4.0
-Tested up to: 6.1.1
+Tested up to: 6.2.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -78,6 +78,11 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 * Fixed issue where a restricted form would still be accessible if no restriction message was set.
 * Added `af/form/default_restriction_message` filter to allow override of the default restriction message.
 * Added `af/form/restriction_output` filter to allow override or hiding of the entire restriction message output.
+
+= [1.9.3.2] =
+
+* Added the `af/field_group/before_field_group` action hook to support custom markup before field groups.
+* Added the `af/field_group/after_field_group` action hook to support custom markup after field groups.
 
 = [1.9.3] =
 

@@ -110,7 +110,7 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 		}, self::EXCLUSIONS ) );
 		$shell_command = /** @lang Bash */
 			"
-            rsync -a $exclusions $plugin_dir/ $svn_trunk_dir \
+            rsync -a $exclusions $plugin_dir/ $svn_trunk_dir --delete --delete-excluded \
             && open $svn_dir;
 			";
 		exec( $shell_command, $output );
@@ -122,15 +122,20 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
 		$tagged_dir = $svn_dir . '/tags/' . $version;
 		exec( 'rm -rf ' . $tagged_dir, $output );
 
+		// SVN add all files
+		exec( 'svn add . --force', $output );
+
+		// SVN delete all deleted files
+		exec( "svn status | grep '^\!' | sed 's/! *//' | xargs -I% svn rm %@", $output );
+
 		// Copy trunk to new tagged release dir
 		exec( "cd $svn_dir && svn cp {$svn_trunk_dir}/. $tagged_dir", $output );
 
-		// todo - need something in here that adds and new files and deletes and removes ones. Until we have something
-		//  automated for this, use SmartSVN and the svn status command to see what's changed and then commit it. This
-		//  needs to happen before committing and deploying to WordPress.org.
+		// Let's also make a zip file for the tagged release so we can test it locally before we commit it.
+		//$zip_file = $svn_dir . '/tags/' . $version . '.zip';
 
 		// Check in the new code using svn ci -m "tagging version $version"
-		//exec( 'cd ' . $svn_dir . '&& svn ci -m "tagging version "' . $version, $output );
+		self::make_zip_from_svg_tag( $version );
 
 		WP_CLI::success( print_r( $output ) );
 	}
@@ -194,6 +199,48 @@ class AdvancedFormsDevCli extends \WP_CLI_Command {
             rsync -a $exclusions $plugin_dev_dir/ $releases_dir/$release_dirname \
             && cd $releases_dir \
             && zip -rm {$release_dirname}{$version}{$suffix}.zip $release_dirname \
+            && cd - \
+            && open $releases_dir;
+			";
+
+		exec( $shell_command, $output );
+
+		foreach ( $output as $line ) {
+			WP_CLI::log( $line );
+		}
+
+		\WP_CLI::success( 'Done.' );
+	}
+
+	/**
+	 * This simple takes a tagged release and creates a zipped version of it in the releases/free dir for us to test
+	 * locally. This ensures the version we upload to WordPress.org will work before we commit it to SVN.
+	 *
+	 * @return void
+	 */
+	private function make_zip_from_svg_tag( $tag ) {
+		// Always develop using `advanced-forms` dir but we release pro version under `advanced-forms-pro`
+		$dirname = self::PLUGIN_DIR_NAME;
+		$tagged_release_dir = WP_CONTENT_DIR . '/releases/free-svn/tags/' . $tag;
+
+		$data = get_plugin_data( "$tagged_release_dir/$dirname.php", false, false );
+		$version = ( isset( $data['Version'] ) and $data['Version'] ) ? $data['Version'] : '';
+
+		if ( $version !== $tag ) {
+			WP_CLI::error( 'The version in the plugin file does not match the tagged directory. This is a problem.' );
+		}
+
+		$release_dirname = self::PLUGIN_DIR_NAME;
+		$releases_dir = WP_CONTENT_DIR . '/releases/free';
+
+		// First, clear out the existing release dir, if there
+		exec( 'rm -rf ' . $releases_dir . '/' . $release_dirname, $output );
+
+		$shell_command = /** @lang Bash */
+			"
+            rsync -a $tagged_release_dir/ $releases_dir/$release_dirname \
+            && cd $releases_dir \
+            && zip -rm {$release_dirname}-v{$version}.zip $release_dirname \
             && cd - \
             && open $releases_dir;
 			";
