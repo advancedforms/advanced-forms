@@ -269,8 +269,8 @@ class AF_Admin_Entries {
 			'message' => '',
 			'default_value' => 0,
 			'ui' => 1,
-			'ui_on_text' => 'Yes',
-			'ui_off_text' => 'No',
+			'ui_on_text' => __( 'Yes', 'advanced-forms' ),
+			'ui_off_text' => __( 'No', 'advanced-forms' ),
 		);
 				
 		

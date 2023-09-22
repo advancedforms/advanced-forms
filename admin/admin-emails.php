@@ -130,7 +130,7 @@ class AF_Admin_Emails {
 						'id' => '',
 					),
 					'default_value' => '',
-					'placeholder' => 'Name this email for your reference',
+					'placeholder' => __( 'Name this email for your reference', 'advanced-forms' ),
 					'prepend' => '',
 					'append' => '',
 					'maxlength' => '',
@@ -148,7 +148,7 @@ class AF_Admin_Emails {
 						'class' => '',
 						'id' => '',
 					),
-					'message' => 'Yes',
+					'message' => __( 'Yes', 'advanced-forms' ),
 					'default_value' => 1,
 				),
 				array (
@@ -239,7 +239,7 @@ class AF_Admin_Emails {
 					'label' => __( 'From', 'advanced-forms' ),
 					'name' => 'from',
 					'type' => 'text',
-					'instructions' => 'Must be either an email address or on the form "Name &#x3C;Email address&#x3E;".',
+					'instructions' => __( 'Must be either an email address or on the form "Name &#x3C;Email address&#x3E;".', 'advanced-forms' ),
 					'required' => 0,
 					'conditional_logic' => 0,
 					'wrapper' => array (
