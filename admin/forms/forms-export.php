@@ -162,7 +162,7 @@ class AF_Admin_Forms_Export {
 
 		// PHP versions below 5.4 don't support JSON_PRETTY_PRINT.
 		$json_pretty_print = 128;
-		$json = json_encode( af_export_form( $form ), $json_pretty_print );
+		$json = wp_json_encode( af_export_form( $form ), $json_pretty_print );
 
 		$file_name = sprintf( '%s.json', $form['key'] );
 		header( 'Content-disposition: attachment; filename=' . $file_name );
