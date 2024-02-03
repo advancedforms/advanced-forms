@@ -2,6 +2,8 @@
 
 class AF_Admin_Forms_Export {
 
+	private $capability = 'edit_pages';
+
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'register_admin_page' ), 10, 0 );
 		add_action( 'admin_init', array( $this, 'export_json_file' ), 10, 0 );
@@ -20,7 +22,7 @@ class AF_Admin_Forms_Export {
 			'admin.php',
 			'Export form',
 			'Export',
-			'edit_pages',
+			$this->capability,
 			'af_export_form',
 			[ $this, 'export_page' ]
 		);
@@ -42,6 +44,9 @@ class AF_Admin_Forms_Export {
 		$admin_page_url = menu_page_url( 'af_export_form', false );
 		$form_json_link = add_query_arg( 'form_id', $form_id, $admin_page_url );
 		$form_json_link = add_query_arg( 'export_json', true, $form_json_link );
+
+		// Add nonce to link
+		$form_json_link = $this->add_nonce_to_url( $form_json_link );
 
 		$form_link = get_edit_post_link( $form['post_id'] );
 		$code = $this->generate_form_code( $form );
@@ -145,11 +150,27 @@ class AF_Admin_Forms_Export {
 			return;
 		}
 
+		if ( ! current_user_can( $this->capability ) ) {
+			wp_die(
+				__( 'You do not have sufficient permissions to export forms.', 'advanced-forms' ),
+				__( 'Error: Insufficient permissions', 'advanced-forms' ),
+				[ 'back_link' => true ]
+			);
+		}
+
+		if ( ! $this->verify_nonce() ) {
+			wp_die(
+				__( 'Form could not exported due to missing or invalid nonce.', 'advanced-forms' ),
+				__( 'Error: Invalid nonce', 'advanced-forms' ),
+				[ 'back_link' => true ]
+			);
+		}
+
 		$form = af_form_from_post( $_GET['form_id'] );
 
 		// PHP versions below 5.4 don't support JSON_PRETTY_PRINT.
 		$json_pretty_print = 128;
-		$json = json_encode( af_export_form( $form ), $json_pretty_print );
+		$json = wp_json_encode( af_export_form( $form ), $json_pretty_print );
 
 		$file_name = sprintf( '%s.json', $form['key'] );
 		header( 'Content-disposition: attachment; filename=' . $file_name );
@@ -157,6 +178,15 @@ class AF_Admin_Forms_Export {
 
 		echo $json;
 		exit;
+	}
+
+	private function add_nonce_to_url( $url ) {
+		return wp_nonce_url( $url, 'af_export_form', 'af_export_nonce' );
+	}
+
+	private function verify_nonce() {
+		$nonce = isset( $_GET['af_export_nonce'] ) ? $_GET['af_export_nonce'] : '';
+		return wp_verify_nonce( $nonce, 'af_export_form' );
 	}
 
 }
