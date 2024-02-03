@@ -2,6 +2,8 @@
 
 class AF_Admin_Forms_Export {
 
+	private $capability = 'edit_pages';
+
 	function __construct() {
 		add_action( 'admin_menu', array( $this, 'register_admin_page' ), 10, 0 );
 		add_action( 'admin_init', array( $this, 'export_json_file' ), 10, 0 );
@@ -20,7 +22,7 @@ class AF_Admin_Forms_Export {
 			'admin.php',
 			'Export form',
 			'Export',
-			'edit_pages',
+			$this->capability,
 			'af_export_form',
 			[ $this, 'export_page' ]
 		);
@@ -148,12 +150,18 @@ class AF_Admin_Forms_Export {
 			return;
 		}
 
-		// todo - check user has capability to export forms. redirect to login if not logged in.
+		if ( ! current_user_can( $this->capability ) ) {
+			wp_die(
+				__( 'You do not have sufficient permissions to export forms.', 'advanced-forms' ),
+				__( 'Error: Insufficient permissions', 'advanced-forms' ),
+				[ 'back_link' => true ]
+			);
+		}
 
 		if ( ! $this->verify_nonce() ) {
 			wp_die(
 				__( 'Form could not exported due to missing or invalid nonce.', 'advanced-forms' ),
-				__( 'Error: invalid nonce', 'advanced-forms' ),
+				__( 'Error: Invalid nonce', 'advanced-forms' ),
 				[ 'back_link' => true ]
 			);
 		}
