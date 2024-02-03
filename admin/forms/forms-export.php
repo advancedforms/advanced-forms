@@ -43,6 +43,9 @@ class AF_Admin_Forms_Export {
 		$form_json_link = add_query_arg( 'form_id', $form_id, $admin_page_url );
 		$form_json_link = add_query_arg( 'export_json', true, $form_json_link );
 
+		// Add nonce to link
+		$form_json_link = $this->add_nonce_to_url( $form_json_link );
+
 		$form_link = get_edit_post_link( $form['post_id'] );
 		$code = $this->generate_form_code( $form );
 		?>
@@ -145,6 +148,16 @@ class AF_Admin_Forms_Export {
 			return;
 		}
 
+		// todo - check user has capability to export forms. redirect to login if not logged in.
+
+		if ( ! $this->verify_nonce() ) {
+			wp_die(
+				__( 'Form could not exported due to missing or invalid nonce.', 'advanced-forms' ),
+				__( 'Error: invalid nonce', 'advanced-forms' ),
+				[ 'back_link' => true ]
+			);
+		}
+
 		$form = af_form_from_post( $_GET['form_id'] );
 
 		// PHP versions below 5.4 don't support JSON_PRETTY_PRINT.
@@ -157,6 +170,15 @@ class AF_Admin_Forms_Export {
 
 		echo $json;
 		exit;
+	}
+
+	private function add_nonce_to_url( $url ) {
+		return wp_nonce_url( $url, 'af_export_form', 'af_export_nonce' );
+	}
+
+	private function verify_nonce() {
+		$nonce = isset( $_GET['af_export_nonce'] ) ? $_GET['af_export_nonce'] : '';
+		return wp_verify_nonce( $nonce, 'af_export_form' );
 	}
 
 }
