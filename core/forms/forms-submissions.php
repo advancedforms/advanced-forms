@@ -284,7 +284,6 @@ class AF_Core_Forms_Submissions {
 		$form_key_or_id = $_POST['af_form'];
 
 		$form = af_get_form( $form_key_or_id );
-
 		if ( ! $form ) {
 			return false;
 		}
