@@ -447,7 +447,7 @@ class AF_Core_Forms_Submissions {
 	 * The errors checks should in the future be implemented client-side for a good user experience and this is mostly meant to be a fallback.
 	 *
 	 *
-	 * @since 1.7.0
+	 * @since 1.7.0
 	 *
 	 */
 	private function handle_upload_errors() {
