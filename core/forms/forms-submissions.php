@@ -309,10 +309,24 @@ class AF_Core_Forms_Submissions {
 				if ( empty( $field ) ) {
 					continue;
 				}
+
+				/**
+				 * Filter the raw submitted value before it is formatted by ACF.
+				 *
+				 * This is useful for modifying the value submitted by the user. Note that this filter runs before
+				 * validation so it will affect any custom validation rules you have set up using the af/form/validate
+				 * filters.
+				 *
+				 * @since 1.9.3.4
+				 */
+				$value = apply_filters( 'af/form/submission/value', $value, $field, $form, $args );
+
 				// Set the raw submitted value under the `_input` key.
 				$field['_input'] = $value;
-				// Set the formatted value under the `value` key.
+
+				// Format the value and set the formatted value under the `value` key.
 				$field['value'] = acf_format_value( $value, 0, $field );
+
 				$fields[] = $field;
 			}
 		}
