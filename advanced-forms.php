@@ -9,6 +9,7 @@
  * Copyright: Hookturn Digital
  * Text Domain: advanced-forms
  * Domain Path: /language
+ * Requires PHP: 7.1
  */
 
 if ( ! class_exists( 'AF' ) ) :

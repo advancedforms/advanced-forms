@@ -4,7 +4,7 @@ Tags: acf, advanced custom fields, acf form, form builder, contact form, fronten
 Stable tag: 1.9.3.4
 Requires at least: 5.4.0
 Tested up to: 6.5.3
-Requires PHP: 7.0
+Requires PHP: 7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
