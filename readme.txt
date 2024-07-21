@@ -3,7 +3,7 @@ Contributors: philkurth, fabianlindfors
 Tags: acf, advanced custom fields, form, acf form, contact form
 Stable tag: 1.9.3.4
 Requires at least: 5.4.0
-Tested up to: 6.5.3
+Tested up to: 6.6
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
