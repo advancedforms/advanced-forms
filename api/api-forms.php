@@ -374,16 +374,16 @@ function af_get_forms() {
  */
 function af_get_form_field_groups( $form_key ) {
 	// If a full form array is passed
-	if ( is_array( $form_key ) ) {
+	if ( ! empty( $form_key['key'] ) ) {
 		$form_key = $form_key['key'];
 	}
 
-	// Location rule filter
-	$args = array(
-		'af_form' => $form_key,
-	);
+	$field_groups = acf_get_field_groups( [ 'af_form' => $form_key, ] );
 
-	return acf_get_field_groups( $args );
+	$field_groups = apply_filters( 'af/form/field_groups', $field_groups, $form_key );
+	$field_groups = apply_filters( "af/form/field_groups/key={$form_key}", $field_groups, $form_key );
+
+	return $field_groups;
 }
 
 /**
