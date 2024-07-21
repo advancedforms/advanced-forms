@@ -68,20 +68,20 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 
 == Changelog ==
 
-= [1.9.3.4] =
+= 1.9.3.4 =
 
 * Added the `af/form/submission/value` filter to allow modification of submission values before they are processed.
 
-= [1.9.3.3] =
+= 1.9.3.3 =
 
 * Added capability and nonce checks to prevent unauthorized export of form JSON.
 
-= [1.9.3.2] =
+= 1.9.3.2 =
 
 * Added the `af/field_group/before_field_group` action hook to support custom markup before field groups.
 * Added the `af/field_group/after_field_group` action hook to support custom markup after field groups.
 
-= [1.9.3] =
+= 1.9.3 =
 
 * Added the `af_render_content` private field type for internal use in form settings UI.
 * Added a hotfix for ACF validation bug when using multiple forms on the one page.
@@ -89,7 +89,7 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 * Fix deprecation notices related to admin page registration that occur in PHP 8.1.
 * Fix deprecation notices related to dynamic property usage in PHP 8.2.
 
-= [1.9.2] =
+= 1.9.2 =
 
 * Added condition to stop ACF file nonces being treated as fields on submission.
 * Added condition to prevent email sending if recipient is false. `af/form/email/recipient` filter can now be used to prevent email sending.
