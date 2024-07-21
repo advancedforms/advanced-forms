@@ -3,7 +3,7 @@
  * Plugin Name: Advanced Forms
  * Plugin URI: https://wordpress.org/plugins/advanced-forms/
  * Description: Flexible and developer-friendly forms with the power of Advanced Custom Fields.
- * Version: 1.9.3.4
+ * Version: 1.9.3.5
  * Author: Phil Kurth (Hookturn)
  * Author URI: http://hookturn.io
  * Copyright: Hookturn Digital
@@ -21,7 +21,7 @@ if ( ! class_exists( 'AF' ) ) :
 		 *
 		 * @since 1.2.0
 		 */
-		public $version = '1.9.3.4';
+		public $version = '1.9.3.5';
 
 		/**
 		 * Array to hold data about the previous submission

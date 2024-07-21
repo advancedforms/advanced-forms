@@ -1,7 +1,7 @@
 === Advanced Forms for ACF ===
 Contributors: philkurth, fabianlindfors
 Tags: acf, advanced custom fields, form, acf form, contact form
-Stable tag: 1.9.3.4
+Stable tag: 1.9.3.5
 Requires at least: 5.4.0
 Tested up to: 6.6
 Requires PHP: 7.1
@@ -68,7 +68,7 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 
 == Changelog ==
 
-= [UNRELEASED] =
+= 1.9.3.5 =
 
 * Added the `af/form/field_groups` filter to allow modification and reordering of field groups.
 
