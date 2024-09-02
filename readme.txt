@@ -70,7 +70,7 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 
 = 1.9.3.6 =
 
-* Fixed bug preventing taxonomy terms from loading in field's conditinal logic settings.
+* Fixed bug preventing taxonomy terms from loading in field's conditional logic settings.
 
 = 1.9.3.5 =
 
