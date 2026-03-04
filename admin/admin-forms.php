@@ -84,8 +84,16 @@ class AF_Admin_Forms {
 		global $post;
 
 		if ( $post && $key = get_post_meta( $post->ID, 'form_key', true ) ) {
-			$message = sprintf( '<code>[advanced_form form="%s"]</code>', $key );
-			$field['message'] = $message;
+			$shortcode = sprintf( '[advanced_form form="%s"]', $key );
+			$field['message'] = sprintf(
+				'<span class="af-shortcode-field">'
+					. '<code>%s</code>'
+					. '<button type="button" class="button button-small af-copy-button" data-copied-text="%s">%s</button>'
+				. '</span>',
+				esc_html( $shortcode ),
+				esc_attr__( 'Copied!', 'advanced-forms' ),
+				esc_html__( 'Copy', 'advanced-forms' )
+			);
 		}
 
 		return $field;

@@ -40,12 +40,32 @@
  * Form settings
  */
 
-.acf-field-form-shortcode-message code {
-	/* Improve selection behaviour of shortcode */
+/* Shortcode copy field */
+.af-shortcode-field {
+	display: flex;
+	align-items: stretch;
+	gap: 6px;
+	max-width: 450px;
+}
+
+.af-shortcode-field code {
+	flex: 1;
+	font-family: Menlo, Consolas, Monaco, monospace;
+	font-size: 13px;
+	padding: 0 8px;
+	display: flex;
+	align-items: center;
+	background: #f0f0f1;
+	color: #2c3338;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	cursor: text;
 	-webkit-user-select: all;
 	user-select: all;
-	
-	padding: 5px;
+}
+
+.af-shortcode-field .button {
+	white-space: nowrap;
 }
 
 .acf-field-form-shortcode-message p {

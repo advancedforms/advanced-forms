@@ -208,6 +208,35 @@
 			}, 1000);
 		});
 
+
+		/**
+		 * Shortcode copy button
+		 */
+		$(document).on('click', '.af-copy-button', function () {
+			var $button = $(this);
+			var $code = $button.siblings('code');
+			var text = $code.text();
+
+			if (navigator.clipboard) {
+				navigator.clipboard.writeText(text);
+			} else {
+				var $temp = $('<textarea>');
+				$('body').append($temp);
+				$temp.val(text).select();
+				document.execCommand('copy');
+				$temp.remove();
+			}
+
+			var previous_text = $button.text();
+			$button.text($button.data('copied-text'));
+			$button.prop('disabled', true);
+
+			setTimeout(function () {
+				$button.text(previous_text);
+				$button.prop('disabled', false);
+			}, 1000);
+		});
+
 	});
 
 	// Gutenberg block
