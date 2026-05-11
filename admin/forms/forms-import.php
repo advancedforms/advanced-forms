@@ -36,6 +36,7 @@ class AF_Admin_Forms_Import {
           <h2 class="hndle"><span>Import JSON file</span></h2>
           <div class="inside">
             <form method="post" enctype="multipart/form-data">
+              <?php wp_nonce_field( 'af_import_form', 'af_import_nonce' ); ?>
               <p>
                 <?php _e( 'Select the form JSON file you would like to import. If a form with the same key already exists it will be overwritten.', 'advanced-forms' ); ?>
               </p>
@@ -67,6 +68,26 @@ class AF_Admin_Forms_Import {
       return;
     }
 
+    // Only users who can manage forms may import. This also guards against
+    // unauthenticated requests, since admin_init fires on admin-post.php.
+    if ( ! current_user_can( 'edit_pages' ) ) {
+      wp_die(
+        __( 'You do not have sufficient permissions to import forms.', 'advanced-forms' ),
+        __( 'Error: Insufficient permissions', 'advanced-forms' ),
+        array( 'back_link' => true )
+      );
+    }
+
+    // Verify the nonce rendered on the import page.
+    $nonce = isset( $_POST['af_import_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['af_import_nonce'] ) ) : '';
+    if ( ! wp_verify_nonce( $nonce, 'af_import_form' ) ) {
+      wp_die(
+        __( 'Form could not be imported due to a missing or invalid nonce.', 'advanced-forms' ),
+        __( 'Error: Invalid nonce', 'advanced-forms' ),
+        array( 'back_link' => true )
+      );
+    }
+
     if ( empty( $_FILES['af_import_json_file']['size'] ) ) {
       return acf_add_admin_notice( __( 'No files selected', 'advanced-forms' ) );
     }
@@ -74,6 +95,11 @@ class AF_Admin_Forms_Import {
     $file = $_FILES['af_import_json_file'];
     $json = file_get_contents( $file['tmp_name'] );
     $json = json_decode( $json, true );
+
+    // Bail if the uploaded file isn't a JSON object describing a form.
+    if ( ! is_array( $json ) || empty( $json['key'] ) ) {
+      return acf_add_admin_notice( __( 'The selected file is not a valid form export.', 'advanced-forms' ) );
+    }
 
     $post = af_import_form( $json );
     if ( $post ) {

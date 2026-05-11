@@ -261,9 +261,9 @@ function af_form_to_post( $form, $post ) {
 
 	update_field( 'field_form_create_entries', $form['create_entries'], $post->ID );
 
-	$form = do_action( 'af/form/to_post', $form, $post );
-	$form = do_action( 'af/form/to_post/id=' . $post->ID, $form, $post );
-	$form = do_action( 'af/form/to_post/key=' . $form['key'], $form, $post );
+	do_action( 'af/form/to_post', $form, $post );
+	do_action( 'af/form/to_post/id=' . $post->ID, $form, $post );
+	do_action( 'af/form/to_post/key=' . $form['key'], $form, $post );
 
 	return $post;
 }

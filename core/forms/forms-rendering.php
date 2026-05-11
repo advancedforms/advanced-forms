@@ -177,12 +177,14 @@ class AF_Core_Forms_Rendering {
 	function render_title_and_description( $form, $args ) {
 		// Display title
 		if ( $args['display_title'] ) {
-			echo sprintf( '<h1 class="af-title">%s</h1>', $form['title'] );
+			echo sprintf( '<h1 class="af-title">%s</h1>', esc_html( $form['title'] ) );
 		}
 
 		// Display description
 		if ( $args['display_description'] ) {
-			echo sprintf( '<div class="af-description">%s</div>', $form['display']['description'] );
+			// Allow basic markup in the description but strip <script>, event
+			// handlers, etc. so a malicious form definition can't inject XSS.
+			echo sprintf( '<div class="af-description">%s</div>', wp_kses_post( $form['display']['description'] ) );
 		}
 	}
 

@@ -1,7 +1,7 @@
 === Advanced Forms for ACF ===
 Contributors: philkurth, fabianlindfors
 Tags: acf, advanced custom fields, form, acf form, contact form
-Stable tag: 1.9.3.7
+Stable tag: 1.9.3.8
 Requires at least: 5.4.0
 Tested up to: 6.9
 Requires PHP: 7.1
@@ -67,6 +67,12 @@ Yes. Versions 5.6 or lower of ACF are not supported.
 3. Example of location rules on an ACF field group
 
 == Changelog ==
+
+= 1.9.3.8 =
+
+* Security: Fixed a missing authorization check on the form import handler. An unauthenticated request to `admin-post.php` could overwrite an existing form (identified by its publicly visible form key) and inject stored cross-site scripting via the form description — potentially leading to site takeover. The import handler now requires the `edit_pages` capability and a valid nonce, and rejects malformed uploads. Thanks to Jakub Herman / Patchstack for the responsible disclosure.
+* Security: Form titles and descriptions are now sanitised on output (`esc_html()` for the title, `wp_kses_post()` for the description).
+* Fixed a PHP warning ("Trying to access array offset on value of type null") when saving a form.
 
 = 1.9.3.7 =
 
