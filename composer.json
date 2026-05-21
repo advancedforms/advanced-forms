@@ -1,0 +1,54 @@
+{
+  "name": "advancedforms/advanced-forms",
+  "description": "A WordPress plugin to create forms using Advanced Custom Fields",
+  "type": "wordpress-plugin",
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "Phil Kurth"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "repositories": {
+    "wpackagist": {
+      "type": "composer",
+      "url": "https://wpackagist.org",
+      "only": [
+        "wpackagist-plugin/*",
+        "wpackagist-theme/*"
+      ]
+    }
+  },
+  "require": {
+    "php": ">=7.1"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "allow-plugins": {
+      "composer/installers": true,
+      "roots/wordpress-core-installer": true
+    }
+  },
+  "extra": {
+    "installer-paths": {
+      "vendor/_wordpress/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "vendor/_wordpress/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "vendor/_wordpress/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    },
+    "wordpress-install-dir": "vendor/_wordpress/core"
+  },
+  "require-dev": {
+    "roots/wordpress": "^6.9",
+    "wp-cli/wp-cli": "^2.12",
+    "wpackagist-plugin/advanced-custom-fields": "^6.7"
+  }
+}
